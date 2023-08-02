@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import './index.css';
+import Main from './Main';
 import reportWebVitals from './reportWebVitals';
-import './Fonts/Font.css'
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
- 
-  <App />
-  
+
+  <Main />
+
 );
 
 // If you want to start measuring performance in your app, pass a function

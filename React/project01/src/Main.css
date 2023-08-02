@@ -1,0 +1,80 @@
+.App {
+  text-align: center;
+}
+
+
+@font-face {
+  font-family: 'SUIT-SemiBold';
+  src: url('./fonts/SUIT-SemiBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+*{
+
+ 
+  background-color : #E9FFFC;
+
+}
+
+.logo img{
+
+  width: 130px;
+  position: relative;
+  margin-top: 50px; /* 로고를 상단으로 20px만큼 띄웁니다. */
+  margin-left: 130px; /* 로고를 좌측으로 20px만큼 띄웁니다. */
+}
+.navbar{
+ 
+  display: flex; /* 메뉴와 로고를 수평으로 정렬하기 위해 flexbox 사용 */
+  font-family: 'SUIT-SemiBold';
+  align-items: center; /* 메뉴와 로고를 세로 가운데로 정렬 */
+  justify-content: flex-end;
+  margin-right: 200px;
+  margin-bottom: 100px;
+  
+}
+.navbarMenu{
+  
+  margin-top: -20px;
+  color: black;
+  
+  margin-right: 30px; /* 메뉴 간격을 조절 */
+  text-decoration: none;
+}
+@font-face {
+  font-family: 'SUIT-ExtraBold';
+  src: url('./fonts/SUIT-ExtraBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+.mainTitle {
+  margin-left: 300px;
+  color: #019267;
+  margin-top: 50px;
+  font-size: 30px;
+  font-family: 'SUIT-ExtraBold';
+  margin-bottom: 15px;
+}
+
+@font-face {
+  font-family: 'SUIT-Regular';
+  src: url('./fonts/SUIT-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SUIT-Bold';
+  src: url('./fonts/SUIT-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+.sub{
+  font-family: 'SUIT-Bold';
+  margin-left: 300px;
+  font-size: 15px;
+}

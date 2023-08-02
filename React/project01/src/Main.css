@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: 'SUIT-SemiBold';
-  src: url('./fonts/SUIT-SemiBold.ttf') format('truetype');
+  src: url('./Fonts/SUIT-SemiBold.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -45,7 +45,7 @@
 }
 @font-face {
   font-family: 'SUIT-ExtraBold';
-  src: url('./fonts/SUIT-ExtraBold.ttf') format('truetype');
+  src: url('./Fonts/SUIT-ExtraBold.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -60,14 +60,14 @@
 
 @font-face {
   font-family: 'SUIT-Regular';
-  src: url('./fonts/SUIT-Regular.ttf') format('truetype');
+  src: url('./Fonts/SUIT-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'SUIT-Bold';
-  src: url('./fonts/SUIT-Bold.ttf') format('truetype');
+  src: url('./Fonts/SUIT-Bold.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }

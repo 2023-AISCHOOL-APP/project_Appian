@@ -23,7 +23,6 @@ function Main() {
         </div>
 
         <div className='navbar'>
-         
           <Link to={'/find'} className='navbarMenu'>텃밭구하기</Link>
           <Link to={'/out'} className='navbarMenu' >텃밭내놓기</Link>
           <Link to={'/community' } className='navbarMenu'>커뮤니티</Link>

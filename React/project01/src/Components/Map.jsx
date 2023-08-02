@@ -1,7 +1,9 @@
 
-import './Map.css';
+import '../Css/Map.css';
 import { useEffect} from 'react';
-import farmdata from './farmdata.json';
+import farmdata from '../farmdata.json';
+import { DropdownButton } from 'react-bootstrap';
+import DropdownBox from './DropdownBox';
 
 
 
@@ -10,8 +12,6 @@ const {kakao} = window;
 function Map() {
 
   const farm = farmdata;
- 
-  
 
   useEffect(()=>{
     const container = document.getElementById('map'); // 지도를 표시할 div 
@@ -60,17 +60,13 @@ function Map() {
   
   })
 
-  const areaName = [];
-
 
   return (
     <div className='map-container'>
-      <form>
-        <select name="지역선택">
-        </select>
-      </form>
-
-      <div id="map"> </div>
+      <DropdownButton>
+        <DropdownBox />
+      </DropdownButton>
+      <div id="map"></div>
     </div>
   );
 }

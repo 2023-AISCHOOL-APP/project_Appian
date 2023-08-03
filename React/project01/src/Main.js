@@ -10,6 +10,7 @@ import Join from './pages/Join';
 import Login from './pages/Login';
 import Machin from './pages/Machin';
 
+
 function Main() {
   return (
     <Router>
@@ -29,6 +30,7 @@ function Main() {
           <Link to={'/community' } className='navbarMenu'>커뮤니티</Link>
           <Link to={'/mypage'} className='navbarMenu'>마이페이지 </Link>
         </div>
+       
         <Routes>
           <Route path='/' element={<Mainpage />} />
           <Route path='/login' element={<Login />} />
@@ -37,7 +39,9 @@ function Main() {
           <Route path='/out' element={<OutGarden />} />
           <Route path='/community' element={<Community />} />
           <Route path='/mypage' element={<Mypage />} />
+
           <Route path='/machin' element={<Machin />} />
+
         </Routes>
        
       </div>

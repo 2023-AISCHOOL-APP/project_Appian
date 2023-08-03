@@ -1,0 +1,4 @@
+oraociei11 filter=lfs diff=lfs merge=lfs -text
+oraociei11.dll filter=lfs diff=lfs merge=lfs -text
+server/instantclient_11_2/oraociei11.dll filter=lfs diff=lfs merge=lfs -text
+*.dll filter=lfs diff=lfs merge=lfs -text

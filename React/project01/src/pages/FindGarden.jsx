@@ -1,11 +1,13 @@
 // FindGarden.js
 import React from 'react';
-import Map from '../Components/Map';
+import GetAddress from '../Components/GetAddress';
+
 
 function FindGarden() {
+
   return (
-    <div>
-      <Map />
+    <div className='find'>
+      <GetAddress />
     </div>
   );
 }

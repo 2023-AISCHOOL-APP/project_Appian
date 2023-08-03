@@ -27,6 +27,7 @@ class Slide extends Component {
                     {/* div에 슬라이드 각 아이템 구현 */}
                   <div>
                     <img src=''/>
+                    <span>솔머리 행복 텃밭</span>
                   </div>
                   <div>
                     <img src=''/>

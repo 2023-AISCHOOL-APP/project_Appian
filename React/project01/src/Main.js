@@ -13,37 +13,39 @@ import Machin from './pages/Machin';
 
 function Main() {
   return (
-    <Router>
-      <div className='main_grid'>
-        <Link to={'/'} className='logo'>
-          <img src="img/logo.png" alt="Logo" />
-        </Link>
+    <Router >
+      <div className='main_col'>
+          <div className='main_grid'>
+            <Link to={'/'} className='logo'>
+              <img src="img/logo.png" alt="Logo" />
+            </Link>
 
-        <div className='navbar1'> 
-        <Link to={'/login'} className='navbarlogin'>로그인</Link>
-          <Link to={'/join'} className='navbarlogin'>회원가입</Link>
-        </div>
+            <div className='navbar1'> 
+            <Link to={'/login'} className='navbarlogin'>로그인</Link>
+              <Link to={'/join'} className='navbarlogin'>회원가입</Link>
+            </div>
 
-        <div className='navbar'>
-          <Link to={'/find'} className='navbarMenu'>텃밭구하기</Link>
-          <Link to={'/out'} className='navbarMenu' >텃밭내놓기</Link>
-          <Link to={'/community' } className='navbarMenu'>커뮤니티</Link>
-          <Link to={'/mypage'} className='navbarMenu'>마이페이지 </Link>
-        </div>
-       
-        <Routes>
-          <Route path='/' element={<Mainpage />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/join' element={<Join />} />
-          <Route path='/find' element={<FindGarden />} />
-          <Route path='/out' element={<OutGarden />} />
-          <Route path='/community' element={<Community />} />
-          <Route path='/mypage' element={<Mypage />} />
+            <div className='navbar'>
+              <Link to={'/find'} className='navbarMenu'>텃밭구하기</Link>
+              <Link to={'/out'} className='navbarMenu' >텃밭내놓기</Link>
+              <Link to={'/community' } className='navbarMenu'>커뮤니티</Link>
+              <Link to={'/mypage'} className='navbarMenu'>마이페이지 </Link>
+            </div>
+          
+            <Routes>
+              <Route path='/' element={<Mainpage />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/join' element={<Join />} />
+              <Route path='/find' element={<FindGarden />} />
+              <Route path='/out' element={<OutGarden />} />
+              <Route path='/community' element={<Community />} />
+              <Route path='/mypage' element={<Mypage />} />
 
-          <Route path='/machin' element={<Machin />} />
+              <Route path='/machin' element={<Machin />} />
 
-        </Routes>
-       
+            </Routes>
+          
+          </div>
       </div>
       </Router>
   );

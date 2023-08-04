@@ -10,9 +10,13 @@ import json
 from flask import Response
 from functools import wraps
 import db
+from flask_cors import CORS
+
 
 app = Flask(__name__)
 app.config['JOSON_AS_ASCII'] = False
+CORS(app)
+
 
 def as_json(f):
     @wraps(f)
@@ -36,6 +40,10 @@ def login():
 def lee():
     return render_template('index.html')
 
+@app.route('/react-send-data')
+def getData():
+    return 
+
 # money 페이지에서는 GET방식으로 전송받음
 @app.route('/money', methods = ['GET', 'POST'])
 def money():
@@ -50,8 +58,13 @@ def money():
 @app.route('/result')
 @as_json
 def result():
+    resList = []
     res = db.result
-    return res
+
+    for a in res:
+        resList.append({"farm_num":a[0], "farm_title":a[1], "farm_Address":a[2], "lantitude": a[3], "longitude":a[4]})
+    
+    return resList
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5022)

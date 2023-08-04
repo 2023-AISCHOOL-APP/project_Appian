@@ -2,6 +2,7 @@
 import '../Css/Map.css';
 import { useEffect } from 'react';
 import result from '../result.json';
+import axios from 'axios';
 
 
 const {kakao} = window;
@@ -11,16 +12,22 @@ function Map ({uSido, uSigungu}) {
   const farm = result;
 
   console.log('받았어!', uSido, uSigungu )
+
   
+  
+  // 통신을 통해 데이터베이스에서 데이터 받아오기
+  const url = 'http://192.168.70.65:5022/result'
+  const getData = () => {
+    console.log('getDataWithAxios')
+    axios(url, {responseType: 'json'})
+    .then(result =>{
+      console.log("서버로 받은 값:",result.data)
+    })
+  }
 
-
-  /* 통신을 통해 데이터베이스에서 데이터 받아오기
-  1) props로 사용자가 선택한 데이터에 맞는 데이터만 가져오기
-    sql = select * from farm where sido== userSido and sigungu == userSigungu 
-
-    */ 
- 
-
+  useEffect(() =>{
+    getData()
+  })
 
   useEffect(()=>{
     const container = document.getElementById('map'); // 지도를 표시할 div 
@@ -72,7 +79,6 @@ function Map ({uSido, uSigungu}) {
 
   return (
     <div className='map-container'>
-  
       <div id="map"></div>
     </div>
   );

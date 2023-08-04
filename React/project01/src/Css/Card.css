@@ -1,16 +1,16 @@
+
 .cardContainer{
   background-color: aquamarine;
-  padding : 0 10px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  display: grid;
+  grid-gap : 5px;
+  grid-template-columns: repeat(4, 2fr);
+
 }
 
 .card{
   box-sizing: content-box;
-  margin : 5px;
   text-align : center;
-  width: 300px;
+  width: 290px;
   height: 250px;
   background-color : black;
   color :white;
@@ -19,7 +19,6 @@
 .imageArea{
   text-align : center;
   display : inline-block;
-  margin-top : 5px;
   width : 290px;
   height : 150px;
   background-color: red;
@@ -27,11 +26,20 @@
 }
 .title{
   display: block;
+  text-align : left;
   margin : 0px 5px;
   background-color: #FFD365;
+  font-family: 'SUIT-bold';
 }
 
 .subTitle{
   margin : 0px 5px;
   background-color: #FF9F56;
+  font-family: 'SUIT-semibold';
+}
+
+h2{
+  margin-top : 40px;
+  font-family: 'SUIT-bold';
+
 }

@@ -1,6 +1,6 @@
 // Community.js
 import React from 'react';
-
+import { Link} from 'react-router-dom';
 
 function Community() {
   return (
@@ -47,11 +47,15 @@ function Community() {
       
       <h2 className='infotitle2'>텃밭 이야기</h2>
       <div className='infoimg2' style={{ display: 'flex', justifyContent: 'space-around', marginTop: '20px' }}>
-        
-        <img src="https://news.tbs.seoul.kr/Upload/Image/20220913/00000000000001300307.jpg" alt="이미지 1" style={{ width: '330px', height: '220px' }} />
-        
-        <img src="https://img.sbs.co.kr/newimg/news/20230710/201805762_1280.jpg" alt="이미지 2" style={{ width: '330px', height: '220px' }} />
-        <img src="https://img.seoul.co.kr/img/upload/2023/07/09/SSC_20230709165059_O2.jpg" alt="이미지 3" style={{ width: '330px', height: '220px' }} />
+      <Link to={'/cone'}>
+        <img src="img/one.jpg" alt="이미지 1" style={{ width: '330px', height: '220px' }} />
+      </Link>
+      <Link to={'/ctwo'}>
+        <img src="img/two.jpg" alt="이미지 2" style={{ width: '330px', height: '220px' }} />
+      </Link>
+      <Link to={'/cthree'}>  
+        <img src="img/three.jpg" alt="이미지 3" style={{ width: '330px', height: '220px' }} />
+      </Link>
       </div>
       </div>
       

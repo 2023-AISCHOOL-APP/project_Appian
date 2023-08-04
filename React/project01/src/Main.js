@@ -9,6 +9,10 @@ import Mainpage from './Mainpage'
 import Join from './pages/Join';
 import Login from './pages/Login';
 import Machin from './pages/Machin';
+import Cone from './Components/Cone.jsx';
+import Ctwo from './Components/Ctwo.jsx';
+import Cthree from './Components/Cthree.jsx';
+
 
 
 function Main() {
@@ -25,27 +29,35 @@ function Main() {
               <Link to={'/join'} className='navbarlogin'>회원가입</Link>
             </div>
 
-            <div className='navbar'>
-              <Link to={'/find'} className='navbarMenu'>텃밭구하기</Link>
-              <Link to={'/out'} className='navbarMenu' >텃밭내놓기</Link>
-              <Link to={'/community' } className='navbarMenu'>커뮤니티</Link>
-              <Link to={'/mypage'} className='navbarMenu'>마이페이지 </Link>
-            </div>
+
+        <div className='navbar'>
+          <Link to={'/find'} className='navbarMenu'>텃밭구하기</Link>
+          <Link to={'/out'} className='navbarMenu' >텃밭내놓기</Link>
+          <Link to={'/community' } className='navbarMenu'>커뮤니티</Link>
+          <Link to={'/mypage'} className='navbarMenu'>마이페이지 </Link>
+        </div>
+        
+       
+        <Routes>
+          <Route path='/' element={<Mainpage />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/join' element={<Join />} />
+          <Route path='/find' element={<FindGarden />} />
+          <Route path='/out' element={<OutGarden />} />
+          <Route path='/community' element={<Community />} />
+          <Route path='/mypage' element={<Mypage />} />
+          <Route path='/cone' element={<Cone />}/>
+          <Route path='/ctwo' element={<Ctwo />}/>
+          <Route path='/cthree' element={<Cthree />}/>
+          <Route path='/machin' element={<Machin />} />
           
-            <Routes>
-              <Route path='/' element={<Mainpage />} />
-              <Route path='/login' element={<Login />} />
-              <Route path='/join' element={<Join />} />
-              <Route path='/find' element={<FindGarden />} />
-              <Route path='/out' element={<OutGarden />} />
-              <Route path='/community' element={<Community />} />
-              <Route path='/mypage' element={<Mypage />} />
+        </Routes>
+       
 
-              <Route path='/machin' element={<Machin />} />
-
-            </Routes>
+            
           
           </div>
+
       </div>
       </Router>
   );

@@ -24,11 +24,8 @@ curs = conn.cursor()
 # conn.commit()
 
 # 4. SQL 수신
-<<<<<<< HEAD
-sql = "select * from farm"
-=======
 sql = "select farm_num, farm_title, farm_address, lantitude, longitude from farm where sidos='광주광역시' and sigungus='광산구'"
->>>>>>> cc7d3556931ff4b1698f97f0a0a67a85d7767af0
+
 curs.execute(sql)
 result = curs.fetchall()
 print(result)

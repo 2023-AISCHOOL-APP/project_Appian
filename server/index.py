@@ -64,17 +64,11 @@ def result():
     resList = []
     res = db.result
 
-<<<<<<< HEAD
-    for data in res:
-        print(data[0],data[1])
 
-    return "SUCCESS"
-=======
     for a in res:
         resList.append({"farm_num":a[0], "farm_title":a[1], "farm_Address":a[2], "lantitude": a[3], "longitude":a[4]})
     
     return resList
->>>>>>> cc7d3556931ff4b1698f97f0a0a67a85d7767af0
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5022)

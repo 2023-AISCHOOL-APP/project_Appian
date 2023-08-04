@@ -1,16 +1,19 @@
 import React from 'react'
 import '../Css/Card.css'
 
-const CardItem = () => {
+
+const CardItem = ({name, addr, num}) => {
+
+  console.log(num,name)
+
+  const imgUrl = "../img/farmImg/"+num+".png"
   return (
-    <div className='card'>
+    <div className='searchcard'>
       <div className='imageArea'>
+        <img src={imgUrl} alt={name}></img>
       </div>
-      <div className='title'>
-        <h3>텃밭텃밭</h3></div>
-      <div className='subTitle'>
-        <p>주소주소주소주소<br/>최대두줄두줄</p>
-      </div>
+        <h3 className='stitle'>🌱 {name}</h3>
+        <p className='ssubtitle'>{addr}</p>
     </div>
   )
 }

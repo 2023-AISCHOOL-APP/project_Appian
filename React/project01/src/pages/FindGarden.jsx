@@ -2,13 +2,16 @@
 import React from 'react';
 import GetAddress from '../Components/GetAddress';
 
-
 function FindGarden() {
-
-
+  const style={
+    backgroundColor : 'white'
+  }
   return (
-    <div className='find'>
+    
+    <div style={style}>
+      <div className='find'>
       <GetAddress />
+      </div>
     </div>
   );
 }

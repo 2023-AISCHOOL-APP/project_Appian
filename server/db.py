@@ -24,7 +24,7 @@ curs = conn.cursor()
 # conn.commit()
 
 # 4. SQL 수신
-sql = "select sigungus from farm where use_id = 1"
+sql = "select * from farm"
 curs.execute(sql)
 result = curs.fetchall()
 print(result)

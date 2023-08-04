@@ -1,17 +1,26 @@
 
 import '../Css/Map.css';
-import { useEffect} from 'react';
-import farmdata from '../farmdata.json';
-import { DropdownButton } from 'react-bootstrap';
-import DropdownBox from './DropdownBox';
-
+import { useEffect } from 'react';
+import result from '../result.json';
 
 
 const {kakao} = window;
 
-function Map() {
+function Map ({uSido, uSigungu}) {
 
-  const farm = farmdata;
+  const farm = result;
+
+  console.log('받았어!', uSido, uSigungu )
+  
+
+
+  /* 통신을 통해 데이터베이스에서 데이터 받아오기
+  1) props로 사용자가 선택한 데이터에 맞는 데이터만 가져오기
+    sql = select * from farm where sido== userSido and sigungu == userSigungu 
+
+    */ 
+ 
+
 
   useEffect(()=>{
     const container = document.getElementById('map'); // 지도를 표시할 div 
@@ -41,7 +50,7 @@ function Map() {
 
     // 커스텀 오버레이에 표시할 내용
     var content = `<div class="customoverlay">
-      <a href="https://map.kakao.com/link/map/${farm.farmNum[0]}" target="_blank"><span class="title">${farm.farmName[0]}</span></a></div>`;
+      <a href="https://map.kakao.com/link/map/${farm.farm_num[0]}" target="_blank"><span class="title">${farm.farm_title[0]}</span></a></div>`;
 
 
     // 커스텀 오버레이에 표시될 위치
@@ -63,9 +72,7 @@ function Map() {
 
   return (
     <div className='map-container'>
-      <DropdownButton>
-        <DropdownBox />
-      </DropdownButton>
+  
       <div id="map"></div>
     </div>
   );

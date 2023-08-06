@@ -1,37 +1,41 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import '../Css/GetAddress.css';
-import Map from './Map';
+import MapArea from './MapArea'
 import Card from './Card';
-import axios from 'axios';
+import { FarmData } from '../Hooks/GetData';
 
 
 const GetAddress = () => {
 
+  const data = useContext(FarmData)
+  console.log(data)
   const sidos = [
     {
       name: '광주광역시',
       sigungus : [
         { name : '광산구'}, 
         { name : '동구'},
-        { name :'서구'},
-        { name :'남구'},
+        { name : '서구'},
+        { name : '남구'},
         { name : '북구'}]
     },
     {
       name: '전라남도',
       sigungus : [
-        { name : '화순군'}, 
-        { name : '나주시'},
-        { name : '서구'},
+        { name : '나주시'}, 
+        { name : '목포시'},
+        { name : '여수시'},
         { name : '순천시'},
+        { name : '광양시'},
+        { name : '화순군'},
         { name : '장성군'}]
     }
   ];
 
 
-  const [sido, setSido] = useState([]);
-  const [sigungu, setSigungu] = useState([]);
+  const [sido, setSido] = useState(['광주광역시']);
+  const [sigungu, setSigungu] = useState(['광산구']);
   const [sigungus, setSigungus] = useState([]);
   
   
@@ -51,24 +55,24 @@ const GetAddress = () => {
 
 
   // 통신을 통해 서버에서 데이터 받아오기
-  const url = 'http://192.168.70.65:5022/result'
+  // const url = 'http://192.168.70.65:5022/result'
 
-  const [resdata, setResdata] = useState([]);
+  // const [resdata, setResdata] = useState([]);
 
 
-  const getData = () => {
-    console.log('getDataWithAxios')
-    axios(url, {responseType: 'json'})
-    .then(result =>{
-      console.log("서버로 받은 값:", result.data)
-      setResdata(result.data)
-    })
-  }
+  // const getData = () => {
+  //   console.log('getDataWithAxios')
+  //   axios(url, {responseType: 'json'})
+  //   .then(result =>{
+  //     console.log("서버로 받은 값:", result.data)
+  //     setResdata(result.data)
+  //   })
+  // }
 
-  useEffect(() =>{
-    getData()
-    console.log('타이밍테스트')
-  },[sigungu])
+  // useEffect(() =>{
+  //   getData()
+  //   console.log('타이밍테스트')
+  // },[sigungu])
   
   
 
@@ -86,10 +90,11 @@ const GetAddress = () => {
         {sigungus.map(item=>(
           <option value={item.name}>{item.name}</option>
         ))}
+
+        {sessionStorage.setItem('area', JSON.stringify({sido,sigungu}))}
       </select>
-      {console.log('잘뿌려졌어!',sido,sigungu)}
-      {console.log('프랍전',resdata)}
-      {/* <Map data={resdata}/> */}
+      
+      <MapArea />
       <Card />
     </div>
     

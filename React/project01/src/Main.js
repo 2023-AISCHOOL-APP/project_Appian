@@ -12,7 +12,7 @@ import Machin from './pages/Machin';
 import Cone from './Components/Cone.jsx';
 import Ctwo from './Components/Ctwo.jsx';
 import Cthree from './Components/Cthree.jsx';
-
+import GetData from './Hooks/GetData';
 
 
 function Main() {
@@ -37,7 +37,7 @@ function Main() {
           <Link to={'/mypage'} className='navbarMenu'>마이페이지 </Link>
         </div>
         
-       
+        <GetData>
         <Routes>
           <Route path='/' element={<Mainpage />} />
           <Route path='/login' element={<Login />} />
@@ -52,7 +52,7 @@ function Main() {
           <Route path='/machin' element={<Machin />} />
           
         </Routes>
-       
+        </GetData>
 
             
           

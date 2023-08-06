@@ -1,235 +1,119 @@
 
-.maingrid{
-  margin-right: 320px;
-  
-  background-color : #E9FFFC;
-  margin-left: 320px;
-}
-.main_col{
-  background-color : #E9FFFC;
-}
-
-.main-container {
-  max-width: 1920px;
-  
-  background-color : #E9FFFC;
-  margin: 0 auto; /* 가운데 정렬을 위해 margin 설정 */
-
-}
-
-@font-face {
-  font-family: 'SUIT-SemiBold';
-  src: url('./Fonts/SUIT-SemiBold.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-
-/* *{
-
- 
-  background-color : #E9FFFC;
-  width
-  
-} */
-
-
-
-.logo img{
-
-  width: 130px;
-  position: relative;
-  margin-top: 50px; /* 로고를 상단으로 20px만큼 띄웁니다. */
-  margin-left: 130px; /* 로고를 좌측으로 20px만큼 띄웁니다. */
-  background-color : #E9FFFC;
-}
-
-
-
-.navbar{
- 
-  display: flex; /* 메뉴와 로고를 수평으로 정렬하기 위해 flexbox 사용 */
-  font-family: 'SUIT-SemiBold';
-  align-items: center; /* 메뉴와 로고를 세로 가운데로 정렬 */
-  justify-content: flex-end;
-  margin-right: 320px;
-  margin-left: 320px;
-  background-color : #E9FFFC;
-  
-}
-
-.navbar1{
- 
-  display: flex; /* 메뉴와 로고를 수평으로 정렬하기 위해 flexbox 사용 */
-  align-items: center; /* 메뉴와 로고를 세로 가운데로 정렬 */
-  justify-content: flex-end;
-  font-size: 15px;
-  margin-right: 320px;
-  margin-left: 320px;
-  background-color : #E9FFFC;
-
-  
-}
-@font-face {
-  font-family: 'SUIT-Bold';
-  src: url('./Fonts/SUIT-Bold.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-
-
-
-
-.navbarlogin{
-  
-  font-family: 'SUIT-Regular';
-  margin-top:  -100px;
-  margin-right: 20px;
-  color: black;
-  text-decoration: none;
-  background-color : #E9FFFC;
-  
-
-}
-.navbarMenu{
-  
-  margin-top: -10px;
-  color: black;
-  
-  margin-right: 30px; /* 메뉴 간격을 조절 */
-  text-decoration: none;
-  background-color : #E9FFFC;
-  
-}
-@font-face {
-  font-family: 'SUIT-ExtraBold';
-  src: url('./Fonts/SUIT-ExtraBold.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-
-
-
-
-@font-face {
-  font-family: 'SUIT-Regular';
-  src: url('./Fonts/SUIT-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'SUIT-Bold';
-  src: url('./Fonts/SUIT-Bold.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
 
 /* Mainpage */
+.MACHINBANNER{
+  text-decoration: none;
+}
 
+ .machinBanner:hover { animation: 0.3s ease-in-out loadEffect3; }
 
-.mainTitle {
+ @keyframes loadEffect3 {
+     0%{
+         opacity: 1;
+         transform: scale(0.75);
+     }
+     65%{
+         opacity: 0.85;
+         transform: scale(1.01);
+     }
+     85%{
+         opacity: 0.65;
+         transform: scale(0.97);
+     }
+     100%{
+         opacity: 0.5;
+         transform: scale(1);
+     }
+ }
 
-  position: absolute;
-  display: inline-block; 
-  margin-right: 320px;
-  margin-left: 320px;
+.machin_text1:hover{
+  opacity: 1;
+} 
 
-  color: #00C897;
-  margin-top: -280px;
-  font-size: 40px;
+.machinBanner{
+  opacity: 1;
+  z-index: 3;
+  text-decoration: none;
+}
+.machin_text1{
+  opacity: 0;
+  position: relative;
+  text-align: center;
+  top: -105px;
+  left: -180px;
+  transition: opacity 0.3s ease-in-out; /* 투명도 변화 애니메이션 */
+
   font-family: 'SUIT-ExtraBold';
-  display: inline-block; 
-  z-index: 5;
+  text-decoration: none;
+  color: black;
+  font-size: 32px;
+  z-index: 99;
 }
 
-.mainTitle_1{
-  color: #019267;
+
+.main-container{
+  text-decoration: none;
 }
 
+#mainTitle {
 
+  
 
-.sub {
-  display: inline-block; 
-  position: absolute;
-  font-family: 'SUIT-Bold';
-  margin-left: 320px;
-  top: 430px;
-  font-size: 20px;
+  position: relative;
+  left: 320px;
+  bottom: 310px;
+  color: #00C897;
+  font-size: 45px;
+  font-family: 'SUIT-ExtraBold';
  
   z-index: 99;
 }
 
-.girl1 {
-  width: 200px; /* 이미지 크기 조절 */
-  height: 200px; /* 이미지 크기 조절 */
-  top: 33%; /* 이미지 위치 조절 */
-  left: -5%; /* 이미지 위치 조절 */
-  position: absolute;
-  transform: scale(1);
-  z-index: 4;
+#mainTitle , #sub{ animation: 0.7s ease-in-out loadEffect1; }
+
+@keyframes loadEffect1 {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+
+
+#mainTitle2 {
+
+  position: relative;
   
-}
-
-.girl2{
-  width: 200px; /* 이미지 크기 조절 */
-  height: 200px; /* 이미지 크기 조절 */
-  top: 88%; /* 이미지 위치 조절 */
-  left: -5%; /* 이미지 위치 조절 */
-  position: absolute;
-  transform: scale(1.0);
-  z-index: 3;
-}
-
-.bg2{
-  width: 200px; /* 이미지 크기 조절 */
-  height: 200px; /* 이미지 크기 조절 */
-  top: 90%; /* 이미지 위치 조절 */
-  left: -5%; /* 이미지 위치 조절 */
-  position: absolute;
-  transform: scale(1.0);
-  z-index: 1;
-}
-
-
-.mainTitle2{
-  display: inline-block; 
-  position: absolute;
- 
-
-  color:black;
-  margin-top: 590px; /* 수정: 아래로 20픽셀 이동 */
+  left: 850px;
+  top: 230px;
+  color: black;
   font-size: 45px;
   font-family: 'SUIT-ExtraBold';
-  z-index: 9;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+ 
+  z-index: 99;
 }
 
-.sub2{
-  font-family: 'SUIT-Regular';
-  margin-top: 650px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
+
+.mainTitle_1{
+  color: #019267;
+
+}
+
+
+
+#sub {
+  display: inline-block; 
+  position: relative;
+  font-family: 'SUIT-Bold';
+  left: 320px;
+  top: -290px;
   font-size: 20px;
-  transform: translate(-50%, -50%);
-  z-index: 9;
-}
+ 
 
-.MAINBUTTON{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: static;
-  margin-top: 600px;
+  z-index:9999;
 }
-
 
 
 
@@ -238,28 +122,91 @@
 
 
 .brocol{
-  position: absolute;
-      top: 1035px;
-      left: 1020px;
+  position: relative;
+     top: 145px;
+      left: 1030px;
 
       width: 100px; /* 이미지 크기 조절 */
       height: 100px; /* 이미지 크기 조절 */
       object-fit: cover; /* 이미지를 영역에 꽉 채우도록 설정 */
-      z-index: 7;
+      z-index: 99;
 }
 
-.findbtn{
-  position: absolute;
+
+
+.sub2{
+  font-family: 'SUIT-Regular';
+
+  position: relative;
+  top: 250px;
+  left: 800px;
+  text-align: center;
+  font-size: 20px;
+
+  z-index: 99;
+}
+
+
+
+
+.mainbutton1{
+ 
+  position: relative;
+  left: 400px;
+  top: 950px;
   margin-top: 100px;
-  margin-left: -860px;
-  width: auto;
-  height: auto;
+  z-index: 99;
+}
+
+.mainbutton2{
+  
+  position: relative;
+  left: 950px;
+  margin-right: 320px;
+  top: 372px;
+  margin-top: 100px;
+  z-index: 99;
+}
+
+#MAINBUTTON{
+  position: relative;
+
+  top: -900px;
+}
+
+.animate{ animation: 0.7s ease-in-out loadEffect3; }
+
+@keyframes loadEffect3 {
+    0%{
+        opacity: 0;
+        transform: scale(0.75);
+    }
+    65%{
+        opacity: 0.65;
+        transform: scale(1.01);
+    }
+    85%{
+        opacity: 0.85;
+        transform: scale(0.97);
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+.findbtn{
+
+
   padding: 10px 30px ;
   border: 2px solid white; 
   border-radius: 50px;
+  top: 160px;
+  left: 440px;
   display: inline-block;
-  /* text-decoration: none;  */
-  z-index: 88;
+  position: relative;
+  z-index: 99;
   font-family: 'SUIT-Bold';
   font-size: 18px;
   color: white;
@@ -286,16 +233,15 @@
 
 
 .findbtn2{
-  position: absolute;
-  margin-top: 100px;
-  margin-left: 330px;
-  width: auto;
-  height: auto;
+  position: relative;
+  top: 160px;
+  left: 850px;
+ 
   padding: 10px 30px ;
   border: 2px solid white; 
   border-radius: 50px;
   display: inline-block;
-  z-index: 88;
+  z-index: 99;
   font-family: 'SUIT-Bold';
   font-size: 18px;
   color: white;
@@ -313,112 +259,40 @@
 
 
 
-.mainbutton1{
- 
-  
-  margin: 40px;
-  z-index: 7;
-}
-
-.mainbutton2{
-  
-  
-  margin: 40px;
-  z-index: 7;
-}
-
-.yellowtop{
-  z-index: 6;
-  position: absolute;
-  margin-left: 0px;
-  margin-top: 30px;
-}
-
-.yellowbott{
-  z-index: 6;
-  position: absolute;
-  margin-left: 0px;
-  margin-top: 150px;
-}
-
-.yellowbutton{
-  z-index: 10;
-  
-  position: absolute;
-  margin-left: -100px;
-  margin-right: 320px;
-  margin-top: 320px;
-}
 
 .mainTitle3{
   display: inline-block; 
-  position: absolute;
-  margin-right: 320px;
-  margin-left: 320px;
+  position: relative;
+ 
+ left: 320px;
   color: white;
-  margin-top: 170px; /* 수정: 아래로 20픽셀 이동 */
+  top: 900px; /* 수정: 아래로 20픽셀 이동 */
   font-size: 45px;
   font-family: 'SUIT-ExtraBold';
-  z-index: 9;
+  z-index: 99;
 }
 
 .sub3{
   font-family: 'SUIT-Bold';
   z-index: 1;
   font-size: 20px;
-  position: absolute;
-  margin-right: 320px;
-  margin-left: 320px;
-  margin-top: 230px;
+  position: relative;
+  
+  top: 930px; /* 수정: 아래로 20픽셀 이동 */
+  left: 320px;
+   top: 910px;
   color: white;
   z-index: 9;
 }
 
-.main_bottom{
-  top: 280%; /* 이미지 위치 조절 */
-  left: -8%; /* 이미지 위치 조절 */
-  position: absolute;
-  transform: scale(1.0);
-  z-index: 7;
-}
 
-.yellow_fence{
-  position: absolute;
-  top: 206%; /* 이미지 위치 조절 */
-  left: 45%; /* 이미지 위치 조절 */
-  z-index: 6;
-}
-
-.yellow_leaves{
-  position: absolute;
-  top: 196%; /* 이미지 위치 조절 */
-  left: 53%; /* 이미지 위치 조절 */
-  scale: 1.0;
-  z-index: 7;
-}
-
-.yellow_soil{
-  position: absolute;
-  top: 207%; /* 이미지 위치 조절 */
-  left: 45%; /* 이미지 위치 조절 */
-  scale: 1.0;
-  z-index: 7;
-}
-
-.yellow_shovel{
-  position: absolute;
-  top: 197%; /* 이미지 위치 조절 */
-  left: 78%; /* 이미지 위치 조절 */
-  scale: 1.0;
-  z-index: 6;
-}
 
 .floating-banner {
   position: fixed;
   
-  right: 20px;
+  
   bottom: 300px;
-  right: 20px;
+  right: -90px;
   scale: 70%;
    /* 크기를 70%로 조정 */
   display: none;
@@ -432,13 +306,15 @@
 
 /* slide css  */
 .slider-container {
-  
-  position: absolute;
-  width: 1400px;
-  top: 2040px; /* 원하는 위치로 조정 */
-  left: 50%; /* 가운데 정렬을 위해 left 값 조정 */
-  transform: translateX(-50%); /* 가운데 정렬을 위해 left 값 조정 */
+ 
+  text-decoration: none;
+  position: relative;
+  width: 1300px;
+  top: 1950px; /* 원하는 위치로 조정 */
+  left: 42%; /* 가운데 정렬을 위해 left 값 조정 */
+  transform: translateX(-40%); /* 가운데 정렬을 위해 left 값 조정 */
   z-index: 12;
+  scale: 0.97;
 }
 .slider1:hover{
   transform: scale(1.05);
@@ -463,127 +339,145 @@
 .slider3:hover .slide_sub3,
 .slider4:hover .slide_sub4 {
   transform: translateY(94px); /* hover 시 글씨를 위로 10px 이동 */
+  text-decoration: none;
 }
 
 
 
 .slide1{
   color: black;
+
   font-family: 'SUIT-Bold';
   font-size: 25px;
-  position: absolute;
-  top: 310px;
-  margin-left: 240px;
+  position: relative;
+  left: -295px;
+  top: -80px;
+ text-decoration: none;
 }
 
 .slide_sub1{
-  position: absolute;
+  position: relative;
   font-family: 'SUIT-Regular';
-  top: 93%;
+  text-decoration: none;
+  left: 20px;
+  top: -40px;
   color: black;
-  margin-left: 160px;
+
   
 
 }
 
 .slide_sub2{
-  position: absolute;
+  text-decoration: none;
+  position: relative;
   font-family: 'SUIT-Regular';
-  top: 93%;
+  top: 55px;
+ 
   color: black;
-  bottom: auto;
-  margin-left: 210px;
+  
+ 
   
 
 }
 .slide_sub3{
-  position: absolute;
+  text-decoration: none;
+  position: relative;
   font-family: 'SUIT-Regular';
-  top: 93%;
-  margin-left: 130px;
+  left: -130px;
+  top: 50px;
+ 
   bottom: auto;
   color: black;
   
 
 }
 .slide2{
+  text-decoration: none;
   color: black;
   font-family: 'SUIT-Bold';
   font-size: 25px;
-  position: absolute;
-  top: 310px;
-  margin-left: 260px;
+  position: relative;
+  left: -270px;
+  top: 20px;
+
+  
 }
 
 .slide3{
+  text-decoration: none;
   color: black;
   font-family: 'SUIT-Bold';
   font-size: 25px;
-  position: absolute;
-  top: 310px;
-  margin-left: 200px;
+  position: relative;
+  margin-left: 20px;
+  top: 10px;
+ 
+  
+ 
 }
 .slide4{
+  text-decoration: none;
   color: black;
   font-family: 'SUIT-Bold';
   font-size: 25px;
-  position: absolute;
-  top: 310px;
-  margin-left: 160px;
+  position: relative;
+  left: 20px;
+  top: 20px;
+  
 }
 
 
 .slide_sub4{
-  position: absolute;
+  text-decoration: none;
+  position: relative;
   font-family: 'SUIT-Regular';
-  top: 93%;
-  margin-left: 155px;
+  top: 60px;
+  left: -185px;
   bottom: auto;
   color: black;
 }
 
-@font-face{
-  font-family:'bitbit';
-  src:url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff'),url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff2') ;
-}
 
-.slide_sub1_1{
-  font-family: 'SUIT-Bold';
-  position: absolute;
-  top: 20px;
-  margin-left: 330px;
-  text-decoration:underline;
-  font-size: 18px;
-  color: white;
-  
-}
 
 .slideimg1{
+  text-decoration: none;
   width: 500px;
-  border-radius: 50px;
+  text-decoration: none;
+  border-radius: 10px;
   position: relative;
-  margin-left: 80px;
+
   margin-bottom: 100px;
 }
 
 .slideimg2{
+  text-decoration: none;
   width: 500px;
   height: 280px;
-  margin-left: 70px;
-  border-radius: 30px;
+  
+  border-radius: 10px;
  
 }
 
 .slideimg3{
   width: 500px;
   height: 280px;
-  border-radius: 30px;
+  border-radius: 10px;
 }
 .slideimg4{
   width: 500px;
   height: 280px;
-  border-radius: 30px;
+  border-radius: 10px;
 }
+
+
+
+@font-face{
+  font-family:'bitbit';
+  src:url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff'),url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff2') ;
+}
+
+
+
 
 
 
@@ -735,256 +629,6 @@
 }
 
 
-.sub {
-  display: inline-block; 
-  position: absolute;
-  font-family: 'SUIT-Bold';
-  margin-left: -620px;
-  bottom: 440px;
-  font-size: 20px;
- 
-  z-index: 5;
-}
-
-.girl1 {
-  width: 200px; /* 이미지 크기 조절 */
-  height: 200px; /* 이미지 크기 조절 */
-  top: 33%; /* 이미지 위치 조절 */
-  left: -5%; /* 이미지 위치 조절 */
-  position: absolute;
-  transform: scale(1);
-  z-index: 4;
-  
-}
-
-.girl2{
-  width: 200px; /* 이미지 크기 조절 */
-  height: 200px; /* 이미지 크기 조절 */
-  top: 88%; /* 이미지 위치 조절 */
-  left: -5%; /* 이미지 위치 조절 */
-  position: absolute;
-  transform: scale(1.0);
-  z-index: 3;
-}
-
-.bg2{
-  width: 200px; /* 이미지 크기 조절 */
-  height: 200px; /* 이미지 크기 조절 */
-  top: 90%; /* 이미지 위치 조절 */
-  left: -5%; /* 이미지 위치 조절 */
-  position: absolute;
-  transform: scale(1.0);
-  z-index: 1;
-}
-
-
-.mainTitle2{
-  display: inline-block; 
-  position: absolute;
- 
-
-  color:black;
-  margin-top: 590px; /* 수정: 아래로 20픽셀 이동 */
-  font-size: 45px;
-  font-family: 'SUIT-ExtraBold';
-  z-index: 9;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.sub2{
-  font-family: 'SUIT-Regular';
-  margin-top: 650px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  font-size: 20px;
-  transform: translate(-50%, -50%);
-  z-index: 9;
-}
-
-.MAINBUTTON{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  margin-top: 740px;
-}
-
-.brocol{
-  position: absolute;
-      top: 1035px;
-      left: 1020px;
-
-      width: 100px; /* 이미지 크기 조절 */
-      height: 100px; /* 이미지 크기 조절 */
-      object-fit: cover; /* 이미지를 영역에 꽉 채우도록 설정 */
-      z-index: 7;
-}
-
-.findbtn{
-  position: absolute;
-  margin-top: 100px;
-  margin-left: -860px;
-  width: auto;
-  height: auto;
-  padding: 10px 30px ;
-  border: 2px solid white; 
-  border-radius: 50px;
-  display: inline-block;
-  /* text-decoration: none;  */
-  z-index: 88;
-  font-family: 'SUIT-Bold';
-  font-size: 18px;
-  color: white;
-  
-}
-
-
-
-.findbtn2{
-  position: absolute;
-  margin-top: 100px;
-  margin-left: 330px;
-  width: auto;
-  height: auto;
-  padding: 10px 30px ;
-  border: 2px solid white; 
-  border-radius: 50px;
-  display: inline-block;
-  z-index: 88;
-  font-family: 'SUIT-Bold';
-  font-size: 18px;
-  color: white;
-}
-.findname {
-  color: white;
-  text-decoration: none;
-}
-
-
-
-
-
-
-.mainbutton1{
- 
-  
-  margin: 40px;
-  z-index: 7;
-}
-
-.mainbutton2{
-  
-  
-  margin: 40px;
-  z-index: 7;
-}
-
-.yellowtop{
-  z-index: 6;
-  position: absolute;
-  margin-left: 0px;
-  margin-top: 30px;
-}
-
-.yellowbott{
-  z-index: 6;
-  position: absolute;
-  margin-left: 0px;
-  margin-top: 150px;
-}
-
-.yellowbutton{
-  z-index: 10;
-  
-  position: absolute;
-  margin-left: -100px;
-  margin-right: 320px;
-  margin-top: 300px;
-}
-
-.mainTitle3{
-  display: inline-block; 
-  position: absolute;
-  margin-right: 320px;
-  margin-left: 320px;
-  color: white;
-  margin-top: 170px; /* 수정: 아래로 20픽셀 이동 */
-  font-size: 45px;
-  font-family: 'SUIT-ExtraBold';
-  z-index: 9;
-}
-
-.sub3{
-  font-family: 'SUIT-Bold';
-  z-index: 1;
-  font-size: 20px;
-  position: absolute;
-  margin-right: 320px;
-  margin-left: 320px;
-  margin-top: 230px;
-  color: white;
-  z-index: 9;
-}
-
-.main_bottom{
-  top: 280%; /* 이미지 위치 조절 */
-  left: -8%; /* 이미지 위치 조절 */
-  position: absolute;
-  transform: scale(1.0);
-  z-index: 7;
-}
-
-.yellow_fence{
-  position: absolute;
-  top: 206%; /* 이미지 위치 조절 */
-  left: 45%; /* 이미지 위치 조절 */
-  z-index: 6;
-}
-
-.yellow_leaves{
-  position: absolute;
-  top: 196%; /* 이미지 위치 조절 */
-  left: 53%; /* 이미지 위치 조절 */
-  scale: 1.0;
-  z-index: 7;
-}
-
-.yellow_soil{
-  position: absolute;
-  top: 207%; /* 이미지 위치 조절 */
-  left: 45%; /* 이미지 위치 조절 */
-  scale: 1.0;
-  z-index: 7;
-}
-
-.yellow_shovel{
-  position: absolute;
-  top: 197%; /* 이미지 위치 조절 */
-  left: 78%; /* 이미지 위치 조절 */
-  scale: 1.0;
-  z-index: 6;
-}
-
-.floating-banner {
-  position: fixed;
-  
-  right: 20px;
-  bottom: 300px;
-  right: 20px;
-  scale: 70%;
-   /* 크기를 70%로 조정 */
-  display: none;
-  z-index: 999;
-}
-
-.floating-banner.show {
-  display: block;
-
-}
 
 
 

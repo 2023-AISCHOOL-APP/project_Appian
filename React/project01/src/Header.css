@@ -1,0 +1,252 @@
+/* 폰트 */
+@font-face {
+  font-family: 'SUIT-ExtraBold';
+  src: url('./Fonts/SUIT-ExtraBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+@font-face {
+  font-family: 'SUIT-Regular';
+  src: url('./Fonts/SUIT-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SUIT-Bold';
+  src: url('./Fonts/SUIT-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SUIT-SemiBold';
+  src: url('./Fonts/SUIT-SemiBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SUIT-Bold';
+  src: url('./Fonts/SUIT-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+
+/* 메인 */
+
+
+
+.maingrid{
+  margin-right: 320px;
+  
+  background-color : #E9FFFC;
+  margin-left: 320px;
+}
+.main_col{
+ 
+  background-color: #E9FFFC;
+ 
+  z-index: 99;
+
+
+  
+
+
+  
+  
+}
+#main-image {
+  position: absolute; /* 수정: absolute로 설정 */
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-top: -40px;
+  display: flex;
+  justify-content: center;
+
+  z-index: 1;
+}
+
+#main-container {
+  
+  position: relative;
+  max-width: 1920px;
+  
+  z-index: 999;
+
+}
+
+
+
+
+.logo img{
+
+  width: 130px;
+  position: relative;
+  margin-top: 50px; /* 로고를 상단으로 20px만큼 띄웁니다. */
+  margin-left: 320px; /* 로고를 좌측으로 20px만큼 띄웁니다. */
+  background-color : #E9FFFC;
+  z-index: 99;
+}
+
+
+
+.navbar{
+
+
+ 
+  font-family: 'SUIT-SemiBold';
+  position: relative;
+  top: -30px;
+  left: calc(50% + 190px); /* 가로 위치를 조절 */
+  z-index: 99;
+ 
+}
+
+.navbar1{
+ 
+  
+  font-size: 15px;
+  position: relative;
+  top: -60px;
+  left: 1390px;
+  
+  
+ 
+ 
+  z-index: 99;
+
+  
+}
+
+
+
+
+#navbarlogin{
+  
+  font-family: 'SUIT-Regular';
+
+  margin-top:  -100px;
+  margin-right: 20px;
+  color: black;
+  text-decoration: none;
+  background-color : #E9FFFC;
+  
+  
+
+}
+.navbarMenu{
+  
+  margin-top: -10px;
+  color: black;
+  
+  margin-right: 30px; /* 메뉴 간격을 조절 */
+  text-decoration: none;
+  background-color : #E9FFFC;
+  z-index: 3;
+  
+}
+.navbarSubMenu3{
+  background: white;
+  border-radius: 8px;
+  width: 100px;
+  box-shadow: 0 0px 8px rgba(0, 0, 0, 0.3); 
+  /* 그림자 가로이동거리 , 세로이동거리 , 그림자 흐림 정도 , 그림자색상과 투명도(빨,초,파,투명도) */
+  position:absolute;
+  top: 40px;
+  left: 200px;
+
+  padding: 15px;
+  text-align: center;
+ 
+
+}
+
+.navbarSubMenu4{
+  background: white;
+  border-radius: 8px;
+  width: 100px;
+  box-shadow: 0 0px 8px rgba(0, 0, 0, 0.3); 
+  /* 그림자 가로이동거리 , 세로이동거리 , 그림자 흐림 정도 , 그림자색상과 투명도(빨,초,파,투명도) */
+  position:absolute;
+  top: 40px;
+  left: 300px;
+
+  padding: 15px;
+  text-align: center;
+ 
+}
+
+.navbarSubMenu1{
+  background: white;
+  border-radius: 8px;
+  width: 100px;
+  box-shadow: 0 0px 8px rgba(0, 0, 0, 0.3); 
+  /* 그림자 가로이동거리 , 세로이동거리 , 그림자 흐림 정도 , 그림자색상과 투명도(빨,초,파,투명도) */
+  position:absolute;
+  top: 40px;
+  left: 10px;
+
+  padding: 15px;
+  text-align: center;
+ 
+  
+
+}
+.navbarSubMenu2{
+  background: white;
+  border-radius: 8px;
+  width: 100px;
+  box-shadow: 0 0px 8px rgba(4, 80, 61, 0.3); 
+  /* 그림자 가로이동거리 , 세로이동거리 , 그림자 흐림 정도 , 그림자색상과 투명도(빨,초,파,투명도) */
+  position:absolute;
+  top: 40px;
+  left: 110px;
+
+  padding: 15px;
+  text-align: center;
+ 
+
+}
+.navbarSubMenuLink{
+  text-decoration: none;
+  color:darkgrey;
+  font-family: 'SUIT-Regular';
+  font-size: 15px;
+}
+
+.navbarSubMenu1 :hover ,.navbarSubMenu2 :hover,.navbarSubMenu3 :hover,.navbarSubMenu4 :hover{
+  font-family: 'SUIT-Bold';
+  color:#05AC7B;
+  
+
+}
+
+.menu.active .dropdown-menu-container {
+  display: block; /* 메뉴가 활성화되면 보이게 함 */
+}
+
+
+.navbarSubMenu1,.navbarSubMenu2,.navbarSubMenu3,.navbarSubMenu4{ animation: 0.6s ease-in-out loadEffect2; }
+
+@keyframes loadEffect2 {
+    0%{
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    50%{
+        opacity: 0.5;
+        transform: translateY(5px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}

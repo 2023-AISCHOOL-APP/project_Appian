@@ -24,7 +24,8 @@ curs = conn.cursor()
 # conn.commit()
 
 # 4. SQL 수신
-sql = "select sigungus from farm where use_id = 1"
+sql = "select farm_num, farm_title, farm_address, lantitude, longitude from farm where sidos='광주광역시' and sigungus='광산구'"
+
 curs.execute(sql)
 result = curs.fetchall()
 print(result)

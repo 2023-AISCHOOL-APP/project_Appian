@@ -15,6 +15,9 @@ import Cone from './Components/Cone.jsx';
 import Ctwo from './Components/Ctwo.jsx';
 import Cthree from './Components/Cthree.jsx';
 
+
+import GetData from './Hooks/GetData';
+
 function Main() {
   const dropDownRef = useRef(null);
   const [activeMenu, setActiveMenu] = useState(null);
@@ -139,6 +142,11 @@ function Main() {
           </div>
         </div>
 
+
+
+        
+        <GetData>
+
         <Routes>
           <Route path='/' element={<Mainpage />} />
           <Route path='/login' element={<Login />} />
@@ -153,7 +161,14 @@ function Main() {
           <Route path='/cthree' element={<Cthree />} />
           <Route path='/machin' element={<Machin />} />
         </Routes>
-      </div>
+
+        </GetData>
+
+            
+          
+          </div>
+
+    
     </Router>
   );
 }

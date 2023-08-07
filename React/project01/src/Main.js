@@ -134,6 +134,7 @@ function Main() {
                   <NavLink to='/machin' className='navbarSubMenuLink'>
                     내 정보 수정
                   </NavLink>
+                  <div className='headerhr'></div>
                  
                   {/* 다른 서브 메뉴 추가 */}
                 </div>

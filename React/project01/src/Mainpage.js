@@ -7,7 +7,7 @@ import  { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Slide from './Slide';
 import { getResizeEventListener } from './utils';
-import { id } from 'date-fns/locale';
+
 
 
 
@@ -80,11 +80,6 @@ const Mainpage = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
- 
-
-
-
   return (
 
   <div>
@@ -143,11 +138,11 @@ const Mainpage = () => {
 
         
             <div  id="MAINBUTTON"
-                  className={animate ? 'animate' : ''}>
+                  >
                  
                  <div className='mainbutton1'>
             
-                    <img src="/img/mainbutton1.png"  alt='mainbutton1' style={{ visibility: animate ? 'visible' : 'hidden' }}/>
+                    <img src="/img/mainbutton1.png"  alt='mainbutton1' />
                  </div>
                  <div className='mainbutton2'>
                     <img src="/img/mainbutton2.png"  alt='mainbutton2'/>
@@ -162,6 +157,21 @@ const Mainpage = () => {
                   {/* mainbutton1에 버튼으로 사용할 것 만들기 */}
                   
                     
+                     {/* 플로팅 배너 */}
+                    <div className={`floating-banner ${showBanner ? 'show' : ''}`}>
+                      {/* showBanner 변수의 값에 따라 플로팅 배너에 show 클래스를 추가하거나 제거 */}
+                      {/* 배너 내용 */}
+                      <Link to='/machin' className='MACHINBANNER' >
+                          <img src='/img/main_banner.png' alt="banner"  className='machinBanner'/ >
+                      
+                          <span className='machin_text1' >
+                            <span>내 작물가격 </span>
+                            <br/>
+                            <span style={{paddingLeft :'190px'}}>알아보기</span>
+                            </span>
+                        
+                      </Link>
+                    </div>
                   
      
                     <div className='findbtn2'>
@@ -175,21 +185,7 @@ const Mainpage = () => {
 
             
 
-          {/* 플로팅 배너 */}
-          <div className={`floating-banner ${showBanner ? 'show' : ''}`}>
-            {/* showBanner 변수의 값에 따라 플로팅 배너에 show 클래스를 추가하거나 제거 */}
-            {/* 배너 내용 */}
-            <Link to='/machin' className='MACHINBANNER' >
-                <img src='/img/main_banner.png' alt="banner"  className='machinBanner'/ >
-            
-                <span className='machin_text1' >
-                  <span>내 작물가격 </span>
-                  <br/>
-                  <span style={{paddingLeft :'190px'}}>알아보기</span>
-                  </span>
-              
-            </Link>
-          </div>
+         
             
 
             

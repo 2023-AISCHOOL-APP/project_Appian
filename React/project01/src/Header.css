@@ -43,16 +43,18 @@
 
 
 
+
+
 .maingrid{
   margin-right: 320px;
-  
+ 
   background-color : #E9FFFC;
   margin-left: 320px;
 }
 .main_col{
  
   background-color: #E9FFFC;
- 
+
   z-index: 99;
 
 

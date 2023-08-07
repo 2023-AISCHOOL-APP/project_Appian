@@ -51,3 +51,7 @@ img{
   height : 170px;
   border-radius: 15px;
 }
+
+.link {
+  text-decoration: none;
+}

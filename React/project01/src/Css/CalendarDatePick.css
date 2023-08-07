@@ -1,9 +1,9 @@
 @charset "UTF-8";
 
-* {
-  font-family: 'SUIT';
+/* * {
+  font-family: 'SUIT-Regular';
   font-size : 20px;
-}
+} */
 
 .react-datepicker__year-read-view--down-arrow,
 .react-datepicker__month-read-view--down-arrow,

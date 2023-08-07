@@ -13,6 +13,7 @@ import Cone from './Components/Cone';
 import Ctwo from './Components/Ctwo';
 import Cthree from './Components/Cthree';
 import CardDetailsPage from './Components/CardDetailsPage';
+import Notice from './pages/Notice';
 
 function Main() {
   const dropDownRef = useRef(null);
@@ -105,7 +106,7 @@ function Main() {
               </NavLink>
               {activeMenu === 'community' && (
                 <div className='navbarSubMenu3'>
-                  <NavLink className='navbarSubMenuLink'>
+                  <NavLink to='/notice' className='navbarSubMenuLink'>
                     공지사항
                   </NavLink>
                   <br/>
@@ -169,6 +170,8 @@ function Main() {
             <Route path='/cthree' element={<Cthree />} />
             <Route path='/machin' element={<Machin />} />
             <Route path="/cardpage/:cardId" element={<CardDetailsPage cards={cards} />} />
+            <Route path='/notice' element={<Notice />} />
+            
           </Routes>
 
 

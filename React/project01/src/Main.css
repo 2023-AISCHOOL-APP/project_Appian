@@ -1078,6 +1078,42 @@ top: 40px;
   color: #333;
 }
 
+/* Notice.css */
+.notice-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.notice-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.notice-table th,
+.notice-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.notice-table th {
+  background-color: #f5f5f5;
+}
+
+.notice-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.notice-table tr:hover {
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+
+
+
 /* gunsik end */
 
 

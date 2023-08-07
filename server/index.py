@@ -5,18 +5,13 @@
 # Flask : routing, run
 # render_template : templates directory 안의 html 문서 호출
 # request : 외부에서 오는 data 수신시 필요
-from flask import Flask, render_template, request
-from flask_cors import CORS
+from flask import Flask, render_template, request, Response, jsonify
 import json
-from flask import Response
 from functools import wraps
-import db
 from flask_cors import CORS
-
+import db
 
 app = Flask(__name__)
-CORS(app)
-app.config['JOSON_AS_ASCII'] = False
 CORS(app)
 
 
@@ -64,11 +59,28 @@ def result():
     resList = []
     res = db.result
 
-
     for a in res:
-        resList.append({"farm_num":a[0], "farm_title":a[1], "farm_Address":a[2], "lantitude": a[3], "longitude":a[4]})
-    
+        resList.append({"farm_num":a[0], "use_id":a[1], "farm_type":a[2], "farm_title": a[3], "farm_sector":a[4], "sidos":a[5], "sigungus":a[6], "farm_address":a[7], "lental_area":a[8], "price":a[9], "lantitude":a[10], "longitude":a[11], "lental_type":a[12], "app_startDate":a[13], "app_endDate":a[14], "lental_startDate":a[15], "lental_endDate":a[16], "description":a[17]})
+
     return resList
+
+@app.route('/test', methods = ['GET'])
+def test():
+
+    data = request.json
+    print('Received data:', data)
+
+    name = data.get('name', 'Unknown')
+    response = {'message':f'Hello, {name}!'}
+    return jsonify(response)
+
+   
+    # return 'test'
+
+
+
+
+    
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5022)

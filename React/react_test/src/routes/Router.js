@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 const BlankLayout = lazy(() => import('../layouts/blank/BlankLayout'));
 
 /* ****Pages***** */
-const Error = lazy(() => import('../views/authentication/Error'));
+
 const Register = lazy(() => import('../views/authentication/Register'));
 const Login = lazy(() => import('../views/authentication/Login'));
 const FarmRegistration = lazy(() => import('../views/FarmRegistration'));

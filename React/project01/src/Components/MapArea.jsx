@@ -1,83 +1,52 @@
 import { Map, MapMarker, CustomOverlayMap, ZoomControl } from 'react-kakao-maps-sdk';
 import '../Css/Map.css'
-import { useEffect,useContext, useState } from 'react'
-import { FarmData } from '../Hooks/GetData';
+import { useState } from 'react'
 
-const MapArea = () => {
+const MapArea = (data) => {
 
-  const [farms, setFarms] = useState([]);
-  const data = useContext(FarmData)
-  const keys =JSON.parse(sessionStorage.getItem('area'))
-  
-  // 사용자가 검색한 지역 리스트 만들기
-  useEffect (()=>{
-  console.log('ff',data, 'fdd',keys)
+  console.log('받아온 값:',data);
 
-    if (keys.sigungu === '광산구'){
-      setFarms(data[0].sector[0].info)
-    }else if(keys.sigungu === '동구'){
-      setFarms(data[0].sector[1].info)
-    }else if(keys.sigungu === '서구'){
-      setFarms(data[0].sector[2].info)
-    }else if(keys.sigungu === '남구'){
-      setFarms(data[0].sector[3].info)
-    }else if(keys.sigungu === '북구'){
-      setFarms(data[0].sector[4].info)
-    }else if(keys.sigungu === '나주시'){
-      setFarms(data[1].sector[0].info)
-    }else if(keys.sigungu === '목포시'){
-      setFarms(data[1].sector[1].info)
-    }else if(keys.sigungu === '여수시'){
-      setFarms(data[1].sector[2].info)
-    }else if(keys.sigungu === '순천시'){
-      setFarms(data[1].sector[3].info)
-    }else if(keys.sigungu === '광양시'){
-      setFarms(data[1].sector[4].info)
-    }else if(keys.sigungu === '장성군'){
-      setFarms(data[1].sector[5].info)
-    }else if(keys.sigungu === '화순군'){
-      setFarms(data[1].sector[6].info)
-    }else{
-      setFarms(data[0].sector[0].info)
-    }
-
-  },[keys])
-  console.log(farms);
+  const farmList = data.list;
+  console.log(farmList)
+ 
 	const locations = [];
 
-  farms.map((i)=> {
-    locations.push({'title': i.farm_title, 'latlng': { 'lat': Number(i.lantitude), 'lng': Number(i.longitude) }});
+  farmList.map((i)=> {
+    locations.push({'title': i.farm_title, 'latlng': { 'lat': Number(i.lantitude), 'lng': Number(i.longitude) }, 'num': i.farm_num});
     })
   console.log('위치',locations)
 
-  const initialCenter = locations.length > 0 ? locations[0].latlng : { lat: 35.156669, lng: 126.835521 };
-	
-
-
- 
-  
-  return (
-		<Map center={initialCenter} id ='map' level={3}>
-			{locations.map((loc, idx) => (
-				<MapMarker
-					key={`${loc.title}-${loc.latlng}`}
-					position={loc.latlng} onMouseOver={()=>{}}
+  const locaInfo = locations.map((l)=>
+    <MapMarker
+					key={`${l.title}-${l.latlng}`}
+					position={l.latlng} onClick={()=>setLevel(5)}
 					image={{
 						src: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png',
 						size: { width: 64, height: 69 },
 					}}
-					title={loc.title}
+					title={l.title}
 				/>
-			))}
+        
+  )
+  
+  const initialCenter = locations.length > 0 ? locations[0].latlng : { lat: 35.156669, lng: 126.835521 };
+  const [level, setLevel] = useState(5);
+ 
+  return (
+		<Map center={initialCenter} id ='map' level={5} onZoomChanged={(map) => setLevel(map.getLevel())}>
+      {locaInfo}
       {locations.map((loc, idx) => (
-        <CustomOverlayMap position={loc.latlng} xAnchor={0.5} yAnchor={1.1} >
+        level < 6 ? (
+        <CustomOverlayMap key={loc.num} position={loc.latlng} xAnchor={0.5} yAnchor={1.1} >
         <div className="customoverlay">
-          <a href={`https://localhost:3000/find/${farms[idx].farm_num}`} target="_blank">
-            <span className="title">{farms[idx].farm_title}</span>
+          <a href={`https://localhost:3000/find/${loc.num}`} target="_blank" >
+            <span className="title">{loc.title}</span>
           </a>
         </div>
-      </CustomOverlayMap>))}
+      </CustomOverlayMap> ) : null ))}
+      
       <ZoomControl />
+      
 		</Map>
 	);
 };

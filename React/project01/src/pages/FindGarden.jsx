@@ -10,7 +10,7 @@ function FindGarden() {
     
     <div style={style}>
       <div className='find'>
-      <GetAddress />
+      <GetAddress/>
       </div>
     </div>
   );

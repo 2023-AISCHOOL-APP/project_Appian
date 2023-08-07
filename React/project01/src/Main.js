@@ -14,8 +14,6 @@ import Ctwo from './Components/Ctwo';
 import Cthree from './Components/Cthree';
 import CardDetailsPage from './Components/CardDetailsPage';
 
-import GetData from './Hooks/GetData';
-
 function Main() {
   const dropDownRef = useRef(null);
   const [activeMenu, setActiveMenu] = useState(null);
@@ -144,11 +142,17 @@ function Main() {
                   <NavLink to='/machin' className='navbarSubMenuLink'>
                     내 정보 수정
                   </NavLink>
+
+                  <div className='headerhr'></div>
+                 
+                  {/* 다른 서브 메뉴 추가 */}
+
                 </div>
               )}
             </ul>
           </div>  
         </div>
+
 
         <GetData>
           <Routes>
@@ -168,6 +172,15 @@ function Main() {
           </Routes>
         </GetData>
       </div>
+
+
+
+            
+          
+          
+
+    
+
     </Router>
   );
 }

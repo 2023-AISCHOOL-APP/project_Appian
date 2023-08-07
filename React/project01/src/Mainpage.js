@@ -64,7 +64,6 @@ const Mainpage = () => {
   const animationTriggerPosition = 500; // 스크롤이 이 위치보다 아래로 내려갔을 때 애니메이션 실행
 
 
-
   const handleScroll = () => {
     if (window.scrollY > animationTriggerPosition) {
       setAnimate(true);
@@ -82,8 +81,7 @@ const Mainpage = () => {
     };
   }, []);
 
-
-//마우스 오버시에 머신러닝 
+ 
 
 
 
@@ -100,21 +98,7 @@ const Mainpage = () => {
     <div id='main-container'>
            <Slide />
 
-          {/* 플로팅 배너 */}
-          <div className={`floating-banner ${showBanner ? 'show' : ''}`}>
-            {/* showBanner 변수의 값에 따라 플로팅 배너에 show 클래스를 추가하거나 제거 */}
-            {/* 배너 내용 */}
-            <Link to='/machin' className='MACHINBANNER' >
-                <img src='/img/main_banner.png' alt="banner"  className='machinBanner'/ >
-            
-                <span className='machin_text1' >
-                  <span>내 작물가격 </span>
-                  <br/>
-                  <span style={{paddingLeft :'190px'}}>알아보기</span>
-                  </span>
-              
-            </Link>
-          </div>
+          
            
           
           
@@ -163,10 +147,10 @@ const Mainpage = () => {
                  
                  <div className='mainbutton1'>
             
-                        <img src="/img/mainbutton1.png"/>
+                    <img src="/img/mainbutton1.png"  alt='mainbutton1' style={{ visibility: animate ? 'visible' : 'hidden' }}/>
                  </div>
                  <div className='mainbutton2'>
-                    <img src="/img/mainbutton2.png"/>
+                    <img src="/img/mainbutton2.png"  alt='mainbutton2'/>
                   </div> 
                
                <div className='findbtn'>
@@ -191,7 +175,21 @@ const Mainpage = () => {
 
             
 
-
+          {/* 플로팅 배너 */}
+          <div className={`floating-banner ${showBanner ? 'show' : ''}`}>
+            {/* showBanner 변수의 값에 따라 플로팅 배너에 show 클래스를 추가하거나 제거 */}
+            {/* 배너 내용 */}
+            <Link to='/machin' className='MACHINBANNER' >
+                <img src='/img/main_banner.png' alt="banner"  className='machinBanner'/ >
+            
+                <span className='machin_text1' >
+                  <span>내 작물가격 </span>
+                  <br/>
+                  <span style={{paddingLeft :'190px'}}>알아보기</span>
+                  </span>
+              
+            </Link>
+          </div>
             
 
             

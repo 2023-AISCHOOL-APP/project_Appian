@@ -62,7 +62,7 @@
 
   position: relative;
   left: 320px;
-  bottom: 480px;
+  bottom: 410px;
   color: #00C897;
   font-size: 45px;
   font-family: 'SUIT-ExtraBold';
@@ -88,7 +88,7 @@
   position: relative;
   
   left: 850px;
-  top: 70px;
+  top: 200px;
   color: black;
   font-size: 45px;
   font-family: 'SUIT-ExtraBold';
@@ -109,7 +109,7 @@
   position: relative;
   font-family: 'SUIT-Bold';
   left: 320px;
-  top: -450px;
+  top: -380px;
   font-size: 20px;
  
 
@@ -122,11 +122,12 @@
 
 
 
-.brocol{
+.brocol img{
   position: relative;
-  top: 145px;
+  top: 110px;
   left: 1030px;
- 
+ width:70px;
+ height: 70px;
  z-index: 99;
 }
 
@@ -136,7 +137,7 @@
   font-family: 'SUIT-Regular';
 
   position: relative;
-  top: 90px;
+  top: 220px;
   left: 800px;
   text-align: center;
   font-size: 20px;
@@ -147,32 +148,33 @@
 
 
 
-.mainbutton1{
+.mainbutton1 img{
  
   position: relative;
   left: 400px;
-  
   top: 950px;
-  scale: 1;
-  z-index: 99;
-}
-
-.mainbutton2{
-  
-  position: relative;
-  left: 950px;
   width: auto;
   height: auto;
-  margin-right: 320px;
-  top: 372px;
-  margin-top: 100px;
+  
   z-index: 99;
+  overflow: visible;
 }
+
+
+  
+  .mainbutton2 img {
+    position: relative;
+    left: 950px;
+    top: 470px;
+    width:auto;
+  height: auto;
+    z-index: 99;
+  }
 
 #MAINBUTTON{
   position: relative;
 
-  top: -900px;
+  top: -810px;
 }
 
 .animate{ animation: 0.7s ease-in-out loadEffect3; }
@@ -217,7 +219,7 @@ top: 40px;
   padding: 10px 30px ;
   border: 2px solid white; 
   border-radius: 50px;
-  top: 160px;
+  top: 270px;
   left: 440px;
   display: inline-block;
   position: relative;
@@ -249,7 +251,7 @@ top: 40px;
 
 .findbtn2{
   position: relative;
-  top: 160px;
+  top: 270px;
   left: 850px;
  
   padding: 10px 30px ;
@@ -281,7 +283,7 @@ top: 40px;
  
  left: 320px;
   color: white;
-  top: 670px;
+  top: 925px;
   font-size: 45px;
   font-family: 'SUIT-ExtraBold';
   z-index: 99;
@@ -293,9 +295,9 @@ top: 40px;
   font-size: 20px;
   position: relative;
   
-  top: 930px; /* 수정: 아래로 20픽셀 이동 */
+  top: 940px; /* 수정: 아래로 20픽셀 이동 */
   left: 320px;
-   top: 690px;
+ 
   color: white;
   z-index: 99;
 }
@@ -324,11 +326,11 @@ top: 40px;
   text-decoration: none;
   position: relative;
   width: 1300px;
-  top: 1950px; /* 원하는 위치로 조정 */
+  top: 1960px; /* 원하는 위치로 조정 */
   left: 42%; /* 가운데 정렬을 위해 left 값 조정 */
-  transform: translateX(-40%); /* 가운데 정렬을 위해 left 값 조정 */
+  transform: translateX(-38%); /* 가운데 정렬을 위해 left 값 조정 */
   z-index: 12;
-  scale: 0.97;
+  
 }
 .slider1:hover{
   transform: scale(1.05);
@@ -365,7 +367,7 @@ top: 40px;
   font-size: 25px;
   position: relative;
   left: -295px;
-  top: -80px;
+  top: -70px;
  text-decoration: none;
 }
 
@@ -385,8 +387,8 @@ top: 40px;
   text-decoration: none;
   position: relative;
   font-family: 'SUIT-Regular';
-  top: 55px;
- 
+  top: -40px;
+ left: 5px;
   color: black;
   
  
@@ -397,23 +399,21 @@ top: 40px;
   text-decoration: none;
   position: relative;
   font-family: 'SUIT-Regular';
-  left: -130px;
-  top: 50px;
- 
-  bottom: auto;
+  top: -40px;
+ left: -150px;
   color: black;
   
 
 }
 .slide2{
-  text-decoration: none;
   color: black;
+
   font-family: 'SUIT-Bold';
   font-size: 25px;
   position: relative;
-  left: -270px;
-  top: 20px;
-
+  left: -265px;
+  top: -70px;
+ text-decoration: none;
   
 }
 
@@ -424,8 +424,8 @@ top: 40px;
   font-size: 25px;
   position: relative;
   margin-left: 20px;
-  top: 10px;
- 
+  top: -70px;
+ left: -20px;
   
  
 }
@@ -436,7 +436,7 @@ top: 40px;
   font-size: 25px;
   position: relative;
   left: 20px;
-  top: 20px;
+  top: 30px;
   
 }
 
@@ -454,8 +454,13 @@ top: 40px;
 
 
 .slideimg1{
-  text-decoration: none;
+
+  
+  
+  
   width: 500px;
+  height: 280px;
+  
   text-decoration: none;
   border-radius: 10px;
   position: relative;
@@ -464,18 +469,27 @@ top: 40px;
 }
 
 .slideimg2{
-  text-decoration: none;
+ 
   width: 500px;
   height: 280px;
   
+  text-decoration: none;
   border-radius: 10px;
+  position: relative;
+
+  margin-bottom: 100px;
  
 }
 
-.slideimg3{
+.slideimg3 {
   width: 500px;
   height: 280px;
+  
+  text-decoration: none;
   border-radius: 10px;
+  position: relative;
+
+  margin-bottom: 100px;
 }
 .slideimg4{
   width: 500px;

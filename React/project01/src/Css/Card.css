@@ -32,7 +32,7 @@
   display: block;
   text-align : left;
   margin : 5px 5px;
-  font-family: 'SUIT-bold';
+  font-family: 'SUIT-Bold';
   font-size :20px;
   color : black;
 }
@@ -40,7 +40,7 @@
 .ssubtitle{
   margin : 5px;
   padding-left : 5px;
-  font-family: 'SUIT-semibold';
+  font-family: 'SUIT-SemiBold';
   color : rgb(110, 110, 110);
   font-size: 15px;
 }

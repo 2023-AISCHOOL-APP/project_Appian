@@ -1,6 +1,6 @@
 // FindGarden.js
 import React from 'react';
-import GetAddress from '../Components/GetAddress copy';
+import GetAddress from '../Components/GetAddress';
 
 function FindGarden() {
   const style={

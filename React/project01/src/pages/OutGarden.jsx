@@ -1,6 +1,8 @@
 // OutGarden.js
 import React, { useState } from 'react';
 import '../Css/OutGarden.css'
+import Calendar from '../Components/CalendarDatePick'
+import { CalendarContainer } from 'react-datepicker';
 
 function OutGarden() {
   // 텃밭 등록 페이지를 위한 상태
@@ -79,7 +81,7 @@ function OutGarden() {
       <div className="card">
         <h1>텃밭 등록 페이지</h1>
         <form onSubmit={handleGardenSubmit}>
-          <div className="form-control">
+          <div className="form">
             <label htmlFor="gardenName">텃밭 이름:</label>
             <input
               type="text"
@@ -90,8 +92,8 @@ function OutGarden() {
             />
           </div>
 
-          <div className="form-control">
-            <label htmlFor="gardenImages">이미지 업로드 (최대 4장):</label>
+          <div className="form">
+            <label htmlFor="gardenImages">이미지 업로드 (최대 1장):</label>
             <input
               type="file"
               id="gardenImages"
@@ -101,7 +103,7 @@ function OutGarden() {
             />
           </div>
 
-          <div className="form-control">
+          <div className="form">
             <label htmlFor="address">주소:</label>
             <input
               type="text"
@@ -112,7 +114,7 @@ function OutGarden() {
             />
           </div>
 
-          <div className="form-control">
+          <div className="form">
             <label htmlFor="area">면적:</label>
             <input
               type="text"
@@ -123,8 +125,9 @@ function OutGarden() {
             />
           </div>
 
-          <div className="form-control">
-            <label htmlFor="type">유형:</label>
+          {/* 라디오 버튼 : 소형, 중형, 대형 */}
+          <div className="form"> 
+            <label htmlFor="type">텃밭 유형:</label>
             <input
               type="text"
               id="type"
@@ -134,7 +137,20 @@ function OutGarden() {
             />
           </div>
 
-          <div className="form-control">
+          {/* 라디오 버튼 : 개인, 민간단체, 지자체 */}
+          <div className="form"> 
+            <label htmlFor="type">운영 주체:</label>
+            <input
+              type="text"
+              id="type"
+              value={type}
+              onChange={handleTypeChange}
+              required
+            />
+          </div>
+
+
+          <div className="form">
             <label htmlFor="price">분양희망가:</label>
             <input
               type="text"
@@ -145,29 +161,33 @@ function OutGarden() {
             />
           </div>
 
-          <div className="form-control">
+          {/* 캘린더 위젯 수정 */}
+          <div className="form">
             <label htmlFor="rentalPeriod">임대기간:</label>
-            <input
+            <Calendar/>
+            {/* <input
               type="text"
               id="rentalPeriod"
               value={rentalPeriod}
               onChange={handleRentalPeriodChange}
               required
-            />
+            /> */}
           </div>
-
-          <div className="form-control">
+            
+          {/* 캘린더 위젯 수정 */}
+          <div className="form">
             <label htmlFor="recruitmentPeriod">분양 신청모집기간:</label>
-            <input
+            <Calendar/>
+            {/* <input
               type="text"
               id="recruitmentPeriod"
               value={recruitmentPeriod}
               onChange={handleRecruitmentPeriodChange}
               required
-            />
+            /> */}
           </div>
 
-          <div className="form-control">
+          <div className="form">
             <label htmlFor="description">본문내용:</label>
             <textarea
               id="description"

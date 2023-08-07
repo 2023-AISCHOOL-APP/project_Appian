@@ -511,7 +511,7 @@ top: 40px;
 
 
 
-/* info */
+/* info gunsik*/
 .infotitle{
   text-align: center;
   background-color: aquamarine;
@@ -656,7 +656,75 @@ top: 40px;
 
 }
 
+/* 텃밭자랑하기 */
+.writing-page {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
 
+.writing-page h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.writing-page input,
+.writing-page textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.write-button {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* 게시판 카드 */
+.card-list {
+  margin-top: 20px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.card p {
+  color: #555555;
+}
 
 
 

@@ -96,17 +96,17 @@ function Main() {
               </NavLink>
               {activeMenu === 'community' && (
                 <div className='navbarSubMenu3'>
-                  <NavLink to='/cone' className='navbarSubMenuLink'>
+                  <NavLink  className='navbarSubMenuLink'>
                     공지사항
                   </NavLink>
                   <br/>
                   <br/>
-                  <NavLink to='/cthree' className='navbarSubMenuLink'>
+                  <NavLink to='/community' className='navbarSubMenuLink'>
                     정보게시판
                   </NavLink>
                   <br/>
                   <br/>
-                  <NavLink to='/card' className='navbarSubMenuLink'>
+                  <NavLink to='/machin' className='navbarSubMenuLink'>
                     작물가격예측
                   </NavLink>
                 </div>

@@ -82,8 +82,8 @@
   width: 130px;
   position: relative;
   width:auto;
-  scale: 0.4;
-  margin-top: 50px; /* 로고를 상단으로 20px만큼 띄웁니다. */
+  scale: 0.55;
+  margin-top: 20px; /* 로고를 상단으로 20px만큼 띄웁니다. */
   left: 230px; /* 로고를 좌측으로 20px만큼 띄웁니다. */
   background-color : #E9FFFC;
   z-index: 99;

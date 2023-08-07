@@ -78,15 +78,27 @@ function Community() {
       <span className='infotitle3'>▶ 텃밭 이야기</span>
       <hr className='infohr3'/>
       <div className='infoimg2' >
-      <Link to={'/cone'}>
-        <img src="img/one.jpg" alt="이미지 1" className='infostoryimg' />
+      <img src='/img/commubtn1.png' className='commubtn1'/>
+      <img src='/img/commubtn2.png' className='commubtn2'/>
+      <img src='/img/commubtn3.png' className='commubtn3'/>
+      <Link to={'/cone'} className='commu1'>
+       <span   className='commu1name'>바로가기→</span>
+      
       </Link>
-      <Link to={'/ctwo'}>
-        <img src="img/two.jpg" alt="이미지 2" className='infostoryimg' />
+      <Link to={'/ctwo'} className='commu2'>
+      <span className='commu2name' >바로가기→</span>
+      
       </Link>
-      <Link to={'/cthree'}>  
-        <img src="img/three.jpg" alt="이미지 3"className='infostoryimg' />
+      <Link to={'/cthree'} className='commu3'>  
+      <span className='commu3name'>바로가기→</span>
+      
       </Link>
+      </div>
+
+      <div>
+        
+        
+       
       </div>
       </div>
       

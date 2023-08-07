@@ -33,6 +33,7 @@
 
 /* Mainpage */
 .MACHINBANNER{
+  margin: 40px;
   text-decoration: none;
 }
 
@@ -84,8 +85,10 @@
 }
 
 
+
 .main-container{
   text-decoration: none;
+ 
 }
 
 #mainTitle {
@@ -94,7 +97,7 @@
 
   position: relative;
   left: 320px;
-  bottom: 410px;
+  bottom: 550px;
   color: #00C897;
   font-size: 45px;
   font-family: 'SUIT-ExtraBold';
@@ -120,7 +123,7 @@
   position: relative;
   
   left: 850px;
-  top: 200px;
+  top: 0px;
   color: black;
   font-size: 45px;
   font-family: 'SUIT-ExtraBold';
@@ -141,7 +144,7 @@
   position: relative;
   font-family: 'SUIT-Bold';
   left: 320px;
-  top: -380px;
+  top: -520px;
   font-size: 20px;
  
 
@@ -156,7 +159,7 @@
 
 .brocol img{
   position: relative;
-  top: 110px;
+  top: -95px;
   left: 1030px;
  width:70px;
  height: 70px;
@@ -169,7 +172,7 @@
   font-family: 'SUIT-Regular';
 
   position: relative;
-  top: 220px;
+  top: 10px;
   left: 800px;
   text-align: center;
   font-size: 20px;
@@ -184,12 +187,12 @@
  
   position: relative;
   left: 400px;
-  top: 950px;
+  top: 940px;
   width: auto;
   height: auto;
   
   z-index: 99;
-  overflow: visible;
+  
 }
 
 
@@ -206,7 +209,7 @@
 #MAINBUTTON{
   position: relative;
 
-  top: -730px;
+  top: -1010px;
 }
 
 .animate{ animation: 0.7s ease-in-out loadEffect3; }
@@ -238,7 +241,7 @@
   right: 0;
   width: 1920px;
   height: auto;
-top: 40px;
+  top: 40px;
   
   justify-content: center;
 
@@ -283,8 +286,8 @@ top: 40px;
 
 .findbtn2{
   position: relative;
-  top: 10px;
-  left: 1000px;
+  top: 270px;
+  left: 850px;
  
   padding: 10px 30px ;
   border: 2px solid white; 
@@ -315,7 +318,7 @@ top: 40px;
  
  left: 320px;
   color: white;
-  top: 925px;
+  top: 750px;
   font-size: 45px;
   font-family: 'SUIT-ExtraBold';
   z-index: 99;
@@ -327,7 +330,7 @@ top: 40px;
   font-size: 20px;
   position: relative;
   
-  top: 940px; /* 수정: 아래로 20픽셀 이동 */
+  top: 770px; /* 수정: 아래로 20픽셀 이동 */
   left: 320px;
  
   color: white;
@@ -358,7 +361,7 @@ top: 40px;
   text-decoration: none;
   position: relative;
   width: 1300px;
-  top: 1960px; /* 원하는 위치로 조정 */
+  top: 1990px; /* 원하는 위치로 조정 */
   left: 44%; /* 가운데 정렬을 위해 left 값 조정 */
   transform: translateX(-38%); /* 가운데 정렬을 위해 left 값 조정 */
   z-index: 12;
@@ -875,9 +878,113 @@ top: 40px;
 .infoimg2{
   position: relative;
   top: -430px;
-  left: 330px;
-  
+  left: 360px;
 
+}
+.commubtn1{
+  top: 10px;
+}
+
+.commubtn1 ,.commubtn2 ,.commubtn3{
+  position: relative;
+  margin: 20px;
+  width: auto;
+  height: auto;
+}
+
+
+.commu1{
+
+
+  padding: 5px 20px ;
+  border: 2px solid white; 
+  border-radius: 50px;
+  top: -70px;
+  left: -1150px;
+  display: inline-block;
+  position: relative;
+  z-index: 99;
+  text-decoration: none;
+  font-family: 'SUIT-Bold';
+  font-size: 18px;
+  color: white;
+  z-index: 9999;
+  
+}
+
+.commu2{
+
+
+  padding: 5px 20px ;
+  border: 2px solid white; 
+  border-radius: 50px;
+  top: -70px;
+  left: -853px;
+  display: inline-block;
+  position: relative;
+  z-index: 99;
+  text-decoration: none;
+  font-family: 'SUIT-Bold';
+  font-size: 18px;
+  color: white;
+  z-index: 9999;
+  
+}
+
+
+.commu3{
+
+
+  padding: 5px 20px ;
+  border: 2px solid white; 
+  border-radius: 50px;
+  top: -70px;
+  left: -560px;
+  display: inline-block;
+  position: relative;
+  z-index: 99;
+  text-decoration: none;
+  font-family: 'SUIT-Bold';
+  font-size: 18px;
+  color: white;
+  z-index: 9999;
+  
+}
+.commu1name{
+  text-decoration: none;
+  color: white;
+  z-index: 9999;
+  font-size: 15px;
+}
+.commu2name{
+  text-decoration: none;
+  color: white;
+  z-index: 9999;
+  font-size: 15px;
+}
+
+.commu3name{
+  text-decoration: none;
+  color: white;
+  z-index: 9999;
+  font-size: 15px;
+}
+
+.commu1:hover , .commu2:hover , .commu3:hover{
+  background-color: white;
+ 
+}
+
+.commu1:hover .commu1name {
+  color: #F7CD65;
+}
+
+.commu2:hover .commu2name {
+  color: #13A477;
+}
+
+.commu3:hover .commu3name {
+  color: #F39A57;
 }
 .big-video img {
   width: 10%; /* 이미지 요소의 크기는 부모 요소와 같게 설정 */

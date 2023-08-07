@@ -327,7 +327,7 @@ top: 40px;
   position: relative;
   width: 1300px;
   top: 1960px; /* 원하는 위치로 조정 */
-  left: 42%; /* 가운데 정렬을 위해 left 값 조정 */
+  left: 44%; /* 가운데 정렬을 위해 left 값 조정 */
   transform: translateX(-38%); /* 가운데 정렬을 위해 left 값 조정 */
   z-index: 12;
   

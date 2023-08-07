@@ -1,3 +1,34 @@
+/* font */
+
+@font-face {
+  font-family: 'SUIT-SemiBold';
+  src: url('./Fonts/SUIT-SemiBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SUIT-ExtraBold';
+  src: url('./Fonts/SUIT-ExtraBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SUIT-Bold';
+  src: url('./Fonts/SUIT-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SUIT-Regular';
+  src: url('./Fonts/SUIT-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 
 
 /* Mainpage */

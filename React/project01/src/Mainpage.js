@@ -153,52 +153,7 @@ const Mainpage = () => {
                    
                     </div>
 
-        <span className='mainTitle3'>텃밭소식</span>
-        <br/>
-        <span className='sub3'>지금 바로 나만의 텃밭을 만나보세요!</span>
-
-
-
-
-         
-            
-
-        <div  id="MAINBUTTON" className={animate ? 'animate' : ''}>    
-          <div className='mainbutton1'>
-            <img src="/img/mainbutton1.png"  alt='mainbutton1' style={{ visibility: animate ? 'visible' : 'hidden' }}/>
-          </div>
-          <div className='mainbutton2'>
-            <img src="/img/mainbutton2.png"  alt='mainbutton2'/>
-          </div> 
-          <div className='findbtn'>
-              <Link to='/find' className='findname'>
-                    <span>바로가기→</span>
-              </Link>
-          </div> 
-                      
-            {/* mainbutton1에 버튼으로 사용할 것 만들기 */}
-
-
-            <div className='findbtn2'>
-                <Link to='/out' className='findname2'>
-                  <span >바로가기→</span>
-                </Link>
-            </div>
-          </div>
-
-        {/* 플로팅 배너 */}
-        <div className={`floating-banner ${showBanner ? 'show' : ''}`}>
-          {/* showBanner 변수의 값에 따라 플로팅 배너에 show 클래스를 추가하거나 제거 */}
-          {/* 배너 내용 */}
-          <Link to='/machin' className='MACHINBANNER' >
-              <img src='/img/main_banner.png' alt="banner"  className='machinBanner'/ >
-              <span className='machin_text1' >
-                <span>내 작물가격 </span>
-                <br/>
-                <span style={{paddingLeft :'190px'}}>알아보기</span>
-                </span>
-          </Link>
-        </div>
+        
       </div>
     </div>
   )

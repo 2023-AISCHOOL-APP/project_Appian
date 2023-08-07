@@ -1,5 +1,3 @@
-import './Main.css';
-import './Header.css';
 import React, { useRef, useState, useEffect } from 'react';
 import { NavLink, Routes, Route, BrowserRouter as Router } from 'react-router-dom';
 import FindGarden from './pages/FindGarden';
@@ -11,10 +9,10 @@ import Join from './pages/Join';
 import Card from './Components/Card';
 import Login from './pages/Login';
 import Machin from './pages/Machin';
-import Cone from './Components/Cone.jsx';
-import Ctwo from './Components/Ctwo.jsx';
-import Cthree from './Components/Cthree.jsx';
-
+import Cone from './Components/Cone';
+import Ctwo from './Components/Ctwo';
+import Cthree from './Components/Cthree';
+import CardDetailsPage from './Components/CardDetailsPage';
 
 import GetData from './Hooks/GetData';
 
@@ -39,6 +37,24 @@ function Main() {
     };
   }, []);
 
+  const savedCards = JSON.parse(localStorage.getItem('cards')) || [];
+
+  const [isWriting, setIsWriting] = useState(false);
+  const [cards, setCards] = useState(savedCards);
+  const [cardCounter, setCardCounter] = useState(savedCards.length + 1);
+
+  const handleAddCard = (card) => {
+    const newCard = { ...card, id: cardCounter, expanded: false };
+    setCards([...cards, newCard]);
+    setCardCounter(cardCounter + 1);
+    setIsWriting(false);
+  };
+
+  useEffect(() => {
+    localStorage.setItem('cards', JSON.stringify(cards));
+  }, [cards]);
+
+
   return (
     <Router>
       <div className='main_col'>
@@ -55,7 +71,6 @@ function Main() {
           <div className='navbar'>
             <ul ref={dropDownRef} className={`menu ${activeMenu ? 'active' : ''}`}>
               <NavLink
-                
                 className='navbarMenu'
                 activeClassName='activeLink'
                 onClick={() => handleMenuClick('find')}
@@ -67,11 +82,9 @@ function Main() {
                   <NavLink to='/find' className='navbarSubMenuLink'>
                     텃밭 검색
                   </NavLink>
-                  {/* 다른 서브 메뉴 추가 */}
                 </div>
               )}
               <NavLink
-                
                 className='navbarMenu'
                 activeClassName='activeLink'
                 onClick={() => handleMenuClick('out')}
@@ -83,11 +96,9 @@ function Main() {
                   <NavLink to='/out' className='navbarSubMenuLink'>
                     텃밭 등록
                   </NavLink>
-                  {/* 다른 서브 메뉴 추가 */}
                 </div>
               )}
               <NavLink
-                
                 className='navbarMenu'
                 activeClassName='activeLink'
                 onClick={() => handleMenuClick('community')}
@@ -96,7 +107,7 @@ function Main() {
               </NavLink>
               {activeMenu === 'community' && (
                 <div className='navbarSubMenu3'>
-                  <NavLink  className='navbarSubMenuLink'>
+                  <NavLink className='navbarSubMenuLink'>
                     공지사항
                   </NavLink>
                   <br/>
@@ -112,7 +123,6 @@ function Main() {
                 </div>
               )}
               <NavLink
-               
                 className='navbarMenu'
                 activeClassName='activeLink'
                 onClick={() => handleMenuClick('mypage')}
@@ -134,41 +144,30 @@ function Main() {
                   <NavLink to='/machin' className='navbarSubMenuLink'>
                     내 정보 수정
                   </NavLink>
-                 
-                  {/* 다른 서브 메뉴 추가 */}
                 </div>
               )}
             </ul>
-          </div>
+          </div>  
         </div>
 
-
-
-        
         <GetData>
-
-        <Routes>
-          <Route path='/' element={<Mainpage />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/join' element={<Join />} />
-          <Route path='/card' element={<Card />} />
-          <Route path='/find' element={<FindGarden />} />
-          <Route path='/out' element={<OutGarden />} />
-          <Route path='/community' element={<Community />} />
-          <Route path='/mypage' element={<Mypage />} />
-          <Route path='/cone' element={<Cone />} />
-          <Route path='/ctwo' element={<Ctwo />} />
-          <Route path='/cthree' element={<Cthree />} />
-          <Route path='/machin' element={<Machin />} />
-        </Routes>
-
+          <Routes>
+            <Route path='/' element={<Mainpage />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/join' element={<Join />} />
+            <Route path='/card' element={<Card />} />
+            <Route path='/find' element={<FindGarden />} />
+            <Route path='/out' element={<OutGarden />} />
+            <Route path='/community' element={<Community />} />
+            <Route path='/mypage' element={<Mypage />} />
+            <Route path='/cone' element={<Cone />} />
+            <Route path='/ctwo' element={<Ctwo />} />
+            <Route path='/cthree' element={<Cthree />} />
+            <Route path='/machin' element={<Machin />} />
+            <Route path="/cardpage/:cardId" element={<CardDetailsPage cards={cards} />} />
+          </Routes>
         </GetData>
-
-            
-          
-          </div>
-
-    
+      </div>
     </Router>
   );
 }

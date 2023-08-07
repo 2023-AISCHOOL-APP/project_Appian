@@ -511,7 +511,7 @@ top: 40px;
 
 
 
-/* info gunsik*/
+/* info gunsik start*/
 .infotitle{
   text-align: center;
   background-color: aquamarine;
@@ -696,6 +696,7 @@ top: 40px;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  
 }
 
 .card {
@@ -704,6 +705,7 @@ top: 40px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
+  text-align: left;
 }
 
 .card:hover {
@@ -726,9 +728,55 @@ top: 40px;
   color: #555555;
 }
 
+.card-container {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
 
 
+.card-container thead th {
+  background-color: #f2f2f2;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 2px solid #ddd;
+}
 
+
+.card-container tbody td {
+  padding: 10px;
+  border-bottom: 1px solid rgb(208, 96, 96);
+  text-align: center;
+}
+
+
+.card-container tbody td[colspan="5"] {
+  background-color: #f9f9f9;
+  padding: 20px;
+  text-align: left;
+}
+
+.card-container tbody img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+
+.card-container tbody td.clickable {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
+
+
+.card-container tbody td.expanded {
+  font-weight: bold;
+  color: #333;
+}
+
+/* gunsik end */
 
 
 /* find */

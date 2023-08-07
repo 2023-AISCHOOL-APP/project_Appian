@@ -1,6 +1,6 @@
 // FindGarden.js
 import React from 'react';
-import GetAddress from '../Components/GetAddress';
+import GetAddress from '../Components/GetAddress copy';
 
 function FindGarden() {
   const style={
@@ -10,7 +10,7 @@ function FindGarden() {
     
     <div style={style}>
       <div className='find'>
-      <GetAddress />
+      <GetAddress/>
       </div>
     </div>
   );

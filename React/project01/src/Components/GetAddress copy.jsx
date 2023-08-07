@@ -1,12 +1,15 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import '../Css/GetAddress.css';
-import MapArea from './MapArea'
+import MapArea from './MapArea';
 import Card from './Card';
+
 import axios from 'axios';
 
 
-const GetAddress = () => {
+
+const GetAddressTest = () => {
+
 
   const sidos = [
     {
@@ -92,4 +95,4 @@ const GetAddress = () => {
   )
 }
 
-export default GetAddress
+export default GetAddressTest

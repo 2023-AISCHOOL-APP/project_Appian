@@ -16,8 +16,6 @@ import Ctwo from './Components/Ctwo.jsx';
 import Cthree from './Components/Cthree.jsx';
 
 
-import GetData from './Hooks/GetData';
-
 function Main() {
   const dropDownRef = useRef(null);
   const [activeMenu, setActiveMenu] = useState(null);
@@ -145,7 +143,7 @@ function Main() {
 
 
         
-        <GetData>
+
 
         <Routes>
           <Route path='/' element={<Mainpage />} />
@@ -162,7 +160,6 @@ function Main() {
           <Route path='/machin' element={<Machin />} />
         </Routes>
 
-        </GetData>
 
             
           

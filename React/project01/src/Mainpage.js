@@ -110,7 +110,7 @@ const Mainpage = () => {
                 <span className='machin_text1' >
                   <span>내 작물가격 </span>
                   <br/>
-                  <span style={{paddingLeft :'230px'}}>알아보기</span>
+                  <span style={{paddingLeft :'190px'}}>알아보기</span>
                   </span>
               
             </Link>

@@ -62,17 +62,6 @@
   
   
 }
-#main-image {
-  position: absolute; /* 수정: absolute로 설정 */
-  top: 0;
-  left: 0;
-  right: 0;
-  margin-top: -40px;
-  display: flex;
-  justify-content: center;
-
-  z-index: 1;
-}
 
 #main-container {
   
@@ -90,8 +79,10 @@
 
   width: 130px;
   position: relative;
+  width:auto;
+  scale: 0.4;
   margin-top: 50px; /* 로고를 상단으로 20px만큼 띄웁니다. */
-  margin-left: 320px; /* 로고를 좌측으로 20px만큼 띄웁니다. */
+  left: 230px; /* 로고를 좌측으로 20px만큼 띄웁니다. */
   background-color : #E9FFFC;
   z-index: 99;
 }
@@ -105,7 +96,7 @@
   font-family: 'SUIT-SemiBold';
   position: relative;
   top: -30px;
-  left: calc(50% + 190px); /* 가로 위치를 조절 */
+  left: 1100px;
   z-index: 99;
  
 }
@@ -115,6 +106,7 @@
   
   font-size: 15px;
   position: relative;
+ 
   top: -60px;
   left: 1390px;
   
@@ -144,7 +136,7 @@
 }
 .navbarMenu{
   
-  margin-top: -10px;
+  top: -10px;
   color: black;
   
   margin-right: 30px; /* 메뉴 간격을 조절 */

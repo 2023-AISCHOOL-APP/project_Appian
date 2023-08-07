@@ -154,7 +154,7 @@ function Main() {
         </div>
 
 
-      
+
           <Routes>
             <Route path='/' element={<Mainpage />} />
             <Route path='/login' element={<Login />} />
@@ -170,13 +170,12 @@ function Main() {
             <Route path='/machin' element={<Machin />} />
             <Route path="/cardpage/:cardId" element={<CardDetailsPage cards={cards} />} />
           </Routes>
-       
-      </div>
+
 
 
 
             
-          
+          </div>
           
 
     

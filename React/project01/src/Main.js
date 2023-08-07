@@ -64,7 +64,7 @@ function Main() {
               </NavLink>
               {activeMenu === 'find' && (
                 <div className='navbarSubMenu1'>
-                  <NavLink to='/ctwo' className='navbarSubMenuLink'>
+                  <NavLink to='/find' className='navbarSubMenuLink'>
                     텃밭 검색
                   </NavLink>
                   {/* 다른 서브 메뉴 추가 */}
@@ -80,7 +80,7 @@ function Main() {
               </NavLink>
               {activeMenu === 'out' && (
                 <div className='navbarSubMenu2'>
-                  <NavLink to='/map' className='navbarSubMenuLink'>
+                  <NavLink to='/out' className='navbarSubMenuLink'>
                     텃밭 등록
                   </NavLink>
                   {/* 다른 서브 메뉴 추가 */}

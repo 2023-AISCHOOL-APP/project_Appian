@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { createContext } from 'react'
 import axios from 'axios';
 
@@ -32,17 +32,20 @@ const GetData = (props) => {
   // }];
   
 
-  const apiUrl = 'http://192.168.70.147:5022/farm';
+  useEffect(() => {
+    // Flask 서버의 주소
+    const apiUrl = 'http://192.168.70.147:5022/farm';
 
     // Axios를 사용하여 GET 요청 보내기
-    axios.get(apiUrl)
+    axios.get(apiUrl, { params: { data : 'all' } })
       .then(response => {
-        setSidos(response);
-        console.log(sidos);
+        setSidos(response.data);
+        console.log('db로부터받음', response.data);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
       });
+  }, []);
   
   return (
     <FarmData.Provider value={sidos}>{props.children}</FarmData.Provider>

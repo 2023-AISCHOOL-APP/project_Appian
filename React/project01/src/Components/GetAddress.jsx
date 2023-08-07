@@ -53,21 +53,6 @@ const GetAddress = () => {
   }
 
 
-  useEffect(() => {
-    // Flask 서버의 주소
-    const apiUrl = 'http://192.168.70.147:5022/farm';
-
-    // Axios를 사용하여 GET 요청 보내기
-    axios.get(apiUrl, { params: { data : 'all' } })
-      .then(response => {
-        setSido(response.data);
-        console.log(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
-
   // 사용자가 값을 선택했을 때! 통신을 통해 서버에 데이터 보내기
 
 

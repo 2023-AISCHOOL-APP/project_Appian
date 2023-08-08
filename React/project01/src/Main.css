@@ -1219,7 +1219,12 @@
   cursor: pointer;
 }
 
-
+.content_num{
+  font-size: x-small;
+}
+.content_titleq{
+  text-align: start;
+}
 
 
 /* gunsik end */

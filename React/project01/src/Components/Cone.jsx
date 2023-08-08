@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import CardDetailsPage from './CardDetailsPage';
 import axios from 'axios';
+import { useLocation, useNavigate} from 'react-router-dom'
 
 
 const WritingPage = ({ onAddCard, onCancel }) => {
@@ -18,23 +19,6 @@ const WritingPage = ({ onAddCard, onCancel }) => {
       setImageFile(null);
     }
   };
-
-  // const [data, setData] = useState([]);
-
-  useEffect(() => {
-    // Flask 서버의 주소
-    const apiUrl = 'http://192.168.70.147:5022/content';
-
-    // Axios를 사용하여 GET 요청 보내기
-    axios.get(apiUrl, { responseType: 'json', params: { content_title : title, contents : content}, })
-      .then(response => {
-        // setData(response.data);
-        console.log('db로부터받음', response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
 
   return (
     <div className='writing-page'>
@@ -62,44 +46,56 @@ const WritingPage = ({ onAddCard, onCancel }) => {
   );
 };
 
-const Cone = () => {
-  const savedCards = JSON.parse(localStorage.getItem('cards')) || [];
-
+const Cone = ({data}) => {
   const [isWriting, setIsWriting] = useState(false);
-  const [cards, setCards] = useState(savedCards);
-  const [cardCounter, setCardCounter] = useState(savedCards.length + 1);
+  const [cards, setCards] = useState([]);
 
-  const handleAddCard = (card) => {
-    const newCard = { ...card, id: cardCounter, expanded: false };
-    setCards([...cards, newCard]);
-    setCardCounter(cardCounter + 1);
+
+
+  const handleCardClick = (cardId) => {
+    // handleCardClick 함수의 내용 추가
+    // 해당 카드 클릭 시 동작 정의
+  };
+
+  const handleAddCard = (newCard) => {
+    newCard.id = cards.length + 1; // 새로운 카드의 ID 설정
+    setCards([...cards, newCard]); // 새로운 카드 추가
     setIsWriting(false);
   };
 
-  useEffect(() => {
-    localStorage.setItem('cards', JSON.stringify(cards));
-  }, [cards]);
+  console.log('sdkfs;',data)
 
-  const handleCardClick = (cardId) => {
-    const updatedCards = cards.map((card) => {
-      if (card.id === cardId) {
-        return { ...card, expanded: !card.expanded };
-      }
-      return { ...card, expanded: false };
-    });
-    setCards(updatedCards);
-    localStorage.setItem('cards', JSON.stringify(updatedCards));
-  };
-
-  const handleDeleteCard = (cardId) => {
-    const updatedCards = cards.filter((card) => card.id !== cardId);
-    setCards(updatedCards);
-    localStorage.setItem('cards', JSON.stringify(updatedCards));
-  };
-
+//  useEffect(() => {
+//   // Flask 서버의 주소
+//   const apiUrl = 'http://192.168.70.147:5022/content';
+// console.log("test")
+//   // Axios를 사용하여 GET 요청 보내기
+//   axios.get(apiUrl, { responseType: 'json'})
+//     .then(response => {
+//        setData(response.data); //요기
+//       console.log('db로부터받음', response.data);
+//     })
+//     .catch(error => {
+//       console.error('Error fetching data:', error);
+//     });
+// }, []);
 
   
+  const newlist = data.map((d)=>{
+    return (<tr key={d.content_num} className='card' onClick={() => handleCardClick(d.content_num)}>
+    <td className='content_num'>{d.content_num}</td>
+    <td style={{ textAlign: 'left' }}>
+    <Link  to={`/cardpage/${d.content_num}`}>{d.content_title}</Link></td>
+    <td>{d.user_id}</td>
+    <td>{d.write_time}</td>
+  </tr>)}   
+  )
 
+ 
+
+ 
+  const title = data.map((d)=>d.content_title)
+  console.log('title:',title)
 
   return (
     <div>
@@ -116,29 +112,26 @@ const Cone = () => {
         <table className='card-container'>
           <tbody>
             
-              <tr>
-                <th>순번</th>
-                <th>제목</th>
-                <th>유저아이디</th>
-                
-              </tr>
-            {cards.map((card) => (
-              
+            <tr>
+              <th>게시글번호</th>
+              <th>제목</th>
+              <th>유저아이디</th>
+              <th>작성일시</th>
+            </tr>
+
+            {newlist}
+            {/* {cards.map((card) => (
               <tr key={card.id} className='card' onClick={() => handleCardClick(card.id)}>
                 <td>{card.id}</td>
                 <td>
                   <Link to={`/cardpage/${card.id}`}>{card.title}</Link>
                 </td>
-                <td>
-                  ID
-                </td>
-              
+                <td>ID</td>
               </tr>
-            ))}
+            ))} */}
           </tbody>
         </table>
       </div>
-      
     </div>
   );
 };

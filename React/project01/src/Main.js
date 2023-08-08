@@ -14,6 +14,7 @@ import Ctwo from './Components/Ctwo';
 import Cthree from './Components/Cthree';
 import CardDetailsPage from './Components/CardDetailsPage';
 import Notice from './pages/Notice';
+import axios from 'axios';
 
 function Main() {
 
@@ -37,7 +38,29 @@ function Main() {
     };
   }, []);
 
-  const savedCards = JSON.parse(localStorage.getItem('cards')) || [];
+
+
+
+  const [data, setData] = useState([]); //요기2
+
+  useEffect(() => {
+   // Flask 서버의 주소
+   const apiUrl = 'http://192.168.70.147:5022/content';
+ console.log("test")
+   // Axios를 사용하여 GET 요청 보내기
+   axios.get(apiUrl, { responseType: 'json'})
+     .then(response => {
+        setData(response.data); //요기
+       console.log('testdb로부터받음', response.data);
+     })
+     .catch(error => {
+       console.error('Error fetching data:', error);
+     });
+ }, []);
+ 
+ 
+
+  const savedCards = data;
   const [isWriting, setIsWriting] = useState(false);
   const [cards, setCards] = useState(savedCards);
   const [cardCounter, setCardCounter] = useState(savedCards.length + 1);
@@ -49,9 +72,6 @@ function Main() {
     setIsWriting(false);
   };
 
-  useEffect(() => {
-    localStorage.setItem('cards', JSON.stringify(cards));
-  }, [cards]);
 
   return (
     <div className='main_col'>
@@ -161,11 +181,11 @@ function Main() {
         <Route path='/out' element={<OutGarden />} />
         <Route path='/community' element={<Community />} />
         <Route path='/mypage' element={<Mypage />} />
-        <Route path='/cone' element={<Cone />} />
+        <Route path='/cone' element={<Cone data={savedCards}/>} />
         <Route path='/ctwo' element={<Ctwo />} />
         <Route path='/cthree' element={<Cthree />} />
         <Route path='/machin' element={<Machin />} />
-        <Route path="/cardpage/:cardId" element={<CardDetailsPage cards={cards} />} />
+        <Route path="/cardpage/:cardId" element={<CardDetailsPage cards={savedCards} />} />
         <Route path='/notice' element={<Notice />} />
       </Routes>
 

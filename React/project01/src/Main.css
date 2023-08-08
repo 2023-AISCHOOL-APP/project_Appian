@@ -879,12 +879,14 @@ commubtn3
 .commubtnAll{
   position: relative;
 top: -280px;
+
 }
 .commubtn1{
   position: relative;
   width: 400px;
   left: 350px;
   top: 1540px;
+  margin-right: 20px;
   
 }
 .commubtn2{
@@ -892,14 +894,15 @@ top: -280px;
   width: 400px;
   height: auto;
   left: 350px;
-  top: 1540px;
+  margin-right: 20px;
+  top: 1470px;
   
 }
 .commubtn3{
   position: relative;
   width: 400px;
   left: 350px;
-  top: 1540px;
+  top: 1535px;
   
 }
 /* 

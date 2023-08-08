@@ -79,6 +79,9 @@ const Cone = () => {
   };
 
 
+  
+
+
   return (
     <div>
       <h1 className='conetitle'>텃밭 자랑하기</h1>
@@ -93,10 +96,12 @@ const Cone = () => {
         <h2 className='ctexttitle'>게시판</h2>
         <table className='card-container'>
           <tbody>
-            <tr>
+            
+              <tr>
                 <th>순번</th>
                 <th>제목</th>
-                <th>삭제</th>
+                <th>유저아이디</th>
+                
               </tr>
             {cards.map((card) => (
               
@@ -106,13 +111,15 @@ const Cone = () => {
                   <Link to={`/cardpage/${card.id}`}>{card.title}</Link>
                 </td>
                 <td>
-                  <button onClick={() => handleDeleteCard(card.id)}>삭제</button>
+                  ID
                 </td>
+              
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      
     </div>
   );
 };

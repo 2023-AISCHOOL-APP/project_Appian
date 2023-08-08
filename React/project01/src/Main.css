@@ -29,7 +29,7 @@
 }
 
 
-
+commubtn3
 
 /* Mainpage */
 .MACHINBANNER{
@@ -548,8 +548,6 @@
 
 /* info gunsik start*/
 
-
-
  
 
 @keyframes loadEffect2 {
@@ -836,16 +834,40 @@
   left: 360px;
 
 }
-.commubtn1{
-  top: 10px;
-}
 
+.commubtnAll{
+  position: relative;
+top: -280px;
+}
+.commubtn1{
+  position: relative;
+  width: 400px;
+  left: 350px;
+  top: 1540px;
+  
+}
+.commubtn2{
+  position: relative;
+  width: 400px;
+  height: auto;
+  left: 350px;
+  top: 1540px;
+  
+}
+.commubtn3{
+  position: relative;
+  width: 400px;
+  left: 350px;
+  top: 1540px;
+  
+}
+/* 
 .commubtn1 ,.commubtn2 ,.commubtn3{
   position: relative;
   margin: 20px;
   width: auto;
   height: auto;
-}
+} */
 
 
 .commu1{

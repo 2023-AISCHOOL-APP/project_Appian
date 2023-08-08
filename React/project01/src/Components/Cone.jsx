@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Route } from 'react-router-dom';
 import CardDetailsPage from './CardDetailsPage';
+import axios from 'axios';
+
 
 const WritingPage = ({ onAddCard, onCancel }) => {
   const [title, setTitle] = useState('');
@@ -16,6 +18,23 @@ const WritingPage = ({ onAddCard, onCancel }) => {
       setImageFile(null);
     }
   };
+
+  // const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // Flask 서버의 주소
+    const apiUrl = 'http://192.168.70.147:5022/content';
+
+    // Axios를 사용하여 GET 요청 보내기
+    axios.get(apiUrl, { responseType: 'json', params: { content_title : title, contents : content}, })
+      .then(response => {
+        // setData(response.data);
+        console.log('db로부터받음', response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
 
   return (
     <div className='writing-page'>
@@ -79,6 +98,9 @@ const Cone = () => {
   };
 
 
+  
+
+
   return (
     <div>
       <h1 className='conetitle'>텃밭 자랑하기</h1>
@@ -93,10 +115,12 @@ const Cone = () => {
         <h2 className='ctexttitle'>게시판</h2>
         <table className='card-container'>
           <tbody>
-            <tr>
+            
+              <tr>
                 <th>순번</th>
                 <th>제목</th>
-                <th>삭제</th>
+                <th>유저아이디</th>
+                
               </tr>
             {cards.map((card) => (
               
@@ -106,13 +130,15 @@ const Cone = () => {
                   <Link to={`/cardpage/${card.id}`}>{card.title}</Link>
                 </td>
                 <td>
-                  <button onClick={() => handleDeleteCard(card.id)}>삭제</button>
+                  ID
                 </td>
+              
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      
     </div>
   );
 };

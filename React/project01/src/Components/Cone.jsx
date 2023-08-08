@@ -19,23 +19,6 @@ const WritingPage = ({ onAddCard, onCancel }) => {
     }
   };
 
-  // const [data, setData] = useState([]);
-
-  useEffect(() => {
-    // Flask 서버의 주소
-    const apiUrl = 'http://192.168.70.147:5022/content';
-
-    // Axios를 사용하여 GET 요청 보내기
-    axios.get(apiUrl, { responseType: 'json', params: { content_title : title, contents : content}, })
-      .then(response => {
-        // setData(response.data);
-        console.log('db로부터받음', response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
-
   return (
     <div className='writing-page'>
       <h1>글 작성</h1>
@@ -80,6 +63,25 @@ const Cone = () => {
     localStorage.setItem('cards', JSON.stringify(cards));
   }, [cards]);
 
+
+  // const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // Flask 서버의 주소
+    const apiUrl = 'http://192.168.70.147:5022/content';
+    console.log("test")
+    // Axios를 사용하여 GET 요청 보내기
+    axios.get(apiUrl, { responseType: 'json'})
+      .then(response => {
+        // setData(response.data);
+        console.log('db로부터받음', response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  
   const handleCardClick = (cardId) => {
     const updatedCards = cards.map((card) => {
       if (card.id === cardId) {

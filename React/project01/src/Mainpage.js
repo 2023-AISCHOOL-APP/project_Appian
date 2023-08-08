@@ -35,7 +35,8 @@ const Mainpage = () => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       setShowBanner(scrollY >= 0);
-      setBannerTop(scrollY + 20); // 플로팅 배너의 상단 위치를 스크롤 값에 따라 업데이트
+      setBannerTop(scrollY + 20); 
+      // 플로팅 배너의 상단 위치를 스크롤 값에 따라 업데이트
     };
     window.addEventListener('scroll', handleScroll);
     return () => {
@@ -69,7 +70,7 @@ const Mainpage = () => {
 
   return (
 
-    <div>
+    <div id ='main-bg'>
 
       {/* 메인 배경이미지 */}
 
@@ -105,9 +106,8 @@ const Mainpage = () => {
             <span className='mainTitle_1'>팜팜을 만나보세요!</span>
           </div>
           <div  id='sub' >
-            <span>텃밭을 나누고 받으며, 자연과 소통하는 특별한 공간을 경험해보세요.</span>
-              <br/>
-            <span>지금 내 텃밭을 내놓거나 특별한 나만의 공간을 구해보세요!</span>
+            <span>텃밭을 나누고 받으며, 자연과 소통하는 특별한 공간을 경험해보세요.
+              <br/>지금 내 텃밭을 내놓거나 특별한 나만의 공간을 구해보세요!</span>
           </div>
         </div>
         

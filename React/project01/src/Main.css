@@ -29,7 +29,7 @@
 }
 
 
-
+commubtn3
 
 /* Mainpage */
 .MACHINBANNER{
@@ -236,12 +236,11 @@
 
 #main-image {
   position: absolute; /* 수정: absolute로 설정 */
-  top: 0;
   left: 0;
   right: 0;
   width: 1920px;
   height: auto;
-  top: 40px;
+  top: 0px;
   
   justify-content: center;
 
@@ -549,52 +548,6 @@
 
 /* info gunsik start*/
 
-
-.infopage{
-  background-color: white;
-  height: 1400px;
-  right: 320px;
-}
-
-
-.infohr{
-  
-  color: #BDF4EE;
-  top: -130px;
-  border-style:dashed ; /* 수평 룰의 선 스타일 변경 */
-  border-width: 2px; /* 점선의 두께 설정 */
-  border-spacing: 1px; /* 간격 설정 */
-  position: relative;
-  z-index: 3;
-}
-
-.infotitle{
-  
-  font-family: 'SUIT-ExtraBold';
-  text-align: center;
-  position: relative;
-  left: 790px;
-  top: 60px;
-
-  color: #266D6A;
-  font-size: 45px;
-  bottom: 50px;
-  z-index: 99;
-  animation: 0.6s ease-in-out loadEffect2; 
-  
-}
-
-.infotitle_bg{
-  left: -20px;
-  width: 1950px;
-  height: auto;
-  position: relative;
-  top: -100px;
-  z-index: 3;
-  animation: 0.6s ease-in-out loadEffect2; 
-}
-
-
  
 
 @keyframes loadEffect2 {
@@ -633,17 +586,21 @@
 
   
   left: 360px;
-  top: 30px;
+  top: 90px;
   font-size: 30px;
   color: black ;
   font-family: 'SBAggroB';
   z-index: 1;
 }
 
+.videotagAll{
+  margin-top: -300px;
+}
+
 .infohr2{
   
   color:lightgray;
-  top: 50px;
+  top: 110px;
   left: 30px;
   width: 1200px;
   border-style:dashed ; /* 수평 룰의 선 스타일 변경 */
@@ -656,7 +613,7 @@
   text-align: center;
   position: relative;
   left: 360px;
-  top: -500px;
+  top: -520px;
   font-size: 30px;
   color: black ;
   font-family: 'SBAggroB';
@@ -665,7 +622,7 @@
 .infohr3{
   position: relative;
   color:lightgray;
-  top: -480px;
+  top: -500px;
   left: 30px;
   width: 1200px;
   border-style:dashed ; /* 수평 룰의 선 스타일 변경 */
@@ -881,16 +838,43 @@
   left: 360px;
 
 }
-.commubtn1{
-  top: 10px;
-}
 
+.commubtnAll{
+  position: relative;
+top: -710px;
+
+}
+.commubtn1{
+  position: relative;
+  width: 400px;
+  left: 350px;
+  top: 1540px;
+  margin-right: 20px;
+  
+}
+.commubtn2{
+  position: relative;
+  width: 400px;
+  height: auto;
+  left: 350px;
+  margin-right: 20px;
+  top: 1470px;
+  
+}
+.commubtn3{
+  position: relative;
+  width: 400px;
+  left: 350px;
+  top: 1535px;
+  
+}
+/* 
 .commubtn1 ,.commubtn2 ,.commubtn3{
   position: relative;
   margin: 20px;
   width: auto;
   height: auto;
-}
+} */
 
 
 .commu1{
@@ -899,15 +883,15 @@
   padding: 5px 20px ;
   border: 2px solid white; 
   border-radius: 50px;
-  top: -70px;
-  left: -1150px;
+  top: 150px;
+  left: 30px;
   display: inline-block;
   position: relative;
   z-index: 99;
   text-decoration: none;
   font-family: 'SUIT-Bold';
   font-size: 18px;
-  color: white;
+  color: black;
   z-index: 9999;
   
 }
@@ -918,15 +902,15 @@
   padding: 5px 20px ;
   border: 2px solid white; 
   border-radius: 50px;
-  top: -70px;
-  left: -853px;
+  top: 150px;
+  left: 340px;
   display: inline-block;
   position: relative;
   z-index: 99;
   text-decoration: none;
   font-family: 'SUIT-Bold';
   font-size: 18px;
-  color: white;
+  color: black;
   z-index: 9999;
   
 }
@@ -938,8 +922,8 @@
   padding: 5px 20px ;
   border: 2px solid white; 
   border-radius: 50px;
-  top: -70px;
-  left: -560px;
+  top: 150px;
+  left: 650px;
   display: inline-block;
   position: relative;
   z-index: 99;

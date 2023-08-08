@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import '../Css/OutGarden.css'
 import Calendar from '../Components/CalendarDatePick'
 import { CalendarContainer } from 'react-datepicker';
+import PageTitle from '../Components/PageTitle';
 
 function OutGarden() {
   // 텃밭 등록 페이지를 위한 상태
@@ -72,6 +73,9 @@ function OutGarden() {
   };
 
   return (
+
+    <>
+    <PageTitle data={'텃밭 등록'} num={0}/>
     <div className="container">
     {isLogin ? (
       <div className="card">
@@ -207,6 +211,7 @@ function OutGarden() {
       </div>
     )}
   </div>
+  </>
   );
 }
 

@@ -1,10 +1,13 @@
 import React from 'react'
-
+import PageTitle from '../Components/PageTitle';
+import '../Css/PredictPage.css'
 const Machin = () => {
   return (
     <div>
-       <hr className='infohr'/>
-        <img src='/img/titlebg.png' className='infotitle_bg'/>
+      <PageTitle data={'작물 가격 예측'} num={0}/>
+      <div id='predictPage'>
+        <p>여기에 꾸며주세요!</p>
+      </div>
     </div>
   )
 }

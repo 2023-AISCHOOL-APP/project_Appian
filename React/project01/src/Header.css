@@ -7,7 +7,6 @@
 }
 
 
-
 @font-face {
   font-family: 'SUIT-Regular';
   src: url('./Fonts/SUIT-Regular.ttf') format('truetype');
@@ -45,33 +44,24 @@
 
 
 
-.maingrid{
-  margin-right: 320px;
- 
-  background-color : #E9FFFC;
-  margin-left: 320px;
+.main_grid{
+  height : 220px;
+  background-color : #ffffff;
+
 }
 .main_col{
  
   background-color: #E9FFFC;
-
+  height : 220px;
   z-index: 99;
 
-
-  
-
-
-  
-  
 }
 
 #main-container {
   
   position: relative;
   max-width: 1920px;
-  
   z-index: 999;
-
 }
 
 
@@ -82,10 +72,10 @@
   width: 130px;
   position: relative;
   width:auto;
-  scale: 0.55;
+  scale: 0.4;
   margin-top: 20px; /* 로고를 상단으로 20px만큼 띄웁니다. */
   left: 230px; /* 로고를 좌측으로 20px만큼 띄웁니다. */
-  background-color : #E9FFFC;
+
   z-index: 99;
 }
 
@@ -93,11 +83,11 @@
 
 .navbar{
 
-
- 
-  font-family: 'SUIT-SemiBold';
+  color : #05AC7B ;
+  font-size: 18px;
+  font-family: 'SUIT-Bold';
   position: relative;
-  top: -90px;
+  top: -110px;
   left: 1100px;
   z-index: 99;
  
@@ -105,13 +95,12 @@
 
 .navbar1{
  
-  
   font-size: 15px;
   position: relative;
  
   top: -110px;
-  left: 1390px;
-  
+  left: 1477px;
+  font-family : 'SUIT-SemiBold';
   
  
  
@@ -125,13 +114,13 @@
 
 #navbarlogin{
   
-  font-family: 'SUIT-Regular';
+  font-family: 'SUIT-SemiBold';
 
   margin-top:  -100px;
   margin-right: 20px;
-  color: black;
+  color: rgb(100, 100, 100);
   text-decoration: none;
-  background-color : #E9FFFC;
+
   
   
 
@@ -139,11 +128,10 @@
 .navbarMenu{
   
   top: -10px;
-  color: black;
-  
-  margin-right: 30px; /* 메뉴 간격을 조절 */
+  color: #2c2c2c ;
+  margin-right: 50px; /* 메뉴 간격을 조절 */
   text-decoration: none;
-  background-color : #E9FFFC;
+
   z-index: 3;
   
 }
@@ -155,7 +143,7 @@
   /* 그림자 가로이동거리 , 세로이동거리 , 그림자 흐림 정도 , 그림자색상과 투명도(빨,초,파,투명도) */
   position:absolute;
   top: 40px;
-  left: 200px;
+  left: 265px;
 
   padding: 15px;
   text-align: center;
@@ -171,7 +159,7 @@
   /* 그림자 가로이동거리 , 세로이동거리 , 그림자 흐림 정도 , 그림자색상과 투명도(빨,초,파,투명도) */
   position:absolute;
   top: 40px;
-  left: 300px;
+  left: 385px;
 
   padding: 15px;
   text-align: center;
@@ -186,7 +174,7 @@
   /* 그림자 가로이동거리 , 세로이동거리 , 그림자 흐림 정도 , 그림자색상과 투명도(빨,초,파,투명도) */
   position:absolute;
   top: 40px;
-  left: 10px;
+  left: 15px;
 
   padding: 15px;
   text-align: center;
@@ -202,7 +190,7 @@
   /* 그림자 가로이동거리 , 세로이동거리 , 그림자 흐림 정도 , 그림자색상과 투명도(빨,초,파,투명도) */
   position:absolute;
   top: 40px;
-  left: 110px;
+  left: 145px;
 
   padding: 15px;
   text-align: center;

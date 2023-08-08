@@ -1,6 +1,8 @@
 // Community.js
 import React from 'react';
 import { Link} from 'react-router-dom';
+import PageTitle from '../Components/PageTitle';
+import Communitybtn from './Communitybtn';
 
 function Community() {
 
@@ -12,18 +14,15 @@ function Community() {
                 , "숨비재제주농부" , "진미농원TV"]
                          
   return (
-    
-    <div className='infopage'>
-      <div>
-        <span className='infotitle'>팜팜! 정보 게시판</span>
-        <hr className='infohr'/>
-        <img src='/img/titlebg.png' className='infotitle_bg'/>
-      </div>
 
-      
+    <div>
+    <PageTitle data={'정보게시판'} num={0}/>
+    <div className='infoAll'>
       <span className='infotitle2'> ▶ 영상으로 배우는 농사이야기</span>
       <hr className='infohr2'/>
 
+     <Communitybtn />    
+    <div className='videotagAll'>
       <div className='video1_tag'></div>
       <div className='video2_tag'></div>
       <div className='video3_tag'></div>
@@ -39,7 +38,7 @@ function Community() {
       <span className='video1_tagname2'>{YoutubeTitle[1]}</span>
       <span className='video1_tagname3'>{YoutubeTitle[2]}</span>
       <span className='video1_tagname4'>{YoutubeTitle[3]}</span>
-      
+    </div> 
       <div className='info-vd-container'>
         <div className='big-video'>
           
@@ -71,37 +70,35 @@ function Community() {
           </div>
         </div>
       </div>
-      
-      
+              
+              
 
-      
-      <span className='infotitle3'>▶ 텃밭 이야기</span>
-      <hr className='infohr3'/>
-      <div className='infoimg2' >
-      <img src='/img/commubtn1.png' className='commubtn1'/>
-      <img src='/img/commubtn2.png' className='commubtn2'/>
-      <img src='/img/commubtn3.png' className='commubtn3'/>
-      <Link to={'/cone'} className='commu1'>
-       <span   className='commu1name'>바로가기→</span>
-      
-      </Link>
-      <Link to={'/ctwo'} className='commu2'>
-      <span className='commu2name' >바로가기→</span>
-      
-      </Link>
-      <Link to={'/cthree'} className='commu3'>  
-      <span className='commu3name'>바로가기→</span>
-      
-      </Link>
-      </div>
+              
+              <span className='infotitle3'>▶ 텃밭 이야기</span>
+              <hr className='infohr3'/>
+              <div className='infoimg2' >
+            
+              <Link to={'/cone'} className='commu1'>
+              <span   className='commu1name'>바로가기→</span>
+              
+              </Link>
+              <Link to={'/ctwo'} className='commu2'>
+              <span className='commu2name' >바로가기→</span>
+              
+              </Link>
+              <Link to={'/cthree'} className='commu3'>  
+              <span className='commu3name'>바로가기→</span>
+              
+              </Link>
+              </div>
 
-      <div>
+              <div>
         
         
        
       </div>
       </div>
-      
+      </div>
         
   );
 }

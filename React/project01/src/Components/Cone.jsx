@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Route } from 'react-router-dom';
 import CardDetailsPage from './CardDetailsPage';
+import axios from 'axios';
+
 
 const WritingPage = ({ onAddCard, onCancel }) => {
   const [title, setTitle] = useState('');
@@ -16,6 +18,23 @@ const WritingPage = ({ onAddCard, onCancel }) => {
       setImageFile(null);
     }
   };
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // Flask 서버의 주소
+    const apiUrl = 'http://192.168.70.147:5022/content';
+
+    // Axios를 사용하여 GET 요청 보내기
+    axios.get(apiUrl, { responseType: 'json', params: { content_title : title, contents : content}, })
+      .then(response => {
+        setData(response.data);
+        console.log('db로부터받음', response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, [content]);
 
   return (
     <div className='writing-page'>

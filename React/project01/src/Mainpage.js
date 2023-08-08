@@ -1,12 +1,11 @@
 import React from 'react'
 import './Header.css'
-
-
 import './Main.css';
 import  { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Slide from './Slide';
 import { getResizeEventListener } from './utils';
+
 
 
 
@@ -28,16 +27,16 @@ const Mainpage = () => {
   // 이미지 슬라이더 
   const myRef = React.createRef();
 
-  const [showBanner, setShowBanner] = useState(false);
+  const [showBanner, setShowBanner] = useState(true);
   // showBanner라는 상태 변수를 선언 , 초기값으로 'false'를 설정 => 플로팅 배너의 보이기/숨기기 여부를 제어할 때 사용 
   const [bannerTop, setBannerTop] = useState(0);
+  
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       setShowBanner(scrollY >= 0);
       setBannerTop(scrollY + 20); // 플로팅 배너의 상단 위치를 스크롤 값에 따라 업데이트
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -69,17 +68,15 @@ const Mainpage = () => {
 
 
   return (
+
     <div>
 
-      
-
-      
       {/* 메인 배경이미지 */}
 
 
       <img src='/img/mainImage.png' id="main-image" />
 
-      
+
 
       <div id='main-container'>
         <Slide />
@@ -98,7 +95,7 @@ const Mainpage = () => {
                             
                         
                       </Link>
-          </div>
+        </div>
         <div >
           <div  id='mainTitle'  >
             <span>소중한 땅 한조각</span>
@@ -132,43 +129,39 @@ const Mainpage = () => {
 
         
 
-            <div  id="MAINBUTTON"
-                  className={animate ? 'animate' : ''} >
-                 
-                 <div className='mainbutton1'>
+        <div  id="MAINBUTTON"
+              className={animate ? 'animate' : ''} >
+              
+            <div className='mainbutton1'>
+      
+              <img src="/img/mainbutton1.png"  alt='mainbutton1' />
+            </div>
+            <div className='mainbutton2'>
+              <img src="/img/mainbutton2.png"  alt='mainbutton2'/>
+            </div> 
             
-                    <img src="/img/mainbutton1.png"  alt='mainbutton1' />
-                 </div>
-                 <div className='mainbutton2'>
-                    <img src="/img/mainbutton2.png"  alt='mainbutton2'/>
-                  </div> 
-               
-               <div className='findbtn'>
-                   <Link to='/find/' className='findname'>
-                         <span>바로가기→</span>
-                   </Link>
-               </div> 
+            <div className='findbtn'>
+                <Link to='/find/' className='findname'>
+                      <span>바로가기→</span>
+                </Link>
+            </div> 
                        
                   {/* mainbutton1에 버튼으로 사용할 것 만들기 */}
-                  
-                    
-                    
-                  
-     
-                    <div className='findbtn2'>
-                       <Link to='/out' className='findname2'>
-                         <span >바로가기→</span>
-                       </Link>
-                    </div>
-                    
-                   
-                    </div>
+            
+            <div className='findbtn2'>
+                <Link to='/out' className='findname2'>
+                  <span >바로가기→</span>
+                </Link>
+            </div>
+            
+            
+        </div>
 
         
       </div>
     </div>
-   
-  )
+
+  );
 }
 
 export default Mainpage

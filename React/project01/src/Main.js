@@ -15,6 +15,7 @@ import Cthree from './Components/Cthree';
 import CardDetailsPage from './Components/CardDetailsPage';
 import Notice from './pages/Notice';
 import './Header.css'
+import FarmDetail from './pages/FarmDetail';
 
 
 function Main() {
@@ -130,8 +131,8 @@ function Main() {
           </NavLink>
           {activeMenu === 'mypage' && (
             <div className='navbarSubMenu4'>
-              <NavLink to='/mypage' className='navbarSubMenuLink'>
-                신청 내역
+              <NavLink to='/find/1' className='navbarSubMenuLink'>
+                농장상세페이지
               </NavLink>
               <br/>
               <br/>
@@ -151,11 +152,13 @@ function Main() {
 
 
       <Routes>
+        
         <Route path='/' element={<Mainpage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/join' element={<Join />} />
         <Route path='/card' element={<Card />} />
         <Route path='/find' element={<FindGarden />} />
+        <Route path='/find/1' element={<FarmDetail/>} />
         <Route path='/out' element={<OutGarden />} />
         <Route path='/community' element={<Community />} />
         <Route path='/mypage' element={<Mypage />} />

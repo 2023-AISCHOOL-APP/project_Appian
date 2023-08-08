@@ -29,7 +29,7 @@
 }
 
 
-
+commubtn3
 
 /* Mainpage */
 .MACHINBANNER{
@@ -555,18 +555,12 @@
   height: 1400px;
   right: 320px;
 }
-
-
-.infohr{
-  
-  color: #BDF4EE;
-  top: -130px;
-  border-style:dashed ; /* 수평 룰의 선 스타일 변경 */
-  border-width: 2px; /* 점선의 두께 설정 */
-  border-spacing: 1px; /* 간격 설정 */
+.infoAll{
   position: relative;
-  z-index: 3;
+  top: -300px;
 }
+
+
 
 .infotitle{
   
@@ -574,7 +568,7 @@
   text-align: center;
   position: relative;
   left: 790px;
-  top: 60px;
+  top: -330px;
 
   color: #266D6A;
   font-size: 45px;
@@ -589,7 +583,7 @@
   width: 1950px;
   height: auto;
   position: relative;
-  top: -100px;
+  top: -450px;
   z-index: 3;
   animation: 0.6s ease-in-out loadEffect2; 
 }
@@ -881,16 +875,40 @@
   left: 360px;
 
 }
-.commubtn1{
-  top: 10px;
-}
 
+.commubtnAll{
+  position: relative;
+top: -280px;
+}
+.commubtn1{
+  position: relative;
+  width: 400px;
+  left: 350px;
+  top: 1540px;
+  
+}
+.commubtn2{
+  position: relative;
+  width: 400px;
+  height: auto;
+  left: 350px;
+  top: 1540px;
+  
+}
+.commubtn3{
+  position: relative;
+  width: 400px;
+  left: 350px;
+  top: 1540px;
+  
+}
+/* 
 .commubtn1 ,.commubtn2 ,.commubtn3{
   position: relative;
   margin: 20px;
   width: auto;
   height: auto;
-}
+} */
 
 
 .commu1{

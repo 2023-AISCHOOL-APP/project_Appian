@@ -1,6 +1,7 @@
 // Community.js
 import React from 'react';
 import { Link} from 'react-router-dom';
+import PageTitle from '../Components/PageTitle';
 
 function Community() {
 
@@ -12,14 +13,8 @@ function Community() {
                 , "숨비재제주농부" , "진미농원TV"]
                          
   return (
-    
-    <div className='infopage'>
-      <div>
-        <span className='infotitle'>팜팜! 정보 게시판</span>
-        <hr className='infohr'/>
-        <img src='/img/titlebg.png' className='infotitle_bg'/>
-      </div>
-
+    <div>
+    <PageTitle data={'정보게시판'} num={0}/>
       
       <span className='infotitle2'> ▶ 영상으로 배우는 농사이야기</span>
       <hr className='infohr2'/>

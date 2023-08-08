@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PageTitle from '../Components/PageTitle';
 
 const Notice = () => {
   const notices = [
@@ -10,6 +10,8 @@ const Notice = () => {
   ];
 
   return (
+    <>
+    <PageTitle name={'공지사항'} num={0}/>
     <div className="notice-container">
       <h2>공지사항</h2>
       <table className="notice-table">
@@ -31,6 +33,7 @@ const Notice = () => {
         </tbody>
       </table>
     </div>
+    </>
   );
 };
 

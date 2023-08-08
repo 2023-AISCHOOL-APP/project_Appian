@@ -14,6 +14,8 @@ import Ctwo from './Components/Ctwo';
 import Cthree from './Components/Cthree';
 import CardDetailsPage from './Components/CardDetailsPage';
 import Notice from './pages/Notice';
+import './Header.css'
+
 
 function Main() {
 
@@ -128,28 +130,24 @@ function Main() {
           </NavLink>
           {activeMenu === 'mypage' && (
             <div className='navbarSubMenu4'>
-              <NavLink to='/machin' className='navbarSubMenuLink'>
+              <NavLink to='/mypage' className='navbarSubMenuLink'>
                 신청 내역
               </NavLink>
               <br/>
               <br/>
-              <NavLink to='/machin' className='navbarSubMenuLink'>
+              <NavLink to='/mypage' className='navbarSubMenuLink'>
                 문의 내역
               </NavLink>
               <br/>
               <br/>
-              <NavLink to='/machin' className='navbarSubMenuLink'>
+              <NavLink to='/mypage' className='navbarSubMenuLink'>
                 내 정보 수정
               </NavLink>
-
-              <div className='headerhr'></div>
-
             </div>
           )}
         </ul>
       </div>  
     </div>
-      
 
 
       <Routes>

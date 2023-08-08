@@ -19,7 +19,7 @@ const WritingPage = ({ onAddCard, onCancel }) => {
     }
   };
 
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
 
   useEffect(() => {
     // Flask 서버의 주소
@@ -28,13 +28,13 @@ const WritingPage = ({ onAddCard, onCancel }) => {
     // Axios를 사용하여 GET 요청 보내기
     axios.get(apiUrl, { responseType: 'json', params: { content_title : title, contents : content}, })
       .then(response => {
-        setData(response.data);
+        // setData(response.data);
         console.log('db로부터받음', response.data);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
       });
-  }, [content]);
+  }, []);
 
   return (
     <div className='writing-page'>

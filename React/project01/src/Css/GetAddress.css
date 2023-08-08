@@ -13,3 +13,47 @@
   font-family: 'SUIT-SemiBold';
   font-size: 15px;
 }
+
+.infopage{
+  background-color: white;
+  height: 1400px;
+  right: 320px;
+}
+
+
+.infohr{
+  
+  color: #BDF4EE;
+  top: -130px;
+  border-style:dashed ; /* 수평 룰의 선 스타일 변경 */
+  border-width: 2px; /* 점선의 두께 설정 */
+  border-spacing: 1px; /* 간격 설정 */
+  position: relative;
+  z-index: 3;
+}
+
+.infotitle{
+  
+  font-family: 'SUIT-ExtraBold';
+  text-align: center;
+  position: relative;
+  left: 790px;
+  top: 60px;
+
+  color: #266D6A;
+  font-size: 45px;
+  bottom: 50px;
+  z-index: 99;
+  animation: 0.6s ease-in-out loadEffect2; 
+  
+}
+
+.infotitle_bg{
+  left: -20px;
+  width: 1950px;
+  height: auto;
+  position: relative;
+  top: -100px;
+  z-index: 3;
+  animation: 0.6s ease-in-out loadEffect2; 
+}

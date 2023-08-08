@@ -75,7 +75,7 @@ function OutGarden() {
   return (
 
     <>
-    <PageTitle data={'텃밭 등록'} num={0}/>
+    <PageTitle data={'텃밭 등록'} num={2}/>
     <div className="container">
     {isLogin ? (
       <div className="card">

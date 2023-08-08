@@ -586,17 +586,21 @@ commubtn3
 
   
   left: 360px;
-  top: 30px;
+  top: 90px;
   font-size: 30px;
   color: black ;
   font-family: 'SBAggroB';
   z-index: 1;
 }
 
+.videotagAll{
+  margin-top: -300px;
+}
+
 .infohr2{
   
   color:lightgray;
-  top: 50px;
+  top: 110px;
   left: 30px;
   width: 1200px;
   border-style:dashed ; /* 수평 룰의 선 스타일 변경 */
@@ -609,7 +613,7 @@ commubtn3
   text-align: center;
   position: relative;
   left: 360px;
-  top: -500px;
+  top: -520px;
   font-size: 30px;
   color: black ;
   font-family: 'SBAggroB';
@@ -618,7 +622,7 @@ commubtn3
 .infohr3{
   position: relative;
   color:lightgray;
-  top: -480px;
+  top: -500px;
   left: 30px;
   width: 1200px;
   border-style:dashed ; /* 수평 룰의 선 스타일 변경 */
@@ -837,7 +841,7 @@ commubtn3
 
 .commubtnAll{
   position: relative;
-top: -280px;
+top: -710px;
 
 }
 .commubtn1{
@@ -879,15 +883,15 @@ top: -280px;
   padding: 5px 20px ;
   border: 2px solid white; 
   border-radius: 50px;
-  top: -70px;
-  left: -1150px;
+  top: 150px;
+  left: 30px;
   display: inline-block;
   position: relative;
   z-index: 99;
   text-decoration: none;
   font-family: 'SUIT-Bold';
   font-size: 18px;
-  color: white;
+  color: black;
   z-index: 9999;
   
 }
@@ -898,15 +902,15 @@ top: -280px;
   padding: 5px 20px ;
   border: 2px solid white; 
   border-radius: 50px;
-  top: -70px;
-  left: -853px;
+  top: 150px;
+  left: 340px;
   display: inline-block;
   position: relative;
   z-index: 99;
   text-decoration: none;
   font-family: 'SUIT-Bold';
   font-size: 18px;
-  color: white;
+  color: black;
   z-index: 9999;
   
 }
@@ -918,8 +922,8 @@ top: -280px;
   padding: 5px 20px ;
   border: 2px solid white; 
   border-radius: 50px;
-  top: -70px;
-  left: -560px;
+  top: 150px;
+  left: 650px;
   display: inline-block;
   position: relative;
   z-index: 99;

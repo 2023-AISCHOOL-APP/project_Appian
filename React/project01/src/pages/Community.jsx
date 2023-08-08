@@ -22,7 +22,7 @@ function Community() {
       <hr className='infohr2'/>
 
      <Communitybtn />    
-
+    <div className='videotagAll'>
       <div className='video1_tag'></div>
       <div className='video2_tag'></div>
       <div className='video3_tag'></div>
@@ -38,7 +38,7 @@ function Community() {
       <span className='video1_tagname2'>{YoutubeTitle[1]}</span>
       <span className='video1_tagname3'>{YoutubeTitle[2]}</span>
       <span className='video1_tagname4'>{YoutubeTitle[3]}</span>
-      
+    </div> 
       <div className='info-vd-container'>
         <div className='big-video'>
           

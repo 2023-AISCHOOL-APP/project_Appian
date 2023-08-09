@@ -51,7 +51,7 @@
 .lental_type{
    
     font-family: 'SUIT-Bold';
-    font-size: 20px;
+    font-size: 17px;
     color: white;
     letter-spacing: 2px;
    
@@ -81,7 +81,7 @@
 .farm_type{
    
     font-family: 'SUIT-Bold';
-    font-size: 20px;
+    font-size: 17px;
     color: white;
     
     letter-spacing: 2px;
@@ -89,7 +89,34 @@
    
 }
 
+.farm_address{
+    font-family: 'SUIT-Bold';
+    font-size: 20px;
+    z-index: 5;
+    position: relative;
+    left: 1320px;
+    top: 220px;
+
+}
+
 /* 소개글 */
+
+.desc_hr{
+    border: 1px solid #FFD365;
+    background-color: #FFD365;
+    width: 200px;
+    position: relative;
+    top: -50px;
+    left: 860px;
+}
+.desc_hr2{
+    border: 1px solid #FFD365;
+    background-color: #FFD365;
+    width: 200px;
+    position: relative;
+    top: 130px;
+    left: 860px;
+}
 
 .description{
  position: relative;
@@ -108,7 +135,18 @@
 .use_id{
     font-family: 'SUIT-Bold';
     font-size: 17px;
+    position: relative;
     margin-left: 320px;
-    margin-top: 100px;
-    z-index: 98;
+    top: 120px;
+    z-index: 99;
 }
+.detail_date{
+    font-family: 'SUIT-ExtraRegular';
+    position: relative;
+    margin-left: 320px;
+    top: 130px;
+
+}
+
+/* 캘린더 */
+

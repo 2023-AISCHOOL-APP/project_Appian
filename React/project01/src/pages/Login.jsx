@@ -7,18 +7,17 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
-
+import Grid from '@mui/material/Grid';
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.primary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://localhost:3000/">
-        FARMFARM
+      <Link color="inherit" href="#">
+        FarmFarm
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -86,6 +85,7 @@ const Login = () => {
                 }
               label="아이디 저장하기"
             />
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
             <Button
               color="primary"
               variant="contained"
@@ -100,22 +100,27 @@ const Login = () => {
                 },
                 background: "#05AC7B",
                 borderRadius: "20px",
-                marginTop : '40px'
+                marginTop : '40px',
+                width: "180px"
               }}
             >
               로그인
             </Button>
-            <Grid container>
+            
+            </Box>
+            <Grid container justifyContent="center">
               <Grid item sx={{
                       borderRadius: "20px",
-                      marginTop : '40px',
-                      textAlign : 'center'}} direction="row" spacing={1} justifyContent="center" mt={3}>
-
+                      marginTop : '20px',
+                      textAlign : 'center',
+                    }}
+            >
                 <Link href="/join" variant="body2">
-                  {"회원가입"}
+                  회원가입
                 </Link>
               </Grid>
             </Grid>
+            
           </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>

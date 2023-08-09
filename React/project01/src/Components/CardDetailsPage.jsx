@@ -25,17 +25,19 @@ const CardDetailsPage = ({ cards }) => {
    };
 
   return (
-    <div className='card-details'>
+    <div className='card-details-container'>
+      <div className='card-details'>
 
 
-      <h2 className='card-details-title'>{newContent[0].content_title}</h2>
-      <p className='card-details-content'>{newContent[0].contents}</p>
-      <img className='card-details-image' src={`http://192.168.70.165:5022/content_img/${newContent[0].content_img}`} alt={newContent[0].content_title} />
+        <h2 className='card-details-title'>{newContent[0].content_title}</h2>
+        <p className='card-details-content'>{newContent[0].contents}</p>
+        <img className='card-details-image' src={`http://192.168.70.165:5022/content_img/${newContent[0].content_img}`} alt={newContent[0].content_title} />
       
-      { <div className='card-details-buttons'>
-        <button className='card-details-button-delete'>삭제</button>
-        <button className='card-details-button-list' onClick={handleGoBackToList}>목록</button>
-      </div> }
+        { <div className='card-details-buttons'>
+          <button className='card-details-button-delete'>삭제</button>
+          <button className='card-details-button-list' onClick={handleGoBackToList}>목록</button>
+        </div> }
+      </div>
     </div>
   );
 };

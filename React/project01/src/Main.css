@@ -1052,44 +1052,54 @@ top: -710px;
 
 /* 텃밭자랑하기 */
 .writing-page {
-  background-color: #ffffff;
+  background-color: whitesmoke;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .writing-page h1 {
-  font-size: 24px;
+  font-size: 32px;
   margin-bottom: 20px;
 }
 
 .writing-page input,
 .writing-page textarea {
-  width: 100%;
+  
+  width: 50%;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  margin-left: 400px;
+  border: 3px solid #ccc;
+  border-radius: 20px;
 }
 
 .write-button {
   background-color: #007bff;
   color: #ffffff;
+  font-size : 40px;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  
 }
 
 /* 게시판 카드 */
 .card-list {
   margin-top: 20px;
+  text-align: ;
 }
 
 .card-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  text-align: center;
   flex-wrap: wrap;
   gap: 20px;
+ 
   
 }
 
@@ -1103,7 +1113,7 @@ top: -710px;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-2px);
 }
 
 .card img {
@@ -1134,7 +1144,7 @@ top: -710px;
 
 
 .card-container thead th {
-  background-color: #f2f2f2;
+  background-color: #af1919;
   padding: 10px;
   font-weight: bold;
   text-align: center;

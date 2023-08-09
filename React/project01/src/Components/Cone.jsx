@@ -39,7 +39,7 @@ const WritingPage = ({ onAddCard, onCancel }) => {
 
   return (
     <div className='writing-page'>
-      <h1>글 작성</h1>
+      <h1 style={{textAlign:'center'}}>글 작성</h1>
       <input
         type="text"
         placeholder="제목"
@@ -100,8 +100,8 @@ const Cone = ({data}) => {
   
   const newlist = data.map((d)=>{
     return (<tr key={d.content_num} className='card' onClick={() => handleCardClick(d.content_num)}>
-    <td className='content_num'>{d.content_num}</td>
-    <td style={{ textAlign: 'left' }}>
+    <td className='content_num' style={{textAlign:'center'}}>{d.content_num}</td>
+    <td style={{ textAlign: 'left', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
     <Link  to={`/cardpage/${d.content_num}`}>{d.content_title}</Link></td>
     <td>{d.user_id}</td>
     <td>{d.write_time}</td>

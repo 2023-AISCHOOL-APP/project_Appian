@@ -11,7 +11,7 @@ const Notice = () => {
 
   return (
     <>
-    <PageTitle name={'공지사항'} num={0}/>
+    <PageTitle name={'공지사항'} num={1}/>
     <div className="notice-container">
       <h2>공지사항</h2>
       <table className="notice-table">

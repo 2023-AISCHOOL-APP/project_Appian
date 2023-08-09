@@ -21,8 +21,8 @@ const MapArea = (data) => {
 					key={`${l.title}-${l.latlng}`}
 					position={l.latlng} onClick={()=>setLevel(5)}
 					image={{
-						src: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png',
-						size: { width: 64, height: 69 },
+						src: 'img/mapPin.png',
+						size: { width: 100, height: 120 }
 					}}
 					title={l.title}
 				/>

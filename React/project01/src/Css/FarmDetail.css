@@ -1,12 +1,20 @@
+/* 정보들 */
+.detailinfoAll{
+   left: 30px;
+}
+.detail_all{
+  margin-top: -170px;
+}
+
 /* 이미지 */
 
 
 .farmdetail_img1{
- position: relative;
- left: -10px;
- opacity: 80%;
- filter: blur(2px);
- border-radius: 0px;
+    position: relative;
+    left: -10px;
+    opacity: 80%;
+    filter: blur(2px);
+    border-radius: 0px;
     width: 1930px;
     height: 434px;
     background-image: url('/public/img/farmdetail/farmdetailimg1.jpg'); /* 마스크 이미지로 사용할 이미지 경로 */
@@ -89,33 +97,25 @@
    
 }
 
-.farm_address{
-    font-family: 'SUIT-Bold';
-    font-size: 20px;
-    z-index: 5;
-    position: relative;
-    left: 1320px;
-    top: 220px;
-
-}
 
 /* 소개글 */
 
-.desc_hr{
+/* .desc_hr{
     border: 1px solid #FFD365;
     background-color: #FFD365;
     width: 200px;
     position: relative;
     top: -50px;
     left: 860px;
-}
+} */
 .desc_hr2{
     border: 1px solid #FFD365;
+    border-radius: 50px;
     background-color: #FFD365;
     width: 200px;
     position: relative;
-    top: 130px;
-    left: 860px;
+    top: -20px;
+    left: 880px;
 }
 
 .description{
@@ -124,9 +124,10 @@
  display: inline-block;
  
  font-family: 'SUIT-Regular';
- font-size: 18px;
+ font-size: 20px;
  right: 320px;
- left: 550px;
+ left: 530px;
+ top: -180px;
  z-index: 99;
 }
 
@@ -136,17 +137,318 @@
     font-family: 'SUIT-Bold';
     font-size: 17px;
     position: relative;
-    margin-left: 320px;
+    text-align: right;
+    margin-right: 320px;
     top: 120px;
     z-index: 99;
 }
 .detail_date{
     font-family: 'SUIT-ExtraRegular';
     position: relative;
-    margin-left: 320px;
+    
     top: 130px;
+    text-align: right;
+    margin-right: 320px;
 
 }
 
-/* 캘린더 */
 
+/* 주소 */
+
+.farm_imgsmall{
+    position: relative;
+    left: 320px;
+    top: 200px;
+    width:700px;
+    height: auto;
+    border-radius: 20px;
+}
+
+.address_border{
+   
+    border: 2px solid rgb(236, 236, 236);
+    background-color: rgb(236, 236, 236);
+    border-radius: 20px;
+    display: inline-block;
+    position: relative;
+    width: 700px;
+    height: 110px;
+    z-index: 2;
+    left: 320px;
+    top: 660px;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.address_mappin{
+    width: 60px;
+    position: relative;
+    height: auto;
+    right: -95px;
+    top: 18px;
+    z-index: 99;
+}
+.address{   
+    font-family: 'SUIT-Bold';
+    font-size: 25px;
+    position: relative;
+    top: -10px;
+    left: 90px;
+    z-index: 99;
+
+}
+.farm_address{
+    font-family: 'SUIT-SemiBold';
+    font-size: 20px;
+   
+    position: relative;
+    top: 40px;
+    left: -70px;
+    z-index: 99;
+
+}
+
+
+/* 분양기간*/
+
+.lental_all{
+ position: relative;
+ top: -105px;
+ left: 395px;
+ z-index: 99;
+}
+
+.calendericon{
+    position: relative;
+    border-radius: 0px;
+    width: 30px;
+    height:auto;
+    left: 385px;
+    top: 390px;
+   
+}
+
+.lental_title{
+    font-family: 'SUIT-Bold';
+    font-size: 24px;
+    position: relative;
+    left: 415px;
+    top: 385px;
+}
+
+.lental_border1{
+    border: 3px solid rgb(236, 236, 236);
+    border-radius: 20px;
+    display: inline-block;
+    padding: 10px 20px;
+    position: relative;
+    left: 200px;
+    top: 450px;
+}
+
+.lental_startdate{
+    font-family: 'SUIT-SemiBold';
+    font-size: 18px;
+    letter-spacing: 2px;
+    
+}
+.lental_border2{
+    border: 3px solid rgb(236, 236, 236);
+    border-radius: 20px;
+    display: inline-block;
+    padding: 10px 20px;
+    position: relative;
+    text-align: center;
+    left: 230px;
+    top: 450px;
+}
+.lental_endDate{
+    font-family: 'SUIT-SemiBold';
+    font-size: 18px;
+    letter-spacing: 2px;
+    
+}
+.lental_date{
+    font-family: 'SUIT-SemiBold';
+    font-size: 18px;
+    position: relative;
+    left: 215px;
+    top: 450px;
+}
+
+/* 분양면적 */
+.areaAll{
+    margin-top: -40px;
+    z-index: 99;
+}
+
+.lental_areaicon{
+    position: relative;
+    border-radius: 0px;
+    width: 35px;
+    height:auto;
+    left: 379px;
+    top: 415px;
+   
+}
+
+
+.lental_areaTitle{
+    font-family: 'SUIT-Bold';
+    font-size: 24px;
+    position: relative;
+    left: 410px;
+    top: 415px;
+}
+
+.area_border1{
+    border: 3px solid rgb(236, 236, 236);
+    border-radius: 20px;
+    display: inline-block;
+    padding: 10px 20px;
+    position: relative;
+    left: 518px;
+    top: 410px;
+    width: 337px;
+}
+
+.lental_area{
+    text-align: center;
+    font-family: 'SUIT-SemiBold';
+    font-size: 18px;
+    letter-spacing: 2px;
+    
+}
+
+/* 분양희망가 */
+
+
+
+.priceAll{
+    margin-top: -8px;
+    z-index: 99;
+}
+
+.moneyicon{
+    position: relative;
+    border-radius: 0px;
+    width: 40px;
+    height:auto;
+    left: 377px;
+    top: 450px;
+    z-index: 99;
+}
+
+.price_title{
+    font-family: 'SUIT-Bold';
+    font-size: 24px;
+    position: relative;
+    left: 405px;
+    top: 438px;
+    z-index: 99;
+}
+
+.price_border1{
+    border: 3px solid rgb(236, 236, 236);
+    border-radius: 20px;
+    display: inline-block;
+    padding: 10px 20px;
+    position: relative;
+    left: 450px;
+    top: 435px;
+    width: 336px;
+    z-index: 99;
+}
+
+.price{
+    font-family: 'SUIT-SemiBold';
+    font-size: 18px;
+    letter-spacing: 2px;
+    z-index: 99;
+}
+
+
+/* 캘린더 넣을 자리 */
+
+.calender_border{
+    border: 2px solid gray;
+    position: relative;
+    background-color: gray;
+    right: -1060px;
+    top: -360px;
+    width: 540px;
+    height: 540px;
+    z-index: 99;
+}
+
+/* 분양 신청 버튼 */
+
+.farmapply_border{
+    border: solid #05AC7B ;
+    background-color:#05AC7B ;
+    display: inline-block;
+    padding: 20px 20px; 
+    border-radius: 20px;
+    width: 500px;
+    z-index: 98;
+    position: relative;
+    right: -1060px;
+    top: -330px;
+}
+
+
+.farmapply_btn{
+    font-family: 'SUIT-Bold';
+    font-size: 23px;
+    position: relative;
+    color: white;
+    left: 190px;
+    
+}
+
+/* 문의 글 남기기 버튼 */
+
+.Q_border{
+    border: 2px solid #05AC7B ;
+    display: inline-block;
+    padding: 20px 20px; 
+    border-radius: 20px;
+    width: 220px;
+    z-index: 98;
+    position: relative;
+    right: -515px;
+    top: -230px;
+}
+
+
+.Q_btn{
+    font-family: 'SUIT-Bold';
+    font-size: 20px;
+    position: relative;
+    color: #05AC7B;
+    left: 60px;
+    
+}
+/* 문의 연락처 */
+
+.call_border{
+    border: 2px solid #05AC7B ;
+    display: inline-block;
+    padding: 20px 20px; 
+    border-radius: 20px;
+    width: 220px;
+    z-index: 98;
+    position: relative;
+    right: -540px;
+    top: -230px;
+}
+
+
+.call_btn{
+    font-family: 'SUIT-Bold';
+    font-size: 20px;
+    position: relative;
+    color: #05AC7B;
+    left: 60px;
+    
+}

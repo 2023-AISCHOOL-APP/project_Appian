@@ -1,3 +1,4 @@
+import { margin } from '@mui/system';
 import React, { useState } from 'react'
 import { Map, MapMarker, Roadview } from 'react-kakao-maps-sdk';
 
@@ -17,7 +18,7 @@ const MapStatic = () => {
   })
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex" ,marginLeft:'320px' , marginRight:'320px' ,marginTop:'-90px'}}>
       <Map // 로드뷰를 표시할 Container // 농장 정보 수정 필요!!
         center={{
           lat: 35.13253602,
@@ -52,13 +53,9 @@ const MapStatic = () => {
             setIsError(false)
           }}
           image={{
-            src: "https://t1.daumcdn.net/localimg/localimages/07/2018/pc/roadview_minimap_wk_2018.png",
-            size: { width: 26, height: 46 },
-            options: {
-              spriteSize: { width: 1666, height: 168 },
-              spriteOrigin: { x: 705, y: 114 },
-              offset: { x: 13, y: 46 },
-            },
+            src: "/img/mapPin.png",
+            size: { width: 60, height: 90 },
+            
           }}
         />
       </Map>

@@ -43,7 +43,7 @@ class Slide extends Component {
                     {/* div에 슬라이드 각 아이템 구현 */}
                     
                   <div className='slider1'>
-                    <Link to='/find'>
+                    <Link to='/find' className='slider'>
                       <img src='https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/3yvw/image/Rbv3OUNfg5pUKr2nthgd6nuHcHo.PNG'
                           className='slideimg1'/>
                       <span className='slide_sub1'>안녕하세요 행복이 가득한 솔머리 행복 텃밭입니다!</span>
@@ -52,7 +52,7 @@ class Slide extends Component {
                     </Link>
                   </div>
                   <div className='slider2'>
-                  <Link to='/find'>
+                  <Link to='/find' className='slider'>
                     <img src='https://www.ccnnews.co.kr/news/photo/202203/250219_312295_1743.jpg'
                         className='slideimg2'/>
                     <span className='slide_sub2'>안녕하세요! 해피해피팜 주말농장 입니다 ~</span>
@@ -61,7 +61,7 @@ class Slide extends Component {
                     </Link>
                   </div>
                   <div className='slider3'>
-                  <Link to='/find'>
+                  <Link to='/find' className='slider'>
                    <img src='https://image.ajunews.com/content/image/2022/07/12/20220712103757800281.jpg'
                         className='slideimg3'/>
                    <span className='slide3'>건강희망텃밭</span>
@@ -69,7 +69,7 @@ class Slide extends Component {
                    </Link>
                   </div>
                   <div className='slider4'>
-                    <Link to='/find'>
+                    <Link to='/find'className='slider'>
                     <img src='https://cityfarmer.seoul.go.kr/fileManager/www/editorUpload/9999/1676279412768.jpeg'
                           className='slideimg4'/>
                     <span className='slide4'>나무향기 현천골농장</span>

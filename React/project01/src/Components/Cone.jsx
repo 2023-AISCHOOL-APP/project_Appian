@@ -6,23 +6,40 @@ import { useLocation, useNavigate} from 'react-router-dom'
 
 
 const WritingPage = ({ onAddCard, onCancel }) => {
+  // const [user_id, setUser_id] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [imageFile, setImageFile] = useState(null);
 
-  const handleAddCard = () => {
-    if (title.trim() !== '' && content.trim() !== '' && imageFile) {
-      const imageURL = URL.createObjectURL(imageFile);
-      onAddCard({ title, content, imageURL });
-      setTitle('');
-      setContent('');
-      setImageFile(null);
-    }
+  const handleImageChange = (event) => {
+    setImageFile(event.target.files[0]);
+  };
+
+  const handleSubmit = () => {
+    console.log('보내기클릭');
+    const formData = new FormData();
+    // formData.append('user_id', user_id);
+    formData.append('content_title', title);
+    formData.append('contents', content);
+    formData.append('content_img', imageFile);
+
+    const apiUrl = 'http://192.168.70.165:5022//add_content';
+    axios.post(apiUrl, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+      .then(response => {
+        console.log('Response from server:', response.data);
+      })
+      .catch(error => {
+        console.error('Error sending data:', error);
+      });
   };
 
   return (
     <div className='writing-page'>
-      <h1>글 작성</h1>
+      <h1 style={{textAlign:'center'}}>글 작성</h1>
       <input
         type="text"
         placeholder="제목"
@@ -35,12 +52,10 @@ const WritingPage = ({ onAddCard, onCancel }) => {
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
-      <input
-        type="file"
-        accept="image/*"
-        onChange={(e) => setImageFile(e.target.files[0])}
-      />
-      <button onClick={handleAddCard}>작성하기</button>
+      
+      <input type="file" onChange={handleImageChange} />
+
+      <button onClick={handleSubmit}>작성하기</button>
       <button onClick={onCancel}>취소</button>
     </div>
   );
@@ -85,8 +100,8 @@ const Cone = ({data}) => {
   
   const newlist = data.map((d)=>{
     return (<tr key={d.content_num} className='card' onClick={() => handleCardClick(d.content_num)}>
-    <td className='content_num'>{d.content_num}</td>
-    <td style={{ textAlign: 'left' }}>
+    <td className='content_num' style={{textAlign:'center'}}>{d.content_num}</td>
+    <td style={{ textAlign: 'left', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
     <Link  to={`/cardpage/${d.content_num}`}>{d.content_title}</Link></td>
     <td>{d.user_id}</td>
     <td>{d.write_time}</td>

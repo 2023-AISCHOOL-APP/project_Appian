@@ -1000,9 +1000,15 @@ top: -710px;
 .ctextbox{
   text-align: center;
 }
-.ctexttitle{
-  text-align: center;
-  background-color: rgb(240, 156, 0);
+.ctexttitle {
+  text-align: initial; /* 왼쪽 정렬 */
+  margin-left: 150px;
+  margin-right: 150px;
+  color: black; /* 글자 색상 */
+  font-size: 24px; /* 글자 크기 */
+  padding: 10px 0; /* 위 아래로 내부 여백 추가 */
+  border-bottom: 5px solid hsl(24, 90%, 61%); /* 밑줄 스타일 */
+  margin-bottom: 20px; /* 아래 여백 */
 }
 .ctext{
   border-style: groove;
@@ -1013,9 +1019,23 @@ top: -710px;
 }
 .card-container {
   margin : 100px;
+  max-width: 1800px;
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  background-color: seashell;
+}
+.card-container th:nth-child(1),
+.card-container td:nth-child(1) {
+  width : 15%
+}
+.card-container th:nth-child(4),
+.card-container td:nth-child(4) {
+  width : 15%
+}
+.card-container th:nth-child(3),
+.card-container td:nth-child(3) {
+  width : 35%
 }
 
 .card {
@@ -1075,14 +1095,28 @@ top: -710px;
 }
 
 .write-button {
-  background-color: #007bff;
-  color: #ffffff;
-  font-size : 40px;
+  background-color: wheat; /* 주황색 배경 */
+  color: black; /* 흰색 글자 */
+  font-size: 26px; /* 글자 크기 */
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 12px 24px; /* 내부 여백 */
+  border-radius: 21px;
+  margin-left: 150px;
   cursor: pointer;
-  
+  transition: background-color 0.9s, transform 0.5s; /* 애니메이션 효과 */
+
+  /* 그림자 효과 */
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+
+  /* 호버 효과 */
+  &:hover {
+    background-color: #e67e22; /* 더 진한 주황색으로 변경 */
+    transform: translateY(-2px); /* 버튼을 조금 위로 올림 */
+  }
+
+  &:active {
+    transform: translateY(1px); /* 버튼을 조금 아래로 눌림 */
+  }
 }
 
 /* 게시판 카드 */
@@ -1102,6 +1136,17 @@ top: -710px;
  
   
 }
+.card-container table {
+  table-layout: fixed; /* 고정 테이블 레이아웃 설정 */
+  width: 100%; /* 테이블 전체 너비 */
+}
+
+.card-container th {
+  width: 1000px; /* 테이블 헤더 셀 너비 (자동 조정) */
+  text-align: center; /* 텍스트 왼쪽 정렬 */
+  padding: 10px; /* 셀 안의 여백 설정 */
+}
+
 
 .card {
   background-color: #ffffff;
@@ -1218,11 +1263,95 @@ top: -710px;
 }
 
 .content_num{
-  font-size: x-small;
+  font-size: small;
 }
 .content_titleq{
   text-align: start;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination button:hover {
+  background-color: #45a049;
+}
+위 CSS 코드는 페이지네이션 버튼의 배경색, 글자색, 여백 등을 조정하여 예쁜 디자인을 적용합니다. 이 코드를 프로젝트의 스타일 파일에 추가하면 페이지네이션 버튼이 이쁘게 꾸며질 것입니다. 필요에 따라 스타일을 더 조정하거나 추가할 수 있습니다.
+
+
+.card-details {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card-details-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.card-details-content {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.card-details-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.card-details-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-details-button-delete,
+.card-details-button-list {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.card-details-button-delete {
+  background-color: #e74c3c;
+  color: #fff;
+  
+}
+
+.card-details-button-list {
+  background-color: #3498db;
+  color: #fff;
+}
+.card-details-buttons {
+  display: flex;
+  justify-content: center; /* 수평 가운데 정렬 */
+  margin-top: 20px;
+}
+
+
+
+
+
+
 
 
 /* gunsik end */

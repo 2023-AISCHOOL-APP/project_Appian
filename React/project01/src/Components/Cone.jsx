@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import CardDetailsPage from './CardDetailsPage';
 import axios from 'axios';
 import { useLocation, useNavigate} from 'react-router-dom'
-
+import { Dialog } from '@mui/material';
 
 const WritingPage = ({ onAddCard, onCancel }) => {
   // const [user_id, setUser_id] = useState('');
+  const [showSuccessMessage, setShowSuccessMessage]=useState(false);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [imageFile, setImageFile] = useState(null);
@@ -31,6 +32,15 @@ const WritingPage = ({ onAddCard, onCancel }) => {
     })
       .then(response => {
         console.log('Response from server:', response.data);
+        if (response.data.message === 'Content added successfully'){
+          setShowSuccessMessage(true);
+          setTimeout(() => {
+            setShowSuccessMessage(false);
+            alert("소중한 게시물이 심어졌습니다")
+            // 작성 완료 메시지가 표시된 후 화면을 새로고침
+             window.location.reload();
+          }, 10);
+        }
       })
       .catch(error => {
         console.error('Error sending data:', error);
@@ -63,6 +73,7 @@ const WritingPage = ({ onAddCard, onCancel }) => {
 
 const Cone = ({data}) => {
   const [isWriting, setIsWriting] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage]=useState(false);
   const [cards, setCards] = useState([]);
 
 
@@ -76,6 +87,7 @@ const Cone = ({data}) => {
     newCard.id = cards.length + 1; // 새로운 카드의 ID 설정
     setCards([...cards, newCard]); // 새로운 카드 추가
     setIsWriting(false);
+    setShowSuccessMessage(true);
   };
 
 
@@ -96,28 +108,58 @@ const Cone = ({data}) => {
 //       console.error('Error fetching data:', error);
 //     });
 // }, []);
-
+const [currentPage, setCurrentPage]=useState(1);
+  const postsPerPage =10;
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
   
-  const newlist = data.map((d)=>{
+  
+
+  const totalPages = Math.ceil(data.length / postsPerPage);
+const indexOfLastPost = currentPage * postsPerPage;
+const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
+  const newlist = currentPosts.map((d)=>{
     return (<tr key={d.content_num} className='card' onClick={() => handleCardClick(d.content_num)}>
     <td className='content_num' style={{textAlign:'center'}}>{d.content_num}</td>
-    <td style={{ textAlign: 'left', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+    <td style={{ textAlign: 'left', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',color:'pink' }}>
     <Link  to={`/cardpage/${d.content_num}`}>{d.content_title}</Link></td>
     <td>{d.user_id}</td>
     <td>{d.write_time}</td>
   </tr>)}   
   )
+  
 
- 
+  
+
+  const paginationButtons = (
+    <div className='pagination'>
+      <button
+        onClick={() => handlePageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+      >
+        이전
+      </button>
+      <button
+        onClick={() => handlePageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+      >
+        다음
+      </button>
+    </div>
+  );
+
+  
 
  
   const title = data.map((d)=>d.content_title)
   console.log('title:',title)
-
+  
   return (
     <div>
       <h1 className='conetitle'>텃밭 자랑하기</h1>
-      {!isWriting && <button className='write-button' onClick={() => setIsWriting(true)}>글 작성</button>}
+      {!isWriting && <button className='write-button' onClick={() => setIsWriting(true)}>➡➡➡게시물 작성하기 click😚</button>}
       {isWriting && (
         <WritingPage
           onAddCard={handleAddCard}
@@ -127,9 +169,9 @@ const Cone = ({data}) => {
       <div className='card-list'>
         <h2 className='ctexttitle'>게시판</h2>
         <table className='card-container'>
-          <tbody>
+          <tbody >
             
-            <tr>
+            <tr >
               <th>게시글번호</th>
               <th>제목</th>
               <th>유저아이디</th>
@@ -137,15 +179,7 @@ const Cone = ({data}) => {
             </tr>
 
             {newlist}
-            {/* {cards.map((card) => (
-              <tr key={card.id} className='card' onClick={() => handleCardClick(card.id)}>
-                <td>{card.id}</td>
-                <td>
-                  <Link to={`/cardpage/${card.id}`}>{card.title}</Link>
-                </td>
-                <td>ID</td>
-              </tr>
-            ))} */}
+            {paginationButtons}
           </tbody>
         </table>
       </div>

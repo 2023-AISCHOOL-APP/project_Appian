@@ -6,11 +6,36 @@ import { useLocation, useNavigate} from 'react-router-dom'
 
 
 const WritingPage = ({ onAddCard, onCancel }) => {
+  // const [user_id, setUser_id] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [imageFile, setImageFile] = useState(null);
 
-  
+  const handleImageChange = (event) => {
+    setImageFile(event.target.files[0]);
+  };
+
+  const handleSubmit = () => {
+    console.log('보내기클릭');
+    const formData = new FormData();
+    // formData.append('user_id', user_id);
+    formData.append('content_title', title);
+    formData.append('contents', content);
+    formData.append('content_img', imageFile);
+
+    const apiUrl = 'http://192.168.70.165:5022//add_content';
+    axios.post(apiUrl, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+      .then(response => {
+        console.log('Response from server:', response.data);
+      })
+      .catch(error => {
+        console.error('Error sending data:', error);
+      });
+  };
 
   return (
     <div className='writing-page'>
@@ -27,12 +52,10 @@ const WritingPage = ({ onAddCard, onCancel }) => {
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
-      <input
-        type="file"
-        accept="image/*"
-        onChange={(e) => setImageFile(e.target.files[0])}
-      />
-      <button >작성하기</button>
+      
+      <input type="file" onChange={handleImageChange} />
+
+      <button onClick={handleSubmit}>작성하기</button>
       <button onClick={onCancel}>취소</button>
     </div>
   );
@@ -109,7 +132,7 @@ const Cone = ({data}) => {
             <tr>
               <th>게시글번호</th>
               <th>제목</th>
-              <th>닉네임</th>
+              <th>유저아이디</th>
               <th>작성일시</th>
             </tr>
 

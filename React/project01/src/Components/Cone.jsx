@@ -10,15 +10,7 @@ const WritingPage = ({ onAddCard, onCancel }) => {
   const [content, setContent] = useState('');
   const [imageFile, setImageFile] = useState(null);
 
-  const handleAddCard = () => {
-    if (title.trim() !== '' && content.trim() !== '' && imageFile) {
-      const imageURL = URL.createObjectURL(imageFile);
-      onAddCard({ title, content, imageURL });
-      setTitle('');
-      setContent('');
-      setImageFile(null);
-    }
-  };
+  
 
   return (
     <div className='writing-page'>
@@ -40,7 +32,7 @@ const WritingPage = ({ onAddCard, onCancel }) => {
         accept="image/*"
         onChange={(e) => setImageFile(e.target.files[0])}
       />
-      <button onClick={handleAddCard}>작성하기</button>
+      <button >작성하기</button>
       <button onClick={onCancel}>취소</button>
     </div>
   );
@@ -117,7 +109,7 @@ const Cone = ({data}) => {
             <tr>
               <th>게시글번호</th>
               <th>제목</th>
-              <th>유저아이디</th>
+              <th>닉네임</th>
               <th>작성일시</th>
             </tr>
 

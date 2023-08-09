@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import PageTitle from '../Components/PageTitle';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
@@ -11,6 +12,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
+import axios from 'axios';
 
 function Copyright(props) {
   return (
@@ -35,6 +37,24 @@ const defaultTheme = createTheme({
 
 const Login = () => {
 
+  const [form, setForm] = useState({ user_id: "", user_password: "" });
+  const [message, setMessage] = useState(''); //DB 응답 결과
+
+  const loginUrl = 'http://192.168.70.165:5022/login';
+
+  const infoSending = async () => {
+    try {
+      const response = await axios.post(loginUrl, { form });
+      const responseData = response.data;
+      console.log('응답 데이터:', responseData); // 확인을 위해 콘솔에 출력
+      setMessage(responseData.message);
+    } catch (error) {
+      console.error('통신 실패:', error);
+    }
+  };
+
+
+
 
   return (
     <>
@@ -57,10 +77,12 @@ const Login = () => {
               required
               fullWidth
               id="user_id"
+              value={form.user_id}
               label="아이디"
               name="id"
               autoComplete="email"
               autoFocus
+              onChange={(e)=> {setForm({...form, user_id : e.target.value})}}
             />
             <TextField
               color = "success"
@@ -71,7 +93,9 @@ const Login = () => {
               label="비밀번호"
               type="password"
               id="password"
+              value={form.user_password}
               autoComplete="current-password"
+              onChange={(e)=> {setForm({...form, user_password : e.target.value})}}
             />
             <FormControlLabel
               control={
@@ -103,6 +127,7 @@ const Login = () => {
                 marginTop : '40px',
                 width: "180px"
               }}
+              onClick={infoSending}
             >
               로그인
             </Button>

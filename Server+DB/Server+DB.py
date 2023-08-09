@@ -36,32 +36,221 @@ def serve_image(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 
-@app.route('/add', methods=['POST'])
+# ==================== 로그인 ==================== #
+@app.route('/login', methods=['POST'])
 @as_json
-def add():
-    sido = request.args.get('sido', 'Unknown')
-    sigungu = request.args.get('sigungu', 'Unknown')
-    print('받은데이터', sido, sigungu)
+def login():
+    print('# ==================== 로그인 ==================== #')
+    data2 = request.json
+    data = data2.get('form', {})
+    user_id = data.get('user_id', 'Unknown')
+    user_password = data.get('user_password', 'Unknown')
+    print('받은데이터:', data)
 
     conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
     curs = conn.cursor()
 
-    # 3. SQL 전송
-    # farm_num	use_id	farm_type	farm_title	farm_sector	sidos	sigungus	farm_address	lental_area	price	lantitude	longitude	lental_type	app_startDate	app_endDate	lental_startDate	lental_endDate	description
- 
-    # CREATE SEQUENCE farm_seq
-    # START WITH 1
-    # INCREMENT BY 1
-    # NOCACHE;
-    
-    #  INSERT INTO farm (farm_num, column1, column2) 
-    # VALUES (farm_seq.NEXTVAL, '값', '값1');
+    sql = f"select user_id, user_type from member where user_id = '{user_id}' and user_password = '{user_password}'"
+    curs.execute(sql)
+    res = curs.fetchall()
+    print('sql응답', res)
 
-    sql = "insert into farm values ('farm_num', '40', '010-5678-1234')"
+    resList = []
+
+    if not res:
+        result = False
+    else:
+        for a in res:
+            resList.append({"user_id":a[0], "user_type":a[1]})
+        result = resList
+
+    curs.close()
+    conn.close()
+    print('응답메시지: ', result)
+
+    return result
+
+
+# ==================== 회원가입 아이디 중복 체크 ==================== #
+@app.route('/id_check', methods=['POST'])
+@as_json
+def id_check():
+    print('# ==================== 회원가입 아이디 중복 체크 ==================== #')
+    data = request.json
+    user_id = data.get('user_id', 'Unknown')
+    print('받은데이터:', data)
+
+    conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
+    curs = conn.cursor()
+
+    sql = f"select * from member where user_id = '{user_id}'"
+
+    curs.execute(sql)
+    res = curs.fetchall()
+    print('sql응답', res)
+
+    if not res:
+        result = False
+    else:
+        result = True
+
+    curs.close()
+    conn.close()
+    print('응답메시지: ', result)
+
+    return result
+
+
+# ==================== 회원가입 닉네임 중복 체크 ==================== #
+@app.route('/nick_check', methods=['POST'])
+@as_json
+def nick_check():
+    print('# ==================== 회원가입 닉네임 중복 체크 ==================== #')
+    data = request.json
+    user_nick = data.get('user_nick', 'Unknown')
+    print('받은데이터:', data)
+
+    conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
+    curs = conn.cursor()
+
+    sql = f"select * from member where user_nick = '{user_nick}'"
+
+    curs.execute(sql)
+    res = curs.fetchall()
+    print('sql응답', res)
+
+    if not res:
+        result = False
+    else:
+        result = True
+
+    curs.close()
+    conn.close()
+    print('응답메시지: ', result)
+
+    return result
+
+
+# ==================== 회원가입 이메일 중복 체크 ==================== #
+@app.route('/email_check', methods=['POST'])
+@as_json
+def email_check():
+    print('# ==================== 회원가입 이메일 중복 체크 ==================== #')
+    data = request.json
+    user_email = data.get('user_email', 'Unknown')
+    print('받은데이터:', data)
+
+    conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
+    curs = conn.cursor()
+
+    sql = f"select * from member where user_email = '{user_email}'"
+
+    curs.execute(sql)
+    res = curs.fetchall()
+    print('sql응답', res)
+
+    if not res:
+        result = False
+    else:
+        result = True
+
+    curs.close()
+    conn.close()
+    print('응답메시지: ', result)
+
+
+    return result
+
+
+
+# ==================== 회원 가입 데이터 넣기 ==================== #
+@app.route('/add_id', methods=['POST'])
+def add_id():
+    print('# ==================== 회원 가입 데이터 넣기 ==================== #')
+    data = request.json
+    user_data = data.get('form', {})
+    user_id = user_data.get('user_id', 'Unknown')
+    user_password = user_data.get('user_password', 'Unknown')
+    user_name = user_data.get('user_name', 'Unknown')
+    user_nick = user_data.get('user_nick', 'Unknown')
+    user_email = user_data.get('user_email', 'Unknown')
+    user_phone = user_data.get('user_phone', 'Unknown')
+    user_address = user_data.get('user_address', 'Unknown')
+
+    print('받은데이터:', user_data)
+
+    conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
+    curs = conn.cursor()
+
+    sql = (
+            f"INSERT INTO member (user_id, user_password, user_name, user_nick, user_email, user_phone, user_address, user_type)"
+            f"VALUES ('{user_id}', '{user_password}', '{user_name}', '{user_nick}', '{user_email}', '{user_phone}', '{user_address}', 0)"
+        )
+    curs.execute(sql)
+
+    print('sql문', sql)
     conn.commit()
 
     curs.close()
     conn.close()
+
+    response = 'success'
+    print(response)
+    return response
+
+    
+
+
+# ==================== 텃밭 추가 ==================== #
+@app.route('/add_farm', methods=['POST'])
+def add_farm():
+    print('# ==================== 텃밭 추가 ==================== #')
+
+    UPLOAD_FOLDER = './farm_img'
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+    def save_image(file, farm_num):
+        filename = f"{farm_num}_{file.filename}"
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(filepath)
+        return filename
+    
+    user_id = request.form.get('user_id')
+    content_title = request.form.get('content_title')
+    contents = request.form.get('contents')
+    image = request.files['content_img']
+
+    if image:
+        conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
+        curs = conn.cursor()
+
+        sql = (
+            f"INSERT INTO farm (farm_num, user_id, farm_type, contents, farm_title, farm_sector, farm_address, lental_area) "
+            f"VALUES (farm_seq.NEXTVAL, '{content_title}', '{user_id}', '{contents}', NULL, '{write_time}')"
+        )
+        curs.execute(sql)
+        conn.commit()
+
+        curs.execute("SELECT content_seq.currval FROM DUAL")
+        content_num = curs.fetchone()[0]
+
+        saved_filename = save_image(image, content_num)
+
+        update_sql = (
+            f"UPDATE content SET content_img = '{saved_filename}' WHERE content_num = {content_num}"
+        )
+        curs.execute(update_sql)
+        print(update_sql)
+        conn.commit()
+
+        curs.close()
+        conn.close()
+
+        response = {'message': 'Content added successfully'}
+        return jsonify(response), 200
+    else:
+        response = {'error': 'Image not found'}
+        return jsonify(response), 400
 
 
 # ==================== 텃밭구하기 ==================== #
@@ -176,7 +365,7 @@ def content():
     print('# ==================== 자랑하기 게시판 ==================== #')
     conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
     curs = conn.cursor()
-    sql = "select * from content"
+    sql = "SELECT * FROM content ORDER BY content_num DESC"
     curs.execute(sql)
     res = curs.fetchall()
     print('sql응답 :', res)

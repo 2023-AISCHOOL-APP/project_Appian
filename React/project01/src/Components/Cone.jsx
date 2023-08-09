@@ -63,7 +63,9 @@ const Cone = ({data}) => {
     setIsWriting(false);
   };
 
+
   console.log('sdkfs;',data)
+
 
 //  useEffect(() => {
 //   // Flask 서버의 주소

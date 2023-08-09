@@ -85,7 +85,7 @@ const GetAddress = () => {
         ))}
 
       </select>
-      {console.log('보낼값:',data)}
+      {console.log( '확인 :',data[0])}
       <MapArea list={data}/>
       <Card list={data} />
     </div>

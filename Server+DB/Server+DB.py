@@ -2,6 +2,8 @@ import cx_Oracle
 import os
 from datetime import datetime
 from flask import Flask, render_template, request, Response, jsonify
+from flask import Flask, send_from_directory
+
 import json
 from functools import wraps
 from flask_cors import CORS
@@ -22,6 +24,16 @@ def as_json(f):
         res = json.dumps(res, ensure_ascii=False).encode('utf8')
         return Response(res, content_type='application/json; charset=utf-8')
     return decorated_function
+
+
+# 이미지 파일이 저장된 디렉토리의 경로 설정
+UPLOAD_FOLDER = './content_img'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# 이미지 파일 제공을 위한 라우트 설정
+@app.route('/content_img/<filename>')
+def serve_image(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 
 @app.route('/add', methods=['POST'])

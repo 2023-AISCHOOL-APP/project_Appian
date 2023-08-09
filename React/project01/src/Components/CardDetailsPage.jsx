@@ -26,7 +26,7 @@ const CardDetailsPage = ({ cards }) => {
     <div>
 
 
-      <h2>xcvxv{newContent[0].content_title}</h2>
+      <h2>{newContent[0].content_title}</h2>
       <p>{newContent[0].contents}</p>
       <img src={`http://192.168.70.165:5022/content_img/${newContent[0].content_img}`} alt={newContent[0].content_title} />
        

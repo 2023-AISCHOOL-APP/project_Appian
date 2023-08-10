@@ -38,10 +38,14 @@ const CardDetailsPage = ({ cards }) => {
 
 
   return (
+
+ <div className='card-details'>
+                  <span className='conetitle'>텃밭 자랑하기</span>
+    
+    <img src='/img/titlebg2.png' className='c1titlebg'/>
+      
     <div className='card-details-container'>
-      <div className='card-details'>
-
-
+     
         <h2 className='card-details-title'>{newContent[0].content_title}</h2>
         <p className='card-details-content'>{newContent[0].contents}</p>
         <img className='card-details-image' src={`http://192.168.70.237:5022/content_img/${newContent[0].content_img}`} alt={newContent[0].content_title} />
@@ -50,22 +54,30 @@ const CardDetailsPage = ({ cards }) => {
           <button className='card-details-button-delete'>삭제</button>
           <button className='card-details-button-list' onClick={handleGoBackToList}>목록</button>
         </div> 
-      </div>
-      <textarea
-        placeholder='댓글을 작성하세요'
-        value={newComment}
-        onChange={(e) => setNewComment(e.target.value)}
-      />
-      <button onClick={handleAddComment}>댓글작성하기</button>
-      <div className='comment-list'>
-        <h3>댓글 목록</h3>
-        <ul>
-          {comments.map((comment, index) => (
-            <li key={index}>{comment}  닉네임 : userid</li>
-            
-          ))}
-        </ul>
-      </div>
+        <hr className='commenthr'/>
+            <textarea
+            className='carddetailarea'
+              placeholder='댓글을 작성하세요'
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+            />
+           
+            <button onClick={handleAddComment} className='commentname'>댓글작성</button>
+            <div className='comment-list'>
+              <h3 className='commentlist'>댓글 목록</h3>
+              <ul>
+                {comments.map((comment, index) => (
+                  <li key={index} >
+                    <p className='comment'> {comment} </p>
+                  
+                    <span  className='commentnickname'>닉네임</span>
+                    </li>
+                  
+                ))}
+              </ul>
+
+            </div>
+            </div>
     </div>
   );
 };

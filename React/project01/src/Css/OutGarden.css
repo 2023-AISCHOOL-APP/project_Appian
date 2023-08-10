@@ -113,6 +113,39 @@
   
 }
 
+.form4_1 label{
+  font-family: 'SUIT-SemiBold';
+  font-size: 20px;
+  position: relative;
+  top: 35px;
+  left: 100px;
+  
+}
+
+#out_areanum{
+  position: relative;
+  top: 25px;
+  left: 240px;
+  border: 2px solid lightgray;
+  width: 300px;
+ padding: 10px;
+ border-radius: 10px;
+}
+.form4 {
+  position: relative;
+  top: 8px;
+}
+.form4_1 {
+  position: relative;
+  top: 30px;
+}
+
+.form5,.form6 ,.form7, .form8,
+.form9 , .form10{
+  position: relative;
+  top: 30px;
+}
+
 #out_area{
   position: relative;
   top: 25px;
@@ -321,7 +354,7 @@
   position: relative;
   top: 120px;
   margin: 10px;
-  left: 80px;
+  left: 230px;
 }
 
 .submit-btn:hover, .preview-btn:hover {

@@ -11,6 +11,7 @@ function OutGarden() {
   const [gardenImages, setGardenImages] = useState([]);
   const [address, setAddress] = useState('');
   const [area, setArea] = useState('');
+  const [areanum, setAreaNum] = useState('');
   const [type, setType] = useState('');
   const [farmtype, setFarmType] = useState('');
   const [price, setPrice] = useState('');
@@ -35,6 +36,10 @@ function OutGarden() {
   const handleAreaChange = (e) => {
     setArea(e.target.value);
   };
+  const handleAreaNumChange = (e) => {
+    setAreaNum(e.target.value);
+  };
+
 
   const handleTypeChange = (e) => {
     setType(e.target.value);
@@ -67,6 +72,7 @@ function OutGarden() {
       gardenImages,
       address,
       area,
+      areanum,
       type,
       farmtype,
       price,
@@ -154,6 +160,17 @@ function OutGarden() {
                         placeholder='면적을 입력해주세요'
                         id="out_area"
                         value={area}
+                        onChange={handleAreaChange}
+                        required
+                      />
+                    </div>
+                    <div className="form4_1">
+                      <label htmlFor="area_num">개수:</label>
+                      <input
+                        type="text"
+                        placeholder='분양할 텃밭의 개수를 입력하세요.'
+                        id="out_areanum"
+                        value={areanum}
                         onChange={handleAreaChange}
                         required
                       />
@@ -261,9 +278,7 @@ function OutGarden() {
                     <button type="submit" className="submit-btn">
                       등록하기
                     </button>
-                    <button type="button" className="preview-btn">
-                      미리보기
-                    </button>
+                   
                   </form>
                 </div>
               )}

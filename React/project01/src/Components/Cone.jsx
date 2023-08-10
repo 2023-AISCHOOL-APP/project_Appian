@@ -49,24 +49,26 @@ const WritingPage = ({ onAddCard, onCancel }) => {
 
   return (
     <div className='writing-page'>
-      <h1 style={{textAlign:'center'}}>글 작성</h1>
+      <h1  className='writing_title'>♬ 내 텃밭 자랑하기</h1>
       <input
+        className='writetitle'
         type="text"
-        placeholder="제목"
+        placeholder="제목을 작성해주세요."
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
       <textarea
+       className='write_textarea'
         rows="5"
-        placeholder="내용"
+        placeholder="내용을 작성해주세요."
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
       
-      <input type="file" onChange={handleImageChange} />
+      <input type="file" onChange={handleImageChange} className='photo'/>
 
-      <button onClick={handleSubmit}>작성하기</button>
-      <button onClick={onCancel}>취소</button>
+      <button onClick={handleSubmit} className='writego'>작성하기</button>
+      <button onClick={onCancel} className='writedel'>취소</button>
     </div>
   );
 };

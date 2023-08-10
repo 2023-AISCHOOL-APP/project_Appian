@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-
 const Notice = () => {
   const [notices, setNotices] = useState([
     // 공지사항 데이터
@@ -33,6 +32,12 @@ const Notice = () => {
     }
   };
 
+  const handleDeleteNotice = (noticeId) => {
+    const updatedNotices = notices.filter((notice) => notice.id !== noticeId);
+    setNotices(updatedNotices);
+    setSelectedNotice(null);
+  };
+
   return (
     <div className="notice-container">
       <h1 className="notice-title">공지사항</h1>
@@ -40,7 +45,7 @@ const Notice = () => {
         <ul>
           {notices.map((notice) => (
             <li key={notice.id} onClick={() => handleNoticeClick(notice)}>
-              {notice.title}
+              💨 {notice.title}
             </li>
           ))}
         </ul>
@@ -57,6 +62,7 @@ const Notice = () => {
                 </React.Fragment>
               ))}
             </p>
+            <button onClick={() => handleDeleteNotice(selectedNotice.id)}>삭제</button>
           </div>
         )}
       </div>

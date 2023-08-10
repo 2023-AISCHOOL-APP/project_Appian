@@ -40,14 +40,14 @@ const Login = () => {
   const [form, setForm] = useState({ user_id: "", user_password: "" });
   const [message, setMessage] = useState(''); //DB 응답 결과
 
-  const loginUrl = 'http://192.168.70.165:5022/login';
+  const loginUrl = 'http://192.168.70.237:5022/login';
 
   const infoSending = async () => {
     try {
       const response = await axios.post(loginUrl, { form });
       const responseData = response.data;
       console.log('응답 데이터:', responseData); // 확인을 위해 콘솔에 출력
-      setMessage(responseData.message);
+      setMessage(responseData);
     } catch (error) {
       console.error('통신 실패:', error);
     }

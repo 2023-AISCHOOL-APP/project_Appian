@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import '../Css/OutGarden.css'
 import Calendar from '../Components/CalendarDatePick'
-import { CalendarContainer } from 'react-datepicker';
 import PageTitle from '../Components/PageTitle';
 
 function OutGarden() {

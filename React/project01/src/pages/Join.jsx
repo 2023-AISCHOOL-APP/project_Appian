@@ -52,9 +52,9 @@ export default function SignUp() {
 
   const [message, setMessage] = useState(''); //DB 응답 결과
 
-  const idCheckUrl = 'http://192.168.70.165:5022/id_check';
-  const nickCheckUrl = 'http://192.168.70.165:5022/nick_check';
-  const emailCheckUrl = 'http://192.168.70.165:5022/email_check';
+  const idCheckUrl = 'http://192.168.70.237:5022/id_check';
+  const nickCheckUrl = 'http://192.168.70.237:5022/nick_check';
+  const emailCheckUrl = 'http://192.168.70.237:5022/email_check';
 
 
   const idCheck = async () => {
@@ -62,8 +62,11 @@ export default function SignUp() {
     .then((Response)=>{
       console.log('DB에 있는 데이터인가?:(T/F)',Response.data)
       setMessage(Response.data.message);
-      alert('사용할 수 있는 아이디입니다');
-
+      if (message === false){
+        alert('사용할 수 있는 아이디입니다');
+      }else {
+        alert('사용할 수 없는 아이디입니다');
+      }    
     })
     .catch((Error)=>{
       console.log("통신 실패 + \n" + Error)
@@ -74,8 +77,12 @@ export default function SignUp() {
     await axios.post(nickCheckUrl, {user_id : form.user_nick})
     .then((Response)=>{
       console.log('DB에 있는 데이터인가?:(T/F)',Response.data)
-      setMessage(Response.data.message);
-
+      setMessage(Response.data);
+      if (message === false){
+        alert('사용할 수 있는 닉네임입니다');
+      }else {
+        alert('사용할 수 없는 닉네임입니다');
+      }
     })
     .catch((Error)=>{
       console.log("통신 실패 + \n" + Error)
@@ -87,8 +94,12 @@ export default function SignUp() {
     await axios.post(emailCheckUrl, {user_id : form.user_email})
     .then((Response)=>{
       console.log('DB에 있는 데이터인가?:(T/F)',Response.data)
-      setMessage(Response.data.message);
-
+      setMessage(Response.data);
+      if (message === false && message !== ' '){
+        alert('사용할 수 있는 이메일입니다');
+      }else {
+        alert('사용할 수 없는 이메일입니다');
+      }
     })
     .catch((Error)=>{
       console.log("통신 실패 + \n" + Error)
@@ -96,7 +107,7 @@ export default function SignUp() {
   };
 
 
-  const sendUrl = 'http://192.168.70.165:5022/add_id';
+  const sendUrl = 'http://192.168.70.237:5022/add_id';
   const infoSending = async () => {
     await axios.post(sendUrl, {form})
     .then((Response)=>{
@@ -210,7 +221,6 @@ const onChangeUserId = (e) => {
                   id="password"
                   value={form.user_password}
                   autoComplete="new-password"
-                  helperText="PW : 8~20자 (영문 대소문자, 특수문자, 숫자)"
                   onChange={(e)=> {setForm({...form, user_password : e.target.value})}}
                 />
               </Grid>
@@ -240,7 +250,7 @@ const onChangeUserId = (e) => {
                     fontFamily:'SUIT-regular',
        
                   }}
-                  onClick={emailCheck}
+                  onClick={()=>form.user_email.length > 0 ? emailCheck() : alert('이메일 주소를 입력해주세요.')}
                    >중복확인</Button>
               </Grid>
               <Grid item xs={12} >
@@ -284,7 +294,7 @@ const onChangeUserId = (e) => {
                     fontFamily:'SUIT-regular',
        
                   }}
-                  onClick={nickCheck}
+                  onClick={()=>form.user_nick.length > 0 ? nickCheck() : alert('닉네임을 입력해주세요.')}
                    >중복확인</Button>
 
               </Grid>    

@@ -24,18 +24,19 @@ const Notice = () => {
     if (selectedNotice && selectedNotice.id === notice.id) {
       setSelectedNotice(null);
     } else {
-      axios.get(`http://192.168.70.237:5022/notice`)
-      .then(response => {
-        setSelectedNotice({
-          ...notice,
-          content: response.data.notice_contents
+      const apiUrl = `http://192.168.70.237:5022/notice/${notice.id}`;
+      axios.get(apiUrl)
+        .then(response => {
+          setSelectedNotice({
+            ...notice,
+            content: response.data.notice_contents
+          });
+        })
+        .catch(error => {
+          console.error('공지사항 내용 불러오기 에러:', error);
         });
-      })
-      .catch(error => {
-        console.error('공지사항 내용 불러오기 에러:', error);
-      });
-  }
-};
+    }
+  };
 
   // const handleNewNotice = () => {
   //   if (newNoticeTitle && newNoticeContent) {

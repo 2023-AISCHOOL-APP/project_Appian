@@ -8,15 +8,19 @@ const Notice = () => {
     { id: 3, title: '텃밭에서 황금호박을 찾아라 이벤트 당첨자 입니다', date: '2023-08-10', content: '이벤트 당첨자는...' },
   ];
 
-  const [selectedNotice, setSelectedNotice] = useState(null);
+  const [selectedNoticeId, setSelectedNoticeId] = useState(null);
 
-  const handleNoticeClick = (notice) => {
-    setSelectedNotice(notice);
+  const handleNoticeClick = (id) => {
+    if (selectedNoticeId === id) {
+      setSelectedNoticeId(null); // 이미 선택된 게시물을 다시 클릭하면 내용 숨김
+    } else {
+      setSelectedNoticeId(id);
+    }
   };
 
   return (
     <>
-      <PageTitle name={'공지사항'} num={1}/>
+      <PageTitle name={'공지사항'} num={1} />
       <div className="notice-container">
         <h2>공지사항</h2>
         <table className="notice-table">
@@ -29,25 +33,22 @@ const Notice = () => {
           </thead>
           <tbody>
             {notices.map((notice) => (
-              <tr key={notice.id}>
-                <td>{notice.id}</td>
-                <td>
-                  <button onClick={() => handleNoticeClick(notice)}>
-                    {notice.title}
-                  </button>
-                </td>
-                <td>{notice.date}</td>
-              </tr>
+              <React.Fragment key={notice.id}>
+                <tr onClick={() => handleNoticeClick(notice.id)}>
+                  <td>{notice.id}</td>
+                  <td>{notice.title}</td>
+                  <td>{notice.date}</td>
+                </tr>
+                {selectedNoticeId === notice.id && (
+                  <tr>
+                    <td colSpan="3"><div className='noticecontent'>빠밤</div>{notice.content}</td>
+                  </tr>
+                )}
+              </React.Fragment>
             ))}
           </tbody>
         </table>
       </div>
-      {selectedNotice && (
-        <div className="selected-notice">
-          <h2>{selectedNotice.title}</h2>
-          <p>{selectedNotice.content}</p>
-        </div>
-      )}
     </>
   );
 };

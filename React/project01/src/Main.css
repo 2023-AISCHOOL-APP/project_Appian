@@ -1605,6 +1605,20 @@ button:hover {
   max-width: 800px;
   margin: 0 auto;
 }
+.commentnick{
+  font-weight: bold;
+  font-size:larger;
+  color: hwb(320 10% 20%);
+}
+.noticecontent{
+  font-size:xx-large
+}
+
+
+
+
+
+
 
 
 

@@ -137,7 +137,7 @@ const indexOfFirstPost = indexOfLastPost - postsPerPage;
   </tr>)}   
   )
  
-
+  
   
 
   const paginationButtons = (

@@ -8,7 +8,7 @@ import json
 from functools import wraps
 from flask_cors import CORS
 
-write_time = datetime.now().strftime('%Y-%m-%d')
+today = datetime.now().strftime('%Y-%m-%d')
 
 cx_Oracle.init_oracle_client('instantclient_11_2')
 
@@ -50,7 +50,7 @@ def login():
     conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
     curs = conn.cursor()
 
-    sql = f"select user_id, user_type from member where user_id = '{user_id}' and user_password = '{user_password}'"
+    sql = f"select user_id, user_nick, user_type from member where user_id = '{user_id}' and user_password = '{user_password}'"
     curs.execute(sql)
     res = curs.fetchall()
     print('sql응답', res)
@@ -61,7 +61,7 @@ def login():
         result = False
     else:
         for a in res:
-            resList.append({"user_id":a[0], "user_type":a[1]})
+            resList.append({"user_id":a[0], "user_nick":a[1], "user_type":a[2]})
         result = resList
 
     curs.close()
@@ -226,7 +226,7 @@ def add_farm():
 
         sql = (
             f"INSERT INTO farm (farm_num, user_id, farm_type, contents, farm_title, farm_sector, farm_address, lental_area) "
-            f"VALUES (farm_seq.NEXTVAL, '{content_title}', '{user_id}', '{contents}', NULL, '{write_time}')"
+            f"VALUES (farm_seq.NEXTVAL, '{content_title}', '{user_id}', '{contents}', NULL, '{today}')"
         )
         curs.execute(sql)
         conn.commit()
@@ -320,7 +320,7 @@ def add_content():
         file.save(filepath)
         return filename
     
-    user_id = request.form.get('user_id')
+    user_nick = request.form.get('user_nick')
     content_title = request.form.get('content_title')
     contents = request.form.get('contents')
     image = request.files['content_img']
@@ -330,8 +330,8 @@ def add_content():
         curs = conn.cursor()
 
         sql = (
-            f"INSERT INTO content (content_num, content_title, user_id, contents, content_img, write_time) "
-            f"VALUES (content_seq.NEXTVAL, '{content_title}', '{user_id}', '{contents}', NULL, '{write_time}')"
+            f"INSERT INTO content (content_num, content_title, user_nick, contents, content_img, content_day) "
+            f"VALUES (content_seq.NEXTVAL, '{content_title}', '{user_nick}', '{contents}', NULL, '{today}')"
         )
         curs.execute(sql)
         conn.commit()
@@ -375,13 +375,93 @@ def content():
     for a in res:
         resList.append({"content_num":a[0],
                         "content_title":a[1], 
-                        "user_id":a[2],
+                        "user_nick":a[2],
                         "contents":a[3], 
                         "content_img": a[4], 
-                        "write_time":a[5]
+                        "content_day":a[5]
                         })
     return resList
 
+
+# ==================== 댓글 달기 ==================== #
+@app.route('/content_comment', methods=['GET'])
+def content_comment():
+    print('# ==================== 댓글 달기 ==================== #')
+    user_nick = request.args.get('user_nick', 'Unknown')
+    content_num = request.args.get('content_num', 'Unknown')
+    content_comment = request.args.get('content_comment', 'Unknown')
+    print('받은데이터', user_nick, content_num, content_comment)
+
+    conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
+    curs = conn.cursor()
+    
+    if content_comment == "":
+        sql2 = f"select * from content_comment where content_num = '{content_num}' ORDER BY content_num DESC"
+        curs.execute(sql2)
+        res = curs.fetchall()
+        curs.close()
+        conn.close()
+        resList = []
+        for a in res:
+            resList.append({"content_comment_num":a[0],
+                            "user_nick":a[1], 
+                            "content_num":a[2],
+                            "content_comment":a[3], 
+                            "content_comment_day": a[4]
+                            })
+        print('보낸데이터', resList)
+        return resList
+    else:
+        sql = (
+            f"INSERT INTO content_comment (content_comment_num, user_nick, content_num, content_comment, content_comment_day)"
+            f"VALUES (content_comment_seq.NEXTVAL, '{user_nick}', '{content_num}', '{content_comment}', '{today}')"
+        )
+
+        curs.execute(sql)
+        sql2 = f"select * from content_comment where content_num = '{content_num}' ORDER BY content_num DESC"
+        curs.execute(sql2)
+        res = curs.fetchall()
+        curs.close()
+        conn.commit()
+        conn.close()
+        resList = []
+        for a in res:
+            resList.append({"content_comment_num":a[0],
+                            "user_nick":a[1], 
+                            "content_num":a[2],
+                            "content_comment":a[3], 
+                            "content_comment_day": a[4]
+                            })
+        print('보낸데이터', resList)
+        return resList
+    
+
+# ==================== 농장 상세페이지 ==================== #
+@app.route('/detail', methods=['GET'])
+@as_json
+def detail():
+    print('# ==================== 농장 상세페이지 ==================== #')
+    # 클라이언트로부터 전송된 GET 파라미터 받기
+ 
+    conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
+
+    curs = conn.cursor()
+
+    sql = "select * from farm"
+  
+    curs.execute(sql)
+    res = curs.fetchall()
+    print('sql응답', res)
+
+    curs.close()
+    conn.close()
+
+    resList = []
+
+    for a in res:
+        resList.append({"farm_num":a[0], "use_id":a[1], "farm_type":a[2], "farm_title": a[3], "farm_sector":a[4], "sidos":a[5], "sigungus":a[6], "farm_address":a[7], "lental_area":a[8], "price":a[9], "lantitude":a[10], "longitude":a[11], "lental_type":a[12], "app_startDate":a[13], "app_endDate":a[14], "lental_startDate":a[15], "lental_endDate":a[16], "description":a[17]})
+
+    return resList
 
 if __name__ == '__main__':
     # app.run(debug=True)

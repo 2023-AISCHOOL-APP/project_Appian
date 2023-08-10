@@ -78,7 +78,7 @@ const Ctwo = () => {
               </div>
               <div className='card-actions'>
                 <a href={tip.videoUrl} target='_blank' rel='noopener noreferrer'>
-                  >>동영상 보기
+                  동영상 보기
                 </a>
               </div>
             </div>

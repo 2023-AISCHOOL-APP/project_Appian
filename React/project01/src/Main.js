@@ -56,8 +56,10 @@ function Main() {
 
   useEffect(() => {
    // Flask 서버의 주소
-   const apiUrl = 'http://192.168.70.165:5022/content';
+
+   const apiUrl = 'http://192.168.70.237:5022/content';
    console.log("test")
+
    // Axios를 사용하여 GET 요청 보내기
    axios.get(apiUrl, { responseType: 'json'})
      .then(response => {

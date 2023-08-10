@@ -135,7 +135,7 @@ const indexOfFirstPost = indexOfLastPost - postsPerPage;
     <td className='writetd' style={{ textAlign: 'left', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
     <Link  to={`/cardpage/${d.content_num}`}>{d.content_title}</Link></td>
     <td>{d.user_id}</td>
-    <td>{d.write_time}</td>
+    <td>{d.content_day}</td>
   </tr>)}   
   )
   

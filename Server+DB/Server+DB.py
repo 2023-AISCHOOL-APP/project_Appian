@@ -8,7 +8,7 @@ import json
 from functools import wraps
 from flask_cors import CORS
 
-write_time = datetime.now().strftime('%Y-%m-%d')
+today = datetime.now().strftime('%Y-%m-%d')
 
 cx_Oracle.init_oracle_client('instantclient_11_2')
 
@@ -226,7 +226,7 @@ def add_farm():
 
         sql = (
             f"INSERT INTO farm (farm_num, user_id, farm_type, contents, farm_title, farm_sector, farm_address, lental_area) "
-            f"VALUES (farm_seq.NEXTVAL, '{content_title}', '{user_id}', '{contents}', NULL, '{write_time}')"
+            f"VALUES (farm_seq.NEXTVAL, '{content_title}', '{user_id}', '{contents}', NULL, '{today}')"
         )
         curs.execute(sql)
         conn.commit()
@@ -330,8 +330,8 @@ def add_content():
         curs = conn.cursor()
 
         sql = (
-            f"INSERT INTO content (content_num, content_title, user_id, contents, content_img, write_time) "
-            f"VALUES (content_seq.NEXTVAL, '{content_title}', '{user_id}', '{contents}', NULL, '{write_time}')"
+            f"INSERT INTO content (content_num, content_title, user_id, contents, content_img, content_day) "
+            f"VALUES (content_seq.NEXTVAL, '{content_title}', '{user_id}', '{contents}', NULL, '{today}')"
         )
         curs.execute(sql)
         conn.commit()
@@ -378,9 +378,40 @@ def content():
                         "user_id":a[2],
                         "contents":a[3], 
                         "content_img": a[4], 
-                        "write_time":a[5]
+                        "content_day":a[5]
                         })
     return resList
+
+
+# ==================== 댓글 달기 ==================== #
+@app.route('/content_comment', methods=['GET','POST'])
+def content_comment():
+    print('# ==================== 댓글 달기 ==================== #')
+    data = request.json
+    user_id = data.get('user_id', 'Unknown')
+    content_num = data.get('content_num', 'Unknown')
+    content_comment = data.get('content_comment', 'Unknown')
+
+    print('받은데이터:', data)
+
+    conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
+    curs = conn.cursor()
+
+    sql = (
+            f"INSERT INTO member (content_comment_num, user_id, content_num, content_comment, content_comment_day)"
+            f"VALUES (content_seq.NEXTVAL, '{user_id}', '{content_num}', '{content_comment}', '{today}')"
+        )
+    curs.execute(sql)
+
+    print('sql문', sql)
+    conn.commit()
+
+    curs.close()
+    conn.close()
+
+    response = 'success'
+    print(response)
+    return response
 
 
 if __name__ == '__main__':

@@ -61,7 +61,8 @@ const CardDetailsPage = ({ cards }) => {
         <h3>댓글 목록</h3>
         <ul>
           {comments.map((comment, index) => (
-            <li key={index}>{comment}</li>
+            <li key={index}>{comment}  닉네임 : userid</li>
+            
           ))}
         </ul>
       </div>

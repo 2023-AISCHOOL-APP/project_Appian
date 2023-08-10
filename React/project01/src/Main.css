@@ -1689,12 +1689,16 @@ button {
   margin: 0 auto;
 }
 .commentnick{
-  font-weight: bold;
+  font-weight: 900px;
   font-size:larger;
-  color: hwb(320 10% 20%);
+  color: #0056b3;
 }
 
-
+.commentday{
+  font-family:'SUIT-Bold';
+  font-size: x-small;
+  color:#0056b3;
+}
 
 .notice-container {
   max-width: 800px;
@@ -1769,7 +1773,7 @@ button {
 }
 
 .new-notice-button {
-  position: fixed;
+  text-align: center;
   bottom: 20px;
   right: 20px;
 }

@@ -99,7 +99,7 @@ const CardDetailsPage = ({ cards }) => {
           {comments?.map((comment, index) => (
             
             <li key={index}>
-              <div className='commentnick'>{comment.user_nick}</div>{comment.content_comment} 
+              <div className='commentnick'>{comment.user_nick}</div><div>{comment.content_comment}</div><div className='commentday'>{comment.content_comment_day}</div>
               </li>
             
           ))}

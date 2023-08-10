@@ -22,6 +22,7 @@ const CardDetailsPage = ({ cards }) => {
 
   // 사용자 정보 가져오기
   const userNick = sessionStorage.getItem('user_nick')
+  const userId = sessionStorage.getItem('user_id')
 
 
   const newContent = data.filter((c)=>c.content_num === Number(cardId));
@@ -70,7 +71,23 @@ const CardDetailsPage = ({ cards }) => {
 
   },[])
   
+  const del = ()=>{
+    if(sessionStorage.getItem(userId) == newContent[0].user_id){
+      const delUrl = 'http://192.168.70.237:5022/delete';
+      axios.get(delUrl, { responseType: 'json', params: { content_num : newContent[0].content_num } })
+      .then(response => {
+        setComments(response.data);
+        console.log('삭제하고 받은 데이터', response.data);
+
+      })
+      .catch(error => {
+        console.error('보내기 에러');
+      });
   
+    }else{
+      console.log("삭제 아이디가 일치하지 않습니다.")
+    }
+  }
 
   
   return (
@@ -89,7 +106,7 @@ const CardDetailsPage = ({ cards }) => {
         <img className='card-details-image' src={`http://192.168.70.237:5022/content_img/${newContent[0].content_img}`} alt={newContent[0].content_title} />
         
          <div className='card-details-buttons'>
-          <button className='card-details-button-delete'>삭제</button>
+          <button className='card-details-button-delete' onClick={del}>삭제</button>
           <button className='card-details-button-list' onClick={handleGoBackToList}>목록</button>
         </div> 
       </div>

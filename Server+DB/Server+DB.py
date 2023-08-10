@@ -390,7 +390,7 @@ def content_comment():
     user_nick = request.args.get('user_nick', 'Unknown')
     content_num = request.args.get('content_num', 'Unknown')
     content_comment = request.args.get('content_comment', 'Unknown')
-    print('가공데이터', user_nick, content_num, content_comment)
+    print('받은데이터', user_nick, content_num, content_comment)
 
     conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
     curs = conn.cursor()
@@ -407,7 +407,7 @@ def content_comment():
                             "user_nick":a[1], 
                             "content_num":a[2],
                             "content_comment":a[3], 
-                            "content__comment_day": a[4]
+                            "content_comment_day": a[4]
                             })
         print('보낸데이터', resList)
         return resList
@@ -416,12 +416,24 @@ def content_comment():
             f"INSERT INTO content_comment (content_comment_num, user_nick, content_num, content_comment, content_comment_day)"
             f"VALUES (content_comment_seq.NEXTVAL, '{user_nick}', '{content_num}', '{content_comment}', '{today}')"
         )
+
         curs.execute(sql)
+        sql2 = f"select * from content_comment where content_num = '{content_num}'"
+        curs.execute(sql2)
+        res = curs.fetchall()
         curs.close()
         conn.commit()
         conn.close()
-        print('sql문', sql)
-        return '댓글이 추가 되었습니다.'
+        resList = []
+        for a in res:
+            resList.append({"content_comment_num":a[0],
+                            "user_nick":a[1], 
+                            "content_num":a[2],
+                            "content_comment":a[3], 
+                            "content_comment_day": a[4]
+                            })
+        print('보낸데이터', resList)
+        return resList
     
 
 # ==================== 농장 상세페이지 ==================== #

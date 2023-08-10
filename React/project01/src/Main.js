@@ -14,14 +14,15 @@ import Ctwo from './Components/Ctwo';
 import Cthree from './Components/Cthree';
 import CardDetailsPage from './Components/CardDetailsPage';
 import Notice from './pages/Notice';
-
 import axios from 'axios';
 
 import './Header.css'
 import FarmDetail from './pages/FarmDetail';
 
 
+
 function Main() {
+
 
   const dropDownRef = useRef(null);
   const [activeMenu, setActiveMenu] = useState(null);
@@ -45,9 +46,26 @@ function Main() {
 
   
   // 로그인 상태에 따라 접근 권한 다르게 하기 
-  const [logState, setLogState] = useState('');
+  const [user, setUser] = useState('');
+  const authenticated = user != null;
+  
+  useEffect (()=>{
+    setUser(sessionStorage.getItem('user_id'))
+    console.log('로그인확인:',user)
+  },[])
 
-  console.log('sslog',sessionStorage.getItem('user_id'))
+  
+
+
+  
+  //로그아웃 하기
+  const Logout = (e)=>{
+    sessionStorage.removeItem('user_id')
+    sessionStorage.removeItem('user_nick')
+    sessionStorage.removeItem('user_type')
+    setUser(null)
+    alert('로그아웃 되었습니다.')
+  }
 
 
 
@@ -92,7 +110,9 @@ function Main() {
       </NavLink>
 
       <div className='navbar1'>
-        <NavLink to={'/login'} id='navbarlogin'>로그인</NavLink>
+        {authenticated ? 
+        <NavLink to={'/'} id='navbarlogin' onClick={Logout}>로그아웃</NavLink>:
+        <NavLink to={'/login'} id='navbarlogin'>로그인</NavLink>}
         <NavLink to={'/join'} id='navbarlogin'>회원가입</NavLink>
       </div>
 
@@ -182,10 +202,11 @@ function Main() {
         
         <Route path='/' element={<Mainpage />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/logout' element={<Logout />} />
         <Route path='/join' element={<Join />} />
         <Route path='/card' element={<Card />} />
         <Route path='/find' element={<FindGarden />} />
-        <Route path='/find/1' element={<FarmDetail/>} />
+        <Route path='/find/:farmId' element={<FarmDetail/>} />
         <Route path='/out' element={<OutGarden />} />
         <Route path='/community' element={<Community />} />
         <Route path='/mypage' element={<Mypage />} />

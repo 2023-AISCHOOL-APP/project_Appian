@@ -9,7 +9,7 @@ const CardItem = ({name, addr, num}) => {
   const imgUrl = "../img/farmImg/"+num+".png"
   return (
     <div className='searchcard'>
-      <a href={`http://locallhost:3000/find/${num}`} target="_blank" className='link'> 
+      <a href={`/find/${num}`} target="_blank" className='link'> 
       <div className='imageArea'>
         <img src={imgUrl} alt={name}></img>
       </div>

@@ -113,7 +113,7 @@ export default function SignUp() {
     await axios.post(sendUrl, {form})
     .then((Response)=>{
       alert('🧑‍🌾팜팜의 회원이 되신걸 축하드립니다! ')      
-      navigate('/main')
+      navigate('/')
     })
     .catch((Error)=>{
       console.log("통신 실패 + \n" + Error)

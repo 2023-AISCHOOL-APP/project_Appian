@@ -15,11 +15,11 @@ const WritingPage = ({ onAddCard, onCancel }) => {
   const handleImageChange = (event) => {
     setImageFile(event.target.files[0]);
   };
-
+  const user_nick = sessionStorage.getItem('user_nick')
   const handleSubmit = () => {
     console.log('보내기클릭');
     const formData = new FormData();
-    // formData.append('user_id', user_id);
+    formData.append('user_nick', user_nick);
     formData.append('content_title', title);
     formData.append('contents', content);
     formData.append('content_img', imageFile);
@@ -132,7 +132,7 @@ const indexOfFirstPost = indexOfLastPost - postsPerPage;
     <td className='content_num' style={{textAlign:'center'}}>{d.content_num}</td>
     <td style={{ textAlign: 'left', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',color:'pink' }}>
     <Link  to={`/cardpage/${d.content_num}`}>{d.content_title}</Link></td>
-    <td>{d.user_id}</td>
+    <td>{d.user_nick}</td>
     <td>{d.content_day}</td>
   </tr>)}   
   )

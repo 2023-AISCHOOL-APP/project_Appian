@@ -982,13 +982,107 @@ top: -710px;
   
 }
 
-
+/* 텃밭 자랑하기 */
 
 .conetitle{
+  font-family: 'SUIT-ExtraBold';
+  font-size: 45px;
+  
+    position: relative;
+    left: 850px;
+    top: 100px;
+    color: #575757;
+    bottom: 50px;
+    z-index: 99;
   text-align: center;
-  background-color: pink
   
 }
+
+.c1titlebg{
+  width: 1920px;
+  height: auto;
+  position: relative;
+  top: -100px;
+z-index: 1;
+}
+
+
+.ctexttitle {
+ 
+ position: relative;
+ font-family: 'SUIT-Bold';
+ left: 320px;
+top: -70px;
+
+  color: black; /* 글자 색상 */
+  font-size: 27px; /* 글자 크기 */
+  padding: 10px 0; /* 위 아래로 내부 여백 추가 */
+  border-bottom: 5px solid hsl(24, 90%, 61%); /* 밑줄 스타일 */
+ 
+}
+.c1_column{
+  font-family: 'SUIT-Bold';
+}
+
+.card-container {
+  /* margin-left : 320px;
+  max-width: 1800px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  background-color: seashell; */
+position: relative;
+max-width: 1260px;
+left: 0px;
+z-index: 99;
+border-radius: 15px;
+padding-top: 20px;
+
+}
+.card-container th:nth-child(1),
+.card-container td:nth-child(1) {
+  border-radius: 10px;
+  width : 12%
+}
+.card-container th:nth-child(4),
+.card-container td:nth-child(4) {
+  width : 15%
+}
+.card-container th:nth-child(3),
+.card-container td:nth-child(3) {
+  width : 35%
+}
+
+
+.write-button {
+  background-color: white; /* 주황색 배경 */
+  color: #FF9F56; /* 흰색 글자 */
+  font-size: 18px; /* 글자 크기 */
+  font-family: 'SUIT-SemiBold';
+  border: 2px solid #FF9F56;
+  padding: 10px 20px; /* 내부 여백 */
+  border-radius: 15px;
+ position: relative;
+ left: 1460px;
+ top: 600px;
+ z-index: 999;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.5s; /* 애니메이션 효과 */
+
+
+  /* 호버 효과 */
+  &:hover {
+    background-color: #FF9F56; /* 더 진한 주황색으로 변경 */
+    color: white;
+    transform: translateY(-2px); /* 버튼을 조금 위로 올림 */
+  }
+
+  &:active {
+    transform: translateY(1px); /* 버튼을 조금 아래로 눌림 */
+  }
+}
+
+
 .ctwotitle{
   text-align: center;
   background-color: yellow
@@ -1002,42 +1096,13 @@ top: -710px;
 .ctextbox{
   text-align: center;
 }
-.ctexttitle {
-  text-align: initial; /* 왼쪽 정렬 */
-  margin-left: 150px;
-  margin-right: 150px;
-  color: black; /* 글자 색상 */
-  font-size: 24px; /* 글자 크기 */
-  padding: 10px 0; /* 위 아래로 내부 여백 추가 */
-  border-bottom: 5px solid hsl(24, 90%, 61%); /* 밑줄 스타일 */
-  margin-bottom: 20px; /* 아래 여백 */
-}
+
 .ctext{
   border-style: groove;
 }
 .ctexta{
   border-style: #019267;
   border-bottom: red
-}
-.card-container {
-  margin : 100px;
-  max-width: 1800px;
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  background-color: seashell;
-}
-.card-container th:nth-child(1),
-.card-container td:nth-child(1) {
-  width : 15%
-}
-.card-container th:nth-child(4),
-.card-container td:nth-child(4) {
-  width : 15%
-}
-.card-container th:nth-child(3),
-.card-container td:nth-child(3) {
-  width : 35%
 }
 
 .card {
@@ -1096,30 +1161,7 @@ top: -710px;
   border-radius: 20px;
 }
 
-.write-button {
-  background-color: wheat; /* 주황색 배경 */
-  color: black; /* 흰색 글자 */
-  font-size: 26px; /* 글자 크기 */
-  border: none;
-  padding: 12px 24px; /* 내부 여백 */
-  border-radius: 21px;
-  margin-left: 150px;
-  cursor: pointer;
-  transition: background-color 0.9s, transform 0.5s; /* 애니메이션 효과 */
 
-  /* 그림자 효과 */
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-
-  /* 호버 효과 */
-  &:hover {
-    background-color: #e67e22; /* 더 진한 주황색으로 변경 */
-    transform: translateY(-2px); /* 버튼을 조금 위로 올림 */
-  }
-
-  &:active {
-    transform: translateY(1px); /* 버튼을 조금 아래로 눌림 */
-  }
-}
 
 /* 게시판 카드 */
 .card-list {
@@ -1231,6 +1273,40 @@ top: -710px;
   color: #333;
 }
 
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.pagination button {
+  background-color: #FF9F56; /* 더 진한 주황색으로 변경 */
+  ;
+  border: none;
+  border-radius: 10px;
+  font-family: 'SUIT-Bold';
+  font-size: 15px;
+  color: white;
+  padding: 10px 15px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination button:hover {
+  border: 2px solid #FF9F56;
+  background-color: white;
+  color: #FF9F56;
+}
+
+
+
 /* Notice.css */
 .notice-container {
   max-width: 800px;
@@ -1265,37 +1341,12 @@ top: -710px;
 }
 
 .content_num{
+  
   font-size: small;
 }
 .content_titleq{
   text-align: start;
 }
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.pagination button {
-  background-color: #4caf50;
-  border: none;
-  color: white;
-  padding: 10px 15px;
-  margin: 0 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.pagination button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.pagination button:hover {
-  background-color: #45a049;
-}
-위 CSS 코드는 페이지네이션 버튼의 배경색, 글자색, 여백 등을 조정하여 예쁜 디자인을 적용합니다. 이 코드를 프로젝트의 스타일 파일에 추가하면 페이지네이션 버튼이 이쁘게 꾸며질 것입니다. 필요에 따라 스타일을 더 조정하거나 추가할 수 있습니다.
 
 
 .card-details {

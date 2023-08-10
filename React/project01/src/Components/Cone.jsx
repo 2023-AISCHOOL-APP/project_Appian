@@ -120,6 +120,13 @@ const [currentPage, setCurrentPage]=useState(1);
 const indexOfLastPost = currentPage * postsPerPage;
 const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
+ 
+ 
+ 
+ 
+ 
+ 
+ 
   const newlist = currentPosts.map((d)=>{
     return (<tr key={d.content_num} className='card' onClick={() => handleCardClick(d.content_num)}>
     <td className='content_num' style={{textAlign:'center'}}>{d.content_num}</td>
@@ -158,8 +165,10 @@ const indexOfFirstPost = indexOfLastPost - postsPerPage;
   
   return (
     <div>
-      <h1 className='conetitle'>텃밭 자랑하기</h1>
-      {!isWriting && <button className='write-button' onClick={() => setIsWriting(true)}>➡➡➡게시물 작성하기 click😚</button>}
+      <span className='conetitle'>텃밭 자랑하기</span>
+    
+      <img src='/img/titlebg2.png' className='c1titlebg'/>
+      {!isWriting && <button className='write-button' onClick={() => setIsWriting(true)}>작성하기</button>}
       {isWriting && (
         <WritingPage
           onAddCard={handleAddCard}
@@ -167,11 +176,11 @@ const indexOfFirstPost = indexOfLastPost - postsPerPage;
         />
       )}
       <div className='card-list'>
-        <h2 className='ctexttitle'>게시판</h2>
+        <span className='ctexttitle'>게시판</span>
         <table className='card-container'>
           <tbody >
             
-            <tr >
+            <tr className='c1_column'>
               <th>게시글번호</th>
               <th>제목</th>
               <th>유저아이디</th>

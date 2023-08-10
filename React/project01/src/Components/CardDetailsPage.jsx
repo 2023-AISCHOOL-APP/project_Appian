@@ -31,7 +31,7 @@ const CardDetailsPage = ({ cards }) => {
 
         <h2 className='card-details-title'>{newContent[0].content_title}</h2>
         <p className='card-details-content'>{newContent[0].contents}</p>
-        <img className='card-details-image' src={`http://192.168.70.165:5022/content_img/${newContent[0].content_img}`} alt={newContent[0].content_title} />
+        <img className='card-details-image' src={`http://192.168.70.237:5022/content_img/${newContent[0].content_img}`} alt={newContent[0].content_title} />
       
         { <div className='card-details-buttons'>
           <button className='card-details-button-delete'>삭제</button>

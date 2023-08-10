@@ -50,7 +50,7 @@ def login():
     conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
     curs = conn.cursor()
 
-    sql = f"select user_id, user_type from member where user_id = '{user_id}' and user_password = '{user_password}'"
+    sql = f"select user_id, user_nick, user_type from member where user_id = '{user_id}' and user_password = '{user_password}'"
     curs.execute(sql)
     res = curs.fetchall()
     print('sql응답', res)
@@ -61,7 +61,7 @@ def login():
         result = False
     else:
         for a in res:
-            resList.append({"user_id":a[0], "user_type":a[1]})
+            resList.append({"user_id":a[0], "user_nick":a[1], "user_type":a[2]})
         result = resList
 
     curs.close()

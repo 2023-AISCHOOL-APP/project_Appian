@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -40,7 +40,7 @@ const CardDetailsPage = ({ cards }) => {
 
       // 서버에 데이터 보내기 : 
       const apiUrl = 'http://192.168.70.237:5022/content_comment';
-      axios.get(apiUrl, { responseType: 'json', params: { user_nick : userNick , content_num : newContent[0].content_num, content_comment : newComment }, })
+      axios.get(apiUrl, { responseType: 'json', params: { user_nick : userNick , content_num : newContent[0].content_num, content_comment : newComment } })
       .then(response => {
         console.log('보내기 성공');
       })
@@ -49,7 +49,22 @@ const CardDetailsPage = ({ cards }) => {
       });
     }
   };
+  
+  // 게시물 번호 -> 댓글 데이터 가져오고 -> 뿌려주고
+  
+  useEffect(()=>{
+  
+    const apiUrl = 'http://192.168.70.237:5022/content_comment';
+    axios.get(apiUrl, { responseType: 'json', params: { user_nick : userNick , content_num : newContent[0].content_num, content_comment : newComment } })
+    .then(response => {
+      setComments(response.data);
+    })
+    .catch(error => {
+      console.error('보내기 에러');
+    });
 
+  },[])
+  
   
 
   

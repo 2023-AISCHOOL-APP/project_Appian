@@ -1615,7 +1615,87 @@ button:hover {
 }
 
 
+.notice-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
+.notice-title {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.notices-list {
+  margin-bottom: 20px;
+}
+
+.notices-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.notices-list li {
+  padding: 10px;
+  border: 7px solid hsl(135, 77%, 50%);
+  margin-bottom: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.notices-list li:hover {
+  background-color: #f5f5f5;
+}
+
+.notice-details {
+  background-color: #f5f5f5;
+  
+  border-radius: 5px;
+}
+
+.notice-details h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.notice-details p {
+  line-height: 1.5;
+}
+
+.new-notice {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.new-notice h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.new-notice input,
+.new-notice textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.new-notice button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  
+}
+
+.new-notice button:hover {
+  background-color: #0056b3;
+}
 
 
 

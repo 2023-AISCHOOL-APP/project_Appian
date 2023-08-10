@@ -74,11 +74,17 @@ const CardDetailsPage = ({ cards }) => {
 
   
   return (
+    <div className='infopage'>
+    <span className='infotitle'>텃밭 자랑하기</span>
+    <img src='/img/titlebg2.png' className='infotitle_bg'/>
+  
     <div className='card-details-container'>
+      
       <div className='card-details'>
       
         
         <h2 className='card-details-title'>{newContent[0].content_title}</h2>
+        <span className='card-nickname'>{newContent[0].user_nick} 농부</span>
         <p className='card-details-content'>{newContent[0].contents}</p>
         <img className='card-details-image' src={`http://192.168.70.237:5022/content_img/${newContent[0].content_img}`} alt={newContent[0].content_title} />
         
@@ -88,13 +94,14 @@ const CardDetailsPage = ({ cards }) => {
         </div> 
       </div>
       <textarea
+      className='comment_area'
         placeholder='댓글을 작성하세요'
         value={newComment}
         onChange={(e) => setNewComment(e.target.value)}
       />
-      <button onClick={handleAddComment}>댓글작성하기</button>
+      <button onClick={handleAddComment} className='comment_btn'>댓글작성하기</button>
       <div className='comment-list'>
-        <h3>댓글 목록</h3>
+        <h3 className='comment_list'>댓글 목록</h3>
         <ul>
           {comments?.map((comment, index) => (
             
@@ -104,6 +111,9 @@ const CardDetailsPage = ({ cards }) => {
             
           ))}
         </ul>
+
+      
+  </div>
       </div>
     </div>
   );

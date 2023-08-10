@@ -1358,17 +1358,38 @@ padding-top: 20px;
 .card-details-title {
   font-size: 24px;
   margin-bottom: 10px;
+  text-align: center;
+  color: #333;
+  border-bottom: 2px solid #3498db;
+  display: inline-block; /* 제목을 인라인 블록 요소로 설정 */
+  padding-bottom: 5px; /* 선과 텍스트 사이의 간격 조정 */
+  width: fit-content;
+  margin-left : 500px;
 }
 
 .card-details-content {
   font-size: 16px;
   margin-bottom: 20px;
+  text-align: left;
+  color: #666;
+  margin-left: 500px;
 }
 
 .card-details-image {
+  
   max-width: 100%;
   height: auto;
   margin-bottom: 20px;
+  display: block;
+  margin-left: 500px;
+  
+}
+.card-details-container{
+  border: 5px solid hwb(234 11% 37%); /* 박스선 스타일 지정 */
+  padding: 20px; /* 내용과의 간격을 위한 padding 설정 */
+  max-width: 1600px; /* 박스의 최대 너비 설정 */
+  margin: auto; /* 가운데 정렬 */
+  background-color: #f9f9f9; /* 선택적으로 배경색 지정 */
 }
 
 .card-details-buttons {

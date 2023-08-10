@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -56,11 +56,13 @@ export default function SignUp() {
   const nickCheckUrl = 'http://192.168.70.165:5022/nick_check';
   const emailCheckUrl = 'http://192.168.70.165:5022/email_check';
 
+
   const idCheck = async () => {
     await axios.post(idCheckUrl, {user_id : form.user_id})
     .then((Response)=>{
       console.log('DB에 있는 데이터인가?:(T/F)',Response.data)
       setMessage(Response.data.message);
+      alert('사용할 수 있는 아이디입니다');
 
     })
     .catch((Error)=>{
@@ -92,26 +94,6 @@ export default function SignUp() {
       console.log("통신 실패 + \n" + Error)
     })
   };
-  
-  const [validateUserId ,setValidateUserId] = useState('');
-
-  let idValid = /^[A-Za-z0-9].{6,}$/ ;
-  if (idValid.test(form.user_id)) {
-    setValidateUserId(true); //검증 성공
-  } else {
-    setValidateUserId(false); //검증 실패
-  }
-
-  console.log(validateUserId)
-
-
-
-
-
-
-
-
-
 
 
   const sendUrl = 'http://192.168.70.165:5022/add_id';
@@ -127,7 +109,16 @@ export default function SignUp() {
     })
   };
 
- 
+
+
+const [userIdError, setUserIdError] = useState(false);
+
+const onChangeUserId = (e) => {
+    const userIdRegex = /^[A-Za-z0-9+]{5,}$/;
+    if ((!e.target.value || (userIdRegex.test(e.target.value)))) setUserIdError(false);
+    else setUserIdError(true);
+    setForm(e.target.value);
+}
 
   // 에러 메세지 객체
 //   const errMsg = {
@@ -182,7 +173,13 @@ export default function SignUp() {
                   value={form.user_id}
                   helperText="ID : 6자 이상 (영문자와 숫자) "
                   autoFocus
-                  onChange={(e)=> {setForm({...form, user_id : e.target.value})}}
+                  onChange={(e)=> {
+                    
+                    const userIdRegex = /^[A-Za-z0-9+]{5,}$/;
+                    if ((!e.target.value || (userIdRegex.test(e.target.value)))) setUserIdError(false);
+                    else setUserIdError(true);
+                      setForm({...form, user_id : e.target.value})
+                    }}
                   
                 />
               </Grid>
@@ -197,9 +194,8 @@ export default function SignUp() {
                     },
                     backgroundColor:'#05AC7B',
                     fontFamily:'SUIT-regular',
-       
                   }}
-                  onClick={idCheck}
+                  onClick={()=>form.user_id.length > 5 ? idCheck() : console.log('조건에 맞는 아이디를 입력해주세요.')}
                    >중복확인</Button>
 
               </Grid>

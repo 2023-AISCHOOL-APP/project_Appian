@@ -396,7 +396,7 @@ def content_comment():
     curs = conn.cursor()
     
     if content_comment == "":
-        sql2 = f"select * from content_comment where content_num = '{content_num}'"
+        sql2 = f"select * from content_comment where content_num = '{content_num}' ORDER BY content_num DESC"
         curs.execute(sql2)
         res = curs.fetchall()
         curs.close()
@@ -418,7 +418,7 @@ def content_comment():
         )
 
         curs.execute(sql)
-        sql2 = f"select * from content_comment where content_num = '{content_num}'"
+        sql2 = f"select * from content_comment where content_num = '{content_num}' ORDER BY content_num DESC"
         curs.execute(sql2)
         res = curs.fetchall()
         curs.close()

@@ -12,6 +12,7 @@ function OutGarden() {
   const [address, setAddress] = useState('');
   const [area, setArea] = useState('');
   const [type, setType] = useState('');
+  const [farmtype, setFarmType] = useState('');
   const [price, setPrice] = useState('');
   const [rentalPeriod, setRentalPeriod] = useState('');
   const [recruitmentPeriod, setRecruitmentPeriod] = useState('');
@@ -37,6 +38,9 @@ function OutGarden() {
 
   const handleTypeChange = (e) => {
     setType(e.target.value);
+  };
+  const handleFarmTypeChange = (e) => {
+    setFarmType(e.target.value);
   };
 
   const handlePriceChange = (e) => {
@@ -64,6 +68,7 @@ function OutGarden() {
       address,
       area,
       type,
+      farmtype,
       price,
       rentalPeriod,
       recruitmentPeriod,
@@ -71,145 +76,199 @@ function OutGarden() {
     });
   };
 
+
+
+  const [selectedType, setSelectedType] = useState('');
+  const [selectedFarmType, setSelectedFarmType] = useState('');
+
+  // ... (기존 이벤트 핸들러들) ...
+
+  const handleTypeButtonClick = (type) => {
+    setSelectedType(type);
+    setType(type);
+  };
+
+  const handleFarmTypeButtonClick = (type) => {
+    setSelectedFarmType(type);
+    setFarmType(type);
+  };
+
+
   return (
 
     <>
     <PageTitle data={'텃밭 등록'} num={2}/>
-    <div className="container">
-    {isLogin ? (
-      <div className="card">
-        {/* ... (로그인 폼) ... */}
-      </div>
-    ) : (
-      <div className="card">
-        <h1>텃밭 등록 페이지</h1>
-        <form onSubmit={handleGardenSubmit}>
-          <div className="form">
-            <label htmlFor="gardenName">텃밭 이름:</label>
-            <input
-              type="text"
-              id="gardenName"
-              value={gardenName}
-              onChange={handleGardenNameChange}
-              required
-            />
-          </div>
 
-          <div className="form">
-            <label htmlFor="gardenImages">이미지 업로드 (최대 1장):</label>
-            <input
-              type="file"
-              id="gardenImages"
-              multiple
-              accept="image/*"
-              onChange={handleImageChange}
-            />
-          </div>
+    
+              <div className="out-container">
+               
+              {isLogin ? (
+                <div >
+                  {/* ... (로그인 폼) ... */}
+                </div>
+              ) : (
+                
+                <div className='outgarden-container'>
+                  <h1 className='out_maintitle'>텃밭등록하기</h1>
+                  <form onSubmit={handleGardenSubmit}>
+                    <div className="form1">
+                      <label htmlFor="gardenName">텃밭 이름:</label>
+                      <input
+                        type="text"
+                        id="gardenName"
+                        placeholder='이름을 입력해주세요'
+                        value={gardenName}
+                        onChange={handleGardenNameChange}
+                        required
+                      />
+                    </div>
 
-          <div className="form">
-            <label htmlFor="address">주소:</label>
-            <input
-              type="text"
-              id="address"
-              value={address}
-              onChange={handleAddressChange}
-              required
-            />
-          </div>
+                    <div className="form2">
+                      <label htmlFor="gardenImages">이미지 업로드 :<br />(최대 1장)</label>
+                      <input
+                        type="file"
+                        id="gardenImages"
+                        
+                        multiple
+                        accept="image/*"
+                        onChange={handleImageChange}
+                      />
+                    </div>
 
-          <div className="form">
-            <label htmlFor="area">면적:</label>
-            <input
-              type="text"
-              id="area"
-              value={area}
-              onChange={handleAreaChange}
-              required
-            />
-          </div>
+                    <div className="form3">
+                      <label htmlFor="address">주소:</label>
+                      <input
+                        type="text"
+                        id="out_address"
+                        placeholder='주소를 입력해주세요'
+                        value={address}
+                        onChange={handleAddressChange}
+                        required
+                      />
+                    </div>
 
-          {/* 라디오 버튼 : 소형, 중형, 대형 */}
-          <div className="form"> 
-            <label htmlFor="type">텃밭 유형:</label>
-            <input
-              type="text"
-              id="type"
-              value={type}
-              onChange={handleTypeChange}
-              required
-            />
-          </div>
+                    <div className="form4">
+                      <label htmlFor="area">면적:</label>
+                      <input
+                        type="text"
+                        placeholder='면적을 입력해주세요'
+                        id="out_area"
+                        value={area}
+                        onChange={handleAreaChange}
+                        required
+                      />
+                    </div>
 
-          {/* 라디오 버튼 : 개인, 민간단체, 지자체 */}
-          <div className="form"> 
-            <label htmlFor="type">운영 주체:</label>
-            <input
-              type="text"
-              id="type"
-              value={type}
-              onChange={handleTypeChange}
-              required
-            />
-          </div>
+                    {/* 라디오 버튼 : 소형, 중형, 대형 */}
+                    <div className="form5"> 
+                      <label htmlFor="type">텃밭 유형:</label>
+                    <div className='outtype_btn'>
+                    <button
+                      onClick={() => handleTypeButtonClick('대형')}
+                      className={`type_button ${selectedType === '대형' ? 'selected' : ''}`}>
+                      대형
+                    </button>
+                    <button
+                      onClick={() => handleTypeButtonClick('중형')}
+                      className={`type_button ${selectedType === '중형' ? 'selected' : ''}`}>
+                      중형
+                    </button>
+                    <button
+                      onClick={() => handleTypeButtonClick('소형')}
+                      className={`type_button ${selectedType === '소형' ? 'selected' : ''}`}>
+                      소형
+                    </button>
+                        
+                        </div>
+                        
+                    </div>
+
+                    {/* 라디오 버튼 : 개인, 민간단체, 지자체 */}
+                    <div className="form6"> 
+                      <label htmlFor="farmtype">운영 주체:</label>
+                      <div className='outtype_btn1'>
+                      <button
+                      onClick={() => handleFarmTypeButtonClick('개인')}
+                      className={`type1_button ${selectedFarmType === '개인' ? 'selected' : ''}`}
+                    >
+                      개인
+                    </button>
+                    <button
+                      onClick={() => handleFarmTypeButtonClick('민간')}
+                      className={`type1_button ${selectedFarmType === '민간' ? 'selected' : ''}`}
+                    >
+                    민간
+                    </button>
+                    <button
+                      onClick={() => handleFarmTypeButtonClick('공공')}
+                      className={`type1_button ${selectedFarmType === '공공' ? 'selected' : ''}`}
+                    >
+                      공공
+                    </button>
+                  </div>
+                
+                    </div>
 
 
-          <div className="form">
-            <label htmlFor="price">분양희망가:</label>
-            <input
-              type="text"
-              id="price"
-              value={price}
-              onChange={handlePriceChange}
-              required
-            />
-          </div>
+                    <div className="form7">
+                      <label htmlFor="price">분양희망가:</label>
+                      <input
+                        type="text"
+                        id="out_price"
+                        placeholder='분양 희망 가격을 입력해주세요'
+                        value={price}
+                        onChange={handlePriceChange}
+                        required
+                      />
+                    </div>
 
-          {/* 캘린더 위젯 수정 */}
-          <div className="form">
-            <label htmlFor="rentalPeriod">임대기간:</label>
-            <Calendar/>
-            {/* <input
-              type="text"
-              id="rentalPeriod"
-              value={rentalPeriod}
-              onChange={handleRentalPeriodChange}
-              required
-            /> */}
-          </div>
+                    {/* 캘린더 위젯 수정 */}
+                    <div className="form8">
+                      <label htmlFor="rentalPeriod">임대기간:</label>
+                      <Calendar className='calender_input'/>
+                      {/* <input
+                        type="text"
+                        id="rentalPeriod"
+                        value={rentalPeriod}
+                        onChange={handleRentalPeriodChange}
+                        required
+                      /> */}
+                    </div>
+                      
+                    {/* 캘린더 위젯 수정 */}
+                    <div className="form9">
+                      <label htmlFor="recruitmentPeriod">분양신청 모집기간:</label>
+                      <Calendar/>
+                      {/* <input
+                        type="text"
+                        id="recruitmentPeriod"
+                        value={recruitmentPeriod}
+                        onChange={handleRecruitmentPeriodChange}
+                        required
+                      /> */}
+                    </div>
+
+                    <div className="form10">
+                      <label htmlFor="description">본문내용:</label>
+                      <textarea
+                        id="out_description"
+                        value={description}
+                        onChange={handleDescriptionChange}
+                        required
+                      />
+                    </div>
+
+                    <button type="submit" className="submit-btn">
+                      등록하기
+                    </button>
+                    <button type="button" className="preview-btn">
+                      미리보기
+                    </button>
+                  </form>
+                </div>
+              )}
+            </div>
             
-          {/* 캘린더 위젯 수정 */}
-          <div className="form">
-            <label htmlFor="recruitmentPeriod">분양 신청모집기간:</label>
-            <Calendar/>
-            {/* <input
-              type="text"
-              id="recruitmentPeriod"
-              value={recruitmentPeriod}
-              onChange={handleRecruitmentPeriodChange}
-              required
-            /> */}
-          </div>
-
-          <div className="form">
-            <label htmlFor="description">본문내용:</label>
-            <textarea
-              id="description"
-              value={description}
-              onChange={handleDescriptionChange}
-              required
-            />
-          </div>
-
-          <button type="submit" className="submit-btn">
-            등록하기
-          </button>
-          <button type="button" className="preview-btn">
-            미리보기
-          </button>
-        </form>
-      </div>
-    )}
-  </div>
   </>
   );
 }

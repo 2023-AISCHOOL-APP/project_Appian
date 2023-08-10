@@ -1036,13 +1036,14 @@ max-width: 1260px;
 left: 0px;
 z-index: 99;
 border-radius: 10px;
-padding-top: 20px;
+
+
 
 }
 
 .writetd{
   font-family: 'SUIT-SemiBold';
-  font-size: 18px;
+  font-size: 16px;
   color: black;
   text-decoration: none;
 }
@@ -1092,7 +1093,7 @@ padding-top: 20px;
   border-radius: 15px;
  position: relative;
  left: 1450px;
- top: 750px;
+ top: 400px;
  z-index: 999;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.5s; /* 애니메이션 효과 */
@@ -1222,6 +1223,7 @@ font-size: 15px;
   padding: 10px;
   border-radius: 10px;
   border:2px solid gray;
+  background-color: none;
   color: gray;
   font-family: 'SUIT-Bold';
   font-size: 15px;
@@ -1233,6 +1235,7 @@ font-size: 15px;
 .writego:hover , .writedel:hover{
   background-color: gray;
   color: white;
+ 
 } 
 .writedel{
   padding: 10px;
@@ -1294,7 +1297,7 @@ font-size: 15px;
   color: black;
   text-decoration: none;
 
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow:  rgba(0, 0, 0, 0.1);
   padding: 20px;
   width: 300px;
   transition: transform 0.3s, box-shadow 0.3s;
@@ -1303,7 +1306,9 @@ font-size: 15px;
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  outline: 2px solid #FF9F56; /* 빛나는 아웃라인 색상 */
+  box-shadow: 0px 4px 6px #FF9F56;
+  
 }
 
 .card img {
@@ -1332,8 +1337,9 @@ font-size: 15px;
   
   width: 80%; /* 표 너비 설정 */
   margin: 0 auto; /* 가운데 정렬 */
+  padding: 20px;
   border-collapse: collapse; /* 테두리 겹치기 방지 */
-  border: 1px solid #ddd; /* 테두리 스타일 설정 */
+  border: 3px solid #ffcaa2; /* 테두리 스타일 설정 */
 }
 .farming-tips {
   display: flex;
@@ -1367,6 +1373,7 @@ font-size: 15px;
 .card-container tbody td {
   padding: 10px;
   border-bottom: 1.2px solid  #FF9F56;
+  border-top: 1.2px solid  #FF9F56;
   text-align: center;
 }
 
@@ -1400,7 +1407,8 @@ font-size: 15px;
 .pagination {
   display: flex;
   justify-content: center;
-  margin-top: 80px;
+  margin-top: 90px;
+  margin-left: 190px;
 }
 
 .pagination button {
@@ -1472,18 +1480,16 @@ font-size: 15px;
 }
 
 
-.card-details {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 20px;
-}
+
 
 .card-details-title {
+  font-family: 'SUIT-ExtraBold';
   font-size: 24px;
-  margin-bottom: 10px;
-  text-align: center;
+  position: relative;
+  left: 100px;
+  
   color: #333;
-  border-bottom: 2px solid #3498db;
+  border-bottom: 2px solid #FF9F56;
   display: inline-block; /* 제목을 인라인 블록 요소로 설정 */
   padding-bottom: 5px; /* 선과 텍스트 사이의 간격 조정 */
   width: fit-content;
@@ -1491,52 +1497,95 @@ font-size: 15px;
 }
 
 .card-details-content {
-  font-size: 16px;
-  margin-bottom: 20px;
-  text-align: left;
+  font-family: 'SUIT-Regular';
+  font-size: 17px;
+  position: relative;
+  left: 100px;
+
+  
   color: #666;
   
 }
 
 .card-details-image {
   
-  max-width: 100%;
   height: auto;
-  margin-bottom: 20px;
-  display: block;
+  position: relative;
+  top: 20px;
+  border-radius: 0px;
+  left: 100px;
+  
   
   
 }
 .card-details-container{
-  border: 5px solid hwb(234 11% 37%); /* 박스선 스타일 지정 */
-  padding: 20px; /* 내용과의 간격을 위한 padding 설정 */
-  max-width: 1600px; /* 박스의 최대 너비 설정 */
-  margin: auto; /* 가운데 정렬 */
+  
+  transition: max-height 0.3s ease-in-out; /* 애니메이션 효과 추가 */
+ border-radius: 15px;
+  padding: 100px 50px; /* 내용과의 간격을 위한 padding 설정 */
+  margin-left: 320px;
+  max-height: 20000px;
+  margin-right: 320px;
+ 
+ 
+  
   background-color: #f9f9f9; /* 선택적으로 배경색 지정 */
 }
 
 .card-details-buttons {
-  display: flex;
-  justify-content: space-between;
+ position: relative;
+ left: 490px;
+
+
 }
 
 .card-details-button-delete,
 .card-details-button-list {
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 5px 15px;
+  font-family: 'SUIT-SemiBold';
+  font-size: 14px;
+
   border: none;
   cursor: pointer;
 }
 
 .card-details-button-delete {
-  background-color: #e74c3c;
+  background-color: #FF9F56;
+  position: relative;
   color: #fff;
   
 }
 
+.carddetailarea{
+  width: 800px;
+  height: 20px;
+  font-family: 'SUIT-Regular';
+  font-size: 15px;
+  position: relative;
+  top: 50px;
+  left: 100px;
+}
+
+.commentname{
+  position: relative;
+  font-family: 'SUIT-Bold';
+  top: 35px;
+  left: 150px;
+}
+
+.commenthr{
+  border: 1px solid #FF9F56 ;
+  border-radius: 30px;
+  border-style:  dashed;
+  position: relative;
+  width: 960px;
+  top: 40px;
+}
+
 .card-details-button-list {
-  background-color: #3498db;
-  color: #fff;
+  border: 2px solid #FF9F56;
+  background-color: white;
+  color: #FF9F56;
 }
 .card-details-buttons {
   display: flex;
@@ -1548,26 +1597,50 @@ font-size: 15px;
   margin-top: 20px;
 }
 
-.comment-list h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
+
 
 .comment-list ul {
   list-style: none;
   padding: 0;
+  position: relative;
+  left: -10px;
 }
-
-.comment-list li {
+.comment-list li{
+  font-family: 'SUIT-SemiBold';
   border: 1px solid #ccc;
   padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
+ width: 900px;
+ border-radius: 5px;
   background-color: #f5f5f5;
+  position: relative;
+  top:70px;
+  left: 100px;
+  margin: 10px;
+}
+
+.comment {
+  
+ position: relative;
+ left:10px;
+  
+}
+
+.commentnickname{
+  font-family: 'SUIT-Regular';
+  font-size: 14px;
+ position: relative;
+ left: 10px;
+
 }
 
 .comment-list li:last-child {
   margin-bottom: 0;
+}
+.commentlist{
+  font-family: 'SUIT-Bold';
+  position: relative;
+  top: 60px;
+  left: 100px;
 }
 
 textarea {
@@ -1579,17 +1652,27 @@ textarea {
 }
 
 button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
+  background-color: white;
+  color: #FF9F56;
+  border: 1px solid #FF9F56;
+  padding: 13px 20px;
   border-radius: 5px;
   cursor: pointer;
+  position: relative;
+  left: -70px;
+  top: -10px;
 }
 
-button:hover {
-  background-color: #0056b3;
+.card-details-button-delete:hover {
+  background-color: white;
+  color: #FF9F56;
+  border: 2px solid #FF9F56;
 }
+.card-details-button-list:hover{
+  background-color: #FF9F56;
+  color: white;
+}
+
 
 .notice-banner {
   position: fixed;
@@ -1610,9 +1693,7 @@ button:hover {
   font-size:larger;
   color: hwb(320 10% 20%);
 }
-.noticecontent{
-  
-}
+
 
 
 .notice-container {
@@ -1696,6 +1777,7 @@ button:hover {
 .new-notice button:hover {
   background-color: #0056b3;
 }
+
 
 
 

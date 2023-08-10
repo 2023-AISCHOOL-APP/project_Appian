@@ -1,4 +1,49 @@
 .card {
-    width : 800px; 
+    width : 3000px; 
     margin : auto;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+.card h1 {
+  text-align: center; /* 텃밭 등록 페이지라는 글자를 center에 위치 */
+  margin-bottom: 100px; /* 위치가 겹치지 않도록 margin 설정 */
+}
+
+
+.form textarea {
+  width: 100%; /* 본문내용 입력란을 card 하단에 꽉 차게 */
+  height: 300px; /* 본문내용 입력란의 높이 설정 */
+  resize: none; /* 사용자가 크기를 조절하지 못하게 함 */
+}
+
+.submit-btn, .preview-btn {
+  display: flexbox; /* 버튼을 block 요소로 변경 */
+  justify-content: space-between;
+  width: 50%; /* 버튼의 너비 설정 */
+  margin: 5px auto; /* 중앙 정렬 및 상하간격 설정 */
+  background-color: #006400; /* 진한 녹색 배경 */
+  color: #ffffff; /* 텍스트 색상을 하얀색으로 */
+  border: none; /* 테두리 제거 */
+  padding: 10px; /* 패딩 추가 */
+  cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+  font-size: 16px; /* 글자 크기 설정 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.submit-btn:hover, .preview-btn:hover {
+  background-color: #004c00; /* 마우스 오버 시 색상 변경 */
+}
+
+.form {
+  margin-bottom: 20px; /* 원하는 간격을 여기에 설정 */
+}
+
+.container {
+  padding: 20px;
 }

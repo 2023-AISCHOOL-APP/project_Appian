@@ -14,14 +14,15 @@ import Ctwo from './Components/Ctwo';
 import Cthree from './Components/Cthree';
 import CardDetailsPage from './Components/CardDetailsPage';
 import Notice from './pages/Notice';
-
 import axios from 'axios';
 
 import './Header.css'
 import FarmDetail from './pages/FarmDetail';
 
 
+
 function Main() {
+
 
   const dropDownRef = useRef(null);
   const [activeMenu, setActiveMenu] = useState(null);
@@ -43,28 +44,52 @@ function Main() {
     };
   }, []);
 
+  
+  // 로그인 상태에 따라 접근 권한 다르게 하기 
+  const [user, setUser] = useState('');
+  const authenticated = user != null;
+  
+  useEffect (()=>{
+    setUser(sessionStorage.getItem('user_id'))
+    console.log('로그인확인:',user)
+  },[])
+
+  
+
+
+  
+  //로그아웃 하기
+  const Logout = (e)=>{
+    sessionStorage.removeItem('user_id')
+    sessionStorage.removeItem('user_nick')
+    sessionStorage.removeItem('user_type')
+    setUser(null)
+    alert('로그아웃 되었습니다.')
+  }
 
 
 
-  const [data, setData] = useState([]); //요기2
+  //게시판 데이터 불러오기 
+  const [data, setData] = useState([]); 
 
   useEffect(() => {
    // Flask 서버의 주소
+
    const apiUrl = 'http://192.168.70.237:5022/content';
- console.log("test")
+   console.log("test")
+
    // Axios를 사용하여 GET 요청 보내기
    axios.get(apiUrl, { responseType: 'json'})
      .then(response => {
-        setData(response.data); //요기
+        setData(response.data); 
        console.log('testdb로부터받음', response.data);
      })
      .catch(error => {
        console.error('Error fetching data:', error);
      });
- }, []);
+  }, []);
  
- 
-
+  // 게시판 데이터 자동으로 추가 생성하기
   const savedCards = data;
   const [isWriting, setIsWriting] = useState(false);
   const [cards, setCards] = useState(savedCards);
@@ -77,7 +102,6 @@ function Main() {
     setIsWriting(false);
   };
 
-
   return (
     <div className='main_col'>
     <div className='main_grid'>
@@ -86,7 +110,9 @@ function Main() {
       </NavLink>
 
       <div className='navbar1'>
-        <NavLink to={'/login'} id='navbarlogin'>로그인</NavLink>
+        {authenticated ? 
+        <NavLink to={'/'} id='navbarlogin' onClick={Logout}>로그아웃</NavLink>:
+        <NavLink to={'/login'} id='navbarlogin'>로그인</NavLink>}
         <NavLink to={'/join'} id='navbarlogin'>회원가입</NavLink>
       </div>
 
@@ -172,15 +198,15 @@ function Main() {
       </div>  
     </div>
 
-
       <Routes>
         
         <Route path='/' element={<Mainpage />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/logout' element={<Logout />} />
         <Route path='/join' element={<Join />} />
         <Route path='/card' element={<Card />} />
         <Route path='/find' element={<FindGarden />} />
-        <Route path='/find/1' element={<FarmDetail/>} />
+        <Route path='/find/:farmId' element={<FarmDetail/>} />
         <Route path='/out' element={<OutGarden />} />
         <Route path='/community' element={<Community />} />
         <Route path='/mypage' element={<Mypage />} />
@@ -195,5 +221,6 @@ function Main() {
     </div>
   );
 }
+
 
 export default Main;

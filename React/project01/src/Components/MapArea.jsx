@@ -39,7 +39,7 @@ const MapArea = (data) => {
         level < 6 ? (
         <CustomOverlayMap key={loc.num} position={loc.latlng} xAnchor={0.5} yAnchor={1.1} >
         <div className="customoverlay">
-          <a href={`https://localhost:3000/find/${loc.num}`} target="_blank" >
+          <a href={`/find/${loc.num}`} target="_blank" >
             <span className="title">{loc.title}</span>
           </a>
         </div>

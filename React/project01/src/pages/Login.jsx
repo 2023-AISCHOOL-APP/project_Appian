@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useHistory } from 'react';
 import PageTitle from '../Components/PageTitle';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
@@ -13,6 +13,7 @@ import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -40,16 +41,29 @@ const Login = () => {
   const [form, setForm] = useState({ user_id: "", user_password: "" });
   const [message, setMessage] = useState(''); //DB 응답 결과
 
+  const navigate = useNavigate();
+
   const loginUrl = 'http://192.168.70.237:5022/login';
 
   const infoSending = async () => {
     try {
       const response = await axios.post(loginUrl, { form });
       const responseData = response.data;
-      console.log('응답 데이터:', responseData); // 확인을 위해 콘솔에 출력
+      console.log('응답 데이터:', responseData); 
+      if (responseData === false){
+        alert('회원정보가 없습니다. 회원가입을 진행해주세요')
+      }else{
+        sessionStorage.setItem('user_id', responseData[0].user_id)
+        sessionStorage.setItem('user_nick', responseData[0].user_nick)
+        sessionStorage.setItem('user_type', responseData[0].user_type)
+        alert(`${responseData[0].user_nick}님, 반갑습니다!🙇‍♀️`)
+        window.location.replace('/')
+      }
+      
       setMessage(responseData);
     } catch (error) {
       console.error('통신 실패:', error);
+      alert('서버에 문제가 발생하였습니다. 다시 한 번 시도해주세요!')
     }
   };
 
@@ -97,7 +111,7 @@ const Login = () => {
               autoComplete="current-password"
               onChange={(e)=> {setForm({...form, user_password : e.target.value})}}
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={
                 <Checkbox
                   defaultChecked
@@ -108,7 +122,7 @@ const Login = () => {
                   }} />
                 }
               label="아이디 저장하기"
-            />
+            /> */}
             <Box sx={{ display: "flex", justifyContent: "center" }}>
             <Button
               color="primary"

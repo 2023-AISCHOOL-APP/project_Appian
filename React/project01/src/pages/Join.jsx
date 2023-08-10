@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -44,8 +45,7 @@ export default function SignUp() {
 
 
   const [form, setForm] = useState({ user_id: "", user_password: "", user_name : "", user_nick : "" , user_email: "", user_phone: "", user_address : "" });
- 
-
+  const navigate = useNavigate()
 
   // 중복체크 => DB에 없는 정보 (False), DB에 있는 정보 (True)
   // 응답이 False인 경우에만 Join 가능
@@ -60,8 +60,9 @@ export default function SignUp() {
   const idCheck = async () => {
     await axios.post(idCheckUrl, {user_id : form.user_id})
     .then((Response)=>{
-      console.log('DB에 있는 데이터인가?:(T/F)',Response.data)
-      setMessage(Response.data.message);
+      
+      setMessage(Response.data);
+      console.log('DB에 있는 데이터인가?:(T/F)','id?', message)
       if (message === false){
         alert('사용할 수 있는 아이디입니다');
       }else {
@@ -76,7 +77,7 @@ export default function SignUp() {
   const nickCheck = async () => {
     await axios.post(nickCheckUrl, {user_id : form.user_nick})
     .then((Response)=>{
-      console.log('DB에 있는 데이터인가?:(T/F)',Response.data)
+      console.log('DB에 있는 데이터인가?:(T/F)', 'nick',Response.data)
       setMessage(Response.data);
       if (message === false){
         alert('사용할 수 있는 닉네임입니다');
@@ -93,7 +94,7 @@ export default function SignUp() {
   const emailCheck = async () => {
     await axios.post(emailCheckUrl, {user_id : form.user_email})
     .then((Response)=>{
-      console.log('DB에 있는 데이터인가?:(T/F)',Response.data)
+      console.log('DB에 있는 데이터인가?:(T/F)','email',Response.data)
       setMessage(Response.data);
       if (message === false && message !== ' '){
         alert('사용할 수 있는 이메일입니다');
@@ -111,9 +112,8 @@ export default function SignUp() {
   const infoSending = async () => {
     await axios.post(sendUrl, {form})
     .then((Response)=>{
-      alert(Response.data)
-      setMessage(Response.data.message);  
-
+      alert('🧑‍🌾팜팜의 회원이 되신걸 축하드립니다! ')      
+      navigate('/')
     })
     .catch((Error)=>{
       console.log("통신 실패 + \n" + Error)
@@ -124,12 +124,6 @@ export default function SignUp() {
 
 const [userIdError, setUserIdError] = useState(false);
 
-const onChangeUserId = (e) => {
-    const userIdRegex = /^[A-Za-z0-9+]{5,}$/;
-    if ((!e.target.value || (userIdRegex.test(e.target.value)))) setUserIdError(false);
-    else setUserIdError(true);
-    setForm(e.target.value);
-}
 
   // 에러 메세지 객체
 //   const errMsg = {

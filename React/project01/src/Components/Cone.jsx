@@ -49,26 +49,24 @@ const WritingPage = ({ onAddCard, onCancel }) => {
 
   return (
     <div className='writing-page'>
-      <span className='writing_title'>내 텃밭 자랑하기</span>
+      <h1 style={{textAlign:'center'}}>글 작성</h1>
       <input
         type="text"
-        placeholder="제목을 입력해주세요."
+        placeholder="제목"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className='writetitle'
       />
       <textarea
-      className='write_textarea'
-        rows="10"
-        placeholder="내용을 입력해주세요."
+        rows="5"
+        placeholder="내용"
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
       
-      <input type="file" onChange={handleImageChange} className='photo' />
+      <input type="file" onChange={handleImageChange} />
 
-      <button onClick={handleSubmit} className='writego'>작성하기</button>
-      <button onClick={onCancel} className='writedel'>취소</button>
+      <button onClick={handleSubmit}>작성하기</button>
+      <button onClick={onCancel}>취소</button>
     </div>
   );
 };
@@ -132,13 +130,13 @@ const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const newlist = currentPosts.map((d)=>{
     return (<tr key={d.content_num} className='card' onClick={() => handleCardClick(d.content_num)}>
     <td className='content_num' style={{textAlign:'center'}}>{d.content_num}</td>
-    <td className='writetd' style={{ textAlign: 'left', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
+    <td style={{ textAlign: 'left', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',color:'pink' }}>
     <Link  to={`/cardpage/${d.content_num}`}>{d.content_title}</Link></td>
     <td>{d.user_id}</td>
     <td>{d.content_day}</td>
   </tr>)}   
   )
-  
+ 
 
   
 

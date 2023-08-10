@@ -34,6 +34,7 @@ const CardDetailsPage = ({ cards }) => {
     }
   };
 
+   console.log('checknumber', newContent[0].content_num)
 
 
 

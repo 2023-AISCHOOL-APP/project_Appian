@@ -43,6 +43,7 @@ const CardDetailsPage = ({ cards }) => {
       axios.get(apiUrl, { responseType: 'json', params: { user_nick : userNick , content_num : newContent[0].content_num, content_comment : newComment } })
       .then(response => {
         console.log('댓글쓰고 받아온거', response.data);
+        setComments(response.data)
       })
       .catch(error => {
         console.error('보내기 에러');
@@ -58,7 +59,7 @@ const CardDetailsPage = ({ cards }) => {
     axios.get(apiUrl, { responseType: 'json', params: { user_nick : userNick , content_num : newContent[0].content_num, content_comment : newComment } })
     .then(response => {
 
-      // setComments(response.data);
+      setComments(response.data);
 
       console.log('댓글 처음에 받아온 데이터', response.data);
 
@@ -95,10 +96,10 @@ const CardDetailsPage = ({ cards }) => {
       <div className='comment-list'>
         <h3>댓글 목록</h3>
         <ul>
-          {comments.map((comment, index) => (
+          {comments?.map((comment, index) => (
             
             <li key={index}>
-              <div className='commentnick'>{data.user_nick}</div>{data.content_comment} 
+              <div className='commentnick'>{comment.user_nick}</div>{comment.content_comment} 
               </li>
             
           ))}

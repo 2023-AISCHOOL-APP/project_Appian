@@ -42,7 +42,7 @@ const CardDetailsPage = ({ cards }) => {
       const apiUrl = 'http://192.168.70.237:5022/content_comment';
       axios.get(apiUrl, { responseType: 'json', params: { user_nick : userNick , content_num : newContent[0].content_num, content_comment : newComment } })
       .then(response => {
-        console.log('보내기 성공');
+        console.log('댓글쓰고 받아온거', response.data);
       })
       .catch(error => {
         console.error('보내기 에러');
@@ -57,7 +57,7 @@ const CardDetailsPage = ({ cards }) => {
     const apiUrl = 'http://192.168.70.237:5022/content_comment';
     axios.get(apiUrl, { responseType: 'json', params: { user_nick : userNick , content_num : newContent[0].content_num, content_comment : newComment } })
     .then(response => {
-      setComments(response.data);
+      console.log('댓글 처음에 받아온 데이터', response.data);
     })
     .catch(error => {
       console.error('보내기 에러');

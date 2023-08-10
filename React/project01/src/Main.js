@@ -43,28 +43,33 @@ function Main() {
     };
   }, []);
 
+  
+  // 로그인 상태에 따라 접근 권한 다르게 하기 
+  const [logState, setLogState] = useState('');
+
+  console.log('sslog',sessionStorage.getItem('user_id'))
 
 
 
-  const [data, setData] = useState([]); //요기2
+  //게시판 데이터 불러오기 
+  const [data, setData] = useState([]); 
 
   useEffect(() => {
    // Flask 서버의 주소
    const apiUrl = 'http://192.168.70.165:5022/content';
- console.log("test")
+   console.log("test")
    // Axios를 사용하여 GET 요청 보내기
    axios.get(apiUrl, { responseType: 'json'})
      .then(response => {
-        setData(response.data); //요기
+        setData(response.data); 
        console.log('testdb로부터받음', response.data);
      })
      .catch(error => {
        console.error('Error fetching data:', error);
      });
- }, []);
+  }, []);
  
- 
-
+  // 게시판 데이터 자동으로 추가 생성하기
   const savedCards = data;
   const [isWriting, setIsWriting] = useState(false);
   const [cards, setCards] = useState(savedCards);
@@ -76,7 +81,6 @@ function Main() {
     setCardCounter(cardCounter + 1);
     setIsWriting(false);
   };
-
 
   return (
     <div className='main_col'>
@@ -172,7 +176,6 @@ function Main() {
       </div>  
     </div>
 
-
       <Routes>
         
         <Route path='/' element={<Mainpage />} />
@@ -195,5 +198,6 @@ function Main() {
     </div>
   );
 }
+
 
 export default Main;

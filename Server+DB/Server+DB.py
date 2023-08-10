@@ -320,7 +320,7 @@ def add_content():
         file.save(filepath)
         return filename
     
-    user_id = request.form.get('user_id')
+    user_nick = request.form.get('user_nick')
     content_title = request.form.get('content_title')
     contents = request.form.get('contents')
     image = request.files['content_img']
@@ -330,8 +330,8 @@ def add_content():
         curs = conn.cursor()
 
         sql = (
-            f"INSERT INTO content (content_num, content_title, user_id, contents, content_img, content_day) "
-            f"VALUES (content_seq.NEXTVAL, '{content_title}', '{user_id}', '{contents}', NULL, '{today}')"
+            f"INSERT INTO content (content_num, content_title, user_nick, contents, content_img, content_day) "
+            f"VALUES (content_seq.NEXTVAL, '{content_title}', '{user_nick}', '{contents}', NULL, '{today}')"
         )
         curs.execute(sql)
         conn.commit()
@@ -375,7 +375,7 @@ def content():
     for a in res:
         resList.append({"content_num":a[0],
                         "content_title":a[1], 
-                        "user_id":a[2],
+                        "user_nick":a[2],
                         "contents":a[3], 
                         "content_img": a[4], 
                         "content_day":a[5]
@@ -384,35 +384,72 @@ def content():
 
 
 # ==================== 댓글 달기 ==================== #
-@app.route('/content_comment', methods=['GET','POST'])
+@app.route('/content_comment', methods=['GET'])
 def content_comment():
     print('# ==================== 댓글 달기 ==================== #')
-    data = request.json
-    user_id = data.get('user_id', 'Unknown')
-    content_num = data.get('content_num', 'Unknown')
-    content_comment = data.get('content_comment', 'Unknown')
-
-    print('받은데이터:', data)
+    user_nick = request.args.get('user_nick', 'Unknown')
+    content_num = request.args.get('content_num', 'Unknown')
+    content_comment = request.args.get('content_comment', 'Unknown')
+    print('가공데이터', user_nick, content_num, content_comment)
 
     conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
     curs = conn.cursor()
-
-    sql = (
-            f"INSERT INTO member (content_comment_num, user_id, content_num, content_comment, content_comment_day)"
-            f"VALUES (content_seq.NEXTVAL, '{user_id}', '{content_num}', '{content_comment}', '{today}')"
+    
+    if content_comment == "":
+        sql2 = f"select * from content_comment where content_num = '{content_num}'"
+        curs.execute(sql2)
+        res = curs.fetchall()
+        curs.close()
+        conn.close()
+        resList = []
+        for a in res:
+            resList.append({"content_comment_num":a[0],
+                            "user_nick":a[1], 
+                            "content_num":a[2],
+                            "content_comment":a[3], 
+                            "content__comment_day": a[4]
+                            })
+        print('보낸데이터', resList)
+        return resList
+    else:
+        sql = (
+            f"INSERT INTO content_comment (content_comment_num, user_nick, content_num, content_comment, content_comment_day)"
+            f"VALUES (content_comment_seq.NEXTVAL, '{user_nick}', '{content_num}', '{content_comment}', '{today}')"
         )
-    curs.execute(sql)
+        curs.execute(sql)
+        curs.close()
+        conn.commit()
+        conn.close()
+        print('sql문', sql)
+        return '댓글이 추가 되었습니다.'
+    
 
-    print('sql문', sql)
-    conn.commit()
+# ==================== 농장 상세페이지 ==================== #
+@app.route('/detail', methods=['GET'])
+@as_json
+def detail():
+    print('# ==================== 농장 상세페이지 ==================== #')
+    # 클라이언트로부터 전송된 GET 파라미터 받기
+ 
+    conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
+
+    curs = conn.cursor()
+
+    sql = "select * from farm"
+  
+    curs.execute(sql)
+    res = curs.fetchall()
+    print('sql응답', res)
 
     curs.close()
     conn.close()
 
-    response = 'success'
-    print(response)
-    return response
+    resList = []
 
+    for a in res:
+        resList.append({"farm_num":a[0], "use_id":a[1], "farm_type":a[2], "farm_title": a[3], "farm_sector":a[4], "sidos":a[5], "sigungus":a[6], "farm_address":a[7], "lental_area":a[8], "price":a[9], "lantitude":a[10], "longitude":a[11], "lental_type":a[12], "app_startDate":a[13], "app_endDate":a[14], "lental_startDate":a[15], "lental_endDate":a[16], "description":a[17]})
+
+    return resList
 
 if __name__ == '__main__':
     # app.run(debug=True)

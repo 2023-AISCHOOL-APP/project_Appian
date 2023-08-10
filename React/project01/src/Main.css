@@ -1111,10 +1111,10 @@ padding-top: 20px;
 }
 
 
-.ctwotitle{
+.ctwotitle {
   text-align: center;
-  background-color: yellow
-  
+  font-size: 24px;
+  margin-top: 20px;
 }
 .cthreetitle{
   text-align: center;
@@ -1266,14 +1266,8 @@ font-size: 15px;
 
 .card-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  text-align: center;
   flex-wrap: wrap;
   gap: 20px;
- 
-  
 }
 .card-container table {
   table-layout: fixed; /* 고정 테이블 레이아웃 설정 */
@@ -1288,9 +1282,9 @@ font-size: 15px;
 
 
 .card {
-  background-color: #ffffff;
-  padding: 20px;
+  background-color: #fff;
   border-radius: 10px;
+
   
   transition: transform 0.2s;
   text-align: left;
@@ -1299,10 +1293,17 @@ font-size: 15px;
 .card td{
   color: black;
   text-decoration: none;
+
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+  transition: transform 0.3s, box-shadow 0.3s;
+
 }
 
 .card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .card img {
@@ -1314,11 +1315,15 @@ font-size: 15px;
 
 .card h3 {
   font-size: 18px;
-  margin-top: 10px;
+  margin-top: 0;
 }
 
 .card p {
+
   color: black;
+
+  color: #555;
+
 }
 
 .card-container {
@@ -1330,7 +1335,25 @@ font-size: 15px;
   border-collapse: collapse; /* 테두리 겹치기 방지 */
   border: 1px solid #ddd; /* 테두리 스타일 설정 */
 }
+.farming-tips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.card-actions {
+  margin-top: 20px;
+}
 
+.card-actions a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.card-actions a:hover {
+  text-decoration: underline;
+}
 
 .card-container thead th {
   background-color:  #FF9F56;
@@ -1450,7 +1473,7 @@ font-size: 15px;
 
 
 .card-details {
-  max-width: 800px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -1464,7 +1487,7 @@ font-size: 15px;
   display: inline-block; /* 제목을 인라인 블록 요소로 설정 */
   padding-bottom: 5px; /* 선과 텍스트 사이의 간격 조정 */
   width: fit-content;
-  margin-left : 500px;
+  
 }
 
 .card-details-content {
@@ -1472,7 +1495,7 @@ font-size: 15px;
   margin-bottom: 20px;
   text-align: left;
   color: #666;
-  margin-left: 500px;
+  
 }
 
 .card-details-image {
@@ -1481,7 +1504,7 @@ font-size: 15px;
   height: auto;
   margin-bottom: 20px;
   display: block;
-  margin-left: 500px;
+  
   
 }
 .card-details-container{
@@ -1521,7 +1544,52 @@ font-size: 15px;
   margin-top: 20px;
 }
 
+.comment-list {
+  margin-top: 20px;
+}
 
+.comment-list h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.comment-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.comment-list li {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.comment-list li:last-child {
+  margin-bottom: 0;
+}
+
+textarea {
+  width: 98.7%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
 
 
 

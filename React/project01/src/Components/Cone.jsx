@@ -136,7 +136,7 @@ const indexOfFirstPost = indexOfLastPost - postsPerPage;
     <td>{d.write_time}</td>
   </tr>)}   
   )
-  
+  console.log({d.content_num});
 
   
 

@@ -138,7 +138,7 @@ const indexOfFirstPost = indexOfLastPost - postsPerPage;
     <td>{d.content_day}</td>
   </tr>)}   
   )
-  console.log({d.content_num});
+  
 
   
 

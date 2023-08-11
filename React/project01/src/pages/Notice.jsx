@@ -128,7 +128,7 @@ axios.get(apiUrl, { responseType: 'json', params: { notice_title : notice_title 
       <div className="notice-details">
         {selectedNotice && (
           <div>
-            <h2>{selectedNotice.title}</h2>
+            <h2>{selectedNotice.notice_title}</h2>
             <p>
             {selectedNotice.content.split('\n').map((paragraph, index) => (
                 <React.Fragment key={index}>

@@ -37,7 +37,7 @@ const WritingPage = ({ onAddCard, onCancel }) => {
           setShowSuccessMessage(true);
           setTimeout(() => {
             setShowSuccessMessage(false);
-            alert("소중한 게시물이 심어졌습니다")
+            alert("소중한 게시물이 심어졌습니다")           
             // 작성 완료 메시지가 표시된 후 화면을 새로고침
              window.location.reload();
           }, 10);
@@ -86,7 +86,7 @@ const Cone = ({value}) => {
   const handleCardClick = (cardId) =>{
     nav(`/cardpage/${cardId}`, {state: value})
     console.log('sdkfs;', value)
-    
+
   }
 
   const handleAddCard = (newCard) => {
@@ -97,7 +97,7 @@ const Cone = ({value}) => {
   };
 
 
- 
+
 
 
 //  useEffect(() => {
@@ -114,7 +114,7 @@ const Cone = ({value}) => {
 //       console.error('Error fetching data:', error);
 //     });
 // }, []);
-  const [currentPage, setCurrentPage]=useState(1);
+const [currentPage, setCurrentPage]=useState(1);
   const postsPerPage =10;
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
@@ -123,8 +123,8 @@ const Cone = ({value}) => {
   
 
   const totalPages = Math.ceil(value.length / postsPerPage);
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+const indexOfLastPost = currentPage * postsPerPage;
+const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = value.slice(indexOfFirstPost, indexOfLastPost);
  
  

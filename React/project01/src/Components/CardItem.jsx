@@ -3,41 +3,37 @@ import '../Css/Card.css'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-const CardItem = ({name, addr, num}) => {
+const CardItem = ({name, addr, num, value}) => {
 
-  console.log(num,name)
+  console.log('데이터:',value)
 
-  const nav = useNavigate();
+  const data = value ;
+
+  console.log('저장', data)
   const imgUrl = "../img/farmImg/"+num+".png"
 
-  
-  const [farms, setFarms] = useState([]);
-  useEffect(()=>{
-    const apiUrl = 'http://192.168.70.237:5022/detail2';
-    axios.get(apiUrl, { responseType: 'json', params: { farm_num : num }})
-      .then(response => {
-        setFarms(response.data)
-        console.log('test', response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-    },[])
+  const nav = useNavigate();
 
-    const sendData = ()=>{
-      nav(`/find/${num}`, {state: farms})
-    }
+  // const pick = value.filter((i)=> i.farm_num === num);
+
+  // console.log('필터:', pick)
+
+
+  const send = () =>{
+    nav(`/find/${num}` , {state : {data}} )
+  }
+
+
+    
   return (
-    <div className='searchcard' onClick={sendData}>
-
-
-      {/* <a href={`/find/${num}`} className='link'>  */}
+    <div className='searchcard' onClick={send}>
+      <a href={`/find/${num}`} className='link'> 
       <div className='imageArea'>
-
         <img src={imgUrl} alt={name}></img>
       </div>
         <h3 className='stitle'>🌱 {name}</h3>
         <p className='ssubtitle'>{addr}</p>
+      </a>
     </div>
   )
 }

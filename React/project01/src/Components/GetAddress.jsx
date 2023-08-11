@@ -33,8 +33,8 @@ const GetAddress = () => {
 
  
 
-  const [sido, setSido] = useState(['시/도 선택']);
-  const [sigungu, setSigungu] = useState(['시/군/구 선택']);
+  const [sido, setSido] = useState(['광주광역시']);
+  const [sigungu, setSigungu] = useState(['광산구']);
   const [sigungus, setSigungus] = useState(['광산구']);
 
   console.log('key:', sido, sigungu)
@@ -73,14 +73,14 @@ const GetAddress = () => {
       <select className='form-control' value={sido} onChange={changeSido}>
         <option>시/도 선택</option>
         {sidos.map(item=>(
-          <option value={item.name}>{item.name}</option>
+          <option key={item.name} value={item.name}>{item.name}</option>
         ))}
 
       </select>
       <select className='form-control' value={sigungu} onChange={changeSigungu}>
         <option>시/군/구 선택</option>
         {sigungus.map(item=>(
-          <option value={item.name}>{item.name}</option>
+          <option key={item.name} value={item.name}>{item.name}</option>
         ))}
 
       </select>

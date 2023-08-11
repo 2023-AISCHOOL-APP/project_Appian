@@ -14,6 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PageTitle from '../Components/PageTitle';
 import {RadioGroup, Radio} from '@mui/material/RadioGroup';
 import axios from 'axios';
+import DaumPost from '../Components/DaumPost';
 
 
 function Copyright(props) {
@@ -310,20 +311,23 @@ const [userIdError, setUserIdError] = useState(false);
                 />
               </Grid>
           
-              <Grid item xs={12}>
+              <Grid item xs={12} sx={{display: "flex"}}>
                 <TextField
                   color = "success"
                   size = "small"
                   required
                   fullWidth
                   id="address"
-                  label="거주지 주소 : 이거 API 찾아봐야함"
+                  // label="거주지 주소 : 이거 API 찾아봐야함"
+                  
+
+
                   autoComplete="address"
                   value={form.user_address}
-                  onChange={(e)=>setForm({...form, user_address : e.target.value})}
+                  //onChange={(e)=>setForm({...form, user_address : e.target.value})}
                 />
+                <DaumPost setForm = {setForm} form={form}></DaumPost>  
               </Grid>
-             
             </Grid>
             <Box sx={{ display: "flex", justifyContent: "center" }}>
             <Button color="primary"

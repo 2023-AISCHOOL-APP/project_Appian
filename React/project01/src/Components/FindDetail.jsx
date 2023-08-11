@@ -1,8 +1,124 @@
-import React from 'react'
+import React, {useState, useEffect } from 'react';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import MapStatic from './MapStatic';
+import '../Css/FarmDetail.css'
+import axios from 'axios';
+
+
 
 const FindDetail = () => {
+  const farms = useLocation().state.data
+  const { id } = useParams();
+  console.log('번호',id, '받은데이터',farms)
+
+
+  const loca = {lat : farms.lantitude, lng : farms.Longitude}
+  console.log(loca)
+  // const [farms, setFarms] = useState([]);
+  // useEffect(()=>{
+  //   const apiUrl = 'http://192.168.70.237:5022/detail2';
+  //   axios.get(apiUrl, { responseType: 'json', params: { farm_num : id }})
+  //     .then(response => {
+  //       setFarms(response.data)
+  //       console.log('test', response.data);
+  //     })
+  //     .catch(error => {
+  //       console.error('Error fetching data:', error);
+  //     });
+  // },[]);
+  
+ 
   return (
-    <div>FindDetail</div>
+    <div className='farmDetailAll'>
+      
+      <img src='/img/farmdetail/farmdetailimg1.jpg' className='farmdetail_img1'/>
+      <div className='Fdetail_title-container'>
+      <span className='farmdetail_Maintitle'>{farms.farm_title}</span>
+      </div>
+
+
+      <div className='borderAll'>
+          <div className='lental_border'>
+              <span className='lental_type'>{farms.lental_type}</span>
+          </div>
+          <div className='type_border'>
+              <span className='farm_type'>{farms.farm_type}</span>
+          </div>
+
+          <div className='calender'>
+
+          </div>  
+
+      <div className='address_border'>
+        <img src='/img/mapPin.png' className='address_mappin'/>
+      <span className='address'>텃밭 주소</span>
+      <span className='farm_address'>{farms.farm_address}</span>
+        
+      </div>
+
+      <div>
+        <div className='desc_hr2'/>
+        <span className='description'>
+        {farms.description}</span>
+      </div>
+
+    <div className='detail_all'>
+              <div>
+                <img src='/img/farmdetail/farmdetailimg1.jpg' className='farm_imgsmall'/>
+              </div>
+              <div className='use_id'>
+                <span>작성자 :</span><span> 홍길동</span>
+              </div>
+              <div className='detail_date'>
+                <span>등록일 :</span><span> 2023.08.08</span>
+              </div>
+
+              <div >
+                    <img src='/img/calendericon.png' className='calendericon'/>
+                      <span className='lental_title'>분양기간</span>
+                    <div className='lental_all'>
+                      <div className='lental_border1'>
+                            <span className='lental_startDate'>{farms.lental_startDate}</span>
+                        </div>
+                        <span className='lental_date'>~</span>
+                        <div className='lental_border2'>
+                            <span className='lental_endDate'>{farms.lental_endDate}</span>
+                      </div>
+                      </div>
+              </div>
+
+              <div className='areaAll'>
+                  <img src='/img/longitude.png' className='lental_areaicon'/>
+                    <span className='lental_areaTitle'>분양면적</span>
+                    <div className='area_border1'>
+                          <span className='lental_area'>{farms.lental_area}</span>
+                      </div>
+                      </div>
+              </div>
+
+              <div className='priceAll'>
+                <img src='/img/moneyicon.png' className='moneyicon'/>
+                <span className='price_title'>희망분양가</span>
+                <div className='price_border1'>
+                          <span className='price'>{farms.price}</span>
+                      </div>
+              </div>
+
+              <div className='calender_border'></div>
+              <div className='farmapply_border'>
+                <span className='farmapply_btn'>분양 신청하기</span>
+              </div>
+
+              <div className='Q_border'>
+                <span className='Q_btn'>문의 글 남기기</span>
+              </div>
+
+              <div className='call_border'>
+                <span className='call_btn'>문의 연락처</span>
+              </div>
+              <MapStatic className='farmmap' data={loca}/>
+            </div>
+            </div>
   )
 }
 

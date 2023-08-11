@@ -31,9 +31,7 @@ const GetAddress = () => {
     }
   ];
 
-  const [data, setData] = useState([]);
-
-
+ 
 
   const [sido, setSido] = useState(['시/도 선택']);
   const [sigungu, setSigungu] = useState(['시/군/구 선택']);
@@ -52,6 +50,7 @@ const GetAddress = () => {
     setSigungu(event.target.value);
   }
 
+  const [data, setData] = useState([]);
   useEffect(() => {
     // Flask 서버의 주소
     const apiUrl = 'http://192.168.70.237:5022/farm';
@@ -85,7 +84,7 @@ const GetAddress = () => {
         ))}
 
       </select>
-      {console.log( '확인 :',data[0])}
+
       <MapArea list={data}/>
       <Card list={data} />
     </div>

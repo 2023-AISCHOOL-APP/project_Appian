@@ -22,6 +22,7 @@ const MapArea = (data) => {
 					position={l.latlng} onClick={()=>setLevel(5)}
 					image={{
 						src: 'img/mapPin.png',
+            alt : 'marker',
 						size: { width: 100, height: 120 }
 					}}
 					title={l.title}

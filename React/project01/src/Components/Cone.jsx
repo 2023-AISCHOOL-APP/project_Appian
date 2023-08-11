@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import CardDetailsPage from './CardDetailsPage';
 import axios from 'axios';
-import { useLocation, useNavigate} from 'react-router-dom'
+import { useLocation, useNavigate, useParams} from 'react-router-dom'
 import { Dialog } from '@mui/material';
+import { AllContent } from '../Contexts/ContentContext';
 
 const WritingPage = ({ onAddCard, onCancel }) => {
   // const [user_id, setUser_id] = useState('');
@@ -73,17 +74,20 @@ const WritingPage = ({ onAddCard, onCancel }) => {
   );
 };
 
-const Cone = ({data}) => {
+const Cone = ({value}) => {
   const [isWriting, setIsWriting] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage]=useState(false);
   const [cards, setCards] = useState([]);
 
+  
+  const nav = useNavigate();
 
 
-  const handleCardClick = (cardId) => {
-    // handleCardClick 함수의 내용 추가
-    // 해당 카드 클릭 시 동작 정의
-  };
+  const handleCardClick = (cardId) =>{
+    nav(`/cardpage/${cardId}`, {state: value})
+    console.log('sdkfs;', value)
+    
+  }
 
   const handleAddCard = (newCard) => {
     newCard.id = cards.length + 1; // 새로운 카드의 ID 설정
@@ -93,7 +97,7 @@ const Cone = ({data}) => {
   };
 
 
-  console.log('sdkfs;',data)
+ 
 
 
 //  useEffect(() => {
@@ -110,7 +114,7 @@ const Cone = ({data}) => {
 //       console.error('Error fetching data:', error);
 //     });
 // }, []);
-const [currentPage, setCurrentPage]=useState(1);
+  const [currentPage, setCurrentPage]=useState(1);
   const postsPerPage =10;
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
@@ -118,10 +122,10 @@ const [currentPage, setCurrentPage]=useState(1);
   
   
 
-  const totalPages = Math.ceil(data.length / postsPerPage);
-const indexOfLastPost = currentPage * postsPerPage;
-const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
+  const totalPages = Math.ceil(value.length / postsPerPage);
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = value.slice(indexOfFirstPost, indexOfLastPost);
  
  
  
@@ -162,7 +166,7 @@ const indexOfFirstPost = indexOfLastPost - postsPerPage;
   
 
  
-  const title = data.map((d)=>d.content_title)
+  const title = value.map((d)=>d.content_title)
   console.log('title:',title)
   
   return (
@@ -185,7 +189,7 @@ const indexOfFirstPost = indexOfLastPost - postsPerPage;
             <tr className='c1_column'>
               <th>게시글번호</th>
               <th>제목</th>
-              <th>유저아이디</th>
+              <th>작성자</th>
               <th>작성일시</th>
             </tr>
 

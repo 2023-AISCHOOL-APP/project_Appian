@@ -39,6 +39,7 @@ const defaultTheme = createTheme({
 const Login = () => {
 
   const [form, setForm] = useState({ user_id: "", user_password: "" });
+  
   const [message, setMessage] = useState(''); //DB 응답 결과
 
   const navigate = useNavigate();

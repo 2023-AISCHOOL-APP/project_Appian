@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import { Routes, Route, NavLink } from 'react-router-dom';
+import { Routes, Route, NavLink} from 'react-router-dom';
 import FindGarden from './pages/FindGarden';
 import Community from './pages/Community';
 import Mypage from './pages/Mypage';
@@ -20,6 +20,7 @@ import './Header.css'
 
 import FindDetail from './Components/FindDetail';
 import Header from './Components/Header';
+import FarmDetail from './pages/FarmDetail';
 
 
 
@@ -68,7 +69,8 @@ function Main() {
           <Route path='/join' element={<Join />} />
           <Route path='/card' element={<Card />} />
           <Route path='/find' element={<FindGarden />} />
-          <Route path='/find/:id' element={<FindDetail />} />
+          <Route path='/find/farm' element={<FarmDetail />} />
+          <Route path='/find/farm:farmId' element={<FindDetail />} />
           <Route path='/out' element={<OutGarden />} />
           <Route path='/community' element={<Community />} />
           <Route path='/mypage' element={<Mypage />} />
@@ -79,8 +81,6 @@ function Main() {
           <Route path="/cardpage/:cardId" element={<CardDetailsPage value={savedCards}/>} />
           <Route path='/notice' elemenft={<Notice />} />
         </Routes>
-  
-
     </div>
   );
 }

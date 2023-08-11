@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import MapStatic from './MapStatic';
 import '../Css/FarmDetail.css'
@@ -8,12 +8,16 @@ import axios from 'axios';
 
 const FindDetail = () => {
   const farms = useLocation().state.data
+
+  
   const { id } = useParams();
   console.log('번호',id, '받은데이터',farms)
 
 
-  const loca = {lat : farms.lantitude, lng : farms.Longitude}
+  const loca = {lat : farms.lantitude, lng : farms.longitude}
   console.log(loca)
+
+  const appDate = {startDate : farms.startDate, endDate : farms.endDate} // 캘린더 표시 값
   // const [farms, setFarms] = useState([]);
   // useEffect(()=>{
   //   const apiUrl = 'http://192.168.70.237:5022/detail2';
@@ -27,10 +31,10 @@ const FindDetail = () => {
   //     });
   // },[]);
   
+
  
   return (
     <div className='farmDetailAll'>
-      
       <img src='/img/farmdetail/farmdetailimg1.jpg' className='farmdetail_img1'/>
       <div className='Fdetail_title-container'>
       <span className='farmdetail_Maintitle'>{farms.farm_title}</span>
@@ -46,7 +50,7 @@ const FindDetail = () => {
           </div>
 
           <div className='calender'>
-
+            
           </div>  
 
       <div className='address_border'>
@@ -67,10 +71,10 @@ const FindDetail = () => {
                 <img src='/img/farmdetail/farmdetailimg1.jpg' className='farm_imgsmall'/>
               </div>
               <div className='use_id'>
-                <span>작성자 :</span><span> 홍길동</span>
+                <span>작성자 :</span><span> {farms.user_nick}</span>
               </div>
               <div className='detail_date'>
-                <span>등록일 :</span><span> 2023.08.08</span>
+                <span>등록일 :</span><span> {farms.farm_date}</span>
               </div>
 
               <div >
@@ -100,7 +104,7 @@ const FindDetail = () => {
                 <img src='/img/moneyicon.png' className='moneyicon'/>
                 <span className='price_title'>희망분양가</span>
                 <div className='price_border1'>
-                          <span className='price'>{farms.price}</span>
+                          <span className='price'>{farms.farm_price}</span>
                       </div>
               </div>
 
@@ -108,15 +112,13 @@ const FindDetail = () => {
               <div className='farmapply_border'>
                 <span className='farmapply_btn'>분양 신청하기</span>
               </div>
-
-              <div className='Q_border'>
-                <span className='Q_btn'>문의 글 남기기</span>
-              </div>
-
               <div className='call_border'>
                 <span className='call_btn'>문의 연락처</span>
-              </div>
-              <MapStatic className='farmmap' data={loca}/>
+                <p>{farms.user_name}</p>
+                <p>전화 : {farms.user_phone}</p>
+                <p>이메일 : {farms.user_email}</p>
+                </div>
+            <MapStatic className='farmmap' data={loca}/>
             </div>
             </div>
   )

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,6 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PageTitle from '../Components/PageTitle';
 import {RadioGroup, Radio} from '@mui/material/RadioGroup';
 import axios from 'axios';
+import DaumPost from '../Components/DaumPost';
 
 
 function Copyright(props) {
@@ -51,16 +52,20 @@ export default function SignUp() {
   // 중복체크 => DB에 없는 정보 (False), DB에 있는 정보 (True)
   // 응답이 False인 경우에만 Join 가능
   
+  const nameInput =useRef();
 
-  const checkid = (e) =>{
-    let regExp = /^[A-Za-z0-9+]{6,}$/;
-    console.log('아이디 유효성 검사 :: ', regExp.test(e.target.value))
-    setForm({...form, user_id : e.target.value})
-    if (regExp.test(e.target.value)){
-      setCheck({...check, id: true})
-      console.log(check.id)
-    }
-  }
+
+  // const checkid = (e) =>{
+  //   let regExp = /^[A-Za-z0-9+]{6,}$/;
+    
+  //   console.log('아이디 유효성 검사 :: ', regExp.test(nameInput.value))
+    
+  //   setForm({...form, user_id : e.target.value})
+  //   console.log(form);
+  //   setCheck({...check, id: true})
+  //   console.log(check.id)
+    
+  // }
 
   //
   const checkPhone = (e) => {
@@ -88,11 +93,8 @@ export default function SignUp() {
     let regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
     // 형식에 맞는 경우 true 리턴
     console.log('이메일 유효성 검사 :: ', regExp.test(e.target.value))
-    if (regExp.test(e.target.value)){
-      setForm({...form, user_email : e.target.value})
-    }else{
-      alert('형식에 맞게 이메일을 작성해주세요.')
-    }
+    setForm({...form, user_email : e.target.value})
+
     
   }
 
@@ -115,7 +117,6 @@ export default function SignUp() {
   const idCheck = async () => {
     await axios.post(idCheckUrl, {user_id : form.user_id})
     .then((Response)=>{
-      
       setMessage(Response.data);
       console.log('DB에 있는 데이터인가?:(T/F)','id?', message)
       if (message === false){
@@ -165,9 +166,17 @@ export default function SignUp() {
 
   const sendUrl = 'http://192.168.70.237:5022/add_id';
   const infoSending = async () => {
+
+    console.log(form)
+
+
     await axios.post(sendUrl, {form})
     .then((Response)=>{
-      alert('🧑‍🌾팜팜의 회원이 되신걸 축하드립니다! ')      
+      
+      alert('🧑‍🌾팜팜의 회원이 되신걸 축하드립니다! ')   
+      sessionStorage.setItem('user_id', form.user_id)
+      sessionStorage.setItem('user_nick', form.user_nick)
+      sessionStorage.setItem('user_type', form.user_type)   
       navigate('/')
     })
     .catch((Error)=>{
@@ -175,26 +184,6 @@ export default function SignUp() {
     })
   };
 
-
-
-  // 에러 메세지 객체
-//   const errMsg = {
-//     id: { 
-//       invalid: "6자 이상의 영문과 숫자만 사용 가능합니다",
-//       success: "사용 가능한 아이디입니다",
-//       fail: "사용할 수 없는 아이디입니다"
-//     },
-//     pw: "8~20자의 영문, 숫자, 특수문자를 모두 포함한 비밀번호를 입력해주세요",
-//     nick : {
-//       success: "사용 가능한 닉네임입니다",
-//       fail: "사용할 수 없는 닉네임입니다"
-//     },
-//     email : {
-//       success : '사용 가능한 이메일 주소입니다',
-//       fail : '사용할 수 없는 이메일 주소입니다'
-//     },
-//     mobile: "‘-’ 제외한 11자리를 입력해주세요" 
-// }
 
   
 
@@ -227,10 +216,12 @@ export default function SignUp() {
                   label="아이디"
                   type="id"
                   id="user_id"
+                  ref={nameInput}
                   value={form.user_id}
                   helperText="ID : 6자 이상 (영문자와 숫자) "
                   autoFocus
-                  onChange={checkid}
+                  onChange={(e)=>{setForm({...form, user_id : e.target.value});
+                  console.log('uerid', form.user_id)}}
                 />
               </Grid>
               <Grid item xs={3}>
@@ -353,20 +344,20 @@ export default function SignUp() {
                 />
               </Grid>
           
-              <Grid item xs={12}>
+              <Grid item xs={12} sx={{display: "flex"}}>
                 <TextField
                   color = "success"
                   size = "small"
                   required
                   fullWidth
                   id="address"
-                  label="거주지 주소 : 이거 API 찾아봐야함"
+                  // label="거주지 주소 : 이거 API 찾아봐야함"
                   autoComplete="address"
                   value={form.user_address}
-                  onChange={(e)=>setForm({...form, user_address : e.target.value})}
+                  //onChange={(e)=>setForm({...form, user_address : e.target.value})}
                 />
+                <DaumPost setForm = {setForm} form={form}></DaumPost>  
               </Grid>
-             
             </Grid>
             <Box sx={{ display: "flex", justifyContent: "center" }}>
             <Button color="primary"

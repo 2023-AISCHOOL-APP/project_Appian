@@ -1119,63 +1119,168 @@ border-radius: 10px;
 .card-container1 {
 display: flex;
 flex-wrap: wrap;
-text-align: center;
   position: relative;
-  border: 2px solid lightgray;
-  width: 1200px ;
-  
-  margin-left: 320px;
-  margin-left: 320px;
+  margin-left: 260px;
+  position: relative;
+  top: 100px;
+ left: -20px;
+  border-radius: 15px;
+  z-index: 99;
+
+
+
+ 
+
 }
-.c2img{
+.flip{
+position: relative;
+top: -50px;
+transform: perspective(800px) rotateY(0deg); /* 추가 */
+
+}
+.upgrade{
+  font-family: 'SUIT-Bold';
+  position: relative;
+ 
+  top: -70px;
+  left: 210px;
+}
+
+.upgrade a{
+  text-decoration: none;
+  color: black;
+}
+.c2-card{
+  display: inline-block;
+  position: relative;
+  transform-origin: center center; /* 회전 변환의 중심을 가운데로 설정 */
+  
+  transition: .4s;
+  transform-style: preserve-3d;
+}
+
+.text-border{
+  border: 2px solid white;
+  width: auto;
+  height: 340px;
+  background-color: white;
+  border-radius: 10px;
+  position: relative;
+  top: 15px;
+}
+
+
+
+.backcard{
+  margin: -50px;
+ 
+  background-image: url('../public/img/backcard.png'); /* 이미지 경로를 URL 형식으로 지정 */
+  background-size: cover; /* 이미지를 카드에 맞게 조절 */
+  text-align: center;
+  
+  display: inline-block;
   width: 250px;
-  height: 150px;
+  height: 370px;
+  border-radius: 10px;
+  padding: 10px 20px;
+  position: relative;
+  left: 100px;
   border-radius: 0px;
   position: relative;
-  top: -60px;
+  top: 56px;
+  z-index: 99;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+
+.frontcard { 
+  position: relative;
+  top: -37px;
+  left: -60px;
+  width: 260px;
+  height: 390px;
+  border-radius: 0px;
+  z-index: 99;
+  transition: transform 0.4s;
+  
 }
 
 
 .ctwotitle {
   font-family: 'SUIT-ExtraBold';
   text-align: left;
-  margin-left: 320px;
+  margin-left: 440px;
   font-size: 30px;
   margin-top: 100px;
-}
-
-.card2-content{
-  margin: 20px;
-  text-align: center;
-  border: 2px solid black;
-  display: inline-block;
-  width: 250px;
-  height: 350px;
-  border-radius: 10px;
-  padding: 10px 20px;
   position: relative;
-  left: 95px;
+  left: -50px;
+  display: inline-block;
+
+  color: black;
+padding-bottom: 10px;
+  border-bottom: 3px solid  #FF9F56;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+.c2-card:hover  {
+  transform: perspective(800px) rotateY(180deg); /* 추가 */
+}
+.c2-card:hover .frontcard {
+  backface-visibility: hidden;
   
 }
-.card2-title{
+
+.card-actions{
+  font-family: 'SUIT-Regular';
+margin-left: 120px;
+position: absolute;
+top: 210px;
+ 
+
+}
+
+
+.card2_subtitle {
+  font-family: 'SUIT-SemiBold';
+  position: relative;
+  font-size: 12px;
+  top: 135px;
+  color: black;
+  z-index: 99;
+}
+.c2img{
+  width: 210px;
+  height: 130px;
+  border-radius: 0px;
+  position: relative;
+  top: -300px;
+
+}
+.card2-title {
   font-family: 'SUIT-Bold';
   font-size: 20px;
   position: relative;
-  top: 160px;
-}
-.card2-subtitle{
-  font-family: 'SUIT-regular';
-  font-size: 15px;
-  text-align: center;
-  position: relative;
-  top: 40px;
+  top: 150px;
+  z-index: 99;
 }
 
-.cthreetitle{
-  text-align: center;
-  background-color: skyblue
-  
+.card2-subtitle {
+  font-family: 'SUIT-Regular';
+  font-size: 15px;
+  position: absolute;
+  bottom: 0px;
+  left: 50%; /* 텍스트 중앙 정렬을 위해 수정 */
+  transform: translateX(-50%); /* 텍스트 중앙 정렬을 위해 추가 */
+  z-index: 99;
+  width: 80%; /* 텍스트의 가로 너비 조정 */
 }
+
+
+.cthreetitle {
+  text-align: center;
+  background-color: skyblue;
+}
+
 .ctextbox{
   text-align: center;
 }
@@ -1406,9 +1511,13 @@ font-size: 15px;
 }
 .card-actions {
   margin-top: 20px;
+ position: relative;
+ top: -20px;
+ left: 100px;
 }
 
 .card-actions a {
+  font-family: 'SUIT-Regular';
   color: #007bff;
   text-decoration: none;
 }
@@ -1875,10 +1984,76 @@ button {
 }
 
 
+/* 신청내역 */
+.mypage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  margin-left: 200px;
 
+}
+.mypage-title {
+  font-size: 24px;
+  margin-bottom: 60px;
+  border-bottom: solid rgb(243, 127, 243);
+  
+}
 
+.application-table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 1400px;
+  border: 1px solid #ccc;
+}
 
+.application-table th, .application-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
 
+.application-table th {
+  background-color: #a69cdf;
+}
+
+.application-table tbody tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+.application-table tbody tr:hover {
+  background-color: #e0e0e0;
+  
+}
+.aaa{
+  width:50px;
+  
+}
+.bbb{
+  width: 900px;
+}
+.ccc{
+ width: 200px;
+}
+.ddd {
+  background-color: white;
+  color: #FF9F56;
+  border: 1px solid #eb7a1d;
+  margin-left: 145px;
+  margin-top: 20px ;
+  font-size: medium;
+  width : 120px;
+}
+.mycard {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 50px; /* 카드의 너비를 조정해 원하는 크기로 설정하세요 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
 
 
 /* gunsik end */

@@ -121,7 +121,8 @@
  position: relative;
  text-align: center;
  display: inline-block;
- 
+ width: 720px;
+ word-break: break-all;
  font-family: 'SUIT-Regular';
  font-size: 20px;
  right: 320px;

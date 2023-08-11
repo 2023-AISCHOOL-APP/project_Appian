@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useRef, useContext } from 'react';
-import { Routes, Route, NavLink } from 'react-router-dom';
+import React, {useState, useEffect, useRef} from 'react';
+import { Routes, Route, NavLink} from 'react-router-dom';
 import FindGarden from './pages/FindGarden';
 import Community from './pages/Community';
 import Mypage from './pages/Mypage';
@@ -15,14 +15,15 @@ import Cthree from './Components/Cthree';
 import CardDetailsPage from './Components/CardDetailsPage';
 import Notice from './pages/Notice';
 import axios from 'axios';
+
 import './Header.css'
+
 import FindDetail from './Components/FindDetail';
 import Header from './Components/Header';
 
 
 
 function Main() {
-
 
   const [data, setData] = useState([]); //요기2
 
@@ -41,11 +42,10 @@ function Main() {
        console.error('Error fetching data:', error);
      });
  }, []);
+ 
+ 
 
-
-
-  // 게시판 데이터 자동으로 추가 생성하기
-  const savedCards = content;
+  const savedCards = data;
   const [isWriting, setIsWriting] = useState(false);
   const [cards, setCards] = useState(savedCards);
   const [cardCounter, setCardCounter] = useState(savedCards.length + 1);
@@ -56,6 +56,7 @@ function Main() {
     setCardCounter(cardCounter + 1);
     setIsWriting(false);
   };
+
 
   return (
 
@@ -84,4 +85,3 @@ function Main() {
 
 
 export default Main;
-

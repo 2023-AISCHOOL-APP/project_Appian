@@ -8,13 +8,22 @@
   margin-top: 180px;
   margin-left: 320px;
   margin-right: 320px;
+  width: 1250px;
   height: 1150px;
   background-color: white;
   border: 2px solid transparent; /* 테두리 (투명) */
   outline: 1px solid #41d2a6; /* 빛나는 아웃라인 색상 */
-  box-shadow: 0px 0px 2px  #05AC7B;; /* 블러 효과를 주는 그림자 */
+  box-shadow: 0px 0px 5px  #05AC7B;; /* 블러 효과를 주는 그림자 */
   border-radius: 15px;
   z-index: 3;
+}
+.leaves1{
+  z-index: 99;
+ width: 200px;
+ height: auto;
+ position: relative;
+ top: 893px;
+
 }
 
 .out_maintitle{
@@ -29,7 +38,7 @@
  
   padding: 15px 30px 20px 60px;
   position: relative;
-  top: -90px;
+  top: -355px;
   left: -250px;
   z-index: 1;
  

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import '../Css/OutGarden.css'
 import Calendar from '../Components/CalendarDatePick'
-import PageTitle from '../Components/PageTitle';
+import PageTitle from '../Components/PageTitle';import axios from 'axios';
 
 function OutGarden() {
   // 텃밭 등록 페이지를 위한 상태
@@ -19,18 +19,21 @@ function OutGarden() {
   const [recruitmentPeriod, setRecruitmentPeriod] = useState('');
   const [description, setDescription] = useState('');
 
+
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   // 텃밭 등록 페이지 이벤트 핸들러
   const handleGardenNameChange = (e) => {
+    console.log(e.target.value)
     setGardenName(e.target.value);
   };
-
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
     setGardenImages(files);
   };
-
   const handleAddressChange = (e) => {
+    console.log(e.target.value)
     setAddress(e.target.value);
+    
   };
 
   const handleAreaChange = (e) => {
@@ -64,23 +67,69 @@ function OutGarden() {
     setDescription(e.target.value);
   };
 
-  // 텃밭 등록 폼 제출 핸들러
-  const handleGardenSubmit = (e) => {
-    e.preventDefault();
-    console.log('텃밭 등록 시도:', {
-      gardenName,
-      gardenImages,
-      address,
-      area,
-      areanum,
-      type,
-      farmtype,
-      price,
-      rentalPeriod,
-      recruitmentPeriod,
-      description,
-    });
+  const formData = new FormData();
+
+  const handleGardenSubmit = () => {
+    console.log('신청하기 클릭');
+    formData.append('gardenName', gardenName);
+    formData.append('gardenImages', gardenImages);
+    formData.append('address', address);
+    formData.append('area', area);
+    formData.append('areanum', areanum);
+    formData.append('type', type);
+    formData.append('farmtype', farmtype);
+    formData.append('price', price);
+    formData.append('rentalPeriod', rentalPeriod);
+    formData.append('recruitmentPeriod', recruitmentPeriod);
+    formData.append('description', description);
+  
+    console.log('데이터 폼',formData)
+    // const apiUrl = 'http://192.168.70.237:5022/add_content';
+    // axios
+    //   .post(apiUrl, formData, {
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data'
+    //     }
+    //   })
+    //   .then(response => {
+    //     console.log('Response from server:', response.data);
+  
+    //     if (response.data.message === 'Content added successfully') {
+    //       setShowSuccessMessage(true);
+    //       setTimeout(() => {
+    //         setShowSuccessMessage(false);
+    //         alert('소중한 게시물이 심어졌습니다');
+    //         window.location.reload();
+    //       }, 10);
+    //     }
+    //   })
+    //   .catch(error => {
+    //     console.error('Error sending data:', error);
+    //   });
   };
+
+
+
+
+
+
+  // // 텃밭 등록 폼 제출 핸들러
+  // const handleGardenSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log('텃밭 등록 시도:', {
+  //     gardenName,
+  //     gardenImages,
+  //     address,
+  //     area,
+  //     areanum,
+  //     type,
+  //     farmtype,
+  //     price,
+  //     rentalPeriod,
+  //     recruitmentPeriod,
+  //     description,
+  //   });
+  // };
 
 
 
@@ -107,7 +156,7 @@ function OutGarden() {
 
     
               <div className="out-container">
-               
+               <img src='/img/leaves1.png' className='leaves1'/>
               {isLogin ? (
                 <div >
                   {/* ... (로그인 폼) ... */}
@@ -116,7 +165,7 @@ function OutGarden() {
                 
                 <div className='outgarden-container'>
                   <h1 className='out_maintitle'>텃밭등록하기</h1>
-                  <form onSubmit={handleGardenSubmit}>
+                  <form>
                     <div className="form1">
                       <label htmlFor="gardenName">텃밭 이름:</label>
                       <input
@@ -242,7 +291,7 @@ function OutGarden() {
                     {/* 캘린더 위젯 수정 */}
                     <div className="form8">
                       <label htmlFor="rentalPeriod">임대기간:</label>
-                      <Calendar />
+                      {/* <Calendar /> */}
                       {/* <input
                         type="text"
                         id="rentalPeriod"
@@ -255,7 +304,7 @@ function OutGarden() {
                     {/* 캘린더 위젯 수정 */}
                     <div className="form9">
                       <label htmlFor="recruitmentPeriod">분양신청 모집기간:</label>
-                      <Calendar/>
+                      {/* <Calendar/> */}
                       {/* <input
                         type="text"
                         id="recruitmentPeriod"
@@ -275,7 +324,7 @@ function OutGarden() {
                       />
                     </div>
 
-                    <button type="submit" className="submit-btn">
+                    <button  className="submit-btn" onClick={handleGardenSubmit}>
                       등록하기
                     </button>
                    

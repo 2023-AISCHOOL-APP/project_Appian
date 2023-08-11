@@ -91,6 +91,9 @@
  border-radius: 10px;
 }
 
+.form3 {
+  display: inline-flex;
+}
 
 .form3 label{
   font-family: 'SUIT-SemiBold';

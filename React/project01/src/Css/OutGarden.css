@@ -1,6 +1,7 @@
 .outgarden-container{
  position: relative;
- left: 270px;
+ left: 250px;
+ top: -280px;
 }
 
 
@@ -9,28 +10,49 @@
   margin-left: 320px;
   margin-right: 320px;
   width: 1250px;
-  height: 1150px;
-  background-color: white;
+  height: 1250px;
+  background-color: #F7F5E1;
   border: 2px solid transparent; /* 테두리 (투명) */
-  outline: 1px solid #41d2a6; /* 빛나는 아웃라인 색상 */
-  box-shadow: 0px 0px 5px  #05AC7B;; /* 블러 효과를 주는 그림자 */
+  /* outline: 4px solid #47A148; 빛나는 아웃라인 색상 */
+  box-shadow: 0px 0px 5px  #F7F5E1; /* 블러 효과를 주는 그림자 */
   border-radius: 15px;
-  z-index: 3;
+  z-index: 99;
 }
 .leaves1{
-  z-index: 99;
+  z-index: 1;
  width: 200px;
  height: auto;
  position: relative;
- top: 893px;
+ top: 993px;
+ left: 5px;
+ animation: motion 1.0s /* 속도 */
+ linear 0s   /* 처음부터 끝까지 일정 속도로 진행 */
+ infinite alternate; /* 무한 반복 */
 
 }
+
+@keyframes motion {
+	0% {top: 993px;} /* 처음 위치 */
+	100% {top: 997px; rotate: 5deg;} /* 마지막 위치 */
+  }
+
+.leave2{
+  z-index: 99;
+  width: 140px;
+  height: auto;
+  position: relative;
+  left: 915px;
+  top: 100px;
+  
+}
+
+
 
 .out_maintitle{
   font-family: 'SUIT-ExtraBold';
   font-size: 25px;
-  border:2px solid #05AC7B;
-  background-color: #05AC7B;
+  border:2px solid #47A148;
+  background-color: #47A148;
   color: white;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
@@ -38,8 +60,8 @@
  
   padding: 15px 30px 20px 60px;
   position: relative;
-  top: -355px;
-  left: -250px;
+  top: -75px;
+  left: -220px;
   z-index: 1;
  
 }
@@ -64,7 +86,7 @@
   position: relative;
   top: -21px;
   left: 200px;
-  border: 2px solid lightgray;
+  border: 2px solid #47A148;
   width: 300px;
  padding: 10px;
  border-radius: 10px;
@@ -91,9 +113,24 @@
  border-radius: 10px;
 }
 
+<<<<<<< HEAD
 .form3 {
   display: inline-flex;
 }
+=======
+#gardenImages input{
+  position: relative;
+  border-radius: 10px;
+  font-family: 'SUIT-SemiBold';
+  font-size: 15px;
+  top: -26px;
+  left: 630px;
+  padding: 8px 20px;
+  color: #47A148;
+  border: 2px solid #47A148;
+}
+
+>>>>>>> 8e92eeba1e6ff720d821098a94904290b3db953d
 
 .form3 label{
   font-family: 'SUIT-SemiBold';
@@ -107,11 +144,28 @@
 #out_address{
   position: relative;
   top: 13px;
-  left: 240px;
-  border: 2px solid lightgray;
+  left: 205px;
+  border: 2px solid #47A148;
   width: 300px;
  padding: 10px;
  border-radius: 10px;
+}
+.form3 button{
+  position: relative;
+  border-radius: 10px;
+  font-family: 'SUIT-SemiBold';
+  font-size: 15px;
+  top: -26px;
+  left: 630px;
+  padding: 8px 20px;
+  color: #47A148;
+  border: 2px solid #47A148;
+} 
+
+.form3 button:hover{
+  background-color: #47A148;
+  border: 2px solid #47A148;
+  color: white;
 }
 
 
@@ -120,7 +174,7 @@
   font-family: 'SUIT-SemiBold';
   font-size: 20px;
   position: relative;
-  top: 33px;
+  top: -7px;
   left: 100px;
   
 }
@@ -129,16 +183,16 @@
   font-family: 'SUIT-SemiBold';
   font-size: 20px;
   position: relative;
-  top: 35px;
+  top: -2px;
   left: 100px;
   
 }
 
 #out_areanum{
   position: relative;
-  top: 25px;
-  left: 240px;
-  border: 2px solid lightgray;
+  top: -7px;
+  left: 207px;
+  border: 2px solid #47A148;
   width: 300px;
  padding: 10px;
  border-radius: 10px;
@@ -160,9 +214,9 @@
 
 #out_area{
   position: relative;
-  top: 25px;
-  left: 240px;
-  border: 2px solid lightgray;
+  top: -10px;
+  left: 212px;
+  border: 2px solid #47A148;
   width: 300px;
  padding: 10px;
  border-radius: 10px;
@@ -172,7 +226,7 @@
   font-family: 'SUIT-SemiBold';
   font-size: 20px;
   position: relative;
-  top: 60px;
+  top: 31px;
   left: 100px;
   
 }
@@ -180,14 +234,14 @@
   font-family: 'SUIT-Regular';
   position: relative;
   
-  left: 350px;
-  top: 25px;
+  left: 358px;
+  top: -2px;
 }
 
 .type_button{
-  border: 2px solid lightgray;
+  border: 2px solid #47A148;
   width: 97px;
-  color: gray;
+  color: #47A148;
   border-radius: 10px;
   font-family: 'SUIT-Regular';
   font-size: 14px;
@@ -198,8 +252,8 @@
 }
 .type_button:hover{
   
-  background-color: #05AC7B;
-  border: 2px solid  #05AC7B;
+  background-color: #47A148;
+  border: 2px solid  #47A148;
   color: white;
 }
 
@@ -207,14 +261,14 @@
   font-family: 'SUIT-Regular';
   position: relative;
   
-  left: 350px;
-  top: 10px;
+  left: 358px;
+  top: -20px;
 }
 
 .type1_button{
-  border: 2px solid lightgray;
+  border: 2px solid #47A148;
   width: 97px;
-  color: gray;
+  color: #47A148;
   border-radius: 10px;
   font-family: 'SUIT-Regular';
   font-size: 14px;
@@ -225,20 +279,20 @@
 }
 .type1_button:hover{
   
-  background-color: #05AC7B;
-  border: 2px solid  #05AC7B;
+  background-color: #47A148;
+  border: 2px solid  #47A148;
   color: white;
 }
 .type1_button.selected {
   /* 선택된 버튼 스타일 */
-  background-color: #05AC7B;
-  border: 2px solid  #05AC7B;
+  background-color: #47A148;
+  border: 2px solid  #47A148;
   color: white;
 }
 .type_button.selected {
   /* 선택된 버튼 스타일 */
-  background-color: #05AC7B;
-  border: 2px solid  #05AC7B;
+  background-color: #47A148;
+  border: 2px solid  #47A148;
   color: white;
 }
 
@@ -246,11 +300,11 @@
   font-family: 'SUIT-Bold';
   font-size: 14px;
   text-align: center;
-  color: #05AC7B;
+  color: #47A148;
   position: relative;
   top: 25px;
   left: 280px;
-  border: 2px solid lightgray;
+  border: 2px solid #47A148;
   width: 300px;
  padding: 10px;
  border-radius: 10px;
@@ -261,7 +315,7 @@
   font-family: 'SUIT-SemiBold';
   font-size: 20px;
   position: relative;
-  top: 45px;
+  top: 15px;
   left: 100px;
   
 }
@@ -270,16 +324,16 @@
   font-family: 'SUIT-SemiBold';
   font-size: 20px;
   position: relative;
-  top: 30px;
+  top: -2px;
   left: 100px;
   
 }
 
 #out_price{
   position: relative;
-  top: 30px;
-  left: 190px;
-  border: 2px solid lightgray;
+  top: -8px;
+  left: 195px;
+  border: 2px solid #47A148;
   width: 300px;
  padding: 10px;
  border-radius: 10px;
@@ -289,39 +343,98 @@
   font-family: 'SUIT-SemiBold';
   font-size: 20px;
   position: relative;
-  top: 60px;
+  top: 25px;
   left: 100px;
   
-}
 
+}
+#lental_startDate{
+  position: relative;
+  top: 20px;
+  left: 155px;
+  border: 2px solid #47A148;
+  width: 300px;
+ padding: 10px;
+ border-radius: 10px;
+}
 
 
 .form9 label{
   font-family: 'SUIT-SemiBold';
   font-size: 20px;
   position: relative;
-  top: 60px;
+  top: 50px;
   left: 100px;
   
 }
+
+#lental_startDate1{
+  position: relative;
+  top: 50px;
+  left: 155px;
+  border: 2px solid #47A148;
+  width: 300px;
+ padding: 10px;
+ border-radius: 10px;
+}
+
+
 .form10 label{
   font-family: 'SUIT-SemiBold';
   font-size: 20px;
   position: relative;
-  top: -160px;
+  top: 80px;
   left: 100px;
   
 }
 
+#lental_startDate2{
+  position: relative;
+  top: 80px;
+  left: 155px;
+  border: 2px solid #47A148;
+  width: 300px;
+ padding: 10px;
+ border-radius: 10px;
+}
 
-#out_description{
+
+
+#lental_endDate{
+  position: relative;
+  top: 142px;
+  left: 155px;
+  border: 2px solid #47A148;
+  width: 300px;
+ padding: 10px;
+ border-radius: 10px;
+}
+.form11 label{
+  font-family: 'SUIT-SemiBold';
+  font-size: 20px;
+  position: relative;
+  top: 140px;
+  left: 100px;
+  
+}
+
+.form12 label{
+  font-family: 'SUIT-SemiBold';
+  font-size: 20px;
+  position: relative;
+  top: -30px;
+  left: 100px;
+  z-index: 99;
+  
+}
+#lental_endDate1{
   position: relative;
   top: 100px;
   width: 500px;
   height: 200px;
-  left: 10px;
-  top: ;
-  border: 2px solid lightgray;
+  left: 210px;
+  top: 175px;
+  border: 2px solid #47A148;
   
  padding: 10px;
  border-radius: 10px;
@@ -356,7 +469,7 @@
   justify-content: space-between;
   width: 20%; /* 버튼의 너비 설정 */
   margin: 5px auto; /* 중앙 정렬 및 상하간격 설정 */
-  background-color:  #05AC7B ; /* 진한 녹색 배경 */
+  background-color:  #47A148 ; /* 진한 녹색 배경 */
   color: #ffffff; /* 텍스트 색상을 하얀색으로 */
   border: none; /* 테두리 제거 */
   padding: 10px; /* 패딩 추가 */
@@ -364,7 +477,7 @@
   font-size: 16px; /* 글자 크기 설정 */
   text-align: center; /* 텍스트 중앙 정렬 */
   position: relative;
-  top: 150px;
+  top: 220px;
   margin: 10px;
   left: 230px;
 }

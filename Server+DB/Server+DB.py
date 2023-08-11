@@ -252,7 +252,6 @@ def notice():
 @app.route('/add_farm', methods=['POST'])
 def add_farm():
     print('# ==================== 텃밭 추가 ==================== #')
-
     UPLOAD_FOLDER = './farm_img'
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -262,29 +261,41 @@ def add_farm():
         file.save(filepath)
         return filename
     
-    user_id = request.form.get('user_id')
-    content_title = request.form.get('content_title')
-    contents = request.form.get('contents')
-    image = request.files['content_img']
+    farm_title = request.form.get('farm_title')
+    farm_type = request.form.get('farm_type')
+    farm_address = request.form.get('farm_address')
+    farm_price = request.form.get('farm_price')
+    lantitude = request.form.get('lantitude')
+    longitude = request.form.get('longitude')
+    user_id	= request.form.get('user_id')
+    lental_area	= request.form.get('lental_area')
+    farm_sector	= request.form.get('farm_sector')
+    lental_type	= request.form.get('lental_type')
+    startDate	= request.form.get('startDate')
+    endDate	= request.form.get('endDate')
+    lental_startDate = request.form.get('lental_startDate')
+    lental_endDate = request.form.get('lental_endDate')
+    description = request.form.get('description')
+    image = request.form.get('farm_img')
 
     if image:
         conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
         curs = conn.cursor()
 
         sql = (
-            f"INSERT INTO farm (farm_num, user_id, farm_type, contents, farm_title, farm_sector, farm_address, lental_area) "
-            f"VALUES (farm_seq.NEXTVAL, '{content_title}', '{user_id}', '{contents}', NULL, '{today}')"
+            f"INSERT INTO content (farm_num, farm_title, farm_type, farm_address, farm_price, lantitude, longitude, user_id, lental_area, farm_sector, lental_type, startDate, endDate, lental_startDate, lental_endDate, description, farm_img, farm_day)"
+            f"VALUES (farm_seq.NEXTVAL, '{farm_title}', '{farm_type}', '{farm_address}', '{farm_price}', '{lantitude}', '{longitude}', '{user_id}', '{lental_area}', '{farm_sector}', '{lental_type}', '{startDate}', '{endDate}', '{lental_startDate}', '{lental_endDate}', '{description}', NULL, '{today}')"
         )
         curs.execute(sql)
         conn.commit()
 
-        curs.execute("SELECT content_seq.currval FROM DUAL")
-        content_num = curs.fetchone()[0]
+        curs.execute("SELECT farm_seq.currval FROM DUAL")
+        farm_num = curs.fetchone()[0]
 
-        saved_filename = save_image(image, content_num)
+        saved_filename = save_image(image, farm_num)
 
         update_sql = (
-            f"UPDATE content SET content_img = '{saved_filename}' WHERE content_num = {content_num}"
+            f"UPDATE farm SET farm_img = '{saved_filename}' WHERE farm_num = {farm_num}"
         )
         curs.execute(update_sql)
         print(update_sql)
@@ -293,7 +304,7 @@ def add_farm():
         curs.close()
         conn.close()
 
-        response = {'message': 'Content added successfully'}
+        response = {'message': 'farm added successfully'}
         return jsonify(response), 200
     else:
         response = {'error': 'Image not found'}
@@ -305,38 +316,23 @@ def add_farm():
 @as_json
 def farm():
     print('# ==================== 텃밭구하기 ==================== #')
-    # 클라이언트로부터 전송된 GET 파라미터 받기
     sido = request.args.get('sido', 'Unknown')
     sigungu = request.args.get('sigungu', 'Unknown')
     print('받은데이터: ', sido, sigungu)
 
-
-    # 1. Connection 생성
     conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
-
-    # 2. Cursor 생성
     curs = conn.cursor()
 
-    # 3. SQL 전송
-    # sql = "insert into member_cm values ('im', '40', '010-5678-1234')"
-    # conn.commit()
-
-    # curs.close()
-    # conn.close()
-
-
-    # 4. SQL 수신
     if sido == 'Unknown' or sigungu == 'Unknown':
-        sql = "select * from farm where sidos like '%광주광역시%' and sigungus like '%광산구%'"
+        sql = "select farm_num, farm_title, farm_type, farm_address, farm_price, lantitude, longitude, farm.user_id, lental_area, farm_sector, lental_type, startDate, endDate, lental_startDate, lental_endDate, description, farm_img, farm_day, user_name, user_nick, user_email, user_phone from farm INNER JOIN member ON farm.user_id = member.user_id where farm_address like '%광주광역시%' and farm_address like '%광산구%'"
+        
     else:
-        sql = f"select * from farm where sidos like '%{sido}%' and sigungus like '%{sigungu}%'"
-
+        sql = f"select farm_num, farm_title, farm_type, farm_address, farm_price, lantitude, longitude, farm.user_id, lental_area, farm_sector, lental_type, startDate, endDate, lental_startDate, lental_endDate, description, farm_img, farm_day, user_name, user_nick, user_email, user_phone from farm INNER JOIN member ON farm.user_id = member.user_id where farm_address like '%{sido}%' and farm_address like '%{sigungu}%'"
+    print(sql)
     curs.execute(sql)
     res = curs.fetchall()
-    print('sql응답', res)
+    print('db에서 나온 데이터', res)
 
-
-    # 5. 통로 닫기
     curs.close()
     conn.close()
 
@@ -344,14 +340,32 @@ def farm():
     resList = []
 
     for a in res:
-        resList.append({"farm_num":a[0], "use_id":a[1], "farm_type":a[2], "farm_title": a[3], "farm_sector":a[4], "sidos":a[5], "sigungus":a[6], "farm_address":a[7], "lental_area":a[8], "price":a[9], "lantitude":a[10], "longitude":a[11], "lental_type":a[12], "app_startDate":a[13], "app_endDate":a[14], "lental_startDate":a[15], "lental_endDate":a[16], "description":a[17]})
-
-    # 받은 데이터를 가공하여 응답
-    # response = resList
+        resList.append({"farm_num":a[0], 
+                        "farm_title":a[1], 
+                        "farm_type":a[2], 
+                        "farm_address": a[3], 
+                        "farm_price":a[4], 
+                        "lantitude":a[5], 
+                        "longitude":a[6], 
+                        "user_id":a[7], 
+                        "lental_area":a[8], 
+                        "farm_sector":a[9], 
+                        "lental_type":a[10], 
+                        "startDate":a[11], 
+                        "endDate":a[12], 
+                        "lental_startDate":a[13], 
+                        "lental_endDate":a[14],
+                        "description":a[15],
+                        "farm_img":a[16],
+                        "farm_day":a[17],
+                        "user_name":a[18],
+                        "user_nick":a[19],
+                        "user_email":a[20],
+                        "user_phone":a[21]
+                        })
+    print(resList)
     return resList
-    # print('응답데이터', response)
-    # return json.dumps(response, ensure_ascii=False)
-    # return jsonify(response)
+
 
 # ==================== 자랑하기 글 추가 ==================== #
 @app.route('/add_content', methods=['POST'])
@@ -362,7 +376,7 @@ def add_content():
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
     def save_image(file, content_num):
-        filename = f"{content_num}_{file.filename}"
+        filename = f"{content_num}_{file.filename}"  # 수정: content_num만 사용하도록 변경
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(filepath)
         return filename
@@ -443,7 +457,7 @@ def content_comment():
     curs = conn.cursor()
     
     if content_comment == "":
-        sql2 = f"select * from content_comment where content_num = '{content_num}' ORDER BY content_num DESC"
+        sql2 = f"select * from content_comment where content_num = '{content_num}' ORDER BY content_comment_num DESC"
         curs.execute(sql2)
         res = curs.fetchall()
         curs.close()
@@ -483,32 +497,34 @@ def content_comment():
         return resList
     
 
-# ==================== 농장 상세페이지 ==================== #
-@app.route('/detail', methods=['GET'])
-@as_json
-def detail():
-    print('# ==================== 농장 상세페이지 ==================== #')
-    # 클라이언트로부터 전송된 GET 파라미터 받기
- 
-    conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
+# # ==================== 농장 상세페이지 ==================== #
+# @app.route('/detail', methods=['GET'])
+# @as_json
+# def detail():
+#     print('# ==================== 농장 상세페이지 ==================== #')
+#     farm_num = request.args.get('farm_num', 'Unknown')
+#     print('받은데이터', farm_num)
 
-    curs = conn.cursor()
 
-    sql = "select * from farm"
-  
-    curs.execute(sql)
-    res = curs.fetchall()
-    print('sql응답', res)
+#     conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
 
-    curs.close()
-    conn.close()
+#     curs = conn.cursor()
 
-    resList = []
+#     sql = f"SELECT farm_num, farm.user_id, farm_type, farm_title, farm_address, lental_area, farm_price, lantitude, Longitude, lental_type, startDate, endDate, lental_startDate, lental_endDate, description, user_name, user_nick, user_phone, user_email FROM farm INNER JOIN member ON farm.user_id = member.user_id where farm_num = '{farm_num}'"
+            
+#     curs.execute(sql)
+#     res = curs.fetchall()
+#     print('sql응답', res)
 
-    for a in res:
-        resList.append({"farm_num":a[0], "use_id":a[1], "farm_type":a[2], "farm_title": a[3], "farm_sector":a[4], "sidos":a[5], "sigungus":a[6], "farm_address":a[7], "lental_area":a[8], "price":a[9], "lantitude":a[10], "longitude":a[11], "lental_type":a[12], "app_startDate":a[13], "app_endDate":a[14], "lental_startDate":a[15], "lental_endDate":a[16], "description":a[17]})
+#     curs.close()
+#     conn.close()
 
-    return resList
+#     resList = []
+
+#     for a in res:
+#         resList.append({"farm_num":a[0], "farm.user_id":a[1], "farm_type":a[2], "farm_title": a[3], "farm_address":a[4], "lental_area":a[5], "farm_price":a[6], "lantitude":a[7], "Longitude":a[8], "lental_type":a[9], "startDate":a[10], "endDate":a[11], "lental_startDate":a[12], "lental_endDate":a[13], "description":a[14], "user_name":a[15], "user_nick":a[16], "user_phone":a[17], "user_email":a[18]})
+
+#     return resList
 
 
 # ==================== 지혜님 테스트 ==================== #
@@ -524,8 +540,8 @@ def detail2():
 
     curs = conn.cursor()
 
-    sql = f"select * from farm where farm_num = '{farm_num}'"
-    
+    sql = f"SELECT farm_num, farm.user_id, farm_type, farm_title, farm_address, lental_area, farm_price, lantitude, Longitude, lental_type, startDate, endDate, lental_startDate, lental_endDate, description, user_name, user_nick, user_phone, user_email FROM farm INNER JOIN member ON farm.user_id = member.user_id where farm_num = '{farm_num}'"
+            
     curs.execute(sql)
     res = curs.fetchall()
     print('sql응답', res)
@@ -536,7 +552,7 @@ def detail2():
     resList = []
 
     for a in res:
-        resList.append({"farm_num":a[0], "use_id":a[1], "farm_type":a[2], "farm_title": a[3], "farm_sector":a[4], "sidos":a[5], "sigungus":a[6], "farm_address":a[7], "lental_area":a[8], "price":a[9], "lantitude":a[10], "longitude":a[11], "lental_type":a[12], "app_startDate":a[13], "app_endDate":a[14], "lental_startDate":a[15], "lental_endDate":a[16], "description":a[17]})
+        resList.append({"farm_num":a[0], "farm.user_id":a[1], "farm_type":a[2], "farm_title": a[3], "farm_address":a[4], "lental_area":a[5], "farm_price":a[6], "lantitude":a[7], "Longitude":a[8], "lental_type":a[9], "startDate":a[10], "endDate":a[11], "lental_startDate":a[12], "lental_endDate":a[13], "description":a[14], "user_name":a[15], "user_nick":a[16], "user_phone":a[17], "user_email":a[18]})
 
     return resList
 
@@ -545,37 +561,21 @@ def detail2():
 @as_json
 def delete():
     print('# ==================== 삭제 페이지 ==================== #')
-    notice_num = request.args.get('notice_num', 'Unknown')
     content_num = request.args.get('content_num', 'Unknown')
     content_comment_num = request.args.get('content_comment_num', 'Unknown')
-    print('받은데이터', notice_num, content_num, content_comment_num)
+    print('받은데이터', content_num, content_comment_num)
 
     conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
     curs = conn.cursor()
-    if notice_num != 'Unknown':
-        print('공지 삭제')
-        sql = f"delete from notice where notice_num = {notice_num}"
-        curs.execute(sql)
-        print('sql문',sql)
-        sql2 = "select * from notice"
-        curs.execute(sql2)
-        res = curs.fetchall()
-        curs.close()
-        conn.close()
-        resList = []
-        for a in res:
-            resList.append({"notice_num":a[0],
-                            "notice_title":a[1], 
-                            "notice_contents":a[2],
-                            "notice_day":a[3]
-                            })
-        print('보낸데이터', resList)
-        return resList
-    
-    elif content_num != 'Unknown':
+    if content_num != 'Unknown':
         print('자랑하기 글 삭제')
-        sql = f"delete from content where content_num = {content_num}"
+        sql = f"delete from content_comment where content_num = '{content_num}'"
         curs.execute(sql)
+        conn.commit()
+        print('sql문',sql)
+        sql = f"delete from content where content_num = '{content_num}'"
+        curs.execute(sql)
+        conn.commit()
         print('sql문',sql)
         sql2 = "select * from content"
         curs.execute(sql2)

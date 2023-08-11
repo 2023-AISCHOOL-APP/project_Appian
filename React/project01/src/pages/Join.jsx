@@ -183,7 +183,6 @@ export default function SignUp() {
     // })
   };
 
- const [userId, setUserId] = useState("")
 
   
 

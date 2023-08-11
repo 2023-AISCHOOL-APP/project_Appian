@@ -96,11 +96,6 @@ const Header = () => {
             </NavLink>
             {activeMenu === 'community' && (
               <div className='navbarSubMenu3'>
-                <NavLink to='/notice' className='navbarSubMenuLink'>
-                  공지사항
-                </NavLink>
-                <br/>
-                <br/>
                 <NavLink to='/community' className='navbarSubMenuLink'>
                   정보게시판
                 </NavLink>
@@ -120,11 +115,6 @@ const Header = () => {
             </NavLink>
             {activeMenu === 'mypage' && (
               <div className='navbarSubMenu4'>
-                <NavLink to='/find/1' className='navbarSubMenuLink'>
-                  농장상세페이지
-                </NavLink>
-                <br/>
-                <br/>
                 <NavLink to='/mypage' className='navbarSubMenuLink'>
                   문의 내역
                 </NavLink>

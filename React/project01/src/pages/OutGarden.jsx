@@ -171,7 +171,7 @@ function OutGarden() {
                         placeholder='분양할 텃밭의 개수를 입력하세요.'
                         id="out_areanum"
                         value={areanum}
-                        onChange={handleAreaChange}
+                        onChange={handleAreaNumChange}
                         required
                       />
                     </div>
@@ -242,7 +242,7 @@ function OutGarden() {
                     {/* 캘린더 위젯 수정 */}
                     <div className="form8">
                       <label htmlFor="rentalPeriod">임대기간:</label>
-                      <Calendar className='calender_input'/>
+                      <Calendar />
                       {/* <input
                         type="text"
                         id="rentalPeriod"

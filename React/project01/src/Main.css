@@ -1116,13 +1116,61 @@ border-radius: 10px;
   color: #3a3a3a;
   text-decoration: none;
 }
+.card-container1 {
+display: flex;
+flex-wrap: wrap;
+text-align: center;
+  position: relative;
+  border: 2px solid lightgray;
+  width: 1200px ;
+  
+  margin-left: 320px;
+  margin-left: 320px;
+}
+.c2img{
+  width: 250px;
+  height: 150px;
+  border-radius: 0px;
+  position: relative;
+  top: -60px;
+}
 
 
 .ctwotitle {
-  text-align: center;
-  font-size: 24px;
-  margin-top: 20px;
+  font-family: 'SUIT-ExtraBold';
+  text-align: left;
+  margin-left: 320px;
+  font-size: 30px;
+  margin-top: 100px;
 }
+
+.card2-content{
+  margin: 20px;
+  text-align: center;
+  border: 2px solid black;
+  display: inline-block;
+  width: 250px;
+  height: 350px;
+  border-radius: 10px;
+  padding: 10px 20px;
+  position: relative;
+  left: 95px;
+  
+}
+.card2-title{
+  font-family: 'SUIT-Bold';
+  font-size: 20px;
+  position: relative;
+  top: 160px;
+}
+.card2-subtitle{
+  font-family: 'SUIT-regular';
+  font-size: 15px;
+  text-align: center;
+  position: relative;
+  top: 40px;
+}
+
 .cthreetitle{
   text-align: center;
   background-color: skyblue

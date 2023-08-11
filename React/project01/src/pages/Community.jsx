@@ -1,9 +1,12 @@
 // Community.js
-import React from 'react';
-import { Link} from 'react-router-dom';
+import React, { useContext, useState,useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PageTitle from '../Components/PageTitle';
 import Communitybtn from './Communitybtn';
+import { AllContent } from '../Contexts/ContentContext';
+import axios
 
+from 'axios';
 function Community() {
 
 
@@ -12,7 +15,25 @@ function Community() {
                          , "옥수수 심고 딱 3가지만 해주세요" , "감자심는시기 감자심는방법"]
   const Youtuber =["텃밭연구소" ,"솔바위 농원"
                 , "숨비재제주농부" , "진미농원TV"]
-                         
+
+  const [content, setContent] = useState([]);
+  useEffect(()=>{
+    const apiUrl = 'http://192.168.70.237:5022/content';
+    axios.get(apiUrl, { responseType: 'json'})
+      .then(response => {
+        setContent(response.data)
+        console.log('db로부터받음', response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  // const sendData = ()=>{
+  //   nav(`/find/${num}`, {state: farms})
+  // }
+
+            
   return (
 
     <div>

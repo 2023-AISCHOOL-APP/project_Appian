@@ -1,29 +1,29 @@
-import { margin } from '@mui/system';
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Map, MapMarker, Roadview } from 'react-kakao-maps-sdk';
-
+import { AllFarm } from '../Contexts/FarmContext';
+import { useParams } from 'react-router-dom';
 
 
 // 개별 농장의 정보 
-const MapStatic = () => {
+const MapStatic = ({data}) => {
 
   // 수정내역
   // 1) 로드뷰 위경도
   // 2) 맵 위경도 
 
+  const location = data;
+  console.log(location)
+  
+  
   const [isError, setIsError] = useState(false)
   const [center, setCenter] = useState({
-    lat: 35.13253602,
-    lng: 126.6866741
+    location
   })
 
   return (
     <div style={{ display: "flex" ,marginLeft:'320px' , marginRight:'320px' ,marginTop:'-90px'}}>
       <Map // 로드뷰를 표시할 Container // 농장 정보 수정 필요!!
-        center={{
-          lat: 35.13253602,
-          lng: 126.6866741
-        }}
+        center={location}
         style={{
           // 지도의 크기
           width: isError ? "100%" : "50%",
@@ -41,7 +41,7 @@ const MapStatic = () => {
         }}
       >
         <MapMarker
-          position={center}
+          position={location}
           draggable={true}
           onDragEnd={(marker) => {
             setCenter({
@@ -60,7 +60,7 @@ const MapStatic = () => {
         />
       </Map>
       <Roadview // 로드뷰를 표시할 Container
-        position={{ ...center, radius: 50 }}
+        position={{ ...location, radius: 50 }}
         style={{
           // 지도의 크기
           width: isError ? "0" : "50%",

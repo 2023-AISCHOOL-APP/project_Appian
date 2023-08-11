@@ -3,22 +3,23 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 
 
-const CardDetailsPage = ({ cards }) => {
-  console.log('detail:',cards)
+const CardDetailsPage = ({ value }) => {
+  console.log('detail:',value)
 
-  const data = cards;
+  const data = value;
 
   // const cardDetail = data.filter()
   const { cardId } = useParams();
   const navigate = useNavigate();
   // const selectedCard = cards.find((card) => card.id === parseInt(cardId));
-  console.log('check',cardId);
+  console.log('check해보자',cardId);
   //  console.log('sd:'selectedCard)
   // if (!selectedCard) {
   //   return <div> </div>;
   // }
 
-  const newContent = data.filter((c)=>c.content_num === Number(cardId));
+
+  const newContent = value.filter((c)=>c.content_num === Number(cardId));
   console.log('글:',newContent[0].content_title)
    const handleGoBackToList = () => {
      navigate('/cone');

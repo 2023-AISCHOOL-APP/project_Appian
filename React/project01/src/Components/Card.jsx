@@ -18,11 +18,9 @@ const Card = (data) => {
   return (
     <div>
       <h2 id='ct'>분양 중인 텃밭 🥕</h2>
-
-    <div className='cardContainer'>   
-    
-      {cards}
-    </div>
+      <div className='cardContainer'>   
+        {cards}
+      </div>
     </div>
   )
 }

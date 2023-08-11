@@ -6,12 +6,14 @@ const Ctwo = () => {
       id: 1,
       title: '예초기 사용법',
       content: '텃밭의 잡초를 제거하기 위해 예초기를 사용해보자!',
+      imgUrl:'/img/yecho.jpg',
       videoUrl: 'https://www.youtube.com/watch?v=sSLj1fIehJ0',
     },
     {
       id: 2,
       title: '비료 사용 시기',
-      content: '비료는 식물이 성장하는 봄에 주로 사용하는 것이 좋습니다. 하지만 과다한 비료 사용은 주의해야 합니다.',
+      content: '비료는 식물이 성장하는 봄에 주로 사용하는 것이 좋습니다.하지만 과다한 비료 사용은 주의해야 합니다.',
+      imgUrl:'/img/biryo.png',
       videoUrl: 'https://www.youtube.com/watch?v=8qhOWAGENMo',
     },
     {
@@ -65,16 +67,23 @@ const Ctwo = () => {
   ]);
 
   return (
-    <div style={{backgroundImage:`url('/img/ffull_1280.jpg')`, backgroundSize: 'cover', minHeight: '100vh', opacity:'0.9' }}>
-      <h1 className='ctwotitle'>농사 정보</h1>
-      <div className='farming-tips'>
+
+  //  카드 뒤집기 효과  https://gurtn.tistory.com/157
+    <div >
+       <div className='infopage'>
+    <span className='infotitle'>농사 정보</span>
+    <img src='/img/titlebg2.png' className='infotitle_bg'/>
+    </div>
+      <h1 className='ctwotitle'>팜팜 농사소식</h1>
+      <div >
         
-        <div className='card-container'>
+        <div className='card-container1'>
           {farmingTips.map((tip, index) => (
-            <div className={`card card-${index + 1}`} key={tip.id}>
-              <div className='card-content'>
-                <h3>{tip.title}</h3>
-                <p>{tip.content}</p>
+            <div key={tip.id}>
+              <div className='card2-content'>
+                <h3 className='card2-title'>{tip.title}</h3>
+                <img src={tip.imgUrl} className='c2img' alt={`이미지 ${index + 1}`} />
+                <p className='card2-subtitle'>{tip.content}</p>
               </div>
               <div className='card-actions'>
                 <a href={tip.videoUrl} target='_blank' rel='noopener noreferrer'>
@@ -83,8 +92,9 @@ const Ctwo = () => {
               </div>
             </div>
           ))}
-        </div>
+        
       </div>
+    </div>
     </div>
   );
 };

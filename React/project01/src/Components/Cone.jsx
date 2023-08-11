@@ -16,11 +16,11 @@ const WritingPage = ({ onAddCard, onCancel }) => {
   const handleImageChange = (event) => {
     setImageFile(event.target.files[0]);
   };
-
+  const user_nick = sessionStorage.getItem('user_nick')
   const handleSubmit = () => {
     console.log('보내기클릭');
     const formData = new FormData();
-    // formData.append('user_id', user_id);
+    formData.append('user_nick', user_nick);
     formData.append('content_title', title);
     formData.append('contents', content);
     formData.append('content_img', imageFile);
@@ -50,23 +50,23 @@ const WritingPage = ({ onAddCard, onCancel }) => {
 
   return (
     <div className='writing-page'>
-      <span className='writing_title'>내 텃밭 자랑하기</span>
+      <h1  className='writing_title'>♬ 내 텃밭 자랑하기</h1>
       <input
+        className='writetitle'
         type="text"
-        placeholder="제목을 입력해주세요."
+        placeholder="제목을 작성해주세요."
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className='writetitle'
       />
       <textarea
-      className='write_textarea'
-        rows="10"
-        placeholder="내용을 입력해주세요."
+       className='write_textarea'
+        rows="5"
+        placeholder="내용을 작성해주세요."
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
       
-      <input type="file" onChange={handleImageChange} className='photo' />
+      <input type="file" onChange={handleImageChange} className='photo'/>
 
       <button onClick={handleSubmit} className='writego'>작성하기</button>
       <button onClick={onCancel} className='writedel'>취소</button>
@@ -136,14 +136,14 @@ const Cone = ({value}) => {
   const newlist = currentPosts.map((d)=>{
     return (<tr key={d.content_num} className='card' onClick={() => handleCardClick(d.content_num)}>
     <td className='content_num' style={{textAlign:'center'}}>{d.content_num}</td>
-    <td className='writetd' style={{ textAlign: 'left', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
+    <td style={{ textAlign: 'left', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',color:'pink' }}>
     <Link  to={`/cardpage/${d.content_num}`}>{d.content_title}</Link></td>
-    <td>{d.user_id}</td>
+    <td>{d.user_nick}</td>
     <td>{d.content_day}</td>
   </tr>)}   
   )
+ 
   
-
   
 
   const paginationButtons = (

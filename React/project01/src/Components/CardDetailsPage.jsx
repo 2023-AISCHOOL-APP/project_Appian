@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 
 
 const CardDetailsPage = ({ value }) => {
@@ -19,7 +19,15 @@ const CardDetailsPage = ({ value }) => {
   // }
 
 
-  const newContent = value.filter((c)=>c.content_num === Number(cardId));
+
+
+  // 사용자 정보 가져오기
+  const userNick = sessionStorage.getItem('user_nick')
+  const userId = sessionStorage.getItem('user_id')
+
+
+  const newContent = data.filter((c)=>c.content_num === Number(cardId));
+
   console.log('글:',newContent[0].content_title)
    const handleGoBackToList = () => {
      navigate('/cone');
@@ -30,42 +38,101 @@ const CardDetailsPage = ({ value }) => {
 
    const handleAddComment = () => {
     if (newComment.trim() !== '') {
-      setComments([...comments, newComment]); // 새 댓글을 댓글 목록에 추가
-      setNewComment(''); // 새 댓글 내용 초기화
+      // setComments([...comments, newComment]); // 새 댓글을 댓글 목록에 추가
+      // setNewComment(''); // 새 댓글 내용 초기화
+
+      // 서버에 데이터 보내기 : 
+      const apiUrl = 'http://192.168.70.237:5022/content_comment';
+      axios.get(apiUrl, { responseType: 'json', params: { user_nick : userNick , content_num : newContent[0].content_num, content_comment : newComment } })
+      .then(response => {
+        console.log('댓글쓰고 받아온거', response.data);
+        setComments(response.data)
+      })
+      .catch(error => {
+        console.error('보내기 에러');
+      });
     }
   };
+  
+  // 게시물 번호 -> 댓글 데이터 가져오고 -> 뿌려주고
+  
+  useEffect(()=>{
+  
+    const apiUrl = 'http://192.168.70.237:5022/content_comment';
+    axios.get(apiUrl, { responseType: 'json', params: { user_nick : userNick , content_num : newContent[0].content_num, content_comment : newComment } })
+    .then(response => {
 
+      setComments(response.data);
 
+      console.log('댓글 처음에 받아온 데이터', response.data);
 
+    })
+    .catch(error => {
+      console.error('보내기 에러');
+    });
 
+  },[])
+  
+  const del = ()=>{
+    if(sessionStorage.getItem(userId) == newContent[0].user_id){
+      const delUrl = 'http://192.168.70.237:5022/delete';
+      axios.get(delUrl, { responseType: 'json', params: { content_num : newContent[0].content_num } })
+      .then(response => {
+        setComments(response.data);
+        console.log('삭제하고 받은 데이터', response.data);
+
+      })
+      .catch(error => {
+        console.error('보내기 에러');
+      });
+  
+    }else{
+      console.log("삭제 아이디가 일치하지 않습니다.")
+    }
+  }
+
+  
   return (
+    <div className='infopage'>
+    <span className='infotitle'>텃밭 자랑하기</span>
+    <img src='/img/titlebg2.png' className='infotitle_bg'/>
+  
     <div className='card-details-container'>
+      
       <div className='card-details'>
-
-
+      
+        
         <h2 className='card-details-title'>{newContent[0].content_title}</h2>
+        <span className='card-nickname'>{newContent[0].user_nick} 농부</span>
         <p className='card-details-content'>{newContent[0].contents}</p>
         <img className='card-details-image' src={`http://192.168.70.237:5022/content_img/${newContent[0].content_img}`} alt={newContent[0].content_title} />
-      
+        
          <div className='card-details-buttons'>
-          <button className='card-details-button-delete'>삭제</button>
+          <button className='card-details-button-delete' onClick={del}>삭제</button>
           <button className='card-details-button-list' onClick={handleGoBackToList}>목록</button>
         </div> 
       </div>
       <textarea
+      className='comment_area'
         placeholder='댓글을 작성하세요'
         value={newComment}
         onChange={(e) => setNewComment(e.target.value)}
       />
-      <button onClick={handleAddComment}>댓글작성하기</button>
+      <button onClick={handleAddComment} className='comment_btn'>댓글작성하기</button>
       <div className='comment-list'>
-        <h3>댓글 목록</h3>
+        <h3 className='comment_list'>댓글 목록</h3>
         <ul>
-          {comments.map((comment, index) => (
-            <li key={index}>{comment}  닉네임 : userid</li>
+          {comments?.map((comment, index) => (
+            
+            <li key={index}>
+              <div className='commentnick'>{comment.user_nick}</div><div>{comment.content_comment}</div><div className='commentday'>{comment.content_comment_day}</div>
+              </li>
             
           ))}
         </ul>
+
+      
+  </div>
       </div>
     </div>
   );

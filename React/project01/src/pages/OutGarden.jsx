@@ -5,7 +5,8 @@ import PageTitle from '../Components/PageTitle';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import DaumPost2 from '../Components/DaumPost';
-
+import Swal from "sweetalert2";
+//  모달창으로 할지 sweetalert2에서 꺼내서 사용할지 결정해야함!!!!!!
 
 function OutGarden() {
   // 텃밭 등록 페이지를 위한 상태
@@ -58,7 +59,15 @@ function OutGarden() {
   const infoSending = ()=>{
     formData.append('farm', blob)
     console.log('등록내용확인',form)
-    
+   
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        
+        title: '소중한 텃밭 정보가 등록되었습니다!',
+        showConfirmButton: false,
+        timer: 1500
+      })
     // axios.get(apiUrl, { responseType: 'json', params: { form } })
     // .then(response => {
     //   alert('소중한 텃밭 정보가 등록되었습니다!')
@@ -77,6 +86,7 @@ function OutGarden() {
     
               <div className="out-container">
                <img src='/img/leaves1.png' className='leaves1'/>
+               <img src='/img/leave2.png' className='leave2'/>
                 <div className='outgarden-container'>
                   <h1 className='out_maintitle'>텃밭등록하기</h1>
                   <form>
@@ -228,11 +238,11 @@ function OutGarden() {
                       />
                     </div>
                      {/* 캘린더 위젯 수정 */}
-                     <div className="form8">
+                     <div className="form9">
                      <label htmlFor="rentalPeriod">임대기간 종료일:</label>
-                        <input
+                      <input
                         type="data"
-                        id="lental_startDate"
+                        id="lental_startDate1"
                         value={form.lental_endDate}
                         onChange={(e)=>{
                           setForm({...form, lental_endDate : e.target.value })
@@ -242,12 +252,12 @@ function OutGarden() {
                     </div>
                       
                     {/* 캘린더 위젯 수정 */}
-                    <div className="form9">
+                    <div className="form10">
 
                       <label htmlFor="recruitmentPeriod">분양신청 시작일:</label>
                       <input
                         type="data"
-                        id="lental_startDate"
+                        id="lental_startDate2"
                         value={form.startDate}
                         onChange={(e)=>{
                           setForm({...form, startDate : e.target.value })
@@ -257,11 +267,11 @@ function OutGarden() {
                       />
                     </div>
                       {/* 캘린더 위젯 수정 */}
-                      <div className="form9">
+                      <div className="form11">
                       <label htmlFor="recruitmentPeriod">분양신청 마감일:</label>
                       <input
                         type="data"
-                        id="lental_startDate"
+                        id="lental_endDate"
                         value={form.endDate}
                         onChange={(e)=>{
                           setForm({...form, endDate : e.target.value })
@@ -270,10 +280,10 @@ function OutGarden() {
                       />
                     </div>
 
-                    <div className="form10">
+                    <div className="form12">
                       <label htmlFor="description">본문내용:</label>
                       <textarea
-                        id="out_description"
+                        id="lental_endDate1"
                         value={form.description}
                         onChange={(e)=>{setForm({...form, description : e.target.value})}}
                         required

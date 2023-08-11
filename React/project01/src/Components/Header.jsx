@@ -1,0 +1,145 @@
+import React, {useState, useEffect, useRef} from 'react';
+import { NavLink } from 'react-router-dom';
+
+const Header = () => {
+  // 하위 메뉴 이벤트 
+  const dropDownRef = useRef(null);
+  const [activeMenu, setActiveMenu] = useState(null);
+
+  const handleMenuClick = (menu) => {
+    setActiveMenu(activeMenu === menu ? null : menu);
+  };
+
+  const handleOutsideClick = (e) => {
+    if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
+      setActiveMenu(null);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('click', handleOutsideClick);
+    return () => {
+      window.removeEventListener('click', handleOutsideClick);
+    };
+  }, []);
+
+
+   // 로그인 상태에 따라 접근 권한 다르게 하기 
+   const [user, setUser] = useState('');
+   const authenticated = user != null;
+   
+   useEffect (()=>{
+     setUser(sessionStorage.getItem('user_id'))
+     console.log('로그인확인:',user)
+   },[])
+ 
+   //로그아웃 하기
+   const Logout = (e)=>{
+     sessionStorage.removeItem('user_id')
+     sessionStorage.removeItem('user_nick')
+     sessionStorage.removeItem('user_type')
+     setUser(null)
+     alert('로그아웃 되었습니다.')
+   }
+ 
+
+  return (
+    <div className='main_col'>
+      <div className='main_grid'>
+        <NavLink to={'/'} className='logo'>
+          <img src="img/logo.png" alt="Logo" />
+        </NavLink>
+
+        <div className='navbar1'>
+          {authenticated ? 
+          <NavLink to={'/'} id='navbarlogin' onClick={Logout}>로그아웃</NavLink>:
+          <NavLink to={'/login'} id='navbarlogin'>로그인</NavLink>}
+          <NavLink to={'/join'} id='navbarlogin'>회원가입</NavLink>
+        </div>
+
+        <div className='navbar'>
+          <ul ref={dropDownRef} className={`menu ${activeMenu ? 'active' : ''}`}>
+            <NavLink 
+              className='navbarMenu'
+              activeClassName='activeLink'
+              onClick={() => handleMenuClick('find')}
+            >
+              텃밭구하기
+            </NavLink>
+            {activeMenu === 'find' && (
+              <div className='navbarSubMenu1'>
+                <NavLink to='/find' className='navbarSubMenuLink'>
+                  텃밭 검색
+                </NavLink>
+              </div>
+            )}
+            <NavLink
+              className='navbarMenu'
+              activeClassName='activeLink'
+              onClick={() => handleMenuClick('out')}
+            >
+              텃밭내놓기
+            </NavLink>
+            {activeMenu === 'out' && (
+              <div className='navbarSubMenu2'>
+                <NavLink to='/out' className='navbarSubMenuLink'>
+                  텃밭 등록
+                </NavLink>
+              </div>
+            )}
+            <NavLink
+              className='navbarMenu'
+              activeClassName='activeLink'
+              onClick={() => handleMenuClick('community')}
+            >
+              커뮤니티
+            </NavLink>
+            {activeMenu === 'community' && (
+              <div className='navbarSubMenu3'>
+                <NavLink to='/notice' className='navbarSubMenuLink'>
+                  공지사항
+                </NavLink>
+                <br/>
+                <br/>
+                <NavLink to='/community' className='navbarSubMenuLink'>
+                  정보게시판
+                </NavLink>
+                <br/>
+                <br/>
+                <NavLink to='/machin' className='navbarSubMenuLink'>
+                  작물가격예측
+                </NavLink>
+              </div>
+            )}
+            <NavLink
+              className='navbarMenu'
+              activeClassName='activeLink'
+              onClick={() => handleMenuClick('mypage')}
+            >
+              마이페이지
+            </NavLink>
+            {activeMenu === 'mypage' && (
+              <div className='navbarSubMenu4'>
+                <NavLink to='/find/1' className='navbarSubMenuLink'>
+                  농장상세페이지
+                </NavLink>
+                <br/>
+                <br/>
+                <NavLink to='/mypage' className='navbarSubMenuLink'>
+                  문의 내역
+                </NavLink>
+                <br/>
+                <br/>
+                <NavLink to='/mypage' className='navbarSubMenuLink'>
+                  내 정보 수정
+                </NavLink>
+              </div>
+            )}
+          </ul>
+        </div>  
+      </div>
+    </div>
+  )
+}
+
+export default Header

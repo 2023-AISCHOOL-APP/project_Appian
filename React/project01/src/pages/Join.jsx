@@ -45,12 +45,67 @@ export default function SignUp() {
 
 
   const [form, setForm] = useState({ user_id: "", user_password: "", user_name : "", user_nick : "" , user_email: "", user_phone: "", user_address : "" });
+  const [check, setCheck] = useState({id:false,pw:false,email:false,nink:false,phone:false,addr:false}) 
   const navigate = useNavigate()
 
   // 중복체크 => DB에 없는 정보 (False), DB에 있는 정보 (True)
   // 응답이 False인 경우에만 Join 가능
+  
 
-  const [message, setMessage] = useState(''); //DB 응답 결과
+  const checkid = (e) =>{
+    let regExp = /^[A-Za-z0-9+]{6,}$/;
+    console.log('아이디 유효성 검사 :: ', regExp.test(e.target.value))
+    setForm({...form, user_id : e.target.value})
+    if (regExp.test(e.target.value)){
+      setCheck({...check, id: true})
+      console.log(check.id)
+    }
+  }
+
+  //
+  const checkPhone = (e) => {
+    // '-' 입력 시
+    let regExp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/
+
+    // 형식에 맞는 경우 true 리턴
+    console.log('핸드폰번호 유효성 검사 :: ', regExp.test(e.target.value))
+    setForm({...form, user_phone : e.target.value})
+  }
+
+  //비밀번호 유효성 검사
+  const checkPassword = (e) => {
+    //  6 ~ 12자 영문, 숫자 조합
+    let regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,12}$/
+    // 형식에 맞는 경우 true 리턴
+    console.log('비밀번호 유효성 검사 :: ', regExp.test(e.target.value))
+      setForm({...form, user_password : e.target.value})
+
+    
+  }
+
+  // 이메일 유효성 검사
+  const checkEmail = (e) => {
+    let regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
+    // 형식에 맞는 경우 true 리턴
+    console.log('이메일 유효성 검사 :: ', regExp.test(e.target.value))
+    if (regExp.test(e.target.value)){
+      setForm({...form, user_email : e.target.value})
+    }else{
+      alert('형식에 맞게 이메일을 작성해주세요.')
+    }
+    
+  }
+
+
+
+
+
+
+
+
+
+  //중복체크 DB 응답 결과
+  const [message, setMessage] = useState(''); 
 
   const idCheckUrl = 'http://192.168.70.237:5022/id_check';
   const nickCheckUrl = 'http://192.168.70.237:5022/nick_check';
@@ -122,9 +177,6 @@ export default function SignUp() {
 
 
 
-const [userIdError, setUserIdError] = useState(false);
-
-
   // 에러 메세지 객체
 //   const errMsg = {
 //     id: { 
@@ -178,14 +230,7 @@ const [userIdError, setUserIdError] = useState(false);
                   value={form.user_id}
                   helperText="ID : 6자 이상 (영문자와 숫자) "
                   autoFocus
-                  onChange={(e)=> {
-                    
-                    const userIdRegex = /^[A-Za-z0-9+]{5,}$/;
-                    if ((!e.target.value || (userIdRegex.test(e.target.value)))) setUserIdError(false);
-                    else setUserIdError(true);
-                      setForm({...form, user_id : e.target.value})
-                    }}
-                  
+                  onChange={checkid}
                 />
               </Grid>
               <Grid item xs={3}>
@@ -200,7 +245,7 @@ const [userIdError, setUserIdError] = useState(false);
                     backgroundColor:'#05AC7B',
                     fontFamily:'SUIT-regular',
                   }}
-                  onClick={()=>form.user_id.length > 5 ? idCheck() : console.log('조건에 맞는 아이디를 입력해주세요.')}
+                  onClick={()=>form.user_id.length > 5 ? idCheck() : alert('아이디 길이를 확인해주세요.')}
                    >중복확인</Button>
 
               </Grid>
@@ -213,9 +258,9 @@ const [userIdError, setUserIdError] = useState(false);
                   label="비밀번호"
                   type="password"
                   id="password"
+                  helperText="PW : 6 ~ 12자의 영문, 숫자 조합"
                   value={form.user_password}
-                  autoComplete="new-password"
-                  onChange={(e)=> {setForm({...form, user_password : e.target.value})}}
+                  onChange={checkPassword}
                 />
               </Grid>
               <Grid item xs={9}>
@@ -226,9 +271,9 @@ const [userIdError, setUserIdError] = useState(false);
                   fullWidth
                   id="email"
                   label="Email 주소"
-                  autoComplete="email"
+                  helperText="Email 예시 : farmers@farmfarm.co.kr"
                   value={form.user_email}
-                  onChange={(e)=>setForm({...form, user_email : e.target.value})}
+                  onChange={checkEmail}
                 />
               </Grid>
               <Grid item xs={3}>
@@ -242,7 +287,6 @@ const [userIdError, setUserIdError] = useState(false);
                     },
                     backgroundColor:'#05AC7B',
                     fontFamily:'SUIT-regular',
-       
                   }}
                   onClick={()=>form.user_email.length > 0 ? emailCheck() : alert('이메일 주소를 입력해주세요.')}
                    >중복확인</Button>
@@ -305,8 +349,7 @@ const [userIdError, setUserIdError] = useState(false);
                   id="phone"
                   label="연락처(000-0000-0000)"
                   value={form.user_phone}
-                  onChange={(e)=>setForm({...form, user_phone : e.target.value})}
-               
+                  onChange={checkPhone}               
                 />
               </Grid>
           

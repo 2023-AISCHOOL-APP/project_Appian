@@ -7,12 +7,12 @@ import axios from 'axios';
 
 
 const FindDetail = () => {
-  const farms = useLocation().state
+  const farms = useLocation().state.data
   const { id } = useParams();
-  console.log('번호',id)
-  console.log(farms);
+  console.log('번호',id, '받은데이터',farms)
 
-  const loca = {lat : farms[0].lantitude, lng : farms[0].longitude}
+
+  const loca = {lat : farms.lantitude, lng : farms.Longitude}
   console.log(loca)
   // const [farms, setFarms] = useState([]);
   // useEffect(()=>{
@@ -33,16 +33,16 @@ const FindDetail = () => {
       
       <img src='/img/farmdetail/farmdetailimg1.jpg' className='farmdetail_img1'/>
       <div className='Fdetail_title-container'>
-      <span className='farmdetail_Maintitle'>{farms[0].farm_title}</span>
+      <span className='farmdetail_Maintitle'>{farms.farm_title}</span>
       </div>
 
 
       <div className='borderAll'>
           <div className='lental_border'>
-              <span className='lental_type'>{farms[0].lental_type}</span>
+              <span className='lental_type'>{farms.lental_type}</span>
           </div>
           <div className='type_border'>
-              <span className='farm_type'>{farms[0].farm_type}</span>
+              <span className='farm_type'>{farms.farm_type}</span>
           </div>
 
           <div className='calender'>
@@ -52,14 +52,14 @@ const FindDetail = () => {
       <div className='address_border'>
         <img src='/img/mapPin.png' className='address_mappin'/>
       <span className='address'>텃밭 주소</span>
-      <span className='farm_address'>{farms[0].farm_address}</span>
+      <span className='farm_address'>{farms.farm_address}</span>
         
       </div>
 
       <div>
         <div className='desc_hr2'/>
         <span className='description'>
-        {farms[0].description}</span>
+        {farms.description}</span>
       </div>
 
     <div className='detail_all'>
@@ -78,11 +78,11 @@ const FindDetail = () => {
                       <span className='lental_title'>분양기간</span>
                     <div className='lental_all'>
                       <div className='lental_border1'>
-                            <span className='lental_startDate'>{farms[0].lental_startDate}</span>
+                            <span className='lental_startDate'>{farms.lental_startDate}</span>
                         </div>
                         <span className='lental_date'>~</span>
                         <div className='lental_border2'>
-                            <span className='lental_endDate'>{farms[0].lental_endDate}</span>
+                            <span className='lental_endDate'>{farms.lental_endDate}</span>
                       </div>
                       </div>
               </div>
@@ -91,7 +91,7 @@ const FindDetail = () => {
                   <img src='/img/longitude.png' className='lental_areaicon'/>
                     <span className='lental_areaTitle'>분양면적</span>
                     <div className='area_border1'>
-                          <span className='lental_area'>{farms[0].lental_area}</span>
+                          <span className='lental_area'>{farms.lental_area}</span>
                       </div>
                       </div>
               </div>
@@ -100,7 +100,7 @@ const FindDetail = () => {
                 <img src='/img/moneyicon.png' className='moneyicon'/>
                 <span className='price_title'>희망분양가</span>
                 <div className='price_border1'>
-                          <span className='price'>{farms[0].price}</span>
+                          <span className='price'>{farms.price}</span>
                       </div>
               </div>
 

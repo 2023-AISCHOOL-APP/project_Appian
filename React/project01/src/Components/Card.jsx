@@ -1,19 +1,21 @@
-import React from 'react'
+import React, {useState} from 'react'
 import '../Css/Card.css'
 import CardItem from './CardItem'
+import { useNavigate } from 'react-router-dom'
 
 
 
 const Card = (data) => {
 
   
-  console.log('받아온 값:',data);
+  console.log('카드받아온 값:',data);
 
   const farmList = data.list;
-  console.log(farmList)
+  console.log('체크:',farmList)
   const cards = farmList.map((v)=>{
-    return <CardItem key={v.farm_num} name={v.farm_title} addr={v.farm_address} num={v.farm_num}/>
+    return <CardItem key={v.farm_num} name={v.farm_title} addr={v.farm_address} num={v.farm_num} value={v}/>
   })
+
   
   return (
     <div>

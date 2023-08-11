@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef, useContext } from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { Routes, Route, NavLink } from 'react-router-dom';
 import FindGarden from './pages/FindGarden';
 import Community from './pages/Community';
@@ -15,24 +15,37 @@ import Cthree from './Components/Cthree';
 import CardDetailsPage from './Components/CardDetailsPage';
 import Notice from './pages/Notice';
 import axios from 'axios';
+
 import './Header.css'
+
 import FindDetail from './Components/FindDetail';
-import { AllFarm } from './Contexts/FarmContext';
-import { AllContent } from './Contexts/ContentContext';
 import Header from './Components/Header';
+
 
 
 function Main() {
 
-  const { farms } = useContext(AllFarm);
-  const { content } = useContext(AllContent);
-
-  console.log('텃밭 컨텍스트', farms)
-  console.log('게시물 컨텍스트', content)
+  const [data, setData] = useState([]); //요기2
 
 
-  // 게시판 데이터 자동으로 추가 생성하기
-  const savedCards = content;
+  useEffect(() => {
+   // Flask 서버의 주소
+   const apiUrl = 'http://192.168.70.237:5022/content';
+   console.log("test")
+   // Axios를 사용하여 GET 요청 보내기
+   axios.get(apiUrl, { responseType: 'json'})
+     .then(response => {
+        setData(response.data); //요기
+       console.log('testdb로부터받음', response.data);
+     })
+     .catch(error => {
+       console.error('Error fetching data:', error);
+     });
+ }, []);
+ 
+ 
+
+  const savedCards = data;
   const [isWriting, setIsWriting] = useState(false);
   const [cards, setCards] = useState(savedCards);
   const [cardCounter, setCardCounter] = useState(savedCards.length + 1);
@@ -44,7 +57,9 @@ function Main() {
     setIsWriting(false);
   };
 
+
   return (
+
     <div>
       <Header />
         <Routes>
@@ -65,6 +80,7 @@ function Main() {
           <Route path='/notice' elemenft={<Notice />} />
         </Routes>
   
+
     </div>
   );
 }

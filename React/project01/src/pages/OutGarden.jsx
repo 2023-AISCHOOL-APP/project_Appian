@@ -1,11 +1,10 @@
 // OutGarden.js
 import React, { useState } from 'react';
 import '../Css/OutGarden.css'
-import Calendar from '../Components/CalendarDatePick'
 import PageTitle from '../Components/PageTitle';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { DataObject } from '@mui/icons-material';
+
 
 function OutGarden() {
   // 텃밭 등록 페이지를 위한 상태
@@ -17,8 +16,6 @@ function OutGarden() {
     farm_type:'개인', price: '', lental_startDate:'', lental_endDate:'', startDate:'', endDate:'', description:'', user_id: user});
   const nav = useNavigate();
   
-  
- 
 
   // 로그인 확인
   // if (isLogin !== null){
@@ -28,6 +25,7 @@ function OutGarden() {
   //   alert('로그인이 필요한 서비스입니다.');
   //   nav('/login')
   // }
+
 
   const [selectedType, setSelectedType] = useState('');
   const [selectedFarmType, setSelectedFarmType] = useState('');
@@ -75,7 +73,7 @@ function OutGarden() {
 
     
               <div className="out-container">
-               
+               <img src='/img/leaves1.png' className='leaves1'/>
               {isLogin ? (
                 <div >
                   {/* ... (로그인 폼) ... */}
@@ -216,6 +214,7 @@ function OutGarden() {
 
                     {/* 캘린더 위젯 수정 */}
                     <div className="form8">
+
                       <label htmlFor="rentalPeriod">임대기간 시작일:</label>
                         <input
                         type="data"
@@ -224,6 +223,7 @@ function OutGarden() {
                         onChange={(e)=>{
                           setForm({...form, lental_startDate : e.target.value })
                         }}
+
                         required
                       />
                     </div>
@@ -243,6 +243,7 @@ function OutGarden() {
                       
                     {/* 캘린더 위젯 수정 */}
                     <div className="form9">
+
                       <label htmlFor="recruitmentPeriod">분양신청 시작일:</label>
                       <input
                         type="data"
@@ -251,6 +252,7 @@ function OutGarden() {
                         onChange={(e)=>{
                           setForm({...form, startDate : e.target.value })
                         }}
+
                         required
                       />
                     </div>
@@ -278,7 +280,9 @@ function OutGarden() {
                       />
                     </div>
 
+
                     <button type='button' className="submit-btn" onClick={infoSending}>
+
                       등록하기
                     </button>
                    

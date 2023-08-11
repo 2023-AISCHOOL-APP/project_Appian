@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -51,15 +51,19 @@ export default function SignUp() {
   // 중복체크 => DB에 없는 정보 (False), DB에 있는 정보 (True)
   // 응답이 False인 경우에만 Join 가능
   
+  const nameInput =useRef();
+
 
   const checkid = (e) =>{
     let regExp = /^[A-Za-z0-9+]{6,}$/;
-    console.log('아이디 유효성 검사 :: ', regExp.test(e.target.value))
+    
+    console.log('아이디 유효성 검사 :: ', regExp.test(nameInput.value))
+    
     setForm({...form, user_id : e.target.value})
-    if (regExp.test(e.target.value)){
-      setCheck({...check, id: true})
-      console.log(check.id)
-    }
+    console.log(form);
+    setCheck({...check, id: true})
+    console.log(check.id)
+    
   }
 
   //
@@ -88,11 +92,8 @@ export default function SignUp() {
     let regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
     // 형식에 맞는 경우 true 리턴
     console.log('이메일 유효성 검사 :: ', regExp.test(e.target.value))
-    if (regExp.test(e.target.value)){
-      setForm({...form, user_email : e.target.value})
-    }else{
-      alert('형식에 맞게 이메일을 작성해주세요.')
-    }
+    setForm({...form, user_email : e.target.value})
+
     
   }
 
@@ -115,7 +116,6 @@ export default function SignUp() {
   const idCheck = async () => {
     await axios.post(idCheckUrl, {user_id : form.user_id})
     .then((Response)=>{
-      
       setMessage(Response.data);
       console.log('DB에 있는 데이터인가?:(T/F)','id?', message)
       if (message === false){
@@ -165,36 +165,25 @@ export default function SignUp() {
 
   const sendUrl = 'http://192.168.70.237:5022/add_id';
   const infoSending = async () => {
-    await axios.post(sendUrl, {form})
-    .then((Response)=>{
-      alert('🧑‍🌾팜팜의 회원이 되신걸 축하드립니다! ')      
-      navigate('/')
-    })
-    .catch((Error)=>{
-      console.log("통신 실패 + \n" + Error)
-    })
+
+    console.log(form)
+
+
+    // await axios.post(sendUrl, {form})
+    // .then((Response)=>{
+      
+    //   alert('🧑‍🌾팜팜의 회원이 되신걸 축하드립니다! ')   
+    //   sessionStorage.setItem('user_id', form.user_id)
+    //   sessionStorage.setItem('user_nick', form.user_nick)
+    //   sessionStorage.setItem('user_type', form.user_type)   
+    //   navigate('/')
+    // })
+    // .catch((Error)=>{
+    //   console.log("통신 실패 + \n" + Error)
+    // })
   };
 
-
-
-  // 에러 메세지 객체
-//   const errMsg = {
-//     id: { 
-//       invalid: "6자 이상의 영문과 숫자만 사용 가능합니다",
-//       success: "사용 가능한 아이디입니다",
-//       fail: "사용할 수 없는 아이디입니다"
-//     },
-//     pw: "8~20자의 영문, 숫자, 특수문자를 모두 포함한 비밀번호를 입력해주세요",
-//     nick : {
-//       success: "사용 가능한 닉네임입니다",
-//       fail: "사용할 수 없는 닉네임입니다"
-//     },
-//     email : {
-//       success : '사용 가능한 이메일 주소입니다',
-//       fail : '사용할 수 없는 이메일 주소입니다'
-//     },
-//     mobile: "‘-’ 제외한 11자리를 입력해주세요" 
-// }
+ const [userId, setUserId] = useState("")
 
   
 
@@ -227,6 +216,7 @@ export default function SignUp() {
                   label="아이디"
                   type="id"
                   id="user_id"
+                  ref={nameInput}
                   value={form.user_id}
                   helperText="ID : 6자 이상 (영문자와 숫자) "
                   autoFocus

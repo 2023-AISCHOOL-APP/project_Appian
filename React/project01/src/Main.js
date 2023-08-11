@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import { Routes, Route, NavLink } from 'react-router-dom';
+import { Routes, Route, NavLink} from 'react-router-dom';
 import FindGarden from './pages/FindGarden';
 import Community from './pages/Community';
 import Mypage from './pages/Mypage';
@@ -79,8 +79,6 @@ function Main() {
           <Route path="/cardpage/:cardId" element={<CardDetailsPage value={savedCards}/>} />
           <Route path='/notice' elemenft={<Notice />} />
         </Routes>
-  
-
     </div>
   );
 }

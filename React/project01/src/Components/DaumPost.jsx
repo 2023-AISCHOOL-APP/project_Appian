@@ -21,7 +21,7 @@ const DaumPost = (props) => {
 
         // 주소 선택 이벤트
         selectAddress: (data) => {
-            console.log(data)
+            console.log('주소데이터',data)
             // console.log(`
             //     주소: ${data.address},
             //     우편번호: ${data.zonecode}

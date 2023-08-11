@@ -1,18 +1,19 @@
 import { Map, MapMarker, CustomOverlayMap, ZoomControl } from 'react-kakao-maps-sdk';
 import '../Css/Map.css'
 import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 
 const MapArea = (data) => {
 
   console.log('받아온 값:',data);
 
   const farmList = data.list;
-  console.log(farmList)
+  console.log('이거머야',farmList)
  
 	const locations = [];
 
   farmList.map((i)=> {
-    locations.push({'title': i.farm_title, 'latlng': { 'lat': Number(i.lantitude), 'lng': Number(i.longitude) }, 'num': i.farm_num});
+    locations.push({'title': i.farm_title, 'latlng': { 'lat': Number(i.lantitude), 'lng': Number(i.longitude) }, 'num': i.farm_num , 'data' : i});
     })
   console.log('위치',locations)
 
@@ -30,6 +31,16 @@ const MapArea = (data) => {
         
   )
   
+  const nav = useNavigate();
+  
+  console.log('위치',locations)
+  // const send = ()=>{
+
+  //   locations.map((i)=>{
+  //     nav(`/find/farm` , {state : {i.data}})} )
+    
+  // }
+
   const initialCenter = locations.length > 0 ? locations[0].latlng : { lat: 35.156669, lng: 126.835521 };
   const [level, setLevel] = useState(5);
  
@@ -40,9 +51,9 @@ const MapArea = (data) => {
         level < 6 ? (
         <CustomOverlayMap key={loc.num} position={loc.latlng} xAnchor={0.5} yAnchor={1.1} >
         <div className="customoverlay">
-          <a href={`/find/${loc.num}`} target="_blank" >
+          <Link to={`/find/farm`}  >
             <span className="title">{loc.title}</span>
-          </a>
+          </Link>
         </div>
       </CustomOverlayMap> ) : null ))}
       

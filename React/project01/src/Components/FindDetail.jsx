@@ -8,6 +8,8 @@ import axios from 'axios';
 
 const FindDetail = () => {
   const farms = useLocation().state.data
+
+  
   const { id } = useParams();
   console.log('번호',id, '받은데이터',farms)
 

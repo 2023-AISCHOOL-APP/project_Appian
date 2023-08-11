@@ -20,6 +20,7 @@ import './Header.css'
 
 import FindDetail from './Components/FindDetail';
 import Header from './Components/Header';
+import FarmDetail from './pages/FarmDetail';
 
 
 
@@ -68,7 +69,8 @@ function Main() {
           <Route path='/join' element={<Join />} />
           <Route path='/card' element={<Card />} />
           <Route path='/find' element={<FindGarden />} />
-          <Route path='/find/:id' element={<FindDetail />} />
+          <Route path='/find/farm' element={<FarmDetail />} />
+          <Route path='/find/farm:farmId' element={<FindDetail />} />
           <Route path='/out' element={<OutGarden />} />
           <Route path='/community' element={<Community />} />
           <Route path='/mypage' element={<Mypage />} />

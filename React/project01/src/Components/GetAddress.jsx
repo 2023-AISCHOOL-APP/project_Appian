@@ -4,6 +4,7 @@ import '../Css/GetAddress.css';
 import MapArea from './MapArea'
 import Card from './Card';
 import axios from 'axios';
+import { useNavigate, useParams } from 'react-router';
 
 
 const GetAddress = () => {
@@ -66,6 +67,12 @@ const GetAddress = () => {
       });
   }, [sigungu]);
  
+  const nav = useNavigate();
+
+  console.log('봅시다',data)
+  // const pickNum = data.map((idx)=>{
+  //   nav(`/find/farm${idx.farm_num}`, {state :{idx}})
+  // })
 
   return (
     
@@ -84,7 +91,6 @@ const GetAddress = () => {
         ))}
 
       </select>
-
       <MapArea list={data}/>
       <Card list={data} />
     </div>

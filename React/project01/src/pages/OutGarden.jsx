@@ -1,9 +1,10 @@
 // OutGarden.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../Css/OutGarden.css'
 import PageTitle from '../Components/PageTitle';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import DaumPost2 from '../Components/DaumPost';
 
 
 function OutGarden() {
@@ -17,15 +18,17 @@ function OutGarden() {
   const nav = useNavigate();
   
 
-  // 로그인 확인
-  // if (isLogin !== null){
-  //   setIsLogin(true)
-  //   setForm({...form, user_id : sessionStorage.getItem('user_id')})
-  // } else {
-  //   alert('로그인이 필요한 서비스입니다.');
-  //   nav('/login')
-  // }
-
+  useEffect(()=>{
+    if (isLogin !== null){
+      setIsLogin(true)
+      setForm({...form, user_id : sessionStorage.getItem('user_id')})
+    } else {
+      alert('로그인이 필요한 서비스입니다.');
+      nav('/login')
+    }
+  
+  },[])
+ 
 
   const [selectedType, setSelectedType] = useState('');
   const [selectedFarmType, setSelectedFarmType] = useState('');
@@ -74,12 +77,6 @@ function OutGarden() {
     
               <div className="out-container">
                <img src='/img/leaves1.png' className='leaves1'/>
-              {isLogin ? (
-                <div >
-                  {/* ... (로그인 폼) ... */}
-                </div>
-              ) : (
-                
                 <div className='outgarden-container'>
                   <h1 className='out_maintitle'>텃밭등록하기</h1>
                   <form>
@@ -100,25 +97,28 @@ function OutGarden() {
                     <div className="form2">
                       <label htmlFor="gardenImages">이미지 업로드 :<br />(최대 1장)</label>
                       <input type="file" id="gardenImages" onChange={handleImageChange} className='photo'/>
-                    
                     </div>
 
                     <div className="form3">
-                      <label htmlFor="address">주소:</label>
+                      <label htmlFor="address">텃밭 주소:</label>
                       <input
                         type="text"
                         id="out_address"
-                        placeholder='주소를 입력해주세요'
+
+                        autoComplete="address"
                         value={form.farm_address}
+                        required
                         onChange={(e)=>{
                           setForm({...form, farm_address : e.target.value})
                         }}
-                        required
+                        //onChange={(e)=>setForm({...form, user_address : e.target.value})}
                       />
+                      <DaumPost2 setForm = {setForm} form={form}></DaumPost2> 
+
                     </div>
 
                     <div className="form4">
-                      <label htmlFor="area">면적:</label>
+                      <label htmlFor="area">면적(평):</label>
                       <input
                         type="text"
                         placeholder='면적을 입력해주세요'
@@ -131,7 +131,7 @@ function OutGarden() {
                       />
                     </div>
                     <div className="form4_1">
-                      <label htmlFor="area_num">개수:</label>
+                      <label htmlFor="area_num">분양 개수:</label>
                       <input
                         type="text"
                         placeholder='분양할 텃밭의 개수를 입력하세요.'
@@ -288,7 +288,6 @@ function OutGarden() {
                    
                   </form>
                 </div>
-              )}
             </div>
             
   </>

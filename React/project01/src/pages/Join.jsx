@@ -55,17 +55,17 @@ export default function SignUp() {
   const nameInput =useRef();
 
 
-  const checkid = (e) =>{
-    let regExp = /^[A-Za-z0-9+]{6,}$/;
+  // const checkid = (e) =>{
+  //   let regExp = /^[A-Za-z0-9+]{6,}$/;
     
-    console.log('아이디 유효성 검사 :: ', regExp.test(nameInput.value))
+  //   console.log('아이디 유효성 검사 :: ', regExp.test(nameInput.value))
     
-    setForm({...form, user_id : e.target.value})
-    console.log(form);
-    setCheck({...check, id: true})
-    console.log(check.id)
+  //   setForm({...form, user_id : e.target.value})
+  //   console.log(form);
+  //   setCheck({...check, id: true})
+  //   console.log(check.id)
     
-  }
+  // }
 
   //
   const checkPhone = (e) => {
@@ -170,18 +170,18 @@ export default function SignUp() {
     console.log(form)
 
 
-    // await axios.post(sendUrl, {form})
-    // .then((Response)=>{
+    await axios.post(sendUrl, {form})
+    .then((Response)=>{
       
-    //   alert('🧑‍🌾팜팜의 회원이 되신걸 축하드립니다! ')   
-    //   sessionStorage.setItem('user_id', form.user_id)
-    //   sessionStorage.setItem('user_nick', form.user_nick)
-    //   sessionStorage.setItem('user_type', form.user_type)   
-    //   navigate('/')
-    // })
-    // .catch((Error)=>{
-    //   console.log("통신 실패 + \n" + Error)
-    // })
+      alert('🧑‍🌾팜팜의 회원이 되신걸 축하드립니다! ')   
+      sessionStorage.setItem('user_id', form.user_id)
+      sessionStorage.setItem('user_nick', form.user_nick)
+      sessionStorage.setItem('user_type', form.user_type)   
+      navigate('/')
+    })
+    .catch((Error)=>{
+      console.log("통신 실패 + \n" + Error)
+    })
   };
 
 
@@ -220,7 +220,8 @@ export default function SignUp() {
                   value={form.user_id}
                   helperText="ID : 6자 이상 (영문자와 숫자) "
                   autoFocus
-                  onChange={checkid}
+                  onChange={(e)=>{setForm({...form, user_id : e.target.value});
+                  console.log('uerid', form.user_id)}}
                 />
               </Grid>
               <Grid item xs={3}>
@@ -351,9 +352,6 @@ export default function SignUp() {
                   fullWidth
                   id="address"
                   // label="거주지 주소 : 이거 API 찾아봐야함"
-                  
-
-
                   autoComplete="address"
                   value={form.user_address}
                   //onChange={(e)=>setForm({...form, user_address : e.target.value})}

@@ -27,7 +27,6 @@
 }
 
 /* 메인 타이틀 */
-
 .Fdetail_title-container{
     position: relative;
     text-align: center;
@@ -122,7 +121,8 @@
  position: relative;
  text-align: center;
  display: inline-block;
- 
+ width: 720px;
+ word-break: break-all;
  font-family: 'SUIT-Regular';
  font-size: 20px;
  right: 320px;
@@ -246,7 +246,7 @@
     top: 450px;
 }
 
-.lental_startdate{
+.lental_startDate{
     font-family: 'SUIT-SemiBold';
     font-size: 18px;
     letter-spacing: 2px;
@@ -289,7 +289,6 @@
     height:auto;
     left: 379px;
     top: 415px;
-   
 }
 
 
@@ -307,7 +306,7 @@
     display: inline-block;
     padding: 10px 20px;
     position: relative;
-    left: 518px;
+    left: 476px;
     top: 410px;
     width: 337px;
 }

@@ -37,7 +37,6 @@ function OutGarden() {
   const [selectedFarmType, setSelectedFarmType] = useState('');
   const [imageFile, setImageFile] = useState(null);
 
-  const formData = new FormData ();
 
   const handleTypeButtonClick = (e) => {
     setSelectedType(e);
@@ -58,24 +57,26 @@ function OutGarden() {
   const [resData, setResData] = useState();
   
   const infoSending = ()=>{
+    const formData = new FormData ();
     formData.append('farm_title', form.farm_title)
+    formData.append('farm_type', form.farm_type)
     formData.append('farm_address', form.farm_address)
+    formData.append('farm_price', form.farm_price)
+    formData.append('user_id', form.user_id)
     formData.append('lental_area', form.lental_area)
     formData.append('farm_sector', form.farm_sector)
     formData.append('lental_type', form.lental_type)
-    formData.append('farm_price', form.farm_price)
-    formData.append('lental_startDate', form.lental_startDate)
-    formData.append('lental_endDate', form.lental_endDate)
     formData.append('startDate', form.startDate)
     formData.append('endDate', form.endDate)
+    formData.append('lental_startDate', form.lental_startDate)
+    formData.append('lental_endDate', form.lental_endDate)
     formData.append('description', form.description)
-    formData.append('user_id', form.user_id)
-    formData.append('farm_image', imageFile)
+    formData.append('farm_img', imageFile);
 
     console.log('등록내용확인',form)
     console.log('등록내용확인-s',formData)
 
-    axios.post(apiUrl, { responseType: 'json', params: { form } })
+    axios.post(apiUrl, formData)
     .then(response => {
       setResData(response)
       sessionStorage.setItem ('user_type' , 1 )
@@ -343,6 +344,5 @@ function OutGarden() {
 }
 
 export default OutGarden;
-
 
 

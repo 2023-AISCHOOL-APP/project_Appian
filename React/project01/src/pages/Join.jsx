@@ -45,64 +45,6 @@ const defaultTheme = createTheme({
 export default function SignUp() {
 
   const [form, setForm] = useState({ user_id: "", user_password: "", user_name : "", user_nick : "" , user_email: "", user_phone: "", user_address : "" });
-  const [check, setCheck] = useState({id:false,pw:false,email:false,nink:false,phone:false,addr:false}) 
-  const navigate = useNavigate()
-
-  // 중복체크 => DB에 없는 정보 (False), DB에 있는 정보 (True)
-  // 응답이 False인 경우에만 Join 가능
-  
-  const nameInput =useRef();
-
-
-  // const checkid = (e) =>{
-  //   let regExp = /^[A-Za-z0-9+]{6,}$/;
-    
-  //   console.log('아이디 유효성 검사 :: ', regExp.test(nameInput.value))
-    
-  //   setForm({...form, user_id : e.target.value})
-  //   console.log(form);
-  //   setCheck({...check, id: true})
-  //   console.log(check.id)
-    
-  // }
-
-  //
-  const checkPhone = (e) => {
-    // '-' 입력 시
-    let regExp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/
-
-    // 형식에 맞는 경우 true 리턴
-    console.log('핸드폰번호 유효성 검사 :: ', regExp.test(e.target.value))
-    setForm({...form, user_phone : e.target.value})
-  }
-
-  //비밀번호 유효성 검사
-  const checkPassword = (e) => {
-    //  6 ~ 12자 영문, 숫자 조합
-    let regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,12}$/
-    // 형식에 맞는 경우 true 리턴
-    console.log('비밀번호 유효성 검사 :: ', regExp.test(e.target.value))
-      setForm({...form, user_password : e.target.value})
-
-    
-  }
-
-  // 이메일 유효성 검사
-  const checkEmail = (e) => {
-    let regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
-    // 형식에 맞는 경우 true 리턴
-    console.log('이메일 유효성 검사 :: ', regExp.test(e.target.value))
-    setForm({...form, user_email : e.target.value})
-
-    
-  }
-
-
-
-
-
-
-
 
 
   //중복체크 DB 응답 결과
@@ -163,6 +105,9 @@ export default function SignUp() {
   };
 
 
+  
+  
+  // DB로 전송하는 데이터
   const sendUrl = 'http://192.168.70.237:5022/add_id';
   const infoSending = async () => {
 
@@ -215,13 +160,12 @@ export default function SignUp() {
                   fullWidth
                   label="아이디"
                   type="id"
+                  name='user_id'
                   id="user_id"
-                  ref={nameInput}
                   value={form.user_id}
                   helperText="ID : 6자 이상 (영문자와 숫자) "
                   autoFocus
-                  onChange={(e)=>{setForm({...form, user_id : e.target.value});
-                  console.log('uerid', form.user_id)}}
+                  onChange={(e)=>setForm(e.target.value)}                  
                 />
               </Grid>
               <Grid item xs={3}>
@@ -236,7 +180,7 @@ export default function SignUp() {
                     backgroundColor:'#05AC7B',
                     fontFamily:'SUIT-regular',
                   }}
-                  onClick={()=>form.user_id.length > 5 ? idCheck() : alert('아이디 길이를 확인해주세요.')}
+                  onClick={idCheck}
                    >중복확인</Button>
 
               </Grid>
@@ -251,7 +195,7 @@ export default function SignUp() {
                   id="password"
                   helperText="PW : 6 ~ 12자의 영문, 숫자 조합"
                   value={form.user_password}
-                  onChange={checkPassword}
+                 
                 />
               </Grid>
               <Grid item xs={9}>
@@ -264,7 +208,7 @@ export default function SignUp() {
                   label="Email 주소"
                   helperText="Email 예시 : farmers@farmfarm.co.kr"
                   value={form.user_email}
-                  onChange={checkEmail}
+          
                 />
               </Grid>
               <Grid item xs={3}>
@@ -340,7 +284,7 @@ export default function SignUp() {
                   id="phone"
                   label="연락처(000-0000-0000)"
                   value={form.user_phone}
-                  onChange={checkPhone}               
+                            
                 />
               </Grid>
           

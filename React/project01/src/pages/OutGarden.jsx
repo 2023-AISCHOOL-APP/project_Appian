@@ -78,6 +78,7 @@ function OutGarden() {
     axios.post(apiUrl, { responseType: 'json', params: { form } })
     .then(response => {
       setResData(response)
+      sessionStorage.setItem ('user_type' , 1 )
       alert('소중한 텃밭 정보가 등록되었습니다!')
       nav('/find');
     })
@@ -97,7 +98,7 @@ function OutGarden() {
     } else {
       Swal.fire({
         position: 'center',
-        icon: 'success',
+        icon: 'error',
         title: '정보 등록에 실패하였습니다! 다시 시도해주세요',
         showConfirmButton: false,
         timer: 1500

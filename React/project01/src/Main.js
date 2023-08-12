@@ -21,6 +21,7 @@ import './Header.css'
 import FindDetail from './Components/FindDetail';
 import Header from './Components/Header';
 import FarmDetail from './pages/FarmDetail';
+import Maptest from './Components/Maptest';
 
 
 
@@ -69,6 +70,7 @@ function Main() {
           <Route path='/join' element={<Join />} />
           <Route path='/card' element={<Card />} />
           <Route path='/find' element={<FindGarden />} />
+          <Route path='/find/test' element={<Maptest />} />
           <Route path='/find/farm' element={<FarmDetail />} />
           <Route path='/find/farm:farmId' element={<FindDetail />} />
           <Route path='/out' element={<OutGarden />} />

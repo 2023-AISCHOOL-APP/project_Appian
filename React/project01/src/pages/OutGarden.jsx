@@ -72,7 +72,6 @@ function OutGarden() {
     formData.append('lental_endDate', form.lental_endDate)
     formData.append('description', form.description)
     formData.append('farm_img', imageFile);
-  
 
     console.log('등록내용확인',form)
     console.log('등록내용확인-s',formData)

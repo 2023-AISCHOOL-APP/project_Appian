@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   // 하위 메뉴 이벤트 
@@ -25,7 +25,9 @@ const Header = () => {
 
 
    // 로그인 상태에 따라 접근 권한 다르게 하기 
+   const nav = useNavigate();
    const [user, setUser] = useState('');
+
    const authenticated = user != null;
    
    useEffect (()=>{
@@ -42,6 +44,15 @@ const Header = () => {
      alert('로그아웃 되었습니다.')
    }
  
+   const JoinAlert = () =>{
+    alert( '이미 로그인된 상태입니다.')
+   }
+
+   const LoginAlert = () =>{
+    alert('로그인이 필요한 서비스입니다.')
+   
+   }
+
 
   return (
     <div className='main_col'>
@@ -52,9 +63,13 @@ const Header = () => {
 
         <div className='navbar1'>
           {authenticated ? 
-          <NavLink to={'/'} id='navbarlogin' onClick={Logout}>로그아웃</NavLink>:
-          <NavLink to={'/login'} id='navbarlogin'>로그인</NavLink>}
-          <NavLink to={'/join'} id='navbarlogin'>회원가입</NavLink>
+            <NavLink to={'/'} id='navbarlogin' onClick={Logout}>로그아웃</NavLink>:
+            <NavLink to={'/login'} id='navbarlogin'>로그인</NavLink>}
+          {authenticated ? 
+            <NavLink to={''} id='navbarlogin' onClick={JoinAlert}>회원가입</NavLink> :
+            <NavLink to={'/join'} id='navbarlogin'>회원가입</NavLink>
+          }
+          
         </div>
 
         <div className='navbar'>
@@ -73,13 +88,22 @@ const Header = () => {
                 </NavLink>
               </div>
             )}
-            <NavLink
+            {authenticated ? 
+              <NavLink
+                className='navbarMenu'
+                activeClassName='activeLink'
+                onClick={() => handleMenuClick('out')}
+              >
+                텃밭내놓기
+              </NavLink> :
+              <NavLink to = '/login'
               className='navbarMenu'
               activeClassName='activeLink'
-              onClick={() => handleMenuClick('out')}
-            >
-              텃밭내놓기
-            </NavLink>
+              onClick={LoginAlert}
+              >
+                텃밭내놓기
+              </NavLink> }
+
             {activeMenu === 'out' && (
               <div className='navbarSubMenu2'>
                 <NavLink to='/out' className='navbarSubMenuLink'>
@@ -106,13 +130,22 @@ const Header = () => {
                 </NavLink>
               </div>
             )}
-            <NavLink
+            {authenticated ? 
+              <NavLink
+                className='navbarMenu'
+                activeClassName='activeLink'
+                onClick={() => handleMenuClick('mypage')}
+              >
+                마이페이지
+              </NavLink> :
+              <NavLink to = '/login'
               className='navbarMenu'
               activeClassName='activeLink'
-              onClick={() => handleMenuClick('mypage')}
+              onClick={LoginAlert}
             >
               마이페이지
-            </NavLink>
+              </NavLink> }
+
             {activeMenu === 'mypage' && (
               <div className='navbarSubMenu4'>
                 <NavLink to='/mypage' className='navbarSubMenuLink'>
@@ -124,7 +157,8 @@ const Header = () => {
                   내 정보 수정
                 </NavLink>
               </div>
-            )}
+            )} 
+
           </ul>
         </div>  
       </div>

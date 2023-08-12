@@ -44,7 +44,6 @@ const defaultTheme = createTheme({
 
 export default function SignUp() {
 
-
   const [form, setForm] = useState({ user_id: "", user_password: "", user_name : "", user_nick : "" , user_email: "", user_phone: "", user_address : "" });
   const [check, setCheck] = useState({id:false,pw:false,email:false,nink:false,phone:false,addr:false}) 
   const navigate = useNavigate()
@@ -177,7 +176,8 @@ export default function SignUp() {
       sessionStorage.setItem('user_id', form.user_id)
       sessionStorage.setItem('user_nick', form.user_nick)
       sessionStorage.setItem('user_type', form.user_type)   
-      navigate('/')
+      window.location.replace('/')
+
     })
     .catch((Error)=>{
       console.log("통신 실패 + \n" + Error)

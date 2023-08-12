@@ -75,7 +75,7 @@ const CardDetailsPage = ({ value }) => {
   },[])
   
   const del = ()=>{
-    if(userId === newContent[0].user_id){
+    if(userNick === newContent[0].user_nick){
       const delUrl = 'http://192.168.70.237:5022/delete';
       axios.get(delUrl, { responseType: 'json', params: { content_num : newContent[0].content_num } })
       .then(response => {

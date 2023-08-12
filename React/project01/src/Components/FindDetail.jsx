@@ -30,6 +30,35 @@ const FindDetail = () => {
   //       console.error('Error fetching data:', error);
   //     });
   // },[]);
+
+  const userId = sessionStorage.getItem('user_id')
+  const [showSuccessMessage, setShowSuccessMessage]=useState(false);
+
+
+  const farm_apply = ()=>{
+    const applyUrl = 'http://192.168.70.237:5022/farm_apply';
+      axios
+        .get(applyUrl, { responseType: 'json', params: { user_id : userId, farm_num : farms.farm_num } })
+        .then(response => {
+          console.log('Response from server:', response.data);
+          if (response.data.message === 'success') {
+            setShowSuccessMessage(true);
+            // 여기서 바로 리디렉션을 수행
+            setTimeout(() => {
+              setShowSuccessMessage(false);
+              alert('분양 신청이 완료되었습니다. mypage로 이동합니다.');
+              // 작성 완료 메시지가 표시된 후 cone 페이지로 이동
+              window.location.href = 'http://localhost:3000/mypage/mylist'; // 이동할 페이지 URL로 변경
+            }, 10);
+          } else {
+            alert(response.data.message);
+          }
+        })
+        .catch(error => {
+          console.error('Error sending data:', error);
+          alert('분양 신청 중 오류가 발생했습니다.');
+        });
+    }
   
 
  
@@ -111,7 +140,7 @@ const FindDetail = () => {
 
               <div className='calender_border'></div>
               <div className='farmapply_border'>
-                <span className='farmapply_btn'>분양 신청하기</span>
+                <span className='farmapply_btn' onClick={farm_apply}>분양 신청하기</span>
               </div>
               <div className='call_border'>
                 <span className='call_btn'>문의 연락처</span>

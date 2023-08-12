@@ -222,56 +222,6 @@ def add_id():
     print(response)
     return response
 
-    
-# ==================== 공지사항 ==================== #
-@app.route('/notice', methods=['GET'])
-def notice():
-    print('# ==================== 공지사항 ==================== #')
-    notice_title = request.args.get('notice_title', 'Unknown')
-    notice_contents = request.args.get('notice_contents', 'Unknown')
-    print('받은데이터', notice_title, notice_contents)
-
-    conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
-    curs = conn.cursor()
-    
-    if notice_contents == "":
-        sql2 = f"select * from notice ORDER BY notice_num DESC"
-        curs.execute(sql2)
-        res = curs.fetchall()
-        curs.close()
-        conn.close()
-        resList = []
-        for a in res:
-            resList.append({"notice_num":a[0],
-                            "notice_title":a[1], 
-                            "notice_contents":a[2],
-                            "notice_day":a[3],
-                            })
-        print('보낸데이터', resList)
-        return resList
-    else:
-        sql = (
-            f"INSERT INTO notice (notice_num, notice_title, notice_contents, notice_day)"
-            f"VALUES (content_comment_seq.NEXTVAL, '{notice_title}', '{notice_contents}', '{today}')"
-        )
-
-        curs.execute(sql)
-        sql2 = f"select * from notice ORDER BY notice_num DESC"
-        curs.execute(sql2)
-        res = curs.fetchall()
-        curs.close()
-        conn.commit()
-        conn.close()
-        resList = []
-        for a in res:
-            resList.append({"notice_num":a[0],
-                            "notice_title":a[1], 
-                            "notice_contents":a[2],
-                            "notice_day":a[3],
-                            })
-        print('보낸데이터', resList)
-        return resList
-
 
 # ==================== 텃밭 등록 ==================== #
 @app.route('/add_farm', methods=['POST'])
@@ -398,6 +348,59 @@ def farm():
                         })
     print('보낸데이터', resList)
     return resList
+
+
+# ==================== 텃밭 신청하기 ==================== #
+@app.route('/farm_apply', methods=['GET'])
+def farm_apply():
+    print('# ==================== 텃밭 신청하기 ==================== #')
+    user_id = request.args.get('user_id', 'Unknown')
+    farm_num = request.args.get('farm_num', 'Unknown')
+    print('받은데이터', user_id, farm_num)
+
+    conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
+    curs = conn.cursor()
+
+    # farm_sector 값 가져오기
+    farm_sector_sql = f"SELECT farm_sector FROM farm WHERE farm_num = '{farm_num}'"
+    curs.execute(farm_sector_sql)
+    farm_sector_result = curs.fetchone()
+
+    if farm_sector_result:
+        farm_sector = farm_sector_result[0]
+
+        # 이미 신청된 분양 수 확인
+        applied_count_sql = f"SELECT COUNT(*) FROM FARMAPPLICATION WHERE farm_num = '{farm_num}'"
+        curs.execute(applied_count_sql)
+        applied_count_result = curs.fetchone()
+
+        if applied_count_result:
+            applied_count = applied_count_result[0]
+
+            # farm_sector 값보다 신청된 분양 수가 작을 경우에만 신청 가능
+            if applied_count < farm_sector:
+                sql = (
+                    f"INSERT INTO FARMAPPLICATION (APPLICATION_NUM, USER_ID, FARM_NUM, APPLY_DAY)"
+                    f"VALUES (farmApplication_seq.NEXTVAL, '{user_id}', '{farm_num}', '{today}')"
+                )
+                print('sql문', sql)
+
+                curs.execute(sql)
+                conn.commit()
+                curs.close()
+                conn.close()
+                response = {'message': 'success'}
+                print('보낸데이터', response)
+                return jsonify(response)
+            else:
+                response = {'message': '이미 해당 농장의 분양 신청이 최대치입니다'}
+                return jsonify(response)
+        else:
+            response = {'message': '분양 신청 수를 가져올 수 없습니다'}
+            return jsonify(response)
+    else:
+        response = {'message' : '농장 섹터 값을 가져올 수 없습니다'}
+        return jsonify(response)
 
 
 # ==================== 자랑하기 글 추가 ==================== #
@@ -534,13 +537,46 @@ def content_comment():
         return resList
 
 
+# ==================== 마이페이지 - 신청내역 ==================== #
+@app.route('/myList', methods=['GET'])
+def myList():
+    print('# ==================== 마이페이지 - 신청내역 ==================== #')
+    user_id = request.args.get('user_id', 'Unknown')
+    print('받은데이터', user_id, )
+
+    conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
+    curs = conn.cursor()
+    
+    
+    sql = f"SELECT FARMAPPLICATION.application_num, farm.farm_title, farm.farm_price, farm.lental_area, farm.lental_startDate, farm.lental_endDate, FARMAPPLICATION.apply_day FROM FARMAPPLICATION JOIN farm ON FARMAPPLICATION.farm_num = farm.farm_num WHERE FARMAPPLICATION.user_id = '{user_id}' order by FARMAPPLICATION.application_num desc"
+
+    curs.execute(sql)
+    res = curs.fetchall()
+    curs.close()
+    conn.close()
+    resList = []
+    for a in res:
+        resList.append({"application_num":a[0],
+                        "farm_title":a[1], 
+                        "farm_price":a[2],
+                        "lental_area":a[3],
+                        "lental_startDate":a[4],
+                        "lental_endDate":a[5],
+                        "apply_day":a[6]
+                        })
+    print('보낸데이터', resList)
+    return resList
+
+
 # ==================== 삭제 페이지 ==================== #
 @app.route('/delete', methods=['GET'])
 def delete():
     print('# ==================== 삭제 페이지 ==================== #')
     content_num = request.args.get('content_num', 'Unknown')
     content_comment_num = request.args.get('content_comment_num', 'Unknown')
-    print('받은데이터', content_num, content_comment_num)
+    application_num = request.args.get('application_num', 'Unknown')
+    
+    print('받은데이터', content_num, content_comment_num, application_num)
 
     conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
     curs = conn.cursor()
@@ -569,28 +605,6 @@ def delete():
         conn.commit()
         print('글삭제 완료')
         
-        # sql2 = "select * from content"
-        # curs.execute(sql2)
-        # res = curs.fetchall()
-        # curs.close()
-        # conn.close()
-        # resList = []
-        # for a in res:
-        #     resList.append({"content_num": a[0],
-        #                     "content_title": a[1], 
-        #                     "user_nick": a[2],
-        #                     "content_img": a[3], 
-        #                     "contents": a[4],
-        #                     "content_day": a[5]
-        #                     })
-        # print('보낸데이터', resList)
-        # return resList
-
-        response = {'message': 'Content delete successfully'}
-        print('보낸 메시지', response)
-        return jsonify(response), 200
-
-
     elif content_comment_num != 'Unknown':
         print('자랑하기 댓글 삭제')
         sql = f"delete from content_comment where content_comment_num = {content_comment_num}"
@@ -611,6 +625,19 @@ def delete():
                             })
         print('보낸데이터', resList)
         return resList
+
+    elif application_num != 'Unknown':
+        print('신청내역 삭제')
+        sql = f"delete from FARMAPPLICATION where APPLICATION_NUM = '{application_num}'"
+        curs.execute(sql)
+        conn.commit()
+        print('신청내역 삭제 완료')
+        
+
+        response = {'message': 'success'}
+        print('보낸 메시지', response)
+        return response
+
 
   
     

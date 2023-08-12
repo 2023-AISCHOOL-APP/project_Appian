@@ -75,7 +75,7 @@ const CardDetailsPage = ({ value }) => {
   },[])
   
   const del = ()=>{
-    if(sessionStorage.getItem(userId) == newContent[0].user_id){
+    if(userId == newContent[0].user_id){
       const delUrl = 'http://192.168.70.237:5022/delete';
       axios.get(delUrl, { responseType: 'json', params: { content_num : newContent[0].content_num } })
       .then(response => {
@@ -94,7 +94,10 @@ const CardDetailsPage = ({ value }) => {
       .catch(error => {
         console.error('Error sending data:', error);
       });
-  };
+  } else{
+    alert("본인이 작성한 글이 아닙니다.")
+
+  }
 }
 
   

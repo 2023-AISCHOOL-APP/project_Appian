@@ -4,14 +4,11 @@ import '../Css/OutGarden.css'
 import PageTitle from '../Components/PageTitle';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-<<<<<<< HEAD
 import DaumPost from '../Components/Daumpost2';
-
-=======
 import DaumPost2 from '../Components/DaumPost';
 import Swal from "sweetalert2";
 //  모달창으로 할지 sweetalert2에서 꺼내서 사용할지 결정해야함!!!!!!
->>>>>>> 8e92eeba1e6ff720d821098a94904290b3db953d
+
 
 function OutGarden() {
   // 텃밭 등록 페이지를 위한 상태
@@ -89,16 +86,7 @@ function OutGarden() {
 
   return (
     <>
-<<<<<<< HEAD
-      <PageTitle data={'텃밭 등록'} num={2} />
-      <div className="out-container">
-        <img src='/img/leaves1.png' className='leaves1'/>
-        <div className='outgarden-container'>
-          <h1 className='out_maintitle'>텃밭등록하기</h1>
-          <form>
-            <div className="form1">
-              {/* ... */}
-=======
+
     <PageTitle data={'텃밭 등록'} num={2}/>
 
     
@@ -316,197 +304,8 @@ function OutGarden() {
                    
                   </form>
                 </div>
->>>>>>> 8e92eeba1e6ff720d821098a94904290b3db953d
-            </div>
 
-            <div className="form2">
-              {/* ... */}
-            </div>
-
-            <div className="form3">
-            <label htmlFor="address">텃밭 주소:</label>
-            <input
-              type="text"
-              id="out_address"
-              autoComplete="address"
-              value={form.farm_address}
-              readOnly // 사용자가 직접 수정하지 못하게 읽기 전용으로 설정
-            />
-            <DaumPost setForm={setForm} form={form}></DaumPost>
-            </div>
-
-            <div className="form4">
-              <label htmlFor="area">면적(평):</label>
-              <input
-                type="text"
-                placeholder='면적을 입력해주세요'
-                id="out_area"
-                value={form.lental_area}
-                onChange={(e)=>{
-                  setForm({...form, lental_area : e.target.value})
-                }}
-                required
-              />
-            </div>
-            <div className="form4_1">
-              <label htmlFor="area_num">분양 개수:</label>
-              <input
-                type="text"
-                placeholder='분양할 텃밭의 개수를 입력하세요.'
-                id="out_areanum"
-                value={form.farm_sector}
-                onChange={(e)=>{
-                  setForm({...form, farm_sector : e.target.value})
-                }}
-                required
-              />
-            </div>
-
-            {/* 라디오 버튼 : 소형, 중형, 대형 */}
-            <div className="form5"> 
-              <label htmlFor="type">텃밭 유형:</label>
-            <div className='outtype_btn'>
-            <button
-              onClick={() => handleTypeButtonClick('대형')}
-              className={`type_button ${selectedType === '대형' ? 'selected' : ''}`}>
-              대형
-            </button> 
-            <button
-              onClick={() => handleTypeButtonClick('중형')}
-              className={`type_button ${selectedType === '중형' ? 'selected' : ''}`}>
-              중형
-            </button>
-            <button
-              onClick={() => handleTypeButtonClick('소형')}
-              className={`type_button ${selectedType === '소형' ? 'selected' : ''}`}>
-              소형
-            </button>
-                
-                </div>
-                
-            </div>
-
-            {/* 라디오 버튼 : 개인, 민간단체, 지자체 */}
-            <div className="form6"> 
-              <label htmlFor="farmtype">운영 주체:</label>
-              <div className='outtype_btn1'>
-              <button
-              value={form.farm_type}
-              onClick={() => handleFarmTypeButtonClick('개인')}
-              className={`type1_button ${selectedFarmType === '개인' ? 'selected' : ''}`}
-            >
-              개인
-            </button>
-            <button
-              value={form.farm_type}
-              onClick={() => handleFarmTypeButtonClick('민간')}
-              className={`type1_button ${selectedFarmType === '민간' ? 'selected' : ''}`}
-            >
-            민간
-            </button>
-            <button
-              value={form.farm_type}
-              onClick={() => handleFarmTypeButtonClick('공공')}
-              className={`type1_button ${selectedFarmType === '공공' ? 'selected' : ''}`}
-            >
-              공공
-            </button>
-          </div>
-        
-            </div>
-
-
-            <div className="form7">
-              <label htmlFor="price">분양희망가:</label>
-              <input
-                type="text"
-                id="out_price"
-                placeholder='분양 희망 가격을 입력해주세요'
-                value={form.price}
-                onChange={(e)=>{
-                  setForm({...form, price : e.target.value})
-                }}
-                required
-              />
-            </div>
-
-            {/* 캘린더 위젯 수정 */}
-            <div className="form8">
-
-              <label htmlFor="rentalPeriod">임대기간 시작일:</label>
-                <input
-                type="data"
-                id="lental_startDate"
-                value={form.lental_startDate}
-                onChange={(e)=>{
-                  setForm({...form, lental_startDate : e.target.value })
-                }}
-
-                required
-              />
-            </div>
-              {/* 캘린더 위젯 수정 */}
-              <div className="form8">
-              <label htmlFor="rentalPeriod">임대기간 종료일:</label>
-                <input
-                type="data"
-                id="lental_startDate"
-                value={form.lental_endDate}
-                onChange={(e)=>{
-                  setForm({...form, lental_endDate : e.target.value })
-                }}
-                required
-              />
-            </div>
-              
-            {/* 캘린더 위젯 수정 */}
-            <div className="form9">
-
-              <label htmlFor="recruitmentPeriod">분양신청 시작일:</label>
-              <input
-                type="data"
-                id="lental_startDate"
-                value={form.startDate}
-                onChange={(e)=>{
-                  setForm({...form, startDate : e.target.value })
-                }}
-
-                required
-              />
-            </div>
-              {/* 캘린더 위젯 수정 */}
-              <div className="form9">
-              <label htmlFor="recruitmentPeriod">분양신청 마감일:</label>
-              <input
-                type="data"
-                id="lental_startDate"
-                value={form.endDate}
-                onChange={(e)=>{
-                  setForm({...form, endDate : e.target.value })
-                }}
-                required
-              />
-            </div>
-
-            <div className="form10">
-              <label htmlFor="description">본문내용:</label>
-              <textarea
-                id="out_description"
-                value={form.description}
-                onChange={(e)=>{setForm({...form, description : e.target.value})}}
-                required
-              />
-            </div>
-
-
-            <button type='button' className="submit-btn" onClick={infoSending}>
-
-              등록하기
-            </button>
-            
-          </form>
-        </div>
-    </div>    
+        </div>   
   </>
   );
 }

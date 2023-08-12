@@ -172,12 +172,12 @@ const Header = () => {
 
             {activeMenu === 'mypage' && (
               <div className='navbarSubMenu4'>
-                <NavLink to='/mypage' className='navbarSubMenuLink'>
+                <NavLink to='/mypage/mylist' className='navbarSubMenuLink'>
                   문의 내역
                 </NavLink>
                 <br/>
                 <br/>
-                <NavLink to='/mypage' className='navbarSubMenuLink'>
+                <NavLink to='/mypage/info' className='navbarSubMenuLink'>
                   내 정보 수정
                 </NavLink>
               </div>

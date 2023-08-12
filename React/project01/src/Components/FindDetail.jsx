@@ -68,7 +68,8 @@ const FindDetail = () => {
 
     <div className='detail_all'>
               <div>
-                <img src='/img/farmdetail/farmdetailimg1.jpg' className='farm_imgsmall'/>
+              
+                <img src={`http://192.168.70.237:5022/farm_img/${farms.farm_img}`} className='farm_imgsmall'/>
               </div>
               <div className='use_id'>
                 <span>작성자 :</span><span> {farms.user_nick}</span>

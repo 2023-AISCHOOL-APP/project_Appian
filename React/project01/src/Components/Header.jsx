@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
+import Swal from "sweetalert2";
 
 const Header = () => {
   // 하위 메뉴 이벤트 
@@ -41,15 +42,33 @@ const Header = () => {
      sessionStorage.removeItem('user_nick')
      sessionStorage.removeItem('user_type')
      setUser(null)
-     alert('로그아웃 되었습니다.')
+     Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: '로그아웃 되었습니다.',
+      showConfirmButton: false,
+      timer: 1500
+    })
    }
  
    const JoinAlert = () =>{
-    alert( '이미 로그인된 상태입니다.')
+    Swal.fire({
+      position: 'center',
+      icon: 'warning',
+      title: '이미 로그인된 상태입니다.',
+      showConfirmButton: false,
+      timer: 1500
+    })
    }
 
    const LoginAlert = () =>{
-    alert('로그인이 필요한 서비스입니다.')
+    Swal.fire({
+      position: 'center',
+      icon: 'info',
+      title: '로그인이 필요합니다!',
+      showConfirmButton: false,
+      timer: 1500
+    })
    
    }
 
@@ -86,7 +105,12 @@ const Header = () => {
                 <NavLink to='/find' className='navbarSubMenuLink'>
                   텃밭 검색
                 </NavLink>
+                <br/><br/>
+                <NavLink to='/find/test' className='navbarSubMenuLink'>
+                  지도테스트
+                </NavLink>
               </div>
+              
             )}
             {authenticated ? 
               <NavLink
@@ -148,12 +172,12 @@ const Header = () => {
 
             {activeMenu === 'mypage' && (
               <div className='navbarSubMenu4'>
-                <NavLink to='/mypage' className='navbarSubMenuLink'>
+                <NavLink to='/mypage/mylist' className='navbarSubMenuLink'>
                   문의 내역
                 </NavLink>
                 <br/>
                 <br/>
-                <NavLink to='/mypage' className='navbarSubMenuLink'>
+                <NavLink to='/mypage/info' className='navbarSubMenuLink'>
                   내 정보 수정
                 </NavLink>
               </div>

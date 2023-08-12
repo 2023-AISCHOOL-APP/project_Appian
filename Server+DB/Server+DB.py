@@ -256,17 +256,22 @@ def add_farm():
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
     def save_image(file, farm_num):
-        filename = f"{farm_num}_{file.filename}"
+        original_extension = file.filename.rsplit('.', 1)[-1].lower()
+        filename = f"{farm_num}.{original_extension}"
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(filepath)
         return filename
-    
+     
     farm_title = request.form.get('farm_title')
     farm_type = request.form.get('farm_type')
     farm_address = request.form.get('farm_address')
     farm_price = request.form.get('farm_price')
     lantitude = request.form.get('lantitude')
+    if lantitude is None:
+        lantitude = '없음'  # 누락된 값에 대해 'None' 할당
     longitude = request.form.get('longitude')
+    if longitude is None:
+        longitude = '없음'  # 누락된 값에 대해 'None' 할당
     user_id	= request.form.get('user_id')
     lental_area	= request.form.get('lental_area')
     farm_sector	= request.form.get('farm_sector')
@@ -276,16 +281,18 @@ def add_farm():
     lental_startDate = request.form.get('lental_startDate')
     lental_endDate = request.form.get('lental_endDate')
     description = request.form.get('description')
-    image = request.form.get('farm_img')
+    image = request.files.get('farm_img')
 
+    print('받은데이터', user_id)
     if image:
         conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
         curs = conn.cursor()
 
         sql = (
-            f"INSERT INTO content (farm_num, farm_title, farm_type, farm_address, farm_price, lantitude, longitude, user_id, lental_area, farm_sector, lental_type, startDate, endDate, lental_startDate, lental_endDate, description, farm_img, farm_day)"
+            f"INSERT INTO farm (farm_num, farm_title, farm_type, farm_address, farm_price, lantitude, longitude, user_id, lental_area, farm_sector, lental_type, startDate, endDate, lental_startDate, lental_endDate, description, farm_img, farm_day)"
             f"VALUES (farm_seq.NEXTVAL, '{farm_title}', '{farm_type}', '{farm_address}', '{farm_price}', '{lantitude}', '{longitude}', '{user_id}', '{lental_area}', '{farm_sector}', '{lental_type}', '{startDate}', '{endDate}', '{lental_startDate}', '{lental_endDate}', '{description}', NULL, '{today}')"
         )
+        print(sql)
         curs.execute(sql)
         conn.commit()
 
@@ -305,9 +312,11 @@ def add_farm():
         conn.close()
 
         response = {'message': 'farm added successfully'}
+        print(response)
         return jsonify(response), 200
     else:
         response = {'error': 'Image not found'}
+        print(response)
         return jsonify(response), 400
 
 
@@ -375,7 +384,9 @@ def add_content():
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
     def save_image(file, content_num):
-        filename = f"{content_num}_{file.filename}"  # 수정: content_num만 사용하도록 변경
+        # 원래 파일의 확장자를 가져와서 사용
+        original_extension = file.filename.rsplit('.', 1)[-1].lower()
+        filename = f"{content_num}.{original_extension}"
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(filepath)
         return filename
@@ -384,6 +395,8 @@ def add_content():
     content_title = request.form.get('content_title')
     contents = request.form.get('contents')
     image = request.files['content_img']
+
+    print('받은데이터', request.form)
 
     if image:
         conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
@@ -405,7 +418,7 @@ def add_content():
             f"UPDATE content SET content_img = '{saved_filename}' WHERE content_num = {content_num}"
         )
         curs.execute(update_sql)
-        print(update_sql)
+        print('sql문', update_sql)
         conn.commit()
 
         curs.close()
@@ -610,7 +623,7 @@ def delete():
         print('보낸 메시지', response)
         return jsonify(response), 200
 
-        
+
     elif content_comment_num != 'Unknown':
         print('자랑하기 댓글 삭제')
         sql = f"delete from content_comment where content_comment_num = {content_comment_num}"

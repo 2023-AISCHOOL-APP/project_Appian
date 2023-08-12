@@ -114,20 +114,27 @@ const Cone = ({value}) => {
 //       console.error('Error fetching data:', error);
 //     });
 // }, []);
-const [currentPage, setCurrentPage]=useState(1);
-  const postsPerPage =10;
-  const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);
-  };
+  const [currentPage, setCurrentPage]=useState(1);
+    const postsPerPage =10;
+    const handlePageChange = (newPage) => {
+      setCurrentPage(newPage);
+    };
   
   
 
   const totalPages = Math.ceil(value.length / postsPerPage);
-const indexOfLastPost = currentPage * postsPerPage;
-const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = value.slice(indexOfFirstPost, indexOfLastPost);
- 
- 
+  const user_nick = sessionStorage.getItem('user_nick')
+  const writingbtn = ()=>{
+    if (user_nick !== null){
+      setIsWriting(true)
+    } else {
+      alert('로그인이 필요한 서비스입니다.')
+      nav('/login')
+    }
+  } 
  
  
  
@@ -174,7 +181,7 @@ const indexOfFirstPost = indexOfLastPost - postsPerPage;
       <span className='conetitle'>텃밭 자랑하기</span>
     
       <img src='/img/titlebg2.png' className='c1titlebg'/>
-      {!isWriting && <button className='write-button' onClick={() => setIsWriting(true)}>작성하기</button>}
+      {!isWriting && <button className='write-button' onClick={writingbtn}>작성하기</button>}
       {isWriting && (
         <WritingPage
           onAddCard={handleAddCard}

@@ -26,7 +26,8 @@ const DaumPost = (props) => {
             //     주소: ${data.address},
             //     우편번호: ${data.zonecode}
             // `)
-            setOpenPostcode(false);
+            setOpenPostcode(false)
+
             props.setForm({...props.form, farm_address:data.address})
         },
     }

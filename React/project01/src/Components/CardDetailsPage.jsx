@@ -18,9 +18,6 @@ const CardDetailsPage = ({ value }) => {
   //   return <div> </div>;
   // }
 
-
-
-
   // 사용자 정보 가져오기
   const userNick = sessionStorage.getItem('user_nick')
   const userId = sessionStorage.getItem('user_id')
@@ -38,23 +35,30 @@ const CardDetailsPage = ({ value }) => {
    const [newComment, setNewComment] = useState('');
 
    const handleAddComment = () => {
-    if (newComment.trim() !== '') {
-      // setComments([...comments, newComment]); // 새 댓글을 댓글 목록에 추가
-      // setNewComment(''); // 새 댓글 내용 초기화
 
-      // 서버에 데이터 보내기 : 
-      const apiUrl = 'http://192.168.70.237:5022/content_comment';
-      axios.get(apiUrl, { responseType: 'json', params: { user_nick : userNick , content_num : newContent[0].content_num, content_comment : newComment } })
-      .then(response => {
-        console.log('댓글쓰고 받아온거', response.data);
-        setComments(response.data);
-        setNewComment('');
-      })
-      .catch(error => {
-        console.error('보내기 에러');
-      });
-    }
-  };
+      if (userNick === null){
+        alert('로그인이 필요한 서비스입니다.')
+        
+      } else {
+        if (newComment.trim() !== '') {
+          // setComments([...comments, newComment]); // 새 댓글을 댓글 목록에 추가
+          // setNewComment(''); // 새 댓글 내용 초기화
+
+          // 서버에 데이터 보내기 : 
+          const apiUrl = 'http://192.168.70.237:5022/content_comment';
+          axios.get(apiUrl, { responseType: 'json', params: { user_nick : userNick , content_num : newContent[0].content_num, content_comment : newComment } })
+          .then(response => {
+            console.log('댓글쓰고 받아온거', response.data);
+            setComments(response.data);
+            setNewComment('');
+          })
+          .catch(error => {
+            console.error('보내기 에러');
+          });
+        }
+      }
+    } 
+  
   
   // 게시물 번호 -> 댓글 데이터 가져오고 -> 뿌려주고
   
@@ -95,11 +99,11 @@ const CardDetailsPage = ({ value }) => {
       .catch(error => {
         console.error('Error sending data:', error);
       });
-  } else{
-    alert("본인이 작성한 글이 아닙니다.")
+    } else{
+      alert("본인이 작성한 글이 아닙니다.")
 
+    }
   }
-}
 
   
   return (
@@ -113,7 +117,7 @@ const CardDetailsPage = ({ value }) => {
       
         
         <h2 className='card-details-title'>{newContent[0].content_title}</h2>
-        <span className='card-nickname'>{newContent[0].user_nick} 농부</span>
+        <span className='card-nickname'>{newContent[0].user_nick} </span>
         <p className='card-details-content'>{newContent[0].contents}</p>
         <img className='card-details-image' src={`http://192.168.70.237:5022/content_img/${newContent[0].content_img}`} alt={newContent[0].content_title} />
         

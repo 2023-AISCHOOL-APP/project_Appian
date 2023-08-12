@@ -1834,6 +1834,8 @@ button {
   top: -10px;
 }
 
+/* 위의 버튼 -> 검색 페이지 줌 스크롤 버튼 위치에 영향을 줍니다. 다른 클래스로 빼서 작업해야할 듯해요! */
+
 .card-nickname{
   
   font-family: 'SUIT-Bold';

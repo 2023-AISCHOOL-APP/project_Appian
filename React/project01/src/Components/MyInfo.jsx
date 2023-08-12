@@ -11,10 +11,10 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import PageTitle from '../Components/PageTitle';
+import PageTitle from './PageTitle';
 import {RadioGroup, Radio} from '@mui/material/RadioGroup';
 import axios from 'axios';
-import DaumPost from '../Components/DaumPost';
+import DaumPost from './DaumPost';
 
 
 function Copyright(props) {
@@ -42,7 +42,7 @@ const defaultTheme = createTheme({
 });
  
 
-export default function SignUp() {
+export default function Myinfo() {
 
   const [form, setForm] = useState({ user_id: "", user_password: "", user_name : "", user_nick : "" , user_email: "", user_phone: "", user_address : "" });
 
@@ -130,12 +130,9 @@ export default function SignUp() {
   };
 
 
-  
-
-
   return (
     <>
-    <PageTitle data={'회원가입'} num={1}/>
+    <PageTitle data={'내 정보 수정'} num={3}/>
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -165,6 +162,7 @@ export default function SignUp() {
                   value={form.user_id}
                   helperText="ID : 6자 이상 (영문자와 숫자) "
                   autoFocus
+                  autoComplete='off'
                   onChange={(e)=>setForm(e.target.value)}                  
                 />
               </Grid>
@@ -193,6 +191,7 @@ export default function SignUp() {
                   label="비밀번호"
                   type="password"
                   id="password"
+                  autoComplete='off'
                   helperText="PW : 6 ~ 12자의 영문, 숫자 조합"
                   value={form.user_password}
                  
@@ -206,6 +205,7 @@ export default function SignUp() {
                   fullWidth
                   id="email"
                   label="Email 주소"
+                  autoComplete='off'
                   helperText="Email 예시 : farmers@farmfarm.co.kr"
                   value={form.user_email}
           
@@ -234,11 +234,12 @@ export default function SignUp() {
                 <TextField
                   color = "success"
                   size = "small"
-                  required
+                  disabled
                   fullWidth
                   id="user_name"
                   label="이름(실명)"
                   value={form.user_name}
+                  autoComplete='off'
                   onChange={(e)=> {setForm({...form, user_name : e.target.value})}}
                 />
               </Grid>
@@ -250,6 +251,7 @@ export default function SignUp() {
                   fullWidth
                   id="nickName"
                   label="닉네임"
+                  autoComplete='off'
                   value={form.user_nick}
                   onChange={(e)=> {setForm({...form, user_nick : e.target.value})}}
                 />
@@ -284,6 +286,7 @@ export default function SignUp() {
                   id="phone"
                   label="연락처(000-0000-0000)"
                   value={form.user_phone}
+                  autoComplete='off'
                             
                 />
               </Grid>
@@ -296,7 +299,8 @@ export default function SignUp() {
                   fullWidth
                   id="address"
                   // label="거주지 주소 : 이거 API 찾아봐야함"
-                  autoComplete="address"
+                  autoComplete="off"
+                  
                   value={form.user_address}
                   //onChange={(e)=>setForm({...form, user_address : e.target.value})}
                 />
@@ -322,22 +326,10 @@ export default function SignUp() {
                     }}
                     onClick={infoSending}
             >
-              가입하기
+              수정하기
             </Button>
             </Box>
-            <Grid container justifyContent="center">
-              <Grid item sx={{
-                      borderRadius: "20px",
-                      marginTop : '30px',
-                      textAlign : 'center',
-                      color  : '#05AC7B '
-                    }}
-            >
-                <Link href="/login" variant="body2">
-                  이미 계정이 있다면? 로그인
-                </Link>
-              </Grid>
-            </Grid>
+            
           </Box>
         </Box>
         <Copyright sx={{ mt: 5 }} />

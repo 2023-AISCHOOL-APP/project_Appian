@@ -34,9 +34,9 @@ const GetAddress = () => {
 
  
 
-  const [sido, setSido] = useState(['광주광역시']);
+  const [sido, setSido] = useState(['']);
   const [sigungu, setSigungu] = useState(['광산구']);
-  const [sigungus, setSigungus] = useState(['광산구']);
+  const [sigungus, setSigungus] = useState(['']);
 
   console.log('key:', sido, sigungu)
   

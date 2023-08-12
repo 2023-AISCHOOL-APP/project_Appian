@@ -10,7 +10,7 @@ const CardItem = ({name, addr, num, value}) => {
   const data = value ;
 
   console.log('저장', data)
-  const imgUrl = "../img/farmImg/"+num+".png"
+  const imgUrl = `http://192.168.70.237:5022/farm_img/${data.farm_img}`
 
   const nav = useNavigate();
   const send = () =>{

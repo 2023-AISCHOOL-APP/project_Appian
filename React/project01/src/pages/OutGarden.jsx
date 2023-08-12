@@ -5,7 +5,6 @@ import PageTitle from '../Components/PageTitle';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import DaumPost from '../Components/Daumpost2';
-import DaumPost2 from '../Components/DaumPost';
 import Swal from "sweetalert2";
 //  모달창으로 할지 sweetalert2에서 꺼내서 사용할지 결정해야함!!!!!!
 
@@ -161,8 +160,7 @@ function OutGarden() {
                         }}
                         //onChange={(e)=>setForm({...form, user_address : e.target.value})}
                       />
-                      <DaumPost2 setForm = {setForm} form={form}></DaumPost2> 
-
+                      <DaumPost setForm = {setForm} form={form}></DaumPost> 
                     </div>
 
                     <div className="form4">

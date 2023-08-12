@@ -394,12 +394,15 @@ def farm_apply():
                 return jsonify(response)
             else:
                 response = {'message': '이미 해당 농장의 분양 신청이 최대치입니다'}
+                print('보낸데이터', response)
                 return jsonify(response)
         else:
             response = {'message': '분양 신청 수를 가져올 수 없습니다'}
+            print('보낸데이터', response)
             return jsonify(response)
     else:
         response = {'message' : '농장 섹터 값을 가져올 수 없습니다'}
+        print('보낸데이터', response)
         return jsonify(response)
 
 
@@ -604,6 +607,10 @@ def delete():
         curs.execute(sql)
         conn.commit()
         print('글삭제 완료')
+
+        response = {'message': 'success'}
+        print('보낸 메시지', response)
+        return response
         
     elif content_comment_num != 'Unknown':
         print('자랑하기 댓글 삭제')

@@ -33,6 +33,7 @@ const FindDetail = () => {
 
   const userId = sessionStorage.getItem('user_id')
   const [showSuccessMessage, setShowSuccessMessage]=useState(false);
+  const nav = useNavigate();
 
 
   const farm_apply = ()=>{
@@ -47,8 +48,9 @@ const FindDetail = () => {
             setTimeout(() => {
               setShowSuccessMessage(false);
               alert('분양 신청이 완료되었습니다. mypage로 이동합니다.');
-              // 작성 완료 메시지가 표시된 후 cone 페이지로 이동
-              window.location.href = 'http://localhost:3000/mypage/mylist'; // 이동할 페이지 URL로 변경
+              // 작성 완료 메시지가 표시된 후  페이지로 이동
+              nav('/mypage/mylist')
+              
             }, 10);
           } else {
             alert(response.data.message);

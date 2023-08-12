@@ -86,7 +86,7 @@ const CardDetailsPage = ({ value }) => {
         .get(delUrl, { responseType: 'json', params: { content_num: newContent[0].content_num } })
         .then(response => {
           console.log('Response from server:', response.data);
-          if (response.data.message === 'Content delete successfully') {
+          if (response.data.message === 'success') {
             setShowSuccessMessage(true);
             // 여기서 바로 리디렉션을 수행
             setTimeout(() => {

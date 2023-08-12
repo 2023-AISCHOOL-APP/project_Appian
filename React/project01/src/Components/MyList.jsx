@@ -4,6 +4,7 @@ import axios from 'axios';
 import PageTitle from './PageTitle';
 
 
+
 const MyList = () => {
   
   const initialApplicationList = [
@@ -46,7 +47,7 @@ const MyList = () => {
           alert('분양 신청이 취소되었습니다.');
           window.location.reload(); // 페이지 새로고침
         } else {
-          alert('취소 중 오류가 발생했습니다.');
+          alert('분양 취소 중 오류가 발생했습니다.');
         }
       })
       .catch(error => {

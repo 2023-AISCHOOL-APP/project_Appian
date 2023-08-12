@@ -80,7 +80,6 @@ function OutGarden() {
     .then(response => {
       setResData(response)
       sessionStorage.setItem ('user_type' , 1 )
-      alert('소중한 텃밭 정보가 등록되었습니다!')
       nav('/find');
     })
     .catch(error => {

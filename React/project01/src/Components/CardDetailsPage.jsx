@@ -33,6 +33,7 @@ const CardDetailsPage = ({ value }) => {
      navigate('/cone');
    };
 
+  const [showSuccessMessage, setShowSuccessMessage]=useState(false);
    const [comments, setComments] = useState([]); // 댓글 목록 상태 변수
    const [newComment, setNewComment] = useState('');
 
@@ -74,22 +75,30 @@ const CardDetailsPage = ({ value }) => {
   },[])
   
   const del = ()=>{
-    if(sessionStorage.getItem(userId) == newContent[0].user_id){
+    if(userId == newContent[0].user_id){
       const delUrl = 'http://192.168.70.237:5022/delete';
       axios.get(delUrl, { responseType: 'json', params: { content_num : newContent[0].content_num } })
       .then(response => {
-        setComments(response.data);
-        console.log('삭제하고 받은 데이터', response.data);
-
+        console.log('Response from server:', response.data);
+        if (response.data.message === 'Content delete successfully'){
+          setShowSuccessMessage(true);
+          setTimeout(() => {
+            setShowSuccessMessage(false);
+            alert("게시물이 삭제되었습니다.")
+                       
+            // 작성 완료 메시지가 표시된 후 cone 페이지로 이동
+            window.location.href = 'http://localhost:3000/cone'; // 이동할 페이지 URL로 변경
+          }, 10);
+        }
       })
       .catch(error => {
-        console.error('보내기 에러');
+        console.error('Error sending data:', error);
       });
-  
-    }else{
-      console.log("삭제 아이디가 일치하지 않습니다.")
-    }
+  } else{
+    alert("본인이 작성한 글이 아닙니다.")
+
   }
+}
 
   
   return (

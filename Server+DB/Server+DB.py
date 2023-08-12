@@ -328,7 +328,6 @@ def farm():
         
     else:
         sql = f"select farm_num, farm_title, farm_type, farm_address, farm_price, lantitude, longitude, farm.user_id, lental_area, farm_sector, lental_type, startDate, endDate, lental_startDate, lental_endDate, description, farm_img, farm_day, user_name, user_nick, user_email, user_phone from farm INNER JOIN member ON farm.user_id = member.user_id where farm_address like '%{sido}%' and farm_address like '%{sigungu}%'"
-    print(sql)
     curs.execute(sql)
     res = curs.fetchall()
     print('db에서 나온 데이터', res)
@@ -363,7 +362,7 @@ def farm():
                         "user_email":a[20],
                         "user_phone":a[21]
                         })
-    print(resList)
+    print('보낸데이터', resList)
     return resList
 
 
@@ -556,9 +555,7 @@ def detail2():
 
     return resList
 
-# ==================== 삭제 페이지 ==================== #
 @app.route('/delete', methods=['GET'])
-@as_json
 def delete():
     print('# ==================== 삭제 페이지 ==================== #')
     content_num = request.args.get('content_num', 'Unknown')
@@ -569,30 +566,50 @@ def delete():
     curs = conn.cursor()
     if content_num != 'Unknown':
         print('자랑하기 글 삭제')
+        # 파일 이름 가져오기
+        curs.execute(f"SELECT content_img FROM content WHERE content_num = '{content_num}'")
+        img_filename = curs.fetchone()[0]
+
+        # 파일 삭제
+        if img_filename:
+            img_path = os.path.join(app.config['UPLOAD_FOLDER'], img_filename)
+            if os.path.exists(img_path):
+                os.remove(img_path)
+        print('파일삭제 완료')
+
+        # 댓글 삭제
         sql = f"delete from content_comment where content_num = '{content_num}'"
         curs.execute(sql)
         conn.commit()
-        print('sql문',sql)
+        print('댓글삭제 완료')
+        
+        # 글 삭제
         sql = f"delete from content where content_num = '{content_num}'"
         curs.execute(sql)
         conn.commit()
-        print('sql문',sql)
-        sql2 = "select * from content"
-        curs.execute(sql2)
-        res = curs.fetchall()
-        curs.close()
-        conn.close()
-        resList = []
-        for a in res:
-            resList.append({"content_num":a[0],
-                            "content_title":a[1], 
-                            "user_nick":a[2],
-                            "content_img":a[3], 
-                            "contents": a[4],
-                            "content_day": a[5]
-                            })
-        print('보낸데이터', resList)
-        return resList
+        print('글삭제 완료')
+        
+        # sql2 = "select * from content"
+        # curs.execute(sql2)
+        # res = curs.fetchall()
+        # curs.close()
+        # conn.close()
+        # resList = []
+        # for a in res:
+        #     resList.append({"content_num": a[0],
+        #                     "content_title": a[1], 
+        #                     "user_nick": a[2],
+        #                     "content_img": a[3], 
+        #                     "contents": a[4],
+        #                     "content_day": a[5]
+        #                     })
+        # print('보낸데이터', resList)
+        # return resList
+
+        response = {'message': 'Content delete successfully'}
+        print('보낸 메시지', response)
+        return jsonify(response), 200
+
         
     elif content_comment_num != 'Unknown':
         print('자랑하기 댓글 삭제')

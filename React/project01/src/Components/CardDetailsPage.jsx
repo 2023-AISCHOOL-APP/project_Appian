@@ -47,7 +47,8 @@ const CardDetailsPage = ({ value }) => {
       axios.get(apiUrl, { responseType: 'json', params: { user_nick : userNick , content_num : newContent[0].content_num, content_comment : newComment } })
       .then(response => {
         console.log('댓글쓰고 받아온거', response.data);
-        setComments(response.data)
+        setComments(response.data);
+        setNewComment('');
       })
       .catch(error => {
         console.error('보내기 에러');

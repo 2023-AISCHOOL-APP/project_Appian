@@ -107,17 +107,16 @@
   position: relative;
   top: -13px;
   left: 190px;
-
   width: 300px;
- padding: 10px;
+  padding: 10px;
  border-radius: 10px;
 }
 
-<<<<<<< HEAD
+
 .form3 {
   display: inline-flex;
 }
-=======
+
 #gardenImages input{
   position: relative;
   border-radius: 10px;
@@ -130,7 +129,7 @@
   border: 2px solid #47A148;
 }
 
->>>>>>> 8e92eeba1e6ff720d821098a94904290b3db953d
+
 
 .form3 label{
   font-family: 'SUIT-SemiBold';
@@ -138,7 +137,7 @@
   position: relative;
   top: 15px;
   left: 100px;
-  
+
 }
 
 #out_address{
@@ -156,7 +155,7 @@
   font-family: 'SUIT-SemiBold';
   font-size: 15px;
   top: -26px;
-  left: 630px;
+  left: 230px;
   padding: 8px 20px;
   color: #47A148;
   border: 2px solid #47A148;

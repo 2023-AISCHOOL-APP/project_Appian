@@ -56,28 +56,47 @@ function OutGarden() {
 
   const blob = new Blob([JSON.stringify(form)],{type : 'application/json'});
   
-  const apiUrl = '';//여기 주소 추가 필요
+  const apiUrl = 'http://192.168.70.237:5022/add_farm';//여기 주소 추가 필요
+  const [resData, setResData] = useState();
   
   const infoSending = ()=>{
     formData.append('farm', blob)
     console.log('등록내용확인',form)
-    
+
+    axios.post(apiUrl, { responseType: 'json', params: { form } })
+    .then(response => {
+      setResData(response)
+      alert('소중한 텃밭 정보가 등록되었습니다!')
+      nav('/find');
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+
+    // DB 응답에 다른 안내창
+    if(resData=== true){
       Swal.fire({
         position: 'center',
         icon: 'success',
-        
         title: '소중한 텃밭 정보가 등록되었습니다!',
         showConfirmButton: false,
         timer: 1500
       })
-    // axios.get(apiUrl, { responseType: 'json', params: { form } })
-    // .then(response => {
-    //   alert('소중한 텃밭 정보가 등록되었습니다!')
-    //   nav('/find');
-    // })
-    // .catch(error => {
-    //   console.error('Error fetching data:', error);
-    // });
+    } else {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: '정보 등록에 실패하였습니다! 다시 시도해주세요',
+        showConfirmButton: false,
+        timer: 1500
+      })
+
+
+    }
+
+
+
+
   }
 
   const setAddress = (newAddress) => {
@@ -121,7 +140,6 @@ function OutGarden() {
                       <input
                         type="text"
                         id="out_address"
-
                         autoComplete="address"
                         value={form.farm_address}
                         required

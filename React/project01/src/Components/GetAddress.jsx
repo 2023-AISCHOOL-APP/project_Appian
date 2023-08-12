@@ -11,7 +11,7 @@ const GetAddress = () => {
 
   const sidos = [
     {
-      name: '광주광역시',
+      name: '광주',
       sigungus : [
         { name : '광산구'}, 
         { name : '동구'},
@@ -20,7 +20,7 @@ const GetAddress = () => {
         { name : '북구'}]
     },
     {
-      name: '전라남도',
+      name: '전남',
       sigungus : [
         { name : '나주시'}, 
         { name : '목포시'},

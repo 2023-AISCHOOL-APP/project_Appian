@@ -17,7 +17,7 @@ function OutGarden() {
 
 
   const [form, setForm] = useState({ farm_title : '', farm_address :'', lental_area : '', farm_sector: '', lental_type: '소형', 
-    farm_type:'개인', price: '', lental_startDate:'', lental_endDate:'', startDate:'', endDate:'', description:'', user_id: user});
+    farm_type:'개인', farm_price: '', lental_startDate:'', lental_endDate:'', startDate:'', endDate:'', description:'', user_id: user});
   const nav = useNavigate();
   
 
@@ -51,17 +51,29 @@ function OutGarden() {
    
   const handleImageChange = (event) => {
     setImageFile(event.target.files[0]);
-    formData.append('farm_img', imageFile)
   };
 
-  const blob = new Blob([JSON.stringify(form)],{type : 'application/json'});
   
   const apiUrl = 'http://192.168.70.237:5022/add_farm';//여기 주소 추가 필요
   const [resData, setResData] = useState();
   
   const infoSending = ()=>{
-    formData.append('farm', blob)
+    formData.append('farm_title', form.farm_title)
+    formData.append('farm_address', form.farm_address)
+    formData.append('lental_area', form.lental_area)
+    formData.append('farm_sector', form.farm_sector)
+    formData.append('lental_type', form.lental_type)
+    formData.append('farm_price', form.farm_price)
+    formData.append('lental_startDate', form.lental_startDate)
+    formData.append('lental_endDate', form.lental_endDate)
+    formData.append('startDate', form.startDate)
+    formData.append('endDate', form.endDate)
+    formData.append('description', form.description)
+    formData.append('user_id', form.user_id)
+    formData.append('farm_image', imageFile)
+
     console.log('등록내용확인',form)
+    console.log('등록내용확인-s',formData)
 
     axios.post(apiUrl, { responseType: 'json', params: { form } })
     .then(response => {
@@ -239,9 +251,9 @@ function OutGarden() {
                         type="text"
                         id="out_price"
                         placeholder='분양 희망 가격을 입력해주세요'
-                        value={form.price}
+                        value={form.farm_price}
                         onChange={(e)=>{
-                          setForm({...form, price : e.target.value})
+                          setForm({...form, farm_price : e.target.value})
                         }}
                         required
                       />

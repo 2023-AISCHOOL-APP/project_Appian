@@ -75,7 +75,7 @@ const CardDetailsPage = ({ value }) => {
   },[])
   
   const del = ()=>{
-    if(userId == newContent[0].user_id){
+    if(userId === newContent[0].user_id){
       const delUrl = 'http://192.168.70.237:5022/delete';
       axios.get(delUrl, { responseType: 'json', params: { content_num : newContent[0].content_num } })
       .then(response => {
@@ -112,7 +112,7 @@ const CardDetailsPage = ({ value }) => {
       
         
         <h2 className='card-details-title'>{newContent[0].content_title}</h2>
-        <span className='card-nickname'>{newContent[0].user_nick} 농부</span>
+        <span className='card-nickname'>{newContent[0].user_nick} </span>
         <p className='card-details-content'>{newContent[0].contents}</p>
         <img className='card-details-image' src={`http://192.168.70.237:5022/content_img/${newContent[0].content_img}`} alt={newContent[0].content_title} />
         

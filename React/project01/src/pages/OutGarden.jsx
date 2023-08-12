@@ -61,7 +61,7 @@ function OutGarden() {
   const infoSending = ()=>{
     formData.append('farm', blob)
     console.log('등록내용확인',form)
-   
+    
       Swal.fire({
         position: 'center',
         icon: 'success',
@@ -85,6 +85,7 @@ function OutGarden() {
   };
 
   return (
+
     <>
 
     <PageTitle data={'텃밭 등록'} num={2}/>
@@ -246,7 +247,7 @@ function OutGarden() {
                      {/* 캘린더 위젯 수정 */}
                      <div className="form9">
                      <label htmlFor="rentalPeriod">임대기간 종료일:</label>
-                      <input
+                        <input
                         type="data"
                         id="lental_startDate1"
                         value={form.lental_endDate}
@@ -304,7 +305,7 @@ function OutGarden() {
                    
                   </form>
                 </div>
-
+            
         </div>   
   </>
   );

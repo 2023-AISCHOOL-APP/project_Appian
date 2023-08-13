@@ -79,31 +79,33 @@ const CardDetailsPage = ({ value }) => {
 
   },[])
   
-  const del = ()=>{
-    if(userNick === newContent[0].user_nick){
+  const del = () => {
+    if (userNick === newContent[0].user_nick) {
       const delUrl = 'http://192.168.70.237:5022/delete';
-      axios.get(delUrl, { responseType: 'json', params: { content_num : newContent[0].content_num } })
-      .then(response => {
-        console.log('Response from server:', response.data);
-        if (response.data.message === 'Content delete successfully'){
-          setShowSuccessMessage(true);
-          setTimeout(() => {
-            setShowSuccessMessage(false);
-            alert("게시물이 삭제되었습니다.")
-                       
-            // 작성 완료 메시지가 표시된 후 cone 페이지로 이동
-            window.location.href = 'http://localhost:3000/cone'; // 이동할 페이지 URL로 변경
-          }, 10);
-        }
-      })
-      .catch(error => {
-        console.error('Error sending data:', error);
-      });
-    } else{
-      alert("본인이 작성한 글이 아닙니다.")
-
+      axios
+        .get(delUrl, { responseType: 'json', params: { content_num: newContent[0].content_num } })
+        .then(response => {
+          console.log('Response from server:', response.data);
+          if (response.data.message === 'success') {
+            setShowSuccessMessage(true);
+            // 여기서 바로 리디렉션을 수행
+            setTimeout(() => {
+              setShowSuccessMessage(false);
+              alert('게시물이 삭제되었습니다.');
+              // 작성 완료 메시지가 표시된 후 cone 페이지로 이동
+              window.location.href = 'http://localhost:3000/cone'; // 이동할 페이지 URL로 변경
+            }, 10);
+          } else {
+            alert('본인이 작성한 글이 아닙니다.');
+          }
+        })
+        .catch(error => {
+          console.error('Error sending data:', error);
+          alert('삭제 중 오류가 발생했습니다.');
+        });
     }
-  }
+  };
+  
 
   
   return (

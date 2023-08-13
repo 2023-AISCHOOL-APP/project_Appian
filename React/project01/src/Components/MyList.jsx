@@ -4,6 +4,7 @@ import axios from 'axios';
 import PageTitle from './PageTitle';
 
 
+
 const MyList = () => {
   
   const initialApplicationList = [
@@ -17,24 +18,43 @@ const MyList = () => {
 
   const [applicationList, setApplicationList] = useState(initialApplicationList);
 
+  const userId = sessionStorage.getItem('user_id')
 
-  // useEffect(()=>{
+
+  useEffect(()=>{
   
-  //   const apiUrl = 'http://192.168.70.237:5022/content_comment';
-  //   axios.get(apiUrl, { responseType: 'json', params:{} })
-  //   .then(response => {
+    const myListyUrl = 'http://192.168.70.237:5022/myList';
+    axios.get(myListyUrl, { responseType: 'json', params:{ user_id : userId } })
+    .then(response => {
+      console.log('페이지 들어와서 받아온거', response.data);
+      setApplicationList(response.data)
+    })
+    .catch(error => {
+      console.error('보내기 에러');
+    });
 
-  //     setApplicationList(response.data);
+  },[])
 
-  //     console.log('댓글 처음에 받아온 데이터', response.data);
 
-  //   })
-  //   .catch(error => {
-  //     console.error('보내기 에러');
-  //   });
-
-  // },[])
-
+  const del = (applicationNum) => {
+      const delUrl = 'http://192.168.70.237:5022/delete';
+      axios
+      .get(delUrl, { responseType: 'json', params: { application_num: applicationNum } })
+      .then(response => {
+        console.log('Response from server:', response.data);
+        if (response.data.message === 'success') {
+          // 여기서 바로 리디렉션을 수행
+          alert('분양 신청이 취소되었습니다.');
+          window.location.reload(); // 페이지 새로고침
+        } else {
+          alert('분양 취소 중 오류가 발생했습니다.');
+        }
+      })
+      .catch(error => {
+        console.error('Error sending data:', error);
+        alert('취소 중 오류가 발생했습니다.');
+      });
+  };
 
 
   return (
@@ -46,7 +66,7 @@ const MyList = () => {
       <table className="application-table">
         <thead>
           <tr>
-            <th className='aaa'>번호</th>
+            <th className='aaa'>신청번호</th>
             <th className='bbb'>신청내역</th>
             <th className='ccc'>신청일</th>
             <th>취소</th>
@@ -57,21 +77,23 @@ const MyList = () => {
         <tbody>
           {applicationList.map((application) => (
             <tr>
-            <td key={application.num} className='mycard'>
-              <p>{application.num}</p>
+            <td key={application.application_num} className='mycard'>
+              <p>{application.application_num}</p>
               
             </td>
             <td>
               <h2>{application.list}</h2>
-              <p>텃밭 면적 : {application.area}m²</p>
-              <p>분양가 : {application.price}원</p>
-              <h3>임대기간 : {application.rental}</h3>
+              <p>텃밭 면적 : {application.lental_area}m²</p>
+              <p>분양가 : {application.farm_price}원</p>
+              <h3>임대시작 : {application.lental_startDate}</h3>
+              <h3>임대끝 : {application.lental_endDate}</h3>
             </td>
             <td>
-              <p> {application.date}</p>
+              <p> {application.apply_day}</p>
             </td>
             <td>
-              <button className='ddd'> 취소하기 </button>
+              <button className='ddd' onClick={() => del(application.application_num)}> 취소하기 </button>
+              {/* <button className='ddd' onClick={del}> 취소하기 </button> */}
             </td>
             </tr>   
 

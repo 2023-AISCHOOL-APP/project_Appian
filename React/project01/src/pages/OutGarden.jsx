@@ -77,38 +77,32 @@ function OutGarden() {
 
     axios.post(apiUrl, formData)
     .then(response => {
-      setResData(response)
-      sessionStorage.setItem ('user_type' , 1 )
-      nav('/find');
+      setResData(response.data)
+      console.log('등록하기 받아온값', response.data);
+
+      if(response.data === true){
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: '소중한 텃밭 정보가 등록되었습니다!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        sessionStorage.setItem ('user_type' , 1 )
+        nav('/find');
+      } else {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: '정보 등록에 실패하였습니다! 다시 시도해주세요',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
     })
     .catch(error => {
       console.error('Error fetching data:', error);
     });
-
-    // DB 응답에 다른 안내창
-    if(resData=== true){
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: '소중한 텃밭 정보가 등록되었습니다!',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    } else {
-      Swal.fire({
-        position: 'center',
-        icon: 'error',
-        title: '정보 등록에 실패하였습니다! 다시 시도해주세요',
-        showConfirmButton: false,
-        timer: 1500
-      })
-
-
-    }
-
-
-
-
   }
 
   const setAddress = (newAddress) => {

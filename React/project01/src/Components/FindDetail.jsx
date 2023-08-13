@@ -110,9 +110,9 @@ const FindDetail = () => {
               </div>
 
               <div className='calender_border'></div>
-              <div className='farmapply_border'>
+              <button className='farmapply_border'>
                 <span className='farmapply_btn'>분양 신청하기</span>
-              </div>
+              </button>
               <div className='call_border'>
                 <span className='call_btn'>문의 연락처</span>
                 <p>{farms.user_name}</p>

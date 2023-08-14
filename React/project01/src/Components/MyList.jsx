@@ -184,7 +184,7 @@ const MyList = () => {
             <td>
 
               <h2>신청한 사람 : {application.user_id}</h2>
-
+              <h2>신청한 텃밭 : {application.farm_title}</h2>
               <h3>임대시작 : {application.lental_startDate}</h3>
               <h3>임대끝 : {application.lental_endDate}</h3>
             </td>

@@ -45,20 +45,23 @@
 
 
 .main_grid{
+  width: 1920px;
   height : 220px;
   background-color : #ffffff;
+ 
 
 }
 .main_col{
+  overflow-x: hidden;
  
-  background-color: #E9FFFC;
-  height : 220px;
-  z-index: 99;
+  display: inline-block;
+  height : 265px;
+  z-index: 9999;
 
 }
 
 #main-container {
-  
+  text-decoration: none;
   position: relative;
   max-width: 1920px;
   z-index: 999;

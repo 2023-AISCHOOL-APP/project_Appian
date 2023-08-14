@@ -80,14 +80,14 @@ const MyList = () => {
 
   return (
     <>
-    <PageTitle data={'신청내역'} num={3}/>
+    <PageTitle data={'신청내역'} num={2}/>
     
     {userType === '0'? 
     <div className="mypage-container">
       <h1 className='mypage-title'>텃밭신청내역</h1>
       <table className="application-table">
-        <thead>
-          <tr>
+        <thead className='abc-container'>
+          <tr >
             <th className='aaa'>신청번호</th>
             <th className='bbb'>신청내역</th>
             <th className='ccc'>신청일</th>
@@ -104,7 +104,8 @@ const MyList = () => {
               
             </td>
             <td>
-              <h2>신청한 텃밭 : {application.farm_title}</h2>
+              <h2 >신청한 텃밭 : </h2>
+              <span className='apply_gardenname'> {application.farm_title}</span>
               <p>텃밭 면적 : {application.lental_area}m²</p>
               <p>분양가 : {application.farm_price}원</p>
               <h3>임대시작 : {application.lental_startDate}</h3>
@@ -145,11 +146,12 @@ const MyList = () => {
              
            </td>
            <td>
-             <h2>신청한 텃밭 : {application.farm_title}</h2>
-             <p>텃밭 면적 : {application.lental_area}m²</p>
-             <p>분양가 : {application.farm_price}원</p>
-             <h3>임대시작 : {application.lental_startDate}</h3>
-             <h3>임대끝 : {application.lental_endDate}</h3>
+             <h2 className='ap1'>신청한 텃밭 :  <span className='apply_gardenname'> {application.farm_title}</span></h2>
+             
+             <p className='ap1'>텃밭 면적 : <span className='apply_gardenname'>{application.lental_area} m²</span></p>
+             <p className='ap1'>분양가 : <span className='apply_gardenname'>{application.farm_price} 원</span></p>
+             <h3 className='ap1'>임대시작 :  <span className='apply_gardenname'> {application.lental_startDate}</span></h3>
+             <h3 className='ap1'>임대끝 :  <span className='apply_gardenname'>{application.lental_endDate}</span></h3>
            </td>
            <td>
              <p> {application.apply_day}</p>
@@ -164,8 +166,8 @@ const MyList = () => {
          ))}
        </tbody>
      </table>
-      <h1 className='mypage-title'>텃밭신청자 내역</h1>
-      <table className="application-table" >
+      <h1 className='mypage-title1'>텃밭신청자 내역</h1>
+      <table className="application-table1" >
         <thead >
             <tr>
               <th className='aaa'>신청번호</th>
@@ -183,10 +185,10 @@ const MyList = () => {
             </td>
             <td>
 
-              <h2>신청한 사람 : {application.user_id}</h2>
-              <h2>신청한 텃밭 : {application.farm_title}</h2>
-              <h3>임대시작 : {application.lental_startDate}</h3>
-              <h3>임대끝 : {application.lental_endDate}</h3>
+              <h2 className='ap1'>신청한 사람 : <span className='apply_gardenname'> {application.user_id}</span></h2>
+              <h2 className='ap1'>신청한 텃밭 : <span className='apply_gardenname'> {application.farm_title}</span></h2>
+              <h3 className='ap1'>임대시작 :<span className='apply_gardenname'> {application.lental_startDate}</span> </h3>
+              <h3 className='ap1'>임대끝 : <span className='apply_gardenname'>{application.lental_endDate}</span></h3>
             </td>
             <td>
               <p> {application.apply_day}</p>

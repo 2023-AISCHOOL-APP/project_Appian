@@ -72,13 +72,15 @@
 }
 
 .react-datepicker-wrapper {
-  border: 2px solid lightgray;
+  border: 2px solid #47A148;
+  background-color: white;
   width: 300px;
  padding: 7px;
+
  border-radius: 10px;
   position: relative;
-  left: 283px;
-  top: 25px;
+  left: 286px;
+  top: -12px;
  
   display: inline-block;
   

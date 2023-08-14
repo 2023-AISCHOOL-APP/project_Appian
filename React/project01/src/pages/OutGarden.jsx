@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import DaumPost from '../Components/Daumpost2';
 import Swal from "sweetalert2";
+import '../Components/CalendarDatePick'
+import CalendarDatePick from '../Components/CalendarDatePick';
 //  모달창으로 할지 sweetalert2에서 꺼내서 사용할지 결정해야함!!!!!!
 
 
@@ -113,7 +115,7 @@ function OutGarden() {
 
     <>
 
-    <PageTitle data={'텃밭 등록'} num={2}/>
+    <PageTitle data={'텃밭 등록'} num={1}/>
 
     
               <div className="out-container">
@@ -257,7 +259,8 @@ function OutGarden() {
                     <div className="form8">
 
                       <label htmlFor="rentalPeriod">임대기간 시작일:</label>
-                        <input
+                      <CalendarDatePick />
+                        {/* <input
                         type="data"
                         id="lental_startDate"
                         value={form.lental_startDate}
@@ -266,12 +269,13 @@ function OutGarden() {
                         }}
 
                         required
-                      />
+                      /> */}
                     </div>
                      {/* 캘린더 위젯 수정 */}
                      <div className="form9">
                      <label htmlFor="rentalPeriod">임대기간 종료일:</label>
-                        <input
+                     <CalendarDatePick />
+                        {/* <input
                         type="data"
                         id="lental_startDate1"
                         value={form.lental_endDate}
@@ -279,14 +283,15 @@ function OutGarden() {
                           setForm({...form, lental_endDate : e.target.value })
                         }}
                         required
-                      />
+                      /> */}
                     </div>
                       
                     {/* 캘린더 위젯 수정 */}
                     <div className="form10">
 
                       <label htmlFor="recruitmentPeriod">분양신청 시작일:</label>
-                      <input
+                      <CalendarDatePick />
+                      {/* <input
                         type="data"
                         id="lental_startDate2"
                         value={form.startDate}
@@ -295,12 +300,13 @@ function OutGarden() {
                         }}
 
                         required
-                      />
+                      /> */}
                     </div>
                       {/* 캘린더 위젯 수정 */}
                       <div className="form11">
                       <label htmlFor="recruitmentPeriod">분양신청 마감일:</label>
-                      <input
+                      <CalendarDatePick className="calendar_form11"/>
+                      {/* <input
                         type="data"
                         id="lental_endDate"
                         value={form.endDate}
@@ -308,7 +314,7 @@ function OutGarden() {
                           setForm({...form, endDate : e.target.value })
                         }}
                         required
-                      />
+                      /> */}
                     </div>
 
                     <div className="form12">

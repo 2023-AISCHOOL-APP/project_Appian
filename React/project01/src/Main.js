@@ -65,7 +65,7 @@ function Main() {
 
   return (
 
-    <div>
+    <div  >
       <Header />
       <Routes>
         <Route path='/' element={<Mainpage />} />

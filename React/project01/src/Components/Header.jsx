@@ -75,7 +75,7 @@ const Header = () => {
 
 
   return (
-    <div className='main_col'>
+    <div className='main_col' >
       <div className='main_grid'>
         <NavLink to={'/'} className='logo'>
           <img src="img/logo.png" alt="Logo" />

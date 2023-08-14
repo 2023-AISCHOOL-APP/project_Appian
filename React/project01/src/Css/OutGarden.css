@@ -367,7 +367,7 @@
   font-family: 'SUIT-SemiBold';
   font-size: 20px;
   position: relative;
-  top: 50px;
+  top: 20px;
   left: 100px;
   
 }
@@ -388,7 +388,7 @@
   font-family: 'SUIT-SemiBold';
   font-size: 20px;
   position: relative;
-  top: 80px;
+  top: 20px;
   left: 100px;
   
 }
@@ -404,6 +404,11 @@
  border-radius: 10px;
 }
 
+.form11{
+  position: relative;
+  top: 50px;
+
+}
 
 
 #lental_endDate{
@@ -420,7 +425,7 @@
   font-family: 'SUIT-SemiBold';
   font-size: 20px;
   position: relative;
-  top: 160px;
+  top: 20px;
   left: 100px;
   
 }
@@ -429,7 +434,7 @@
   font-family: 'SUIT-SemiBold';
   font-size: 20px;
   position: relative;
-  top: -20px;
+  top: -150px;
   left: 100px;
   z-index: 99;
   
@@ -437,11 +442,11 @@
 #lental_endDate1{
   font-family: 'SUIT-Regular';
   position: relative;
-  top: 120px;
+ 
   width: 300px;
   height: 200px;
   left: 210px;
-  top: 175px;
+  top: 60px;
   border: 2px solid #47A148;
   
  padding: 10px;
@@ -485,7 +490,7 @@
   font-size: 16px; /* 글자 크기 설정 */
   text-align: center; /* 텍스트 중앙 정렬 */
   position: relative;
-  top: 220px;
+  top: 140px;
   margin: 10px;
   left: 230px;
 }

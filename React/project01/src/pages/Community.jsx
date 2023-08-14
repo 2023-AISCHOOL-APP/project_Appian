@@ -37,7 +37,7 @@ function Community() {
   return (
 
     <div>
-    <PageTitle data={'정보게시판'} num={0}/>
+    <PageTitle data={'정보게시판'} num={2}/>
     <div className='infoAll'>
       <span className='infotitle2'> ▶ 영상으로 배우는 농사이야기</span>
       <hr className='infohr2'/>

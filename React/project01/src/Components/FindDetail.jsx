@@ -6,8 +6,22 @@ import axios from 'axios';
 import CalendarRange from './CalendarRange'
 
 
+
 const FindDetail = () => {
-  const farms = useLocation().state.data
+  const locationState = useLocation().state;
+
+  // farms 변수가 존재하고 data 프로퍼티가 존재할 때만 farms 값을 할당
+  const farms = locationState && locationState.data;
+
+  const userId = sessionStorage.getItem('user_id')
+  const [showSuccessMessage, setShowSuccessMessage]=useState(false);
+  const nav = useNavigate();
+
+
+  if (!farms) {
+    return null; // farms 값이 없으면 렌더링하지 않음
+  }
+
 
   console.log('받은데이터',farms)
 
@@ -23,9 +37,6 @@ const FindDetail = () => {
 
 
 
-  const userId = sessionStorage.getItem('user_id')
-  const [showSuccessMessage, setShowSuccessMessage]=useState(false);
-  const nav = useNavigate();
 
 
   const farm_apply = ()=>{
@@ -65,7 +76,7 @@ const FindDetail = () => {
  
   return (
 
-    
+  
     <div className='farmDetailAll'>
       
       
@@ -157,6 +168,7 @@ const FindDetail = () => {
           <CalendarRange startDate={startDate} endDate={endDate}/>
         </div>  
       </div>
+    
   )
 }
 

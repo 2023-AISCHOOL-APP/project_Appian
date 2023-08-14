@@ -27,8 +27,10 @@ const Machin = () => {
 
   
   return (
-    <div>
-      <PageTitle data={'작물 가격 예측'} num={2}/>
+    <>
+    <PageTitle data={'작물 가격 예측'} num={3}/>
+    <div className='machinAll-container'>
+      
       <div id='predictPage'>
        
       </div>
@@ -40,6 +42,7 @@ const Machin = () => {
         
       </div>
     </div>
+    </>
   )
 }
 

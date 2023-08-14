@@ -87,18 +87,32 @@ commubtn3
   z-index: 99;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  
+}
 
-
+#main-bg {
+  max-width: 1920px;
+  margin: 0 auto; /* 가운데 정렬을 위해 사용 */
+  text-decoration: none;
+}
 .main-container{
+ position: relative;
+ top: 500px;
   text-decoration: none;
   z-index: 1;
+  max-width: 1920px;
+  margin: 0 auto; /* 가운데 정렬을 위해 사용 */
  
 }
 
 #mainTitle {
 
-  
-
+ 
+  overflow-x: hidden;
   position: relative;
   left: 320px;
   bottom: 550px;
@@ -2000,46 +2014,89 @@ button {
 
 /* 신청내역 */
 .mypage-container {
+  
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 20px;
-  margin-left: 200px;
+  margin-top: -50px;
+  margin-left: 320px;
+  margin-right: 320px;
 
 }
 .mypage-title {
-  font-size: 24px;
-  margin-bottom: 60px;
+  position: relative;
+  top: 100px;
+  font-size: 28px;
+  font-family: 'SUIT-Bold';
   border-bottom: solid #FF9F56;
-  margin-bottom: 50px;
+  padding: 10px;
 }
 
-.application-table {
-  border-collapse: collapse;
-  width: 100%;
-  max-width: 1400px;
-  border: 1px solid #ccc;
-  margin-bottom: 50px;
+.mypage-title1 {
+  position: relative;
+  top: 150px;
+  font-size: 28px;
+  font-family: 'SUIT-Bold';
+  border-bottom: solid #FF9F56;
+  padding: 10px;
 }
+.ap1{
+  font-size: 17px;
+  position: relative;
+  top: -10px;
+ 
+  text-align: center;
+  margin-bottom: -10px;
+}
+.apply_gardenname{
+  position: relative;
+  left: 10px;
+ font-size: 20px;
+  color:#FF9F56 ;
+}
+
+.application-table1{
+  
+  border-collapse: collapse;
+  font-family: 'SUIT-SemiBold';
+  position: relative;
+  top: 190px;
+}
+.application-table {
+  
+  border-collapse: collapse;
+  font-family: 'SUIT-SemiBold';
+  position: relative;
+  top: 130px;
+}
+
 
 .application-table th, .application-table td {
-  border: 1px solid #ccc;
-  padding: 10px;
+  border: 1px solid rgb(243, 243, 243);
+  padding: 20px;
   text-align: center;
 }
 
 .application-table th {
-  background-color: #a69cdf;
+  background-color: #ffc89e;
+  border-radius: 0px;
 }
 
-.application-table tbody tr:nth-child(even) {
-  background-color: #f5f5f5;
+.application-table1 th, .application-table1 td {
+  border: 1px solid rgb(243, 243, 243);
+  padding: 20px;
+  text-align: center;
 }
 
-.application-table tbody tr:hover {
-  background-color: #e0e0e0;
-  
+.application-table1 th {
+  background-color: #ffc89e;
+  border-radius: 0px;
 }
+
+
+
+
 .aaa{
   width:100px;
   
@@ -2051,22 +2108,29 @@ button {
  width: 200px;
 }
 .ddd {
+  font-family: 'SUIT-Bold';
   background-color: white;
-  color: #FF9F56;
-  border: 1px solid #eb7a1d;
-  margin-left: 145px;
-  margin-top: 20px ;
+  color: lightgrey;
+  border: 2px solid lightgrey;;
+  position: relative;
+  left: 1px;
+  padding:10px 20px 10px 20px;
   font-size: medium;
-  width : 120px;
+  width: 100px;
+
+}
+.ddd:hover{
+  background-color: lightgrey;;
+  color: white;
 }
 .mycard {
-  border: 1px solid #ccc;
+
   border-radius: 8px;
   padding: 10px;
   margin-top: 5px;
   margin-bottom: 5px;
   width: 50px; /* 카드의 너비를 조정해 원하는 크기로 설정하세요 */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
   text-align: center;
 }
 

@@ -595,9 +595,6 @@ commubtn3
   z-index: 1;
 }
 
-.videotagAll{
-  margin-top: -300px;
-}
 
 .infohr2{
   
@@ -1686,7 +1683,7 @@ font-size: 15px;
 .card-details-container{
   
   transition: max-height 0.3s ease-in-out; /* 애니메이션 효과 추가 */
- border-radius: 15px;
+  
   padding: 100px 50px; /* 내용과의 간격을 위한 padding 설정 */
   margin-left: 320px;
   max-height: 20000px;
@@ -1699,7 +1696,8 @@ font-size: 15px;
 
 .card-details-buttons {
  position: relative;
- left: 490px;
+ left: 440px;
+ margin-bottom: 20px;
 
 
 }
@@ -1767,6 +1765,7 @@ font-size: 15px;
   position: relative;
   top: 70px;
   left: 100px;
+  
 }
 
 
@@ -1840,11 +1839,20 @@ button {
 .card-nickname{
   
   font-family: 'SUIT-Bold';
-  color: gray;
+  color: rgb(0, 0, 0);
  position: relative;
- left: 180px;
+ left: 100px;
+ 
 
 }
+.asdf{
+  
+  margin-top : 15px;
+  margin-bottom: 20px;
+  width : 800px;
+  margin-left : 100px;
+}
+
 
 .card-details-button-delete:hover {
   background-color: white;
@@ -1855,7 +1863,10 @@ button {
   background-color: #FF9F56;
   color: white;
 }
-
+.card-details{
+  border: 10px solid rgb(226, 190, 123);
+  border-radius: 30px;
+}
 
 .notice-banner {
   position: fixed;
@@ -1876,11 +1887,13 @@ button {
   font-size:larger;
   color: #0056b3;
 }
+
 .comment_area{
   font-family: 'SUIT-Regular';
   font-size: 15px;
-  width: 800px;
-
+  width: 900px;
+  margin-top: 30px;
+  
   position: relative;
   top: 45px;
   left: 100px;
@@ -2000,6 +2013,14 @@ button {
   font-size: 24px;
   margin-bottom: 60px;
   border-bottom: solid rgb(243, 127, 243);
+  margin-top: 50px;
+  
+}
+.mypage-title2 {
+  font-size: 24px;
+  margin-bottom: 60px;
+  border-bottom: solid rgb(243, 127, 243);
+  margin-top: 150px;
   
 }
 
@@ -2028,8 +2049,34 @@ button {
   background-color: #e0e0e0;
   
 }
+.application-table2 {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 1400px;
+  border: 1px solid #ccc;
+  margin-bottom: 100px;
+}
+
+.application-table2 th, .application-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.application-table2 th {
+  background-color: #a69cdf;
+}
+
+.application-table2 tbody tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+.application-table2 tbody tr:hover {
+  background-color: #e0e0e0;
+  
+}
 .aaa{
-  width:50px;
+  width:70px;
   
 }
 .bbb{
@@ -2046,7 +2093,10 @@ button {
   margin-top: 20px ;
   font-size: medium;
   width : 120px;
+  
 }
+
+
 .mycard {
   border: 1px solid #ccc;
   border-radius: 8px;

@@ -4,6 +4,11 @@
 }
 .detail_all{
   margin-top: -170px;
+  text-align: center;
+}
+
+.farmDetailAll{
+  width: 1920px;
 }
 
 /* 이미지 */
@@ -30,16 +35,17 @@
 .Fdetail_title-container{
     position: relative;
     text-align: center;
+    width : 1920px;
+    top : -280px;
+    z-index: 99;
 }
 
 .farmdetail_Maintitle{
     font-family: 'SUIT-ExtraBold';
     font-size: 60px;
-    display: inline-block;
-    position: relative;
+    display: block;
     color: white;
-    top: -300px;
-    z-index: 99;
+   
 }
 .lental_border{
 
@@ -49,24 +55,17 @@
     border: 2px solid #00C897;
     border-radius: 30px;
     position: relative;
-    top: -280px;
-    left: 880px;
     z-index: 99;
-  
-    
+    margin : 20px;
 }
+
 .lental_type{
    
     font-family: 'SUIT-Bold';
     font-size: 17px;
     color: white;
     letter-spacing: 2px;
-   
-   
-}
-.borderAll{
-    position: relative;
-    top: 20px;
+    
 }
 
 
@@ -78,8 +77,6 @@
     border: 2px solid #FFD365;
     border-radius: 30px;
     position: relative;
-    top: -280px;
-    left: 890px;
     z-index: 99;
   
     
@@ -87,14 +84,123 @@
 
 .farm_type{
    
-    font-family: 'SUIT-Bold';
-    font-size: 17px;
-    color: white;
-    
-    letter-spacing: 2px;
-   
-   
+  font-family: 'SUIT-Bold';
+  font-size: 17px;
+  color: white;
+  
+  letter-spacing: 2px;
+ 
+ 
 }
+
+
+.textbox{
+  display: block;
+  width : 1920px;
+  height : 400px;
+  text-align: center;
+  
+}
+
+
+.description{
+text-align: center;
+display: inline-block;
+word-break: break-all;
+font-family: 'SUIT-Regular';
+font-size: 20px;
+z-index: 99;
+width : 720px;
+margin-top: 200px;
+}
+
+.desc_hr2{
+  display: block;
+  border: 1px solid #FFD365;
+  border-radius: 50px;
+  background-color: #FFD365;
+  width: 200px;
+  z-index: 99;
+}
+
+
+/*  */
+
+
+.part2{
+margin-top : -300px;
+width : 1920px;
+display : block;
+background-color: sandybrown;
+}
+
+/* 주소 */
+
+.farm_imgsmall{
+  position: relative;
+  left: 320px;
+  width:700px;
+  height: auto;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.address_border{
+  box-sizing: border-box;
+  border: 2px solid rgb(236, 236, 236);
+  background-color: rgb(236, 236, 236);
+  border-radius: 20px; 
+  position: relative; 
+  width: 700px;
+  height: 145px;
+  left :320px;
+  z-index: 2;
+  text-align: center;
+  padding-bottom: 30px;
+  margin : 0px;
+}
+
+.address_mappin{
+  width: 60px;
+  position: relative;
+  height: auto;
+  top: 23px;
+  left : -70px;
+  z-index: 99;
+}
+.address{   
+  font-family: 'SUIT-Bold';
+  font-size: 25px;
+  position: relative;
+  z-index: 99;
+  display: block;
+  top : -35px;
+
+}
+
+.farm_address{
+  font-family: 'SUIT-SemiBold';
+  font-size: 20px;
+  position: relative;
+  z-index: 99;
+  display: block;
+  top : -20px;
+}
+
+
+
+/* 캘린더 넣을 자리 */
+.calender{
+  display: inline-block;
+  position : relative;
+  top : -680px;
+  left :1045px;
+  scale : 80%;
+}
+
+
+
+
 
 
 /* 소개글 */
@@ -107,29 +213,10 @@
     top: -50px;
     left: 860px;
 } */
-.desc_hr2{
-    border: 1px solid #FFD365;
-    border-radius: 50px;
-    background-color: #FFD365;
-    width: 200px;
-    position: relative;
-    top: -20px;
-    left: 880px;
-}
 
-.description{
- position: relative;
- text-align: center;
- display: inline-block;
- width: 720px;
- word-break: break-all;
- font-family: 'SUIT-Regular';
- font-size: 20px;
- right: 320px;
- left: 530px;
- top: -180px;
- z-index: 99;
-}
+
+
+
 
 /* 작성자 작성일  */
 
@@ -153,61 +240,30 @@
 }
 
 
-/* 주소 */
+/* 분양 신청 버튼 */
 
-.farm_imgsmall{
-    position: relative;
-    left: 320px;
-    top: 200px;
-    width:700px;
-    height: auto;
-    border-radius: 20px;
+.farmapply_border{
+  border: solid #05AC7B ;
+  background-color:#05AC7B ;
+  display: inline-block;
+  padding: 20px 20px; 
+  border-radius: 20px;
+  width: 400px;
+  z-index: 98;
+  position: relative;
+  text-align : center;
+  left : 550px;
+  top : -270px;
 }
 
-.address_border{
-   
-    border: 2px solid rgb(236, 236, 236);
-    background-color: rgb(236, 236, 236);
-    border-radius: 20px;
-    display: inline-block;
-    position: relative;
-    width: 700px;
-    height: 110px;
-    z-index: 2;
-    left: 320px;
-    top: 660px;
-    text-align: center;
-    padding-bottom: 30px;
-}
 
-.address_mappin{
-    width: 60px;
-    position: relative;
-    height: auto;
-    right: -95px;
-    top: 18px;
-    z-index: 99;
+.farmapply_btn{
+  font-family: 'SUIT-Bold';
+  font-size: 23px;
+  color: white;
+  left: 190px;
+  
 }
-.address{   
-    font-family: 'SUIT-Bold';
-    font-size: 25px;
-    position: relative;
-    top: -10px;
-    left: 90px;
-    z-index: 99;
-
-}
-.farm_address{
-    font-family: 'SUIT-SemiBold';
-    font-size: 20px;
-   
-    position: relative;
-    top: 40px;
-    left: -70px;
-    z-index: 99;
-
-}
-
 
 /* 분양기간*/
 
@@ -367,43 +423,18 @@
 }
 
 
-/* 캘린더 넣을 자리 */
-
-.calender_border{
+/* .calender_border{
     border: 2px solid gray;
     position: relative;
     background-color: gray;
     right: -1060px;
-    top: -360px;
+    top: -400px;
     width: 540px;
     height: 540px;
     z-index: 99;
-}
-
-/* 분양 신청 버튼 */
-
-.farmapply_border{
-    border: solid #05AC7B ;
-    background-color:#05AC7B ;
-    display: inline-block;
-    padding: 20px 20px; 
-    border-radius: 20px;
-    width: 500px;
-    z-index: 98;
-    position: relative;
-    right: -1060px;
-    top: -330px;
-}
+} */
 
 
-.farmapply_btn{
-    font-family: 'SUIT-Bold';
-    font-size: 23px;
-    position: relative;
-    color: white;
-    left: 190px;
-    
-}
 
 /* 문의 글 남기기 버튼 */
 

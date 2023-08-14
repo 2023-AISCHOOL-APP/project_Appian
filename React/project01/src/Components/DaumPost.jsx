@@ -4,6 +4,7 @@ import { useState } from 'react';
 import useDaumPostcodePopup from 'react-daum-postcode';
 import { postcodeScriptUrl } from 'react-daum-postcode/lib/loadPostcode';
 
+
 const DaumPost = (props) => {
     /**
      * useState
@@ -31,15 +32,18 @@ const DaumPost = (props) => {
         },
     }
 
+  
+
     return (
-        <div>
-            <button onClick={handle.clickButton}>주소찾기</button>
+        <div id={'address'} >
+            <button className={"postbtn"} onClick={handle.clickButton}>주소찾기</button>
         
             {openPostcode && 
                 <DaumPostCode 
                     onComplete={handle.selectAddress}  // 값을 선택할 경우 실행되는 이벤트
                     autoClose={false} // 값을 선택할 경우 사용되는 DOM을 제거하여 자동 닫힘 설정
-                    defaultQuery='' // 팝업을 열때 기본적으로 입력되는 검색어 
+                    defaultQuery='' 
+                    onResize={{width: 500 ,height: 772}}// 팝업을 열때 기본적으로 입력되는 검색어 
                     />}
         </div>
     )

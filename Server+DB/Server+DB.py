@@ -1,11 +1,7 @@
-import cx_Oracle
-import os
+import cx_Oracle, os, requests, json
 from datetime import datetime
 from flask import Flask, render_template, request, Response, jsonify
 from flask import Flask, send_from_directory
-import requests
-
-import json
 from functools import wraps
 from flask_cors import CORS
 
@@ -486,6 +482,29 @@ def content():
                         })
     return resList
 
+
+# ==================== 작물 가격예측 ==================== #
+@app.route('/price', methods=['GET', 'POST'])
+@as_json
+def price():
+    print('# ==================== 작물 가격예측 ==================== #')
+    conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
+    curs = conn.cursor()
+    sql = "SELECT * FROM price"
+    curs.execute(sql)
+    res = curs.fetchall()
+    print('sql응답 :', res)
+    curs.close()
+    conn.close()
+    resList = []
+    for a in res:
+        resList.append({"name":a[0],
+                        "now":a[1], 
+                        "pre":a[2],
+                        'img':a[3]
+                        })
+    print('보낸데이터', resList)
+    return resList
 
 # ==================== 댓글 달기 ==================== #
 @app.route('/content_comment', methods=['GET'])

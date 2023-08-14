@@ -74,13 +74,13 @@ const Mainpage = () => {
 
       {/* 메인 배경이미지 */}
 
-
+      <Slide />
       <img src='/img/mainImage.png' id="main-image" />
 
 
 
       <div id='main-container'>
-        <Slide />
+       
         {/* 플로팅 배너 */}
         <div className={`floating-banner ${showBanner ? 'show' : ''}`} style={{ top: bannerTop }}>
                       {/* showBanner 변수의 값에 따라 플로팅 배너에 show 클래스를 추가하거나 제거 */}

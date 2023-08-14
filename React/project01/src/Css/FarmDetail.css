@@ -3,12 +3,40 @@
    left: 30px;
 }
 .detail_all{
-  margin-top: -170px;
+  margin-top: -200px;
   text-align: center;
 }
 
 .farmDetailAll{
   width: 1920px;
+  position: relative;
+  top: 100px;
+}
+.border_title{
+    position: relative;
+    font-family: 'SUIT-ExtraBold';
+    font-size: 27px;
+    display: inline-block;
+    left: 410px;
+    border-bottom: 3px solid #05AC7B;
+    top: 670px;
+    z-index: 99;
+}
+
+.farmdetailmaintitle{
+    position: relative;
+    font-family: 'SUIT-Bold';
+    font-size: 28px;
+    top: -313px;
+    left: 219px;
+    color: white;
+    background-color: #05AC7B;
+    border: 3px solid #05AC7B;
+    display: inline-block;
+    padding: 20px 40px 30px 40px;
+    z-index: 99;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 /* 이미지 */
@@ -18,6 +46,7 @@
     position: relative;
     left: -10px;
     opacity: 80%;
+    top: -150px;
     filter: blur(2px);
     border-radius: 0px;
     width: 1930px;
@@ -36,7 +65,7 @@
     position: relative;
     text-align: center;
     width : 1920px;
-    top : -280px;
+    top : -400px;
     z-index: 99;
 }
 
@@ -117,10 +146,13 @@ margin-top: 200px;
 .desc_hr2{
   display: block;
   border: 1px solid #FFD365;
-  border-radius: 50px;
+  border-radius: 10px;
   background-color: #FFD365;
+  position: relative;
   width: 200px;
-  z-index: 99;
+ top: 100px;
+ left: 850px;
+  z-index: 999;
 }
 
 
@@ -128,33 +160,47 @@ margin-top: 200px;
 
 
 .part2{
-margin-top : -300px;
-width : 1920px;
+margin-top : -101px;
+margin-left: 320px;
+margin-right: 320px;
+position: relative;
+height: 1500px;
+border-top-right-radius: 15px;
 display : block;
-background-color: sandybrown;
+border: 2px solid #05AC7B;
+background-color: white;
+
+}
+
+.part2_sub{
+   position: relative;
+   top: -300px;
 }
 
 /* 주소 */
 
 .farm_imgsmall{
   position: relative;
-  left: 320px;
+  left: 30px;
   width:700px;
-  height: auto;
+  height: 400px;
+  top: 40px;
   border-radius: 20px;
   margin-bottom: 20px;
+  z-index: 99;
 }
 
 .address_border{
   box-sizing: border-box;
-  border: 2px solid rgb(236, 236, 236);
-  background-color: rgb(236, 236, 236);
-  border-radius: 20px; 
+  border: 2px solid rgb(240, 240, 240);
+  background-color: rgb(240, 240, 240);
+  border-radius: 15px; 
   position: relative; 
   width: 700px;
   height: 145px;
-  left :320px;
+  left :30px;
   z-index: 2;
+  top: 50px;
   text-align: center;
   padding-bottom: 30px;
   margin : 0px;
@@ -193,8 +239,8 @@ background-color: sandybrown;
 .calender{
   display: inline-block;
   position : relative;
-  top : -680px;
-  left :1045px;
+  top : -1850px;
+  left :1380px;
   scale : 80%;
 }
 
@@ -220,8 +266,15 @@ background-color: sandybrown;
 
 /* 작성자 작성일  */
 
+.detailAll{
+  text-align: left;
+  position: relative;
+  top: -420px;
+  left: -390px;
+}
+
 .use_id{
-    font-family: 'SUIT-Bold';
+    font-family: 'SUIT-SemiBold';
     font-size: 17px;
     position: relative;
     text-align: right;
@@ -230,10 +283,11 @@ background-color: sandybrown;
     z-index: 99;
 }
 .detail_date{
-    font-family: 'SUIT-ExtraRegular';
+    font-family: 'SUIT-Bold';
     position: relative;
-    
-    top: 130px;
+    font-size: 17px;
+    top: 125px;
+    left: -63px;
     text-align: right;
     margin-right: 320px;
 
@@ -246,21 +300,29 @@ background-color: sandybrown;
   border: solid #05AC7B ;
   background-color:#05AC7B ;
   display: inline-block;
-  padding: 20px 20px; 
-  border-radius: 20px;
-  width: 400px;
+  color: white;
+  padding: 20px 3px; 
+  border-radius: 15px;
+  width: 425px;
   z-index: 98;
   position: relative;
   text-align : center;
-  left : 550px;
-  top : -270px;
+  left : 780px;
+  top : -40px;
+}
+
+.farmapply_border:hover {
+    background-color: #0c805d;
+    border: solid #0c805d; ;
+    
+    
 }
 
 
 .farmapply_btn{
   font-family: 'SUIT-Bold';
   font-size: 23px;
-  color: white;
+  
   left: 190px;
   
 }
@@ -269,8 +331,8 @@ background-color: sandybrown;
 
 .lental_all{
  position: relative;
- top: -105px;
- left: 395px;
+ top: -940px;
+ left: 220px;
  z-index: 99;
 }
 
@@ -279,26 +341,26 @@ background-color: sandybrown;
     border-radius: 0px;
     width: 30px;
     height:auto;
-    left: 385px;
-    top: 390px;
+    left: 193px;
+    top: 460px;
    
 }
 
 .lental_title{
-    font-family: 'SUIT-Bold';
-    font-size: 24px;
+    font-family: 'SUIT-Regular';
+    font-size: 22px;
     position: relative;
-    left: 415px;
-    top: 385px;
+    left: 225px;
+    top: 455px;
 }
 
 .lental_border1{
-    border: 3px solid rgb(236, 236, 236);
-    border-radius: 20px;
+    border: 2px solid #c5c5c5;
+    border-radius: 15px;
     display: inline-block;
     padding: 10px 20px;
     position: relative;
-    left: 200px;
+    left: 100px;
     top: 450px;
 }
 
@@ -308,14 +370,19 @@ background-color: sandybrown;
     letter-spacing: 2px;
     
 }
+.lentalborderall{
+    position: relative;
+    top: -30px;
+    left: 300px;
+}
 .lental_border2{
-    border: 3px solid rgb(236, 236, 236);
-    border-radius: 20px;
+    border: 2px solid #c5c5c5;
+    border-radius: 15px;
     display: inline-block;
     padding: 10px 20px;
     position: relative;
     text-align: center;
-    left: 230px;
+    left: 140px;
     top: 450px;
 }
 .lental_endDate{
@@ -328,13 +395,15 @@ background-color: sandybrown;
     font-family: 'SUIT-SemiBold';
     font-size: 18px;
     position: relative;
-    left: 215px;
+    left: 120px;
     top: 450px;
 }
 
 /* 분양면적 */
 .areaAll{
-    margin-top: -40px;
+    position: relative;
+    top: -820px;
+    left: 30px;
     z-index: 99;
 }
 
@@ -349,22 +418,22 @@ background-color: sandybrown;
 
 
 .lental_areaTitle{
-    font-family: 'SUIT-Bold';
-    font-size: 24px;
+    font-family: 'SUIT-Regular';
+    font-size: 22px;
     position: relative;
     left: 410px;
     top: 415px;
 }
 
 .area_border1{
-    border: 3px solid rgb(236, 236, 236);
-    border-radius: 20px;
+    border: 2px solid #c5c5c5;
+    border-radius: 15px;
     display: inline-block;
     padding: 10px 20px;
     position: relative;
     left: 476px;
     top: 410px;
-    width: 337px;
+    width: 350px;
 }
 
 .lental_area{
@@ -380,7 +449,9 @@ background-color: sandybrown;
 
 
 .priceAll{
-    margin-top: -8px;
+    position: relative;
+    top: -980px;
+    left: 30px;
     z-index: 99;
 }
 
@@ -395,8 +466,8 @@ background-color: sandybrown;
 }
 
 .price_title{
-    font-family: 'SUIT-Bold';
-    font-size: 24px;
+    font-family: 'SUIT-Regular';
+    font-size: 22px;
     position: relative;
     left: 405px;
     top: 438px;
@@ -404,14 +475,14 @@ background-color: sandybrown;
 }
 
 .price_border1{
-    border: 3px solid rgb(236, 236, 236);
-    border-radius: 20px;
+    border: 2px solid #c5c5c5;
+    border-radius: 15px;
     display: inline-block;
     padding: 10px 20px;
     position: relative;
     left: 450px;
     top: 435px;
-    width: 336px;
+    width: 350px;
     z-index: 99;
 }
 
@@ -464,21 +535,28 @@ background-color: sandybrown;
 .call_border{
     border: 2px solid #05AC7B ;
     display: inline-block;
-    padding: 20px 20px; 
+    padding: 20px 105px; 
     border-radius: 20px;
     width: 220px;
     z-index: 98;
     position: relative;
-    right: -540px;
-    top: -230px;
+    right: -1105px;
+    top: -800px;
 }
 
 
 .call_btn{
     font-family: 'SUIT-Bold';
-    font-size: 20px;
+    left: 50px;
+    font-size: 23px;
     position: relative;
     color: #05AC7B;
-    left: 60px;
+   
     
+}
+.call_subtitle{
+    font-family: 'SUIT-Regular';
+    text-align: center;
+    position: relative;
+    top: 10px;
 }

@@ -15,6 +15,7 @@ import Grid from '@mui/material/Grid';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.primary" align="center" {...props}>
@@ -51,6 +52,7 @@ const Login = () => {
       const response = await axios.post(loginUrl, { form });
       const responseData = response.data;
       console.log('응답 데이터:', responseData); 
+      
       if (responseData === false){
         alert('회원정보가 없습니다. 회원가입을 진행해주세요')
       }else{
@@ -160,11 +162,14 @@ const Login = () => {
                 </Link>
               </Grid>
             </Grid>
-            
           </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
+        <Box xs={{
+          height : '300px'
+        }}></Box>
       </Container>
       </ThemeProvider>
+   
       </>
 
   )

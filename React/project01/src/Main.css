@@ -60,9 +60,12 @@ commubtn3
 
 .machin_text1:hover{
   opacity: 1;
+  
 } 
 
 .machinBanner{
+  
+ text-decoration: none;
   opacity: 1;
   z-index: 3;
   width: auto;
@@ -88,6 +91,7 @@ commubtn3
 
 .main-container{
   text-decoration: none;
+  z-index: 1;
  
 }
 
@@ -341,7 +345,7 @@ commubtn3
 .floating-banner {
   position: relative;
   
-  
+ text-decoration: none;
   bottom: 300px;
   right: -1600px;
    /* 크기를 70%로 조정 */
@@ -351,6 +355,8 @@ commubtn3
 
 .floating-banner.show {
   display: block;
+  
+ text-decoration: none;
 
 }
 
@@ -1644,7 +1650,11 @@ font-size: 15px;
   text-align: start;
 }
 
+.card-details{
+  border : 3px solid orange;
+  border-radius: 30px;
 
+}
 
 
 .card-details-title {
@@ -1699,7 +1709,8 @@ font-size: 15px;
 
 .card-details-buttons {
  position: relative;
- left: 490px;
+ left: 450px;
+ margin-bottom: 30px;
 
 
 }
@@ -1709,7 +1720,7 @@ font-size: 15px;
   padding: 5px 15px;
   font-family: 'SUIT-SemiBold';
   font-size: 14px;
-
+  margin-right: 3px;
   border: none;
   cursor: pointer;
 }
@@ -1830,18 +1841,19 @@ button {
   border-radius: 5px;
   cursor: pointer;
   position: relative;
-  left: -70px;
-  top: -10px;
+
+  /* left: -70px;
+  top: -10px; */
 }
 
-/* 위의 버튼 -> 검색 페이지 줌 스크롤 버튼 위치에 영향을 줍니다. 다른 클래스로 빼서 작업해야할 듯해요! */
+/* 버튼 태그 전체 -> 검색 페이지 줌 스크롤 버튼, 회원가입 버튼 위치에 영향을 줍니다. 다른 클래스로 빼서 작업해야할 듯해요! */
 
 .card-nickname{
   
   font-family: 'SUIT-Bold';
-  color: gray;
+  color: rgb(0, 0, 0);
  position: relative;
- left: 180px;
+ left: 100px;
 
 }
 
@@ -1878,7 +1890,7 @@ button {
 .comment_area{
   font-family: 'SUIT-Regular';
   font-size: 15px;
-  width: 800px;
+  width: 900px;
 
   position: relative;
   top: 45px;
@@ -1999,7 +2011,7 @@ button {
   font-size: 24px;
   margin-bottom: 60px;
   border-bottom: solid rgb(243, 127, 243);
-  
+  margin-bottom: 50px;
 }
 
 .application-table {
@@ -2007,6 +2019,7 @@ button {
   width: 100%;
   max-width: 1400px;
   border: 1px solid #ccc;
+  margin-bottom: 50px;
 }
 
 .application-table th, .application-table td {
@@ -2028,7 +2041,7 @@ button {
   
 }
 .aaa{
-  width:50px;
+  width:100px;
   
 }
 .bbb{
@@ -2067,4 +2080,31 @@ button {
   width:1280px;
   margin-top : 60px;
   margin-left :320px;
+}
+
+
+#addressBtn {
+  margin-left : 30px;
+  width : 60px;
+  height : 100px;
+
+} 
+
+.postbtn{
+  background-color: #05AC7B ;
+  box-sizing: content-box;
+  width : 50px;
+  height : 17px;
+  padding : 10px 16px;
+  margin-left : 13px;
+  border : none;
+  color : white;
+  font-family: 'SUIT-SemiBold';
+  box-shadow: 10px 10px 21px -14px rgba(0,0,0,0.54);
+  -webkit-box-shadow: 10px 10px 21px -14px rgba(0,0,0,0.54);
+  -moz-box-shadow: 10px 10px 21px -14px rgba(0,0,0,0.54);
+} 
+
+.postbtn:hover{
+  background-color: #00C897
 }

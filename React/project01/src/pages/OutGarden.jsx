@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 
 function OutGarden() {
   // 텃밭 등록 페이지를 위한 상태
-  const [isLogin, setIsLogin] = useState(sessionStorage.getItem('user_id')); // isLogin 상태 추가
+  // const [isLogin, setIsLogin] = useState(sessionStorage.getItem('user_id')); // isLogin 상태 추가
   const user = sessionStorage.getItem('user_id')
 
 
@@ -20,16 +20,16 @@ function OutGarden() {
   const nav = useNavigate();
   
 
-  useEffect(()=>{
-    if (isLogin !== null){
-      setIsLogin(true)
-      setForm({...form, user_id : sessionStorage.getItem('user_id')})
-    } else {
-      alert('로그인이 필요한 서비스입니다.');
-      nav('/login')
-    }
+  // useEffect(()=>{
+  //   if (isLogin !== null){
+  //     setIsLogin(true)
+  //     setForm({...form, user_id : sessionStorage.getItem('user_id')})
+  //   } else {
+  //     alert('로그인이 필요한 서비스입니다.');
+  //     nav('/login')
+  //   }
   
-  },[])
+  // },[])
  
 
   const [selectedType, setSelectedType] = useState('');
@@ -145,6 +145,7 @@ function OutGarden() {
                       <label htmlFor="address">텃밭 주소:</label>
                       <input
                         type="text"
+                        placeholder='텃밭 주소를 입력해주세요'
                         id="out_address"
                         autoComplete="address"
                         value={form.farm_address}
@@ -314,6 +315,7 @@ function OutGarden() {
                       <label htmlFor="description">본문내용:</label>
                       <textarea
                         id="lental_endDate1"
+                        placeholder='내용을 입력해주세요'
                         value={form.description}
                         onChange={(e)=>{setForm({...form, description : e.target.value})}}
                         required

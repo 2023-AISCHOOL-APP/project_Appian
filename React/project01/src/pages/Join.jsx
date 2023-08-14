@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import {FormControlLabel, FormControl, FormLabel, FormHelperText } from '@mui/material/';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -12,7 +10,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PageTitle from '../Components/PageTitle';
-import {RadioGroup, Radio} from '@mui/material/RadioGroup';
 import axios from 'axios';
 import DaumPost from '../Components/DaumPost';
 
@@ -46,24 +43,30 @@ export default function SignUp() {
 
   const [form, setForm] = useState({ user_id: "", user_password: "", user_name : "", user_nick : "" , user_email: "", user_phone: "", user_address : "" });
 
+  console.log('초기값', form)
 
   //중복체크 DB 응답 결과
   const [message, setMessage] = useState(''); 
 
-  const idCheckUrl = 'http://192.168.70.237:5022/id_check';
+  const idCheckUrl = 'http://192.168.70.176:5022/id_check';
   const nickCheckUrl = 'http://192.168.70.237:5022/nick_check';
   const emailCheckUrl = 'http://192.168.70.237:5022/email_check';
 
 
+  
   const idCheck = async () => {
+    console.log('id체크',form.user_id)
+    
     await axios.post(idCheckUrl, {user_id : form.user_id})
     .then((Response)=>{
       setMessage(Response.data);
       console.log('DB에 있는 데이터인가?:(T/F)','id?', message)
-      if (message === false){
+      if (!message){
         alert('사용할 수 있는 아이디입니다');
+        
       }else {
         alert('사용할 수 없는 아이디입니다');
+        setForm({...form, user_id : ''})
       }    
     })
     .catch((Error)=>{
@@ -72,14 +75,16 @@ export default function SignUp() {
   };
 
   const nickCheck = async () => {
-    await axios.post(nickCheckUrl, {user_id : form.user_nick})
+    await axios.post(nickCheckUrl, {user_nick : form.user_nick})
     .then((Response)=>{
       console.log('DB에 있는 데이터인가?:(T/F)', 'nick',Response.data)
       setMessage(Response.data);
-      if (message === false){
+      if (!message){
         alert('사용할 수 있는 닉네임입니다');
+        
       }else {
         alert('사용할 수 없는 닉네임입니다');
+        setForm({...form, user_nick : ''})
       }
     })
     .catch((Error)=>{
@@ -89,14 +94,15 @@ export default function SignUp() {
   
 
   const emailCheck = async () => {
-    await axios.post(emailCheckUrl, {user_id : form.user_email})
+    await axios.post(emailCheckUrl, {user_email : form.user_email})
     .then((Response)=>{
       console.log('DB에 있는 데이터인가?:(T/F)','email',Response.data)
       setMessage(Response.data);
-      if (message === false && message !== ' '){
+      if (!message){
         alert('사용할 수 있는 이메일입니다');
       }else {
         alert('사용할 수 없는 이메일입니다');
+        setForm({...form, user_email : ''})
       }
     })
     .catch((Error)=>{
@@ -111,7 +117,7 @@ export default function SignUp() {
   const sendUrl = 'http://192.168.70.237:5022/add_id';
   const infoSending = async () => {
 
-    console.log(form)
+    console.log('데이터 확인',form)
 
 
     await axios.post(sendUrl, {form})
@@ -129,7 +135,7 @@ export default function SignUp() {
     })
   };
 
-
+  const [openPostcode, setOpenPostcode] = useState(false);
   
 
 
@@ -163,11 +169,13 @@ export default function SignUp() {
                   name='user_id'
                   id="user_id"
                   value={form.user_id}
-                  helperText="ID : 6자 이상 (영문자와 숫자) "
+                  helperText="ID : 영문자와 숫자"
                   autoFocus
-                  onChange={(e)=>setForm(e.target.value)}                  
+                  autoComplete='off'
+                  onChange={(e)=>setForm({...form, user_id : e.target.value})}                  
                 />
               </Grid>
+              
               <Grid item xs={3}>
                 <Button
                   size ='medium'
@@ -193,9 +201,8 @@ export default function SignUp() {
                   label="비밀번호"
                   type="password"
                   id="password"
-                  helperText="PW : 6 ~ 12자의 영문, 숫자 조합"
                   value={form.user_password}
-                 
+                  onChange={(e)=>setForm({...form, user_password : e.target.value})}
                 />
               </Grid>
               <Grid item xs={9}>
@@ -206,9 +213,8 @@ export default function SignUp() {
                   fullWidth
                   id="email"
                   label="Email 주소"
-                  helperText="Email 예시 : farmers@farmfarm.co.kr"
                   value={form.user_email}
-          
+                  onChange={(e)=>setForm({...form, user_email : e.target.value})}
                 />
               </Grid>
               <Grid item xs={3}>
@@ -284,7 +290,7 @@ export default function SignUp() {
                   id="phone"
                   label="연락처(000-0000-0000)"
                   value={form.user_phone}
-                            
+                  onChange={(e)=>setForm({...form, user_phone : e.target.value})}
                 />
               </Grid>
           
@@ -295,12 +301,13 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="address"
-                  // label="거주지 주소 : 이거 API 찾아봐야함"
-                  autoComplete="address"
+                  autoComplete="off"
                   value={form.user_address}
                   //onChange={(e)=>setForm({...form, user_address : e.target.value})}
                 />
-                <DaumPost setForm = {setForm} form={form}></DaumPost>  
+                <Grid item xs={4}>
+                  <DaumPost setForm = {setForm} form={form}></DaumPost>  
+                </Grid>
               </Grid>
             </Grid>
             <Box sx={{ display: "flex", justifyContent: "center" }}>

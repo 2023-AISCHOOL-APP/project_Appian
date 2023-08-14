@@ -119,7 +119,9 @@ const CardDetailsPage = ({ value }) => {
       
         
         <h2 className='card-details-title'>{newContent[0].content_title}</h2>
-        <span className='card-nickname'>{newContent[0].user_nick} </span>
+        <div></div>
+        <span className='card-nickname'>작성자 : {newContent[0].user_nick} </span>
+        <div className='asdf'></div>
         <p className='card-details-content'>{newContent[0].contents}</p>
         <img className='card-details-image' src={`http://192.168.70.237:5022/content_img/${newContent[0].content_img}`} alt={newContent[0].content_title} />
         
@@ -128,15 +130,10 @@ const CardDetailsPage = ({ value }) => {
           <button className='card-details-button-list' onClick={handleGoBackToList}>목록</button>
         </div> 
       </div>
-      <textarea
-      className='comment_area'
-        placeholder='댓글을 작성하세요'
-        value={newComment}
-        onChange={(e) => setNewComment(e.target.value)}
-      />
-      <button onClick={handleAddComment} className='comment_btn'>댓글작성하기</button>
+      
+      
       <div className='comment-list'>
-        <h3 className='comment_list'>댓글 목록</h3>
+        <h3 className='comment_list'>댓글</h3>
         <ul>
           {comments?.map((comment, index) => (
             
@@ -148,9 +145,17 @@ const CardDetailsPage = ({ value }) => {
         </ul>
 
       
-  </div>
+        </div>
+        <textarea
+      className='comment_area'
+        placeholder='댓글을 작성하세요'
+        value={newComment}
+        onChange={(e) => setNewComment(e.target.value)}
+      />
+      <button onClick={handleAddComment} className='comment_btn'>댓글작성하기</button>
+      </div>  
       </div>
-    </div>
+    
   );
 };
 

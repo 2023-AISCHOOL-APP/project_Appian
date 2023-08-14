@@ -1,0 +1,29 @@
+
+
+.machin_title{
+    font-family: 'SUIT-Bold';
+    font-size: 25px;
+    margin-left: 320px;
+    border-bottom: 3px solid #00C897;
+    position: relative;
+    top: 200px;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+.machin_slider-container{
+    margin-left: 320px;
+    margin-right: 320px;
+    margin-top: 250px;
+    text-align: center;
+    align-items: center;
+}
+
+
+.machin_slide{
+    font-family: 'SUIT-Bold';
+    font-size: 20px;
+}
+
+.machin_slideimg{
+    align-items: center;
+}

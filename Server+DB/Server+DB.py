@@ -1,11 +1,7 @@
-import cx_Oracle
-import os
+import cx_Oracle, os, requests, json
 from datetime import datetime
 from flask import Flask, render_template, request, Response, jsonify
 from flask import Flask, send_from_directory
-import requests
-
-import json
 from functools import wraps
 from flask_cors import CORS
 
@@ -487,6 +483,29 @@ def content():
     return resList
 
 
+# ==================== 작물 가격예측 ==================== #
+@app.route('/price', methods=['GET', 'POST'])
+@as_json
+def price():
+    print('# ==================== 작물 가격예측 ==================== #')
+    conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
+    curs = conn.cursor()
+    sql = "SELECT * FROM price"
+    curs.execute(sql)
+    res = curs.fetchall()
+    print('sql응답 :', res)
+    curs.close()
+    conn.close()
+    resList = []
+    for a in res:
+        resList.append({"name":a[0],
+                        "now":a[1], 
+                        "pre":a[2],
+                        'img':a[3]
+                        })
+    print('보낸데이터', resList)
+    return resList
+
 # ==================== 댓글 달기 ==================== #
 @app.route('/content_comment', methods=['GET'])
 def content_comment():
@@ -566,6 +585,66 @@ def myList():
                         "lental_startDate":a[4],
                         "lental_endDate":a[5],
                         "apply_day":a[6]
+                        })
+    print('보낸데이터', resList)
+    return resList
+
+
+# ==================== 마이페이지 - 신청자 ==================== #
+@app.route('/myList2', methods=['GET'])
+def myList2():
+    print('# ==================== 마이페이지 - 신청자 ==================== #')
+    user_id = request.args.get('user_id', 'Unknown')
+    print('받은데이터', user_id, )
+
+    conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
+    curs = conn.cursor()
+    
+    sql = f"SELECT FARMAPPLICATION.application_num, FARMAPPLICATION.user_id, farm.farm_title, farm.lental_startDate, farm.lental_endDate, FARMAPPLICATION.apply_day FROM farm JOIN FARMAPPLICATION ON farm.farm_num = FARMAPPLICATION.farm_num WHERE farm.user_id = '{user_id}' order by FARMAPPLICATION.application_num desc"
+
+    curs.execute(sql)
+    res = curs.fetchall()
+    curs.close()
+    conn.close()
+    resList = []
+    for a in res:
+        resList.append({"application_num":a[0],
+                        "user_id":a[1], 
+                        "farm_title":a[2],
+                        "lental_startDate":a[3],
+                        "lental_endDate":a[4],
+                        "apply_day":a[5]
+                        })
+    print('보낸데이터', resList)
+    return resList
+
+
+# ==================== 내 정보 수정 ==================== #
+@app.route('/change', methods=['POST'])
+def change():
+    print('# ==================== 내 정보 수정 ==================== #')
+    data = request.json
+    user_id = data.get('user_id', 'Unknown')
+    print('받은데이터', user_id)
+    conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
+    curs = conn.cursor()
+    
+    sql = f"SELECT * FROM member WHERE user_id = '{user_id}'"
+
+    curs.execute(sql)
+    res = curs.fetchall()
+    curs.close()
+    conn.close()
+    resList = []
+    for a in res:
+        resList.append({"USER_ID":a[0],
+                        "USER_PASSWORD":a[1], 
+                        "USER_NAME":a[2],
+                        "USER_NICK":a[3],
+                        "USER_EMAIL":a[4],
+                        "USER_PHONE":a[5],
+                        "USER_ADDRESS":a[6],
+                        "USER_TYPE":a[7]
                         })
     print('보낸데이터', resList)
     return resList

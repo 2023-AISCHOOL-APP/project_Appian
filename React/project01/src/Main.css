@@ -1830,11 +1830,12 @@ button {
   border-radius: 5px;
   cursor: pointer;
   position: relative;
-  left: -70px;
-  top: -10px;
+
+  /* left: -70px;
+  top: -10px; */
 }
 
-/* 위의 버튼 -> 검색 페이지 줌 스크롤 버튼 위치에 영향을 줍니다. 다른 클래스로 빼서 작업해야할 듯해요! */
+/* 버튼 태그 전체 -> 검색 페이지 줌 스크롤 버튼, 회원가입 버튼 위치에 영향을 줍니다. 다른 클래스로 빼서 작업해야할 듯해요! */
 
 .card-nickname{
   
@@ -2068,3 +2069,31 @@ button {
   margin-top : 60px;
   margin-left :320px;
 }
+
+
+#addressBtn {
+  margin-left : 30px;
+  width : 60px;
+  height : 100px;
+
+} 
+
+.postbtn{
+  background-color: #05AC7B ;
+  box-sizing: content-box;
+  width : 50px;
+  height : 17px;
+  padding : 10px 16px;
+  margin-left : 13px;
+  border : none;
+  color : white;
+  font-family: 'SUIT-SemiBold';
+  box-shadow: 10px 10px 21px -14px rgba(0,0,0,0.54);
+  -webkit-box-shadow: 10px 10px 21px -14px rgba(0,0,0,0.54);
+  -moz-box-shadow: 10px 10px 21px -14px rgba(0,0,0,0.54);
+} 
+
+.postbtn:hover{
+  background-color: #00C897
+}
+

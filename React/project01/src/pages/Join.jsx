@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import {FormControlLabel, FormControl, FormLabel, FormHelperText } from '@mui/material/';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -12,7 +10,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PageTitle from '../Components/PageTitle';
-import {RadioGroup, Radio} from '@mui/material/RadioGroup';
 import axios from 'axios';
 import DaumPost from '../Components/DaumPost';
 
@@ -46,6 +43,20 @@ export default function SignUp() {
 
   const [form, setForm] = useState({ user_id: "", user_password: "", user_name : "", user_nick : "" , user_email: "", user_phone: "", user_address : "" });
 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   //중복체크 DB 응답 결과
   const [message, setMessage] = useState(''); 
@@ -56,6 +67,7 @@ export default function SignUp() {
 
 
   const idCheck = async () => {
+    
     await axios.post(idCheckUrl, {user_id : form.user_id})
     .then((Response)=>{
       setMessage(Response.data);
@@ -129,7 +141,7 @@ export default function SignUp() {
     })
   };
 
-
+  const [openPostcode, setOpenPostcode] = useState(false);
   
 
 
@@ -163,9 +175,10 @@ export default function SignUp() {
                   name='user_id'
                   id="user_id"
                   value={form.user_id}
-                  helperText="ID : 6자 이상 (영문자와 숫자) "
+                  helperText="ID : 영문자와 숫자"
                   autoFocus
-                  onChange={(e)=>setForm(e.target.value)}                  
+                  autoComplete='off'
+                  onChange={(e)=>{setForm(e.target.value); console.log(e.target.value);}}                  
                 />
               </Grid>
               <Grid item xs={3}>
@@ -193,9 +206,8 @@ export default function SignUp() {
                   label="비밀번호"
                   type="password"
                   id="password"
-                  helperText="PW : 6 ~ 12자의 영문, 숫자 조합"
                   value={form.user_password}
-                 
+                  onChange={(e)=>{setForm(e.target.value); console.log(e.target.value)}}
                 />
               </Grid>
               <Grid item xs={9}>
@@ -295,12 +307,13 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="address"
-                  // label="거주지 주소 : 이거 API 찾아봐야함"
-                  autoComplete="address"
+                  autoComplete="off"
                   value={form.user_address}
                   //onChange={(e)=>setForm({...form, user_address : e.target.value})}
                 />
-                <DaumPost setForm = {setForm} form={form}></DaumPost>  
+                <Grid item xs={4}>
+                  <DaumPost setForm = {setForm} form={form}></DaumPost>  
+                </Grid>
               </Grid>
             </Grid>
             <Box sx={{ display: "flex", justifyContent: "center" }}>

@@ -5,6 +5,8 @@ import Carousel from 'react-bootstrap/Carousel';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import MachineSlide from '../MachineSlide ';
+import { Recommend } from '@mui/icons-material';
+import Recommendation from '../Components/Recommendation';
 
 
 const Machin = () => {
@@ -32,6 +34,8 @@ const Machin = () => {
       </div>
       <div>
         <MachineSlide slideData={priceList}/>
+
+        <Recommendation/>
         
       </div>
     </div>

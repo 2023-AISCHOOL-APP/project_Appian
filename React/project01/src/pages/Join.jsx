@@ -84,7 +84,7 @@ export default function SignUp() {
   };
 
   const nickCheck = async () => {
-    await axios.post(nickCheckUrl, {user_id : form.user_nick})
+    await axios.post(nickCheckUrl, {user_nick : form.user_nick})
     .then((Response)=>{
       console.log('DB에 있는 데이터인가?:(T/F)', 'nick',Response.data)
       setMessage(Response.data);
@@ -101,7 +101,7 @@ export default function SignUp() {
   
 
   const emailCheck = async () => {
-    await axios.post(emailCheckUrl, {user_id : form.user_email})
+    await axios.post(emailCheckUrl, {user_email : form.user_email})
     .then((Response)=>{
       console.log('DB에 있는 데이터인가?:(T/F)','email',Response.data)
       setMessage(Response.data);

@@ -6,6 +6,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import { Link } from 'react-router-dom';
 
 
+
 // 도트 컴포넌트를 커스텀하는 함수형 컴포넌트
 const CustomDot = ({ onClick, index, isActive }) => (
   <div
@@ -32,13 +33,12 @@ class MachineSlide extends Component {
       dots: true, // 밑에 현재 페이지와 나머지 페이지 점으로 표시 > true로 설정하여 페이지 점을 보여준다
       infinite: true, // 무한 반복 여부 (true로 설정해서 무한 반복)
       speed: 1500, // 넘기는 속도
-      slidesToShow: 2, // 슬라이드에 보여지는 아이템 개수
+      slidesToShow: 4, // 슬라이드에 보여지는 아이템 개수
       slidesToScroll: 1, // 슬라이드 넘기는 아이템 개수
       autoplay: true, // 자동 재생 여부
       autoplaySpeed: 2000, // 자동 재생 속도
       customPaging: (i) => <CustomDot index={i} />, // customPaging을 사용하여 도트 컴포넌트를 반환
     };
-    // console.log('자식',slideData.gamja.0);
         
         return (
           <div > 

@@ -9,7 +9,9 @@ import CalendarRange from './CalendarRange'
 const FindDetail = () => {
   const farms = useLocation().state.data
 
+
  console.log('farms데이터확인',farms)
+
 
   const { id } = useParams();
   console.log('번호',id, '받은데이터',farms)
@@ -46,6 +48,9 @@ const FindDetail = () => {
 
   const farm_apply = ()=>{
     const applyUrl = 'http://192.168.70.237:5022/farm_apply';
+    if (userId === farms.user_id){
+      alert('본인의 텃밭엔 신청할 수 없어요!')
+    }else{
       axios
         .get(applyUrl, { responseType: 'json', params: { user_id : userId, farm_num : farms.farm_num } })
         .then(response => {
@@ -68,6 +73,7 @@ const FindDetail = () => {
           console.error('Error sending data:', error);
           alert('분양 신청 중 오류가 발생했습니다.');
         });
+      }
     }
   
 

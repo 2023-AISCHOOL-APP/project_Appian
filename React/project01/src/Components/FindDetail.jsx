@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux'; // useDispatch를 사용하여 액션 디스패치
 import MapStatic from './MapStatic';
 import '../Css/FarmDetail.css'
 import axios from 'axios';
@@ -8,6 +9,9 @@ import CalendarRange from './CalendarRange'
 
 
 const FindDetail = () => {
+  
+   const dispatch = useDispatch(); // useDispatch 훅을 통해 디스패치 함수 가져오기
+
   const locationState = useLocation().state;
 
   // farms 변수가 존재하고 data 프로퍼티가 존재할 때만 farms 값을 할당
@@ -17,24 +21,30 @@ const FindDetail = () => {
   const [showSuccessMessage, setShowSuccessMessage]=useState(false);
   const nav = useNavigate();
 
+  const loca = farms ? { lat: farms.lantitude, lng: farms.longitude } : null;
 
-  if (!farms) {
-    return null; // farms 값이 없으면 렌더링하지 않음
+  console.log(loca)
+
+
+  // 캘린더 적용 코드 (DB랑 연동 필요)
+  const startDate = farms ? new Date(farms.startDate) : null;
+const endDate = farms ? new Date(farms.endDate) : null;
+
+  console.log(startDate, endDate)
+
+
+
+  if (!locationState) {
+    // locationState가 null인 경우, 아무것도 렌더링하지 않고 종료
+    return null;
   }
+
 
 
   console.log('받은데이터',farms)
 
 
-  const loca = {lat : farms.lantitude, lng : farms.longitude}
-  console.log(loca)
-
-
-  // 캘린더 적용 코드 (DB랑 연동 필요)
-  const startDate = new Date(farms.startDate); // 시작일
-  const endDate = new Date(farms.endDate);
-  console.log(startDate, endDate)
-
+  
 
 
 
@@ -71,6 +81,16 @@ const FindDetail = () => {
         });
       }
     }
+    const handleHeaderButtonClick = () => {
+      // farms 데이터를 스토어에 저장
+      dispatch({ type: 'SET_CURRENT_PAGE', payload: farms });
+      // 페이지 이동 로직 추가
+      nav('/headerbuttonclicked');
+    };
+  
+    if (!farms) {
+      return null;
+    }
   
 
  
@@ -79,7 +99,7 @@ const FindDetail = () => {
   
     <div className='farmDetailAll'>
       
-      
+      <button onClick={handleHeaderButtonClick}>헤더 버튼</button>
       <img src='/img/farmdetail/farmdetailimg1.jpg' className='farmdetail_img1'/>
       <div className='Fdetail_title-container'>
         <span className='farmdetail_Maintitle'>{farms.farm_title}</span>

@@ -19,7 +19,7 @@
     display: inline-block;
     left: 410px;
     border-bottom: 3px solid #05AC7B;
-    top: 670px;
+    top: 440px;
     z-index: 99;
 }
 
@@ -160,7 +160,7 @@ margin-top: 200px;
 
 
 .part2{
-margin-top : -101px;
+margin-top : -341px;
 margin-left: 320px;
 margin-right: 320px;
 position: relative;
@@ -287,7 +287,7 @@ background-color: white;
     position: relative;
     font-size: 17px;
     top: 125px;
-    left: -63px;
+    left: -64px;
     text-align: right;
     margin-right: 320px;
 

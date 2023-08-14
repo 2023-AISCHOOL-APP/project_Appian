@@ -83,6 +83,7 @@
   
 }
 #gardenName{
+  font-family: 'SUIT-Regular';
   position: relative;
   top: -21px;
   left: 200px;
@@ -141,11 +142,12 @@
 }
 
 #out_address{
+  font-family: 'SUIT-Regular';
   position: relative;
   top: 13px;
   left: 205px;
   border: 2px solid #47A148;
-  width: 300px;
+  width: 200px;
  padding: 10px;
  border-radius: 10px;
 }
@@ -153,10 +155,10 @@
   position: relative;
   border-radius: 10px;
   font-family: 'SUIT-SemiBold';
-  font-size: 15px;
-  top: -26px;
-  left: 230px;
-  padding: 8px 20px;
+  font-size: 13px;
+  top: 12px;
+  left: 225px;
+  padding: 10px 15px;
   color: #47A148;
   border: 2px solid #47A148;
 } 
@@ -172,7 +174,7 @@
   font-family: 'SUIT-SemiBold';
   font-size: 20px;
   position: relative;
-  top: -7px;
+  top: 25px;
   left: 100px;
   
 }
@@ -181,14 +183,15 @@
   font-family: 'SUIT-SemiBold';
   font-size: 20px;
   position: relative;
-  top: -2px;
+  top: 25px;
   left: 100px;
-  
 }
 
+
 #out_areanum{
+  font-family: 'SUIT-Regular';
   position: relative;
-  top: -7px;
+  top:25px;
   left: 207px;
   border: 2px solid #47A148;
   width: 300px;
@@ -205,14 +208,15 @@
 }
 
 .form5,.form6 ,.form7, .form8,
-.form9 , .form10{
+.form9 , .form10 {
   position: relative;
-  top: 30px;
+  top: 50px;
 }
 
 #out_area{
+  font-family: 'SUIT-Regular';
   position: relative;
-  top: -10px;
+  top: 25px;
   left: 212px;
   border: 2px solid #47A148;
   width: 300px;
@@ -328,6 +332,7 @@
 }
 
 #out_price{
+  font-family: 'SUIT-Regular';
   position: relative;
   top: -8px;
   left: 195px;
@@ -347,6 +352,7 @@
 
 }
 #lental_startDate{
+  font-family: 'SUIT-Regular';
   position: relative;
   top: 20px;
   left: 155px;
@@ -367,6 +373,7 @@
 }
 
 #lental_startDate1{
+  font-family: 'SUIT-Regular';
   position: relative;
   top: 50px;
   left: 155px;
@@ -387,6 +394,7 @@
 }
 
 #lental_startDate2{
+  font-family: 'SUIT-Regular';
   position: relative;
   top: 80px;
   left: 155px;
@@ -399,8 +407,9 @@
 
 
 #lental_endDate{
+  font-family: 'SUIT-Regular';
   position: relative;
-  top: 142px;
+  top: 160px;
   left: 155px;
   border: 2px solid #47A148;
   width: 300px;
@@ -411,7 +420,7 @@
   font-family: 'SUIT-SemiBold';
   font-size: 20px;
   position: relative;
-  top: 140px;
+  top: 160px;
   left: 100px;
   
 }
@@ -420,15 +429,16 @@
   font-family: 'SUIT-SemiBold';
   font-size: 20px;
   position: relative;
-  top: -30px;
+  top: -20px;
   left: 100px;
   z-index: 99;
   
 }
 #lental_endDate1{
+  font-family: 'SUIT-Regular';
   position: relative;
-  top: 100px;
-  width: 500px;
+  top: 120px;
+  width: 300px;
   height: 200px;
   left: 210px;
   top: 175px;

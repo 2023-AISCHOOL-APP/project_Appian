@@ -32,19 +32,12 @@ const MapArea = (data) => {
   )
 
   const nav = useNavigate();
-  const send = ()=>{
-    const data = locations.map((v)=>v.data)
+  const send = (title)=>{
+    const data = farmList.filter((v)=>v.farm_title === title)[0]
+    console.log('쪼갠값',data);
     nav('/find/farm', {state:{data}})
   }
- 
-  
-  console.log('위치',locations)
-  // const send = ()=>{
 
-  //   locations.map((i)=>{
-  //     nav(`/find/farm` , {state : {i.data}})} )
-    
-  // }
 
   const initialCenter = locations.length > 0 ? locations[0].latlng : { lat: 35.156669, lng: 126.835521 };
   const [level, setLevel] = useState(5);
@@ -55,8 +48,8 @@ const MapArea = (data) => {
       {locations.map((loc, idx) => (
         level < 6 ? (
         <CustomOverlayMap key={loc.num} position={loc.latlng} xAnchor={0.5} yAnchor={1.1} >
-        <div className="customoverlay">
-          <Link to={`/find/farm`} onClick={send} >
+        <div className="customoverlay" onClick={()=>{send(loc.title)}}>
+          <Link to={`/find/farm`} >
             <span className="title">{loc.title}</span>
           </Link>
         </div>

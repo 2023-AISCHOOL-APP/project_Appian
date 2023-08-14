@@ -43,8 +43,6 @@ const Login = () => {
   
   const [message, setMessage] = useState(''); //DB 응답 결과
 
-  const navigate = useNavigate();
-
   const loginUrl = 'http://192.168.70.237:5022/login';
 
   const infoSending = async () => {
@@ -53,7 +51,7 @@ const Login = () => {
       const responseData = response.data;
       console.log('응답 데이터:', responseData); 
       
-      if (responseData === false){
+      if (!responseData){
         alert('회원정보가 없습니다. 회원가입을 진행해주세요')
       }else{
         sessionStorage.setItem('user_id', responseData[0].user_id)

@@ -44,20 +44,33 @@ export default function Myinfo() {
 
   const nav = useNavigate();
 
+  const loginUrl = 'http://192.168.70.237:5022/login';
   const changeUrl = 'http://192.168.70.237:5022/change';
 
   const infoSending = async () => {
     try {
-      const response = await axios.post(changeUrl, { form });
+      console.log('유저정보',form)
+      const response = await axios.post(loginUrl, { form });
       const responseData = response.data;
       console.log('응답 데이터:', responseData); 
-      if (responseData === false){
-        alert('회원정보가 없습니다. 회원 정보를 다시 확인해주세요')
+      if (!responseData ){
+        alert('회원정보가 일치하지 않습니다. 회원 정보를 다시 확인해주세요')
       }else{
-        nav('/mypage', {state : {responseData}})                
+        try{
+          const res = await axios.post(changeUrl, {user_id : form.user_id})
+          const info = res.data[0]
+          console.log('보낼유저정보', info)
+          nav('/mypage',{state :{info}})
+        } catch(error){
+          console.error('통신 실패:', error);
+          alert('서버에 문제가 발생하였습니다. 다시 한 번 시도해주세요!')
+        } 
+       
       }
       
-      setMessage(responseData);
+      // nav('/mypage', {state:{responseData}})
+      
+      
     } catch (error) {
       console.error('통신 실패:', error);
       alert('서버에 문제가 발생하였습니다. 다시 한 번 시도해주세요!')
@@ -142,7 +155,6 @@ export default function Myinfo() {
             >
               로그인
             </Button>
-
             </Box>
           </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />

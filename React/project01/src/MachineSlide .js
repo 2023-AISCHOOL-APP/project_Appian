@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Link } from 'react-router-dom';
+import './Css/Machinslide.css'
 
 
 
@@ -33,7 +34,7 @@ class MachineSlide extends Component {
       dots: true, // 밑에 현재 페이지와 나머지 페이지 점으로 표시 > true로 설정하여 페이지 점을 보여준다
       infinite: true, // 무한 반복 여부 (true로 설정해서 무한 반복)
       speed: 1500, // 넘기는 속도
-      slidesToShow: 4, // 슬라이드에 보여지는 아이템 개수
+      slidesToShow: 3, // 슬라이드에 보여지는 아이템 개수
       slidesToScroll: 1, // 슬라이드 넘기는 아이템 개수
       autoplay: true, // 자동 재생 여부
       autoplaySpeed: 2000, // 자동 재생 속도
@@ -43,13 +44,13 @@ class MachineSlide extends Component {
         return (
           <div > 
               {/* 슬라이더 컴포넌트 */}
-              <Slider {...settings} className='slider-container00'>
+              <Slider {...settings} className='machin_slider-container'>
                 {slideData.map((item, index) => (
-                  <div className='slider' key={index}>
-                    <img src={`http://localhost:3000/img/machine/${item.img}`} className='slideimg' alt={item.name} />
-                    <span className='slide'>{item.name}</span><br />
-                    <span className='slide_sub'>오늘 가격: {item.now} </span><br />
-                    <span className='slide_sub'>일주일뒤 예측가격: {item.pre}</span>
+                  <div className='machin_slider' key={index}>
+                    <img src={`http://localhost:3000/img/machine/${item.img}`} className='machin_slideimg' alt={item.name} />
+                    <span className='machin_slide'>{item.name}</span><br />
+                    <span className='machin_slide_sub'>오늘 가격: {item.now} </span><br />
+                    <span className='machin_slide_sub'>일주일뒤 예측가격: {item.pre}</span>
                   </div>
                 ))}
               </Slider>

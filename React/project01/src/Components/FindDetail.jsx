@@ -124,9 +124,9 @@ const FindDetail = () => {
           <span>작성자 :</span><span> {farms.user_nick}</span>
         </div>
         <div className='detail_date'>
-          <span>등록일 :</span><span> {farms.farm_date}</span>
+          <span>등록일 :</span><span> {farms.farm_day}</span>
         </div>
-        </div>
+      </div>
         <div className='lental_all'>
           <img src='/img/calendericon.png' className='calendericon'/>
           <span className='lental_title'>분양기간</span>
@@ -163,7 +163,7 @@ const FindDetail = () => {
           <div className='call_subtitle'>
               <p>{farms.user_name}</p>
               <p>전화 : {farms.user_phone}</p>
-              <p>이메일 : {farms.user_email}</p>
+              <span>이메일 : {farms.user_email}</span>
           </div>
         </div>
         <MapStatic className='farmmap' data={loca}/>

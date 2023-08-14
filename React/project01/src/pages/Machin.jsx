@@ -35,10 +35,12 @@ const Machin = () => {
        
       </div>
       <div>
+        <Recommendation/>
+
         <p className='machin_title'>작물가격 예측하기</p>
         <MachineSlide slideData={priceList}/>
 
-        <Recommendation/>
+       
         
       </div>
     </div>

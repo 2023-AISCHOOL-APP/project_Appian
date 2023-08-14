@@ -11,6 +11,8 @@ const Recommendation = () => {
   const [selectedManagementPeriod, setSelectedManagementPeriod] = useState('');
   const [selectedCropLifespan, setSelectedCropLifespan] = useState('');
   const [filteredCrops, setFilteredCrops] = useState([]);
+  const [noMatchingCrops, setNoMatchingCrops] = useState(false);
+  
 
   // Simulated crop data
   const allCrops = [
@@ -55,17 +57,14 @@ const Recommendation = () => {
   // Handle user input changes
   const handleMonthChange = (event) => {
     setSelectedMonth(event.target.value);
-    filterCrops();
   };
 
   const handleManagementPeriodChange = (event) => {
     setSelectedManagementPeriod(event.target.value);
-    filterCrops();
   };
 
   const handleCropLifespanChange = (event) => {
     setSelectedCropLifespan(event.target.value);
-    filterCrops();
   };
 
   // Filter crops based on selected criteria
@@ -75,6 +74,13 @@ const Recommendation = () => {
       (!selectedManagementPeriod || crop.managementPeriod === selectedManagementPeriod) &&
       (!selectedCropLifespan || crop.lifespan === selectedCropLifespan)
     );
+
+    if (filtered.length === 0) {
+      setNoMatchingCrops(true); // Set state to show "No matching crops" message
+    } else {
+      setNoMatchingCrops(false); // Reset state if there are matching crops
+    }
+
     setFilteredCrops(filtered);
   };
 
@@ -108,17 +114,19 @@ const Recommendation = () => {
         </select>
         <button onClick={filterCrops} className='rec_btn'>찾기</button>
       </div>
-      <h2 className='rec_subtitle'>이 작물은 어때요?</h2>
-      {filteredCrops.length === 0 ? (
-      <p>선택한 조건에 해당하는 추천작물이 없습니다.</p>
-    ) : (
-      <ul className='rec_vege'>
-        {filteredCrops.map((crop, index) => (
-          <li key={index}>{crop.name}</li>
-        ))}
-      </ul>
-    )}
-  </div>
+      {noMatchingCrops ? (
+        <p className='rec_vege'>조건에 맞는 작물이 없습니다.</p>
+      ) : (
+        <div>
+          <h2 className='rec_subtitle'>이 작물은 어때요?</h2>
+          <ul className='rec_vege'>
+            {filteredCrops.map((crop, index) => (
+              <li key={index}>{crop.name}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
   );
 };
 

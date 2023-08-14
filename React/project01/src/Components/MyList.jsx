@@ -83,7 +83,7 @@ const MyList = () => {
               
             </td>
             <td>
-              <h2>신청한 텃밭 : {application.list}</h2>
+              <h2>신청한 텃밭 : {application.farm_title}</h2>
               <p>텃밭 면적 : {application.lental_area}m²</p>
               <p>분양가 : {application.farm_price}원</p>
               <h3>임대시작 : {application.lental_startDate}</h3>
@@ -122,7 +122,7 @@ const MyList = () => {
               
             </td>
             <td>
-              <h2>신청한 사람 : {}</h2>
+              <h2>신청한 사람 : {application.userId}</h2>
               <h3>임대시작 : {application.lental_startDate}</h3>
               <h3>임대끝 : {application.lental_endDate}</h3>
             </td>

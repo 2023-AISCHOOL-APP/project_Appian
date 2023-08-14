@@ -21,7 +21,7 @@ const MapStatic = ({data}) => {
   })
 
   return (
-    <div style={{ display: "flex" ,marginLeft:'320px' , marginRight:'320px' ,marginTop:'-90px'}}>
+    <div style={{ display: "flex" ,marginLeft:'350px' , marginRight:'350px' ,marginTop:'-600px'}}>
       <Map // 로드뷰를 표시할 Container // 농장 정보 수정 필요!!
         center={location}
         style={{

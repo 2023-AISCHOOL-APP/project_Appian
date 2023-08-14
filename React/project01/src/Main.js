@@ -67,27 +67,26 @@ function Main() {
 
     <div>
       <Header />
-        <Routes>
-          <Route path='/' element={<Mainpage />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/join' element={<Join />} />
-          <Route path='/card' element={<Card />} />
-          <Route path='/find' element={<FindGarden />} />
-          <Route path='/find/test' element={<Maptest />} />
-          <Route path='/find/farm' element={<FarmDetail />} />
-          <Route path='/find/farm:farmId' element={<FindDetail />} />
-          <Route path='/out' element={<OutGarden />} />
-          <Route path='/community' element={<Community />} />
-          <Route path='/mypage' element={<Mypage />} />
-          <Route path='/mypage/info' element={<Myinfo/>} />
-          <Route path='/mypage/mylist' element={<MyList />} />
-          <Route path='/cone' element={<Cone value={savedCards}/>} />
-          <Route path='/ctwo' element={<Ctwo />} />
-          <Route path='/cthree' element={<Cthree />} />
-          <Route path='/machin' element={<Machin />} />
-          <Route path="/cardpage/:cardId" element={<CardDetailsPage value={savedCards}/>} />
-          <Route path='/notice' elemenft={<Notice />} />
-        </Routes>
+      <Routes>
+        <Route path='/' element={<Mainpage />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/join' element={<Join />} />
+        <Route path='/card' element={<Card />} />
+        <Route path='/find' element={<FindGarden />} />
+        <Route path='/find/test' element={<Maptest />} />
+        <Route path='/find/farm' element={<FindDetail />} />
+        <Route path='/out' element={<OutGarden />} />
+        <Route path='/community' element={<Community />} />
+        <Route path='/mypage' element={<Mypage />} />
+        <Route path='/mypage/info' element={<Myinfo/>} />
+        <Route path='/mypage/mylist' element={<MyList />} />
+        <Route path='/cone' element={<Cone value={savedCards}/>} />
+        <Route path='/ctwo' element={<Ctwo />} />
+        <Route path='/cthree' element={<Cthree />} />
+        <Route path='/machin' element={<Machin />} />
+        <Route path="/cardpage/:cardId" element={<CardDetailsPage value={savedCards}/>} />
+        <Route path='/notice' elemenft={<Notice />} />
+      </Routes>
     </div>
   );
 }

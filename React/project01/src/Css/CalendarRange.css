@@ -1,12 +1,17 @@
 /* 전체스타일 */
 .react-calendar {
   width : 540px;
+  height: auto;
+  position: relative;
+  top: 80px;
+  left: -410px;
   font-family: 'SUIT-Bold';
   font-size : 1.3rem;
   text-decoration: none;
   color : rgb(69, 69, 69) ;
-  border-radius: 50px;
+  border-radius: 10px;
   padding : 25px;
+  z-index: 99;
 }
 
 abbr{
@@ -66,7 +71,7 @@ abbr{
 
 .react-calendar__tile--now {
   background: #FFD365;
-  color: rgb(216, 35, 35);
+  color: rgb(46, 197, 109);
 }
 
 .react-calendar__tile--rangeStart {
@@ -85,7 +90,10 @@ abbr{
 
 
 #calendarTitle {
-  font-family: 'SUIT-Bold';
+  font-family: 'SUIT-SemiBold';
+  position: relative;
+  top: 90px;
+  left: -420px;
   color :rgb(69, 69, 69);
   text-align : center;
 }

@@ -144,9 +144,9 @@
   position:absolute;
   top: 40px;
   left: 265px;
-
   padding: 15px;
   text-align: center;
+  z-index: 999;
  
 
 }
@@ -160,7 +160,6 @@
   position:absolute;
   top: 40px;
   left: 385px;
-
   padding: 15px;
   text-align: center;
  
@@ -175,7 +174,6 @@
   position:absolute;
   top: 40px;
   left: 15px;
-
   padding: 15px;
   text-align: center;
  
@@ -191,7 +189,6 @@
   position:absolute;
   top: 40px;
   left: 145px;
-
   padding: 15px;
   text-align: center;
  
@@ -202,6 +199,7 @@
   color:darkgrey;
   font-family: 'SUIT-Regular';
   font-size: 15px;
+  margin-top : 30px;
 }
 
 .navbarSubMenu1 :hover ,.navbarSubMenu2 :hover,.navbarSubMenu3 :hover,.navbarSubMenu4 :hover{

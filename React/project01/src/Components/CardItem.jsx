@@ -21,7 +21,7 @@ const CardItem = ({name, addr, num, value}) => {
     
   return (
     <div className='searchcard' onClick={send}>
-      <Link to={`/find/farm`}/>
+      <Link to={`/find/farm/`}/>
       <div className='imageArea'>
         <img src={imgUrl} alt={name}></img>
       </div>

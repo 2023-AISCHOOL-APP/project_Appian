@@ -30,8 +30,13 @@ const MapArea = (data) => {
 				/>
         
   )
-  
+
   const nav = useNavigate();
+  const send = ()=>{
+    const data = locations.map((v)=>v.data)
+    nav('/find/farm', {state:{data}})
+  }
+ 
   
   console.log('위치',locations)
   // const send = ()=>{
@@ -51,7 +56,7 @@ const MapArea = (data) => {
         level < 6 ? (
         <CustomOverlayMap key={loc.num} position={loc.latlng} xAnchor={0.5} yAnchor={1.1} >
         <div className="customoverlay">
-          <Link to={`/find/farm`}  >
+          <Link to={`/find/farm`} onClick={send} >
             <span className="title">{loc.title}</span>
           </Link>
         </div>

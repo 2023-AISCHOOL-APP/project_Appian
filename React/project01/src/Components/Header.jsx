@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import Swal from "sweetalert2";
+import '../Header.css'
 
 const Header = () => {
   // 하위 메뉴 이벤트 
@@ -148,8 +149,7 @@ const Header = () => {
                 <NavLink to='/community' className='navbarSubMenuLink'>
                   정보게시판
                 </NavLink>
-                <br/>
-                <br/>
+                <br/><br/>
                 <NavLink to='/machin' className='navbarSubMenuLink'>
                   작물가격예측
                 </NavLink>

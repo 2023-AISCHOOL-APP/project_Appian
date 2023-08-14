@@ -154,21 +154,22 @@ const Header = () => {
                 </NavLink>
               </div>
             )}
-            {authenticated ? 
+            {/* {authenticated ?  */}
               <NavLink
                 className='navbarMenu'
                 activeClassName='activeLink'
                 onClick={() => handleMenuClick('mypage')}
               >
                 마이페이지
-              </NavLink> :
-              <NavLink to = '/login'
-              className='navbarMenu'
-              activeClassName='activeLink'
-              onClick={LoginAlert}
-            >
-              마이페이지
-              </NavLink> }
+              </NavLink> 
+            {/* //   :
+            //   <NavLink to = '/login' */}
+            {/* //   className='navbarMenu'
+            //   activeClassName='activeLink'
+            //   onClick={LoginAlert}
+            // >
+            //   마이페이지
+            //   </NavLink> } */}
 
             {activeMenu === 'mypage' && (
               <div className='navbarSubMenu4'>

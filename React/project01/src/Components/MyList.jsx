@@ -18,17 +18,34 @@ const MyList = () => {
   ];
 
   const [applicationList, setApplicationList] = useState(initialApplicationList);
+  const [volunteerList, setVolunteerList] = useState([]);
+
 
   const userId = sessionStorage.getItem('user_id')
 
 
   useEffect(()=>{
-  
+    // 신청내역
     const myListyUrl = 'http://192.168.70.237:5022/myList';
     axios.get(myListyUrl, { responseType: 'json', params:{ user_id : userId } })
     .then(response => {
-      console.log('페이지 들어와서 받아온거', response.data);
+      console.log('신청내역 받아온거', response.data);
       setApplicationList(response.data)
+    })
+    .catch(error => {
+      console.error('보내기 에러');
+    });
+
+  },[])
+
+
+  useEffect(()=>{
+    // 신청자
+    const myListyUrl = 'http://192.168.70.237:5022/myList2';
+    axios.get(myListyUrl, { responseType: 'json', params:{ user_id : userId } })
+    .then(response => {
+      console.log('신청자 받아온거', response.data);
+      setVolunteerList(response.data)
     })
     .catch(error => {
       console.error('보내기 에러');
@@ -158,15 +175,16 @@ const MyList = () => {
             </tr>
         </thead>
         <tbody>
-          {applicationList.map((application) => (
+          {volunteerList.map((application) => (
             <tr>
             <td key={application.application_num} className='mycard'>
               <p>{application.application_num}</p>
               
             </td>
             <td>
-              <h2>신청한 사람 : {}</h2>
-              <h2>신청한 텃밭 : {application.farm_title}</h2>
+
+              <h2>신청한 사람 : {application.user_id}</h2>
+
               <h3>임대시작 : {application.lental_startDate}</h3>
               <h3>임대끝 : {application.lental_endDate}</h3>
             </td>

@@ -145,6 +145,7 @@ function OutGarden() {
                       <label htmlFor="address">텃밭 주소:</label>
                       <input
                         type="text"
+                        placeholder='텃밭 주소를 입력해주세요'
                         id="out_address"
                         autoComplete="address"
                         value={form.farm_address}
@@ -314,6 +315,7 @@ function OutGarden() {
                       <label htmlFor="description">본문내용:</label>
                       <textarea
                         id="lental_endDate1"
+                        placeholder='내용을 입력해주세요'
                         value={form.description}
                         onChange={(e)=>{setForm({...form, description : e.target.value})}}
                         required

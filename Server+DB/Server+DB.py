@@ -590,6 +590,35 @@ def myList():
     return resList
 
 
+# ==================== 마이페이지 - 신청자 ==================== #
+@app.route('/myList2', methods=['GET'])
+def myList2():
+    print('# ==================== 마이페이지 - 신청자 ==================== #')
+    user_id = request.args.get('user_id', 'Unknown')
+    print('받은데이터', user_id, )
+
+    conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
+    curs = conn.cursor()
+    
+    sql = f"SELECT FARMAPPLICATION.application_num, FARMAPPLICATION.user_id, farm.farm_title, farm.lental_startDate, farm.lental_endDate, FARMAPPLICATION.apply_day FROM farm JOIN FARMAPPLICATION ON farm.farm_num = FARMAPPLICATION.farm_num WHERE farm.user_id = '{user_id}' order by FARMAPPLICATION.application_num desc"
+
+    curs.execute(sql)
+    res = curs.fetchall()
+    curs.close()
+    conn.close()
+    resList = []
+    for a in res:
+        resList.append({"application_num":a[0],
+                        "user_id":a[1], 
+                        "farm_title":a[2],
+                        "lental_startDate":a[3],
+                        "lental_endDate":a[4],
+                        "apply_day":a[5]
+                        })
+    print('보낸데이터', resList)
+    return resList
+
+
 # ==================== 내 정보 수정 ==================== #
 @app.route('/change', methods=['POST'])
 def change():

@@ -52,6 +52,7 @@ const Login = () => {
       const response = await axios.post(loginUrl, { form });
       const responseData = response.data;
       console.log('응답 데이터:', responseData); 
+      
       if (responseData === false){
         alert('회원정보가 없습니다. 회원가입을 진행해주세요')
       }else{

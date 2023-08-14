@@ -60,9 +60,12 @@ commubtn3
 
 .machin_text1:hover{
   opacity: 1;
+  
 } 
 
 .machinBanner{
+  
+ text-decoration: none;
   opacity: 1;
   z-index: 3;
   width: auto;
@@ -342,7 +345,7 @@ commubtn3
 .floating-banner {
   position: relative;
   
-  
+ text-decoration: none;
   bottom: 300px;
   right: -1600px;
    /* 크기를 70%로 조정 */
@@ -352,6 +355,8 @@ commubtn3
 
 .floating-banner.show {
   display: block;
+  
+ text-decoration: none;
 
 }
 

@@ -619,10 +619,10 @@ def myList2():
     return resList
 
 
-# ==================== 내 정보 수정 ==================== #
+# ==================== 내 정보 수정 접속 ==================== #
 @app.route('/change', methods=['POST'])
 def change():
-    print('# ==================== 내 정보 수정 ==================== #')
+    print('# ==================== 내 정보 수정 접속 ==================== #')
     data = request.json
     user_id = data.get('user_id', 'Unknown')
     print('받은데이터', user_id)
@@ -649,6 +649,39 @@ def change():
     print('보낸데이터', resList)
     return resList
 
+
+# ==================== 내 정보 수정 하기 ==================== #
+@app.route('/update_change', methods=['POST'])
+def update_change():
+    print('# ==================== 내 정보 수정 하기 ==================== #')
+    data = request.json
+    user_data = data.get('form', {})
+    user_id = user_data.get('user_id', 'Unknown')
+    user_password = user_data.get('user_password', 'Unknown')
+    user_name = user_data.get('user_name', 'Unknown')
+    user_nick = user_data.get('user_nick', 'Unknown')
+    user_email = user_data.get('user_email', 'Unknown')
+    user_phone = user_data.get('user_phone', 'Unknown')
+    user_address = user_data.get('user_address', 'Unknown')
+
+    print('받은데이터:', user_data)
+
+    conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
+    curs = conn.cursor()
+
+    sql = f"UPDATE member set user_password = '{user_password}', user_nick = '{user_nick}', user_email = '{user_email}', user_phone = '{user_phone}', user_address = '{user_address}' where user_id = '{user_id}'"
+
+    curs.execute(sql)
+
+    print('sql문', sql)
+    conn.commit()
+
+    curs.close()
+    conn.close()
+
+    response = 'success'
+    print(response)
+    return response
 
 # ==================== 삭제 페이지 ==================== #
 @app.route('/delete', methods=['GET'])

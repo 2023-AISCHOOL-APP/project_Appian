@@ -163,6 +163,7 @@ const Header = () => {
               >
                 마이페이지
               </NavLink> 
+
               :
               <NavLink to = '/login'
               className='navbarMenu'
@@ -170,7 +171,8 @@ const Header = () => {
               onClick={LoginAlert}
             >
               마이페이지
-              </NavLink> }
+              </NavLink> 
+            }
 
             {activeMenu === 'mypage' && (
               <div className='navbarSubMenu4'>

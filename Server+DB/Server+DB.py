@@ -590,6 +590,37 @@ def myList():
     return resList
 
 
+# ==================== 내 정보 수정 ==================== #
+@app.route('/change', methods=['POST'])
+def change():
+    print('# ==================== 내 정보 수정 ==================== #')
+    data = request.json
+    user_id = data.get('user_id', 'Unknown')
+    print('받은데이터', user_id)
+    conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
+    curs = conn.cursor()
+    
+    sql = f"SELECT * FROM member WHERE user_id = '{user_id}'"
+
+    curs.execute(sql)
+    res = curs.fetchall()
+    curs.close()
+    conn.close()
+    resList = []
+    for a in res:
+        resList.append({"USER_ID":a[0],
+                        "USER_PASSWORD":a[1], 
+                        "USER_NAME":a[2],
+                        "USER_NICK":a[3],
+                        "USER_EMAIL":a[4],
+                        "USER_PHONE":a[5],
+                        "USER_ADDRESS":a[6],
+                        "USER_TYPE":a[7]
+                        })
+    print('보낸데이터', resList)
+    return resList
+
+
 # ==================== 삭제 페이지 ==================== #
 @app.route('/delete', methods=['GET'])
 def delete():

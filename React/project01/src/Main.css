@@ -1645,7 +1645,11 @@ font-size: 15px;
   text-align: start;
 }
 
+.card-details{
+  border : 3px solid orange;
+  border-radius: 30px;
 
+}
 
 
 .card-details-title {
@@ -1700,7 +1704,8 @@ font-size: 15px;
 
 .card-details-buttons {
  position: relative;
- left: 490px;
+ left: 450px;
+ margin-bottom: 30px;
 
 
 }
@@ -1710,7 +1715,7 @@ font-size: 15px;
   padding: 5px 15px;
   font-family: 'SUIT-SemiBold';
   font-size: 14px;
-
+  margin-right: 3px;
   border: none;
   cursor: pointer;
 }
@@ -1841,9 +1846,9 @@ button {
 .card-nickname{
   
   font-family: 'SUIT-Bold';
-  color: gray;
+  color: rgb(0, 0, 0);
  position: relative;
- left: 180px;
+ left: 100px;
 
 }
 
@@ -1880,7 +1885,7 @@ button {
 .comment_area{
   font-family: 'SUIT-Regular';
   font-size: 15px;
-  width: 800px;
+  width: 900px;
 
   position: relative;
   top: 45px;
@@ -2001,7 +2006,7 @@ button {
   font-size: 24px;
   margin-bottom: 60px;
   border-bottom: solid rgb(243, 127, 243);
-  
+  margin-bottom: 50px;
 }
 
 .application-table {
@@ -2009,6 +2014,7 @@ button {
   width: 100%;
   max-width: 1400px;
   border: 1px solid #ccc;
+  margin-bottom: 50px;
 }
 
 .application-table th, .application-table td {
@@ -2030,7 +2036,7 @@ button {
   
 }
 .aaa{
-  width:50px;
+  width:70px;
   
 }
 .bbb{
@@ -2097,4 +2103,3 @@ button {
 .postbtn:hover{
   background-color: #00C897
 }
-

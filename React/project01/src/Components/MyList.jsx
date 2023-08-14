@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PageTitle from './PageTitle';
+import { bottom } from '@popperjs/core';
 
 
 
@@ -69,7 +70,7 @@ const MyList = () => {
             <th className='aaa'>신청번호</th>
             <th className='bbb'>신청내역</th>
             <th className='ccc'>신청일</th>
-            <th>취소</th>
+            <th >취소</th>
             
             
           </tr>
@@ -82,9 +83,46 @@ const MyList = () => {
               
             </td>
             <td>
-              <h2>{application.list}</h2>
+              <h2>신청한 텃밭 : {application.list}</h2>
               <p>텃밭 면적 : {application.lental_area}m²</p>
               <p>분양가 : {application.farm_price}원</p>
+              <h3>임대시작 : {application.lental_startDate}</h3>
+              <h3>임대끝 : {application.lental_endDate}</h3>
+            </td>
+            <td>
+              <p> {application.apply_day}</p>
+            </td>
+            <td>
+              <button className='ddd' onClick={() => del(application.application_num)}> 취소하기 </button>
+              {/* <button className='ddd' onClick={del}> 취소하기 </button> */}
+            </td>
+            </tr>   
+
+            
+          ))}
+        </tbody>
+      </table>
+     
+      
+      <h1 className='mypage-title'>텃밭신청자 내역</h1>
+      <table className="application-table" >
+        <thead >
+            <tr>
+              <th className='aaa'>신청번호</th>
+              <th className='bbb'>신청자 내역</th>
+              <th className='ccc'>신청일</th>
+              <th>취소</th>
+            </tr>
+        </thead>
+        <tbody>
+          {applicationList.map((application) => (
+            <tr>
+            <td key={application.application_num} className='mycard'>
+              <p>{application.application_num}</p>
+              
+            </td>
+            <td>
+              <h2>신청한 사람 : {}</h2>
               <h3>임대시작 : {application.lental_startDate}</h3>
               <h3>임대끝 : {application.lental_endDate}</h3>
             </td>

@@ -9,6 +9,7 @@ import CalendarRange from './CalendarRange'
 const FindDetail = () => {
   const farms = useLocation().state.data
 
+  console.log('farms데이터확인',farms)
   
   const { id } = useParams();
   console.log('번호',id, '받은데이터',farms)

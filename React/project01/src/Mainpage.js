@@ -78,7 +78,7 @@ const Mainpage = () => {
 
 
 
-      <div id='main-container'>
+      <div id='main-container'>np
         {/* 플로팅 배너 */}
         <div className={`floating-banner ${showBanner ? 'show' : ''}`} style={{ top: bannerTop }}>
                       {/* showBanner 변수의 값에 따라 플로팅 배너에 show 클래스를 추가하거나 제거 */}

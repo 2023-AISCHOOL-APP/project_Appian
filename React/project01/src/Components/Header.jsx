@@ -155,7 +155,7 @@ const Header = () => {
                 </NavLink>
               </div>
             )}
-            {/* {authenticated ?  */}
+            {authenticated ? 
               <NavLink
                 className='navbarMenu'
                 activeClassName='activeLink'
@@ -172,7 +172,7 @@ const Header = () => {
             >
               마이페이지
               </NavLink> 
-
+            }
 
             {activeMenu === 'mypage' && (
               <div className='navbarSubMenu4'>

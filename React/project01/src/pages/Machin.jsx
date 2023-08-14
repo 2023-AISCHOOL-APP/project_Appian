@@ -30,9 +30,10 @@ const Machin = () => {
     <div>
       <PageTitle data={'작물 가격 예측'} num={2}/>
       <div id='predictPage'>
-        <p>여기에 꾸며주세요!</p>
+       
       </div>
       <div>
+        <p className='machin_title'>작물가격 예측하기</p>
         <MachineSlide slideData={priceList}/>
 
         <Recommendation/>

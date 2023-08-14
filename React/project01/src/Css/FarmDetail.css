@@ -267,29 +267,26 @@ background-color: white;
 /* 작성자 작성일  */
 
 .detailAll{
-  text-align: left;
+color: gray;
+ 
   position: relative;
-  top: -420px;
-  left: -390px;
+  top: -1250px;
+  left: -330px;
 }
 
 .use_id{
-    font-family: 'SUIT-SemiBold';
+    font-family: 'SUIT-Regular';
     font-size: 17px;
-    position: relative;
+   
     text-align: right;
-    margin-right: 320px;
-    top: 120px;
-    z-index: 99;
+   
 }
 .detail_date{
-    font-family: 'SUIT-Bold';
+    font-family: 'SUIT-Regular';
     position: relative;
-    font-size: 17px;
-    top: 125px;
-    left: -64px;
+ 
     text-align: right;
-    margin-right: 320px;
+  
 
 }
 
@@ -535,7 +532,7 @@ background-color: white;
 .call_border{
     border: 2px solid #05AC7B ;
     display: inline-block;
-    padding: 20px 105px; 
+    padding: 30px 105px; 
     border-radius: 20px;
     width: 220px;
     z-index: 98;
@@ -548,6 +545,7 @@ background-color: white;
 .call_btn{
     font-family: 'SUIT-Bold';
     left: 50px;
+    top: -10px;
     font-size: 23px;
     position: relative;
     color: #05AC7B;
@@ -555,8 +553,10 @@ background-color: white;
     
 }
 .call_subtitle{
+    width: 300px;
     font-family: 'SUIT-Regular';
     text-align: center;
     position: relative;
     top: 10px;
+    left: -43px;
 }

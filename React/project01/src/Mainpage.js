@@ -86,7 +86,7 @@ const Mainpage = () => {
                       <Link to='/machin' className='MACHINBANNER' >
                           <img src='/img/main_banner.png' alt="banner"  className='machinBanner'/ >
                       
-                          <span className='machin_text1' >
+                          <span className='machin_text1' style={{textDecorationLine:'none'}} >
                             <span>내 작물가격 </span>
                             <br/>
                             <span style={{paddingLeft :'185px' , textDecoration:'None'}}>알아보기</span>

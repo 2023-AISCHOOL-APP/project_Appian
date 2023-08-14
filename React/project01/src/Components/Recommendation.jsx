@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import '../Css/PredictPage.css'
+
 
 const Recommendation = () => {
   const months = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
@@ -52,17 +54,17 @@ const Recommendation = () => {
 
   return (
     <div>
-      <h1>작물 추천 받기</h1>
-      <div style={{ display: 'flex' }}>
-        <select value={selectedMonth} onChange={handleMonthChange}>
-          <option value="">농작 시기</option>
+      <h1 className='recommend_maintitle'>작물 추천해주세요!</h1>
+      <div >
+        <select value={selectedMonth} onChange={handleMonthChange} className='rec_subbtn1'>
+          <option value="" >농작 시기</option>
           {months.map((month, index) => (
             <option key={index} value={month}>
               {month}
             </option>
           ))}
         </select>
-        <select value={selectedManagementPeriod} onChange={handleManagementPeriodChange}>
+        <select value={selectedManagementPeriod} onChange={handleManagementPeriodChange} className='rec_subbtn1'>
           <option value="">관리 주기</option>
           {managementPeriods.map((period, index) => (
             <option key={index} value={period}>
@@ -70,7 +72,7 @@ const Recommendation = () => {
             </option>
           ))}
         </select>
-        <select value={selectedCropLifespan} onChange={handleCropLifespanChange}>
+        <select value={selectedCropLifespan} onChange={handleCropLifespanChange} className='rec_subbtn1'>
           <option value="">작물 수명</option>
           {cropLifespans.map((lifespan, index) => (
             <option key={index} value={lifespan}>
@@ -78,10 +80,10 @@ const Recommendation = () => {
             </option>
           ))}
         </select>
-        <button onClick={filterCrops}>심기</button>
+        <button onClick={filterCrops} className='rec_btn'>찾기</button>
       </div>
-      <h2>추천 작물</h2>
-      <ul>
+      <h2 className='rec_subtitle'>이 작물은 어때요?</h2>
+      <ul className='rec_vege'>
         {filteredCrops.map((crop, index) => (
           <li key={index}>{crop.name}</li>
         ))}

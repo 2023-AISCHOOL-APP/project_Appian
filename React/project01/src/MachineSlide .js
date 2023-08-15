@@ -49,8 +49,8 @@ class MachineSlide extends Component {
                   <div className='machin_slider' key={index}>
                     <img src={`http://localhost:3000/img/machine/${item.img}`} className='machin_slideimg' alt={item.name} />
                     <span className='machin_slide'>{item.name}</span><br />
-                    <span className='machin_slide_sub1'>오늘 가격: <p className='machinslide_sub1'>{item.now}</p> </span><br />
-                    <span className='machin_slide_sub2'>일주일뒤 예측가격: <p className='machinslide_sub2'>"{item.pre}"</p></span>
+                    <span className='machin_slide_sub1'>오늘 가격(kg/원): <p className='machinslide_sub1'>{item.now}</p> </span><br />
+                    <span className='machin_slide_sub2'>일주일뒤 예측가격(kg/원): <p className='machinslide_sub2'>"{item.pre}"</p></span>
                   </div>
                 ))}
               </Slider>

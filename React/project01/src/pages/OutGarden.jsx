@@ -259,7 +259,12 @@ function OutGarden() {
                     <div className="form8">
 
                       <label htmlFor="rentalPeriod">임대기간 시작일:</label>
-                      <CalendarDatePick />
+                      <CalendarDatePick
+                            value={form.lental_startDate}
+                            onChange={(selectedDate) => {
+                              setForm({ ...form, lental_startDate: selectedDate });
+                            }}
+                          />
                         {/* <input
                         type="data"
                         id="lental_startDate"
@@ -274,7 +279,11 @@ function OutGarden() {
                      {/* 캘린더 위젯 수정 */}
                      <div className="form9">
                      <label htmlFor="rentalPeriod">임대기간 종료일:</label>
-                     <CalendarDatePick />
+                     <CalendarDatePick 
+                        value={form.lental_endDate}
+                        onChange={(selectedDate)=>{
+                          setForm({...form, lental_endDate : selectedDate })
+                        }}/>
                         {/* <input
                         type="data"
                         id="lental_startDate1"
@@ -290,7 +299,11 @@ function OutGarden() {
                     <div className="form10">
 
                       <label htmlFor="recruitmentPeriod">분양신청 시작일:</label>
-                      <CalendarDatePick />
+                      <CalendarDatePick
+                        value={form.startDate}
+                        onChange={(selectedDate)=>{
+                          setForm({...form, startDate : selectedDate })
+                        }}/>
                       {/* <input
                         type="data"
                         id="lental_startDate2"
@@ -305,7 +318,11 @@ function OutGarden() {
                       {/* 캘린더 위젯 수정 */}
                       <div className="form11">
                       <label htmlFor="recruitmentPeriod">분양신청 마감일:</label>
-                      <CalendarDatePick className="calendar_form11"/>
+                      <CalendarDatePick 
+                        value={form.endDate}
+                        onChange={(selectedDate)=>{
+                          setForm({...form, endDate :selectedDate})
+                        }}/>
                       {/* <input
                         type="data"
                         id="lental_endDate"

@@ -6,31 +6,37 @@ const Cthree = () => {
   const initialAuctions = [
     {
       id: 1,
-      title: '지호네 텃밭 작물',
+      title: '지호호 쌈재료~',
       currentBid: 0,
       bidAmount: 0,
     },
     {
       id: 2,
-      title: '지혜네 텃밭 작물',
+      title: '지혜의 새콤달콤 과일~',
       currentBid: 0,
       bidAmount: 0,
     },
     {
       id: 3,
-      title: '민아네 텃밭 작물',
+      title: '민아의 건강충전 작물!',
       currentBid:0,
       bidAmount: 0,
     },
     {
       id: 4,
-      title: '건식네 텃밭 작물',
+      title: '건식네 으랏차차 감자',
       currentBid: 0,
       bidAmount: 0,
     },
     {
       id: 5,
-      title: '춘모네 텃밭 작물',
+      title: '춘모 애~호~박~',
+      currentBid: 0,
+      bidAmount: 0,
+    },
+    {
+      id: 6,
+      title: '하콩콩이네 상추추',
       currentBid: 0,
       bidAmount: 0,
     },
@@ -85,7 +91,7 @@ const Cthree = () => {
     auctions.forEach((item, index) => {
       currentRow.push(
         <div className='money' key={item.id} style={{ margin: '10px', width: '300px', textAlign: 'center' ,marginTop:'100px',borderRadius:'10px'}}>
-          <h2 className='c3_title'>{item.title}</h2>
+          <h2 className='c3_title'>{item.title}♥</h2>
           <img src={`/img/auction_${item.id}.jpg`} alt={item.title} style={{ width: '230px', height: '200px' ,borderRadius:'0px'}} />
           <p className='c3_moneytitle'>현재 입찰가: {item.currentBid}원</p>
           <input type="number" value={item.bidAmount} onChange={(e) => handleBidChange(e, index)} className='c3_moneyinput'/>

@@ -53,25 +53,24 @@ const Login = () => {
       console.log('응답 데이터:', responseData); 
       
       if (!responseData){
-        alert(Swal.fire('회원정보가 없습니다. 회원가입을 진행해주세요')
-          )
+        Swal.fire('회원정보가 없습니다. 회원가입을 진행해주세요')
+       
       }else{
         sessionStorage.setItem('user_id', responseData[0].user_id)
         sessionStorage.setItem('user_nick', responseData[0].user_nick)
         sessionStorage.setItem('user_type', responseData[0].user_type)
-        alert(Swal.fire({
+        Swal.fire({
           title: `${responseData[0].user_nick}님, 반갑습니다!🙇‍♀️`,
           width: 600,
           padding: '3em',
-          color: '#716add',
+          color: '#05AC7B',
           background: '#fff url(/images/trees.png)',
           backdrop: `
-            rgba(0,0,123,0.4)
-            url("/images/nyan-cat.gif")
-            left top
+            url("https://media.tenor.com/uTq6EOBVvYoAAAAC/%EC%9D%B8%EC%82%AC-%EB%86%80%EC%9E%90%EA%B3%B0.gif")
+            top
             no-repeat
           `
-        }))
+        })
         window.location.replace('/')
       }
       
@@ -92,7 +91,7 @@ const Login = () => {
     <PageTitle data={'로그인'} num={1} />
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
-        <CssBaseline />
+        {/* <CssBaseline /> */}
         <Box
           sx={{
            
@@ -131,18 +130,6 @@ const Login = () => {
               autoComplete="current-password"
               onChange={(e)=> {setForm({...form, user_password : e.target.value})}}
             />
-            {/* <FormControlLabel
-              control={
-                <Checkbox
-                  defaultChecked
-                  sx={{
-                    "&:checked": {
-                      background: "red"
-                    }
-                  }} />
-                }
-              label="아이디 저장하기"
-            /> */}
             <Box sx={{ display: "flex", justifyContent: "center" }}>
             <Button
               color="primary"

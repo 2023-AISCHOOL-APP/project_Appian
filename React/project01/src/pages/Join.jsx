@@ -144,7 +144,7 @@ export default function SignUp() {
     <PageTitle data={'회원가입'} num={1}/>
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
-        <CssBaseline />
+        {/* <CssBaseline /> */}
         <Box
           sx={{
             marginTop: 8,

@@ -106,10 +106,7 @@ const Header = () => {
                 <NavLink to='/find' className='navbarSubMenuLink'>
                   텃밭 검색
                 </NavLink>
-                <br/><br/>
-                <NavLink to='/find/test' className='navbarSubMenuLink'>
-                  지도테스트
-                </NavLink>
+                
               </div>
               
             )}

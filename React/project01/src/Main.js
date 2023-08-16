@@ -15,7 +15,7 @@ import Cthree from './Components/Cthree';
 import CardDetailsPage from './Components/CardDetailsPage';
 import Notice from './pages/Notice';
 import axios from 'axios';
-
+import CalendarDatePick from './Components/CalendarDatePick';
 import './Header.css'
 
 import FindDetail from './Components/FindDetail';
@@ -68,6 +68,7 @@ function Main() {
     <div  >
       <Header />
       <Routes>
+        <Route path='/calendar' element={<CalendarDatePick />}/>
         <Route path='/' element={<Mainpage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/join' element={<Join />} />

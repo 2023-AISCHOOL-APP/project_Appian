@@ -8,6 +8,7 @@ import DaumPost from '../Components/Daumpost2';
 import Swal from "sweetalert2";
 import '../Components/CalendarDatePick'
 import CalendarDatePick from '../Components/CalendarDatePick';
+import { format } from 'date-fns'; // format 함수 가져오기
 //  모달창으로 할지 sweetalert2에서 꺼내서 사용할지 결정해야함!!!!!!
 
 
@@ -34,9 +35,24 @@ function OutGarden() {
   // },[])
  
 
+
+  const [selectedDate, setSelectedDate] = useState(new Date()); // 현재 날짜로 초기화
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
+  
+
+
+
   const [selectedType, setSelectedType] = useState('');
   const [selectedFarmType, setSelectedFarmType] = useState('');
   const [imageFile, setImageFile] = useState(null);
+
+
+
+
 
 
   const handleTypeButtonClick = (e) => {
@@ -110,6 +126,24 @@ function OutGarden() {
   const setAddress = (newAddress) => {
     setForm({ ...form, farm_address: newAddress });
   };
+
+
+  const handleLentalStartDateChange = (date) => {
+    setForm({ ...form, lental_startDate: date.toISOString().split('T')[0] });
+  };
+  
+  const handleLentalEndDateChange = (date) => {
+    setForm({ ...form, lental_endDate: date.toISOString().split('T')[0] });
+  };
+  
+  const handleStartDateChange = (date) => {
+    setForm({ ...form, startDate: date.toISOString().split('T')[0] });
+  };
+  
+  const handleEndDateChange = (date) => {
+    setForm({ ...form, endDate: date.toISOString().split('T')[0] });
+  };
+
 
   return (
 
@@ -260,11 +294,10 @@ function OutGarden() {
 
                       <label htmlFor="rentalPeriod">임대기간 시작일:</label>
                       <CalendarDatePick
-                            value={form.lental_startDate}
-                            onChange={(selectedDate) => {
-                              setForm({ ...form, lental_startDate: selectedDate });
-                            }}
-                          />
+          value={form.lental_startDate}
+          onChange={handleLentalStartDateChange} // onChange prop 설정
+        />
+                          {console.log(form.lental_startDate)}
                         {/* <input
                         type="data"
                         id="lental_startDate"
@@ -279,11 +312,10 @@ function OutGarden() {
                      {/* 캘린더 위젯 수정 */}
                      <div className="form9">
                      <label htmlFor="rentalPeriod">임대기간 종료일:</label>
-                     <CalendarDatePick 
-                        value={form.lental_endDate}
-                        onChange={(selectedDate)=>{
-                          setForm({...form, lental_endDate : selectedDate })
-                        }}/>
+                     <CalendarDatePick
+          value={form.lental_endDate}
+          onChange={handleLentalEndDateChange} // onChange prop 설정
+        />
                         {/* <input
                         type="data"
                         id="lental_startDate1"
@@ -300,10 +332,9 @@ function OutGarden() {
 
                       <label htmlFor="recruitmentPeriod">분양신청 시작일:</label>
                       <CalendarDatePick
-                        value={form.startDate}
-                        onChange={(selectedDate)=>{
-                          setForm({...form, startDate : selectedDate })
-                        }}/>
+          value={form.startDate}
+          onChange={handleStartDateChange} // onChange prop 설정
+        />
                       {/* <input
                         type="data"
                         id="lental_startDate2"
@@ -318,11 +349,10 @@ function OutGarden() {
                       {/* 캘린더 위젯 수정 */}
                       <div className="form11">
                       <label htmlFor="recruitmentPeriod">분양신청 마감일:</label>
-                      <CalendarDatePick 
-                        value={form.endDate}
-                        onChange={(selectedDate)=>{
-                          setForm({...form, endDate :selectedDate})
-                        }}/>
+                      <CalendarDatePick
+          value={form.endDate}
+          onChange={handleEndDateChange} // onChange prop 설정
+        />
                       {/* <input
                         type="data"
                         id="lental_endDate"

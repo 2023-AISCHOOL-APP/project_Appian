@@ -1,32 +1,37 @@
-import React, { useState } from "react";
+import React from "react";
 import DatePicker from 'react-datepicker';
 import '../Css/CalendarDatePick.css';
 import { ko } from "date-fns/esm/locale";
+import { format } from 'date-fns'; // format 함수 가져오기
+import 'react-datepicker/dist/react-datepicker.css';
 
-const CalendarDatePick = ({value , onChange}) => {
-  const [startDate, setStartDate] = useState(new Date());
-
-  // 게시물 작성 시 날짜를 선택하는 기능입니다. 
-  // input field 클릭 -> 하단에 캘린더 위젯 생성 -> 날짜 선택 -> 위젯 소멸 및 날짜 입력 
-
-
+const CalendarDatePick = ({ value, onChange }) => {
+  // Ensure that the value is a Date object
+  const dateObject = value instanceof Date ? value : new Date(value);
   
-  
-	return (
-		<div>
-		 <DatePicker
+  // Check if the dateObject is a valid Date
+  const isValidDate = dateObject instanceof Date && !isNaN(dateObject);
+
+  // Handle date changes
+  const handleDateChange = (date) => {
+    if (date instanceof Date) {
+      onChange(date);
+    } else {
+      console.error("Invalid date object:", date);
+    }
+  };
+
+  return (
+    <div>
+      <DatePicker
         locale={ko}
-        selected={value}
-        onChange={date => {
-          if (date) {
-            onChange(date);
-          }
-        }}
+        selected={isValidDate ? dateObject : null}
+        onChange={handleDateChange}
         dateFormat="yyyy-MM-dd"
+        showTimeSelect={false}
       />
-		</div>
+    </div>
   );
 };
 
-
-export default CalendarDatePick
+export default CalendarDatePick;

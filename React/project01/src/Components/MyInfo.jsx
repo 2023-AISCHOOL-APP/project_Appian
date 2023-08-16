@@ -85,7 +85,7 @@ export default function Myinfo() {
   <ThemeProvider theme={defaultTheme}>
     <Typography sx={{ marginTop : '100px', marginBottom : '-50px', textAlign : 'center'}}> 회원 정보 수정을 위해 한번 더 로그인 해주세요</Typography>
       <Container component="main" maxWidth="xs">
-        <CssBaseline />
+        
         <Box
           sx={{
             marginTop: 8,

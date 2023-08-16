@@ -5,7 +5,7 @@ import MapStatic from './MapStatic';
 import '../Css/FarmDetail.css'
 import axios from 'axios';
 import CalendarRange from './CalendarRange'
-
+import Swal from "sweetalert2";
 
 
 const FindDetail = () => {
@@ -52,7 +52,8 @@ const endDate = farms ? new Date(farms.endDate) : null;
   const farm_apply = ()=>{
     const applyUrl = 'http://192.168.70.237:5022/farm_apply';
     if (userId === farms.user_id){
-      alert('본인의 텃밭엔 신청할 수 없어요!')
+      Swal.fire({titleText:'본인의 텃밭엔 신청할 수 없어요 ㅠ_ㅠ!',
+      confirmButtonColor :'#05AC7B'})
     }else if(userId === null){
       alert('로그인이 필요한 서비스입니다.')
       nav('/login')

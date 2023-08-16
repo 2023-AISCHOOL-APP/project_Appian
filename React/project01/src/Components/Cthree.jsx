@@ -73,6 +73,7 @@ const Cthree = () => {
     } else {
       Swal.fire({
         title: '현재 입찰가보다 높은 금액으로 입찰해주세요.',
+        color:  'black',
         showClass: {
           popup: 'animate__animated animate__fadeInDown'
         },

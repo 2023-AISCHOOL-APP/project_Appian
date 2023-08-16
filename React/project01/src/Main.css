@@ -91,6 +91,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  text-decoration: none;
   
 }
 
@@ -1112,8 +1113,8 @@ border-radius: 10px;
   padding: 10px 20px; /* 내부 여백 */
   border-radius: 15px;
  position: relative;
- left: 1450px;
- top: 500px;
+ left: 1100px;
+ top: -70px;
  z-index: 999;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.5s; /* 애니메이션 효과 */
@@ -1626,7 +1627,9 @@ font-size: 15px;
   display: flex;
   justify-content: center;
   margin-top: 90px;
-  margin-left: 190px;
+  position: relative;
+  left: 0px;
+ 
 }
 
 .pagination button {

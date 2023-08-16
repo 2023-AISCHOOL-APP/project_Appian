@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import ScrollToTop from '../ScrollToTop'
 const Ctwo = () => {
   const [farmingTips, setFarmingTips] = useState([
     {
@@ -106,6 +106,7 @@ const Ctwo = () => {
 
   //  카드 뒤집기 효과  https://gurtn.tistory.com/157
     <div >
+      <ScrollToTop />
        <div className='infopage'>
     <span className='infotitle'>농사 정보</span>
     <img src='/img/titlebg2.png' className='infotitle_bg'/>

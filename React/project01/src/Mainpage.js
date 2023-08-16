@@ -80,7 +80,7 @@ const Mainpage = () => {
 
       <div id='main-container' >
         {/* 플로팅 배너 */}
-        <div className={`floating-banner ${showBanner ? 'show' : ''}`} style={{ top: bannerTop }}>
+        <div className={`floating-banner ${showBanner ? 'show' : ''}`} style={{ top: bannerTop ,textDecoration:'none'}}>
                       {/* showBanner 변수의 값에 따라 플로팅 배너에 show 클래스를 추가하거나 제거 */}
                       {/* 배너 내용 */}
                       <Link to='/machin' className='MACHINBANNER' >

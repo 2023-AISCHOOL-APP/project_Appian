@@ -8,6 +8,8 @@ import DaumPost from '../Components/Daumpost2';
 import Swal from "sweetalert2";
 import '../Components/CalendarDatePick'
 import CalendarDatePick from '../Components/CalendarDatePick';
+import { format } from 'date-fns'; // format 함수 가져오기
+import ScrollToTop from '../ScrollToTop'
 //  모달창으로 할지 sweetalert2에서 꺼내서 사용할지 결정해야함!!!!!!
 
 
@@ -34,9 +36,24 @@ function OutGarden() {
   // },[])
  
 
+
+  const [selectedDate, setSelectedDate] = useState(new Date()); // 현재 날짜로 초기화
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
+  
+
+
+
   const [selectedType, setSelectedType] = useState('');
   const [selectedFarmType, setSelectedFarmType] = useState('');
   const [imageFile, setImageFile] = useState(null);
+
+
+
+
 
 
   const handleTypeButtonClick = (e) => {
@@ -84,11 +101,15 @@ function OutGarden() {
 
       if(response.data === true){
         Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: '소중한 텃밭 정보가 등록되었습니다!',
-          showConfirmButton: false,
-          timer: 1500
+          title: 'FarmFarm!',
+          timer: 0,
+          text: '소중한 게시물이 심어졌습니다!',
+          confirmButtonColor: '#05AC7B',
+          imageUrl: 'https://i.gifer.com/ZdPH.gif',
+    
+          imageWidth:130,
+          imageHeight: 200,
+          imageAlt: 'Custom image',
         })
         sessionStorage.setItem ('user_type' , 1 )
         nav('/find');
@@ -96,7 +117,7 @@ function OutGarden() {
         Swal.fire({
           position: 'center',
           icon: 'error',
-          title: '정보 등록에 실패하였습니다! 다시 시도해주세요',
+          title: '정보 등록에 실패하였습니다!<br/> 다시 시도해주세요',
           showConfirmButton: false,
           timer: 1500
         })
@@ -111,10 +132,28 @@ function OutGarden() {
     setForm({ ...form, farm_address: newAddress });
   };
 
+
+  const handleLentalStartDateChange = (date) => {
+    setForm({ ...form, lental_startDate: date.toISOString().split('T')[0] });
+  };
+  
+  const handleLentalEndDateChange = (date) => {
+    setForm({ ...form, lental_endDate: date.toISOString().split('T')[0] });
+  };
+  
+  const handleStartDateChange = (date) => {
+    setForm({ ...form, startDate: date.toISOString().split('T')[0] });
+  };
+  
+  const handleEndDateChange = (date) => {
+    setForm({ ...form, endDate: date.toISOString().split('T')[0] });
+  };
+
+
   return (
 
     <>
-
+    <ScrollToTop />
     <PageTitle data={'텃밭 등록'} num={1}/>
 
     
@@ -259,7 +298,11 @@ function OutGarden() {
                     <div className="form8">
 
                       <label htmlFor="rentalPeriod">임대기간 시작일:</label>
-                      <CalendarDatePick />
+                      <CalendarDatePick
+          value={form.lental_startDate}
+          onChange={handleLentalStartDateChange} // onChange prop 설정
+        />
+                          {console.log(form.lental_startDate)}
                         {/* <input
                         type="data"
                         id="lental_startDate"
@@ -274,7 +317,10 @@ function OutGarden() {
                      {/* 캘린더 위젯 수정 */}
                      <div className="form9">
                      <label htmlFor="rentalPeriod">임대기간 종료일:</label>
-                     <CalendarDatePick />
+                     <CalendarDatePick
+          value={form.lental_endDate}
+          onChange={handleLentalEndDateChange} // onChange prop 설정
+        />
                         {/* <input
                         type="data"
                         id="lental_startDate1"
@@ -290,7 +336,10 @@ function OutGarden() {
                     <div className="form10">
 
                       <label htmlFor="recruitmentPeriod">분양신청 시작일:</label>
-                      <CalendarDatePick />
+                      <CalendarDatePick
+          value={form.startDate}
+          onChange={handleStartDateChange} // onChange prop 설정
+        />
                       {/* <input
                         type="data"
                         id="lental_startDate2"
@@ -305,7 +354,10 @@ function OutGarden() {
                       {/* 캘린더 위젯 수정 */}
                       <div className="form11">
                       <label htmlFor="recruitmentPeriod">분양신청 마감일:</label>
-                      <CalendarDatePick className="calendar_form11"/>
+                      <CalendarDatePick
+          value={form.endDate}
+          onChange={handleEndDateChange} // onChange prop 설정
+        />
                       {/* <input
                         type="data"
                         id="lental_endDate"

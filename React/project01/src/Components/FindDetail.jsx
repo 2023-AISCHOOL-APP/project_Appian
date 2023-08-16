@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useNavigate, useLocation,Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux'; // useDispatch를 사용하여 액션 디스패치
 import MapStatic from './MapStatic';
 import '../Css/FarmDetail.css'
 import axios from 'axios';
 import CalendarRange from './CalendarRange'
-
+import Swal from "sweetalert2";
+import ScrollToTop from '../ScrollToTop'
 
 
 const FindDetail = () => {
@@ -52,7 +53,8 @@ const endDate = farms ? new Date(farms.endDate) : null;
   const farm_apply = ()=>{
     const applyUrl = 'http://192.168.70.237:5022/farm_apply';
     if (userId === farms.user_id){
-      alert('본인의 텃밭엔 신청할 수 없어요!')
+      Swal.fire({titleText:'본인의 텃밭엔 신청할 수 없어요 ㅠ_ㅠ!',
+      confirmButtonColor :'#05AC7B'})
     }else if(userId === null){
       alert('로그인이 필요한 서비스입니다.')
       nav('/login')
@@ -66,7 +68,18 @@ const endDate = farms ? new Date(farms.endDate) : null;
             // 여기서 바로 리디렉션을 수행
             setTimeout(() => {
               setShowSuccessMessage(false);
-              alert('분양 신청이 완료되었습니다. mypage로 이동합니다.');
+              Swal.fire({
+                title: '분양신청이 완료되었습니다',
+                text:'마이페이지로 이동합니다',
+                icon: 'success',
+                color:'#00C897' ,
+                showClass: {
+                  popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                  popup: 'animate__animated animate__fadeOutUp'
+                }
+              })
               // 작성 완료 메시지가 표시된 후  페이지로 이동
               nav('/mypage/mylist')
               
@@ -98,7 +111,7 @@ const endDate = farms ? new Date(farms.endDate) : null;
 
   
     <div className='farmDetailAll'>
-      
+      <ScrollToTop />
       <button onClick={handleHeaderButtonClick}>헤더 버튼</button>
       <img src='/img/farmdetail/farmdetailimg1.jpg' className='farmdetail_img1'/>
       <div className='Fdetail_title-container'>
@@ -182,11 +195,17 @@ const endDate = farms ? new Date(farms.endDate) : null;
               <span>이메일 : {farms.user_email}</span>
           </div>
         </div>
+        <Link to='/find'>
+           <button className='backlist'>목록으로 돌아가기</button>
+        </Link>
+        
         <MapStatic className='farmmap' data={loca}/>
       </div>
       <div className='calender'>
           <CalendarRange startDate={startDate} endDate={endDate}/>
         </div>  
+
+        
       </div>
     
   )

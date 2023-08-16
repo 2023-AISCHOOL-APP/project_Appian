@@ -39,6 +39,10 @@ margin: 10px;
   font-size: 15px;
   padding: 10px 20px;
 }
+.rec_btn:hover{
+  background-color: #00C897;
+  color: white;
+}
 
 .rec_subtitle{
  font-family: 'SUIT-SemiBold';
@@ -48,9 +52,22 @@ margin: 10px;
 }
 
 .rec_vege{
-  font-family: 'SUIT-SemiBold';
-  font-size: 21px;
-  position: relative;
-  left: 350px;
 
+  margin: 10px;
+  padding: 10px 20px 10px 20px;
+  border: 2px solid #00C897;
+  display: inline-block;
+  background-color: #00C897;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  font-family: 'SUIT-SemiBold';
+  font-size: 18px;
+
+
+}
+
+.rec-vege-border{
+  margin-left: 350px;
+  margin-right: 350px;
 }

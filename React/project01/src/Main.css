@@ -335,7 +335,7 @@ body {
  
  left: 320px;
   color: white;
-  top: 750px;
+  top: 720px;
   font-size: 45px;
   font-family: 'SUIT-ExtraBold';
   z-index: 99;
@@ -347,7 +347,7 @@ body {
   font-size: 20px;
   position: relative;
   
-  top: 770px; /* 수정: 아래로 20픽셀 이동 */
+  top: 740px; /* 수정: 아래로 20픽셀 이동 */
   left: 320px;
  
   color: white;
@@ -380,7 +380,7 @@ body {
   text-decoration: none;
   position: relative;
   width: 1300px;
-  top: 1990px; /* 원하는 위치로 조정 */
+  top: 1950px; /* 원하는 위치로 조정 */
   left: 44%; /* 가운데 정렬을 위해 left 값 조정 */
   transform: translateX(-38%); /* 가운데 정렬을 위해 left 값 조정 */
   z-index: 12;
@@ -1335,6 +1335,39 @@ top: 210px;
   align-content: center;
 }
 
+.c3_title{
+  font-family: 'SUIT-Bold';
+}
+
+.c3_moneytitle{
+  font-family: 'SUIT-SemiBold';
+}
+
+
+.c3_moneyinput{
+  font-family: 'SUIT-Bold';
+  border: 2px solid #FF9F56;
+  border-radius: 5px;
+  padding: 10px 20px;
+  width: 110px;
+}
+
+.c3_moneybtn{
+  position: relative;
+  left: 10px;
+  font-family: 'SUIT-Bold';
+  margin: 10px;
+  color: white;
+  background-color: #FF9F56;
+  border: 2px solid #FF9F56;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.c3_moneybtn:hover{
+  background-color: #e67e30;
+  border: 2px solid #e67e30;
+}
 
 .info-vd-container{
  margin-left : 320px;

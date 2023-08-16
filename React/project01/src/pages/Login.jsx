@@ -14,6 +14,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 
 function Copyright(props) {
@@ -52,14 +53,29 @@ const Login = () => {
       console.log('응답 데이터:', responseData); 
       
       if (!responseData){
-        alert('회원정보가 없습니다. 회원가입을 진행해주세요')
+        alert(Swal.fire('회원정보가 없습니다. 회원가입을 진행해주세요')
+          )
       }else{
         sessionStorage.setItem('user_id', responseData[0].user_id)
         sessionStorage.setItem('user_nick', responseData[0].user_nick)
         sessionStorage.setItem('user_type', responseData[0].user_type)
-        alert(`${responseData[0].user_nick}님, 반갑습니다!🙇‍♀️`)
+        alert(Swal.fire({
+          title: `${responseData[0].user_nick}님, 반갑습니다!🙇‍♀️`,
+          width: 600,
+          padding: '3em',
+          color: '#716add',
+          background: '#fff url(/images/trees.png)',
+          backdrop: `
+            rgba(0,0,123,0.4)
+            url("/images/nyan-cat.gif")
+            left top
+            no-repeat
+          `
+        }))
         window.location.replace('/')
       }
+      
+
       
       setMessage(responseData);
     } catch (error) {
@@ -73,13 +89,16 @@ const Login = () => {
 
   return (
     <>
-    <PageTitle data={'로그인'} num={1}/>
+    <PageTitle data={'로그인'} num={1} />
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
+           
             marginTop: 8,
+            marginLeft:'320px',
+            marginRight:'320px',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',

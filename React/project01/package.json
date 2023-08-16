@@ -33,7 +33,7 @@
     "redux": "^4.2.1",
     "slick": "^1.12.2",
     "slick-carousel": "^1.8.1",
-    "sweetalert2": "^11.7.22",
+    "sweetalert2": "^11.7.23",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

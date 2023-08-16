@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../Css/PredictPage.css'
+import { Link } from 'react-router-dom';
 
 
 const Recommendation = () => {
@@ -17,7 +18,7 @@ const Recommendation = () => {
   // Simulated crop data
   const allCrops = [
     { name: '딸기(모종)', month: ['3월'], managementPeriod: '거의 매일', lifespan: '모종' , url :'https://ko.wikihow.com/%EB%94%B8%EA%B8%B0-%ED%82%A4%EC%9A%B0%EB%8A%94-%EB%B2%95'},
-    { name: '참외(파종)', month: ['3월', '4월'], managementPeriod: '거의 매일', lifespan: '파종',url :'https://blog.naver.com/aldus_06/222712384171' },
+    { name: '참외(파종)', month: ['3월', '4월'], managementPeriod: '거의 매일', lifespan: '파종',url :'https://blog.naver.com/rladlrjs101/222703962852' },
     { name: '참외(모종)', month: ['5월'], managementPeriod: '거의 매일', lifespan: '모종',url :'' },
     { name: '토마토(파종)', month: ['3월'], managementPeriod: '거의 매일', lifespan: '파종' ,url :''},
     { name: '토마토(모종)', month: ['5월'], managementPeriod: '거의 매일', lifespan: '모종',url :'' },
@@ -123,7 +124,7 @@ const Recommendation = () => {
           <h2 className='rec_subtitle'>이 작물은 어때요?</h2>
           <div className='rec-vege-border' >
             {filteredCrops.map((crop, index) => (
-              <p className='rec_vege'>{crop.name}</p>
+              <Link to='crop.url' className='rec_vege'>{crop.name}</Link>
             ))}
           </div>
         </div>

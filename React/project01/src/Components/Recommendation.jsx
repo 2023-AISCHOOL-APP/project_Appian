@@ -16,6 +16,7 @@ const Recommendation = () => {
 
   // Simulated crop data
   const allCrops = [
+
     { name: '딸기(모종)', month: ['3월'], managementPeriod: '거의 매일', lifespan: '모종' ,url:'https://www.nongsaro.go.kr/portal/ps/psb/psbl/workScheduleDtl.ps?menuId=PS00087&cntntsNo=30609&sKidofcomdtySeCode=FC01'},
     { name: '참외(파종)', month: ['3월', '4월'], managementPeriod: '거의 매일', lifespan: '파종',url:'https://www.nongsaro.go.kr/portal/ps/psb/psbl/workScheduleDtl.ps?menuId=PS00087&cntntsNo=30640&sKidofcomdtySeCode=FC01' },
     { name: '참외(모종)', month: ['5월'], managementPeriod: '거의 매일', lifespan: '모종',url:'https://www.nongsaro.go.kr/portal/ps/psb/psbl/workScheduleDtl.ps?menuId=PS00087&cntntsNo=30640&sKidofcomdtySeCode=FC01' },
@@ -23,6 +24,7 @@ const Recommendation = () => {
     { name: '토마토(모종)', month: ['5월'], managementPeriod: '거의 매일', lifespan: '모종',url:'https://www.nongsaro.go.kr/portal/ps/psb/psbl/workScheduleDtl.ps?menuId=PS00087&cntntsNo=30646&sKidofcomdtySeCode=FC01' },
     { name: '고추(파종)', month: ['3월'], managementPeriod: '거의 매일', lifespan: '파종',url:'https://www.nongsaro.go.kr/portal/ps/psb/psbl/workScheduleDtl.ps?menuId=PS00087&cntntsNo=30600&sKidofcomdtySeCode=FC01' },
     { name: '고추(모종)', month: ['5월'], managementPeriod: '거의 매일', lifespan: '모종',url:'https://www.nongsaro.go.kr/portal/ps/psb/psbl/workScheduleDtl.ps?menuId=PS00087&cntntsNo=30600&sKidofcomdtySeCode=FC01' },
+
 // 
     { name: '가지(파종)', month: ['4월'], managementPeriod: '주 1~2회', lifespan: '파종',url:'https://www.nongsaro.go.kr/portal/ps/psb/psbl/workScheduleDtl.ps?menuId=PS00087&cntntsNo=30770&sKidofcomdtySeCode=FC01' },
     { name: '가지(모종)', month: ['5월','6월'], managementPeriod: '주 1~2회', lifespan: '모종',url:'https://www.nongsaro.go.kr/portal/ps/psb/psbl/workScheduleDtl.ps?menuId=PS00087&cntntsNo=30770&sKidofcomdtySeCode=FC01' },

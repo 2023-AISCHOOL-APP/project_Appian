@@ -94,46 +94,44 @@ const Header = () => {
 
         <div className='navbar'>
           <ul ref={dropDownRef} className={`menu ${activeMenu ? 'active' : ''}`}>
-            <NavLink 
+            <NavLink to ='/find'
               className='navbarMenu'
               activeClassName='activeLink'
               onClick={() => handleMenuClick('find')}
             >
-              텃밭구하기
+              텃밭 검색
             </NavLink>
-            {activeMenu === 'find' && (
+            {/* {activeMenu === 'find' && (
               <div className='navbarSubMenu1'>
                 <NavLink to='/find' className='navbarSubMenuLink'>
                   텃밭 검색
                 </NavLink>
-             
               </div>
-              
-            )}
-            {/* {authenticated ?  */}
-              <NavLink
+            )} */}
+            {authenticated ? 
+              <NavLink to='/out'
                 className='navbarMenu'
                 activeClassName='activeLink'
                 onClick={() => handleMenuClick('out')}
               >
                 텃밭내놓기
               </NavLink>
-               {/* :
+               :
               <NavLink to = '/login'
               className='navbarMenu'
               activeClassName='activeLink'
               onClick={LoginAlert}
               >
                 텃밭내놓기
-              </NavLink> } */}
+              </NavLink> }
 
-            {activeMenu === 'out' && (
+            {/* {activeMenu === 'out' && (
               <div className='navbarSubMenu2'>
                 <NavLink to='/out' className='navbarSubMenuLink'>
                   텃밭 등록
                 </NavLink>
               </div>
-            )}
+            )} */}
             <NavLink
               className='navbarMenu'
               activeClassName='activeLink'

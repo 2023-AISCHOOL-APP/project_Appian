@@ -83,7 +83,7 @@ export default function Myinfo() {
     <>
     <PageTitle data={'마이페이지'} num={3}/>
   <ThemeProvider theme={defaultTheme}>
-    <Typography sx={{ marginTop : '100px', marginBottom : '-50px', textAlign : 'center'}}> 회원 정보 수정을 위해 한번 더 로그인 해주세요</Typography>
+    <Typography sx={{ marginTop : '100px', marginBottom : '-50px', textAlign : 'center'}}> 회원 정보 수정을 위해 비밀번호를 한 번 더 입력해주세요</Typography>
       <Container component="main" maxWidth="xs">
         
         <Box
@@ -95,7 +95,7 @@ export default function Myinfo() {
           }}
         ></Box>
       <Box component="form"  noValidate sx={{ mt: 1 }}>
-            <TextField
+            {/* <TextField
               color = "success"
               margin="normal"
               required
@@ -107,7 +107,7 @@ export default function Myinfo() {
               autoComplete="email"
               autoFocus
               onChange={(e)=> {setForm({...form, user_id : e.target.value})}}
-            />
+            /> */}
             <TextField
               color = "success"
               margin="normal"

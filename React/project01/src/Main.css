@@ -2208,3 +2208,9 @@ button {
 .postbtn:hover{
   background-color: #00C897
 }
+
+/* footer */
+
+.footer{
+  margin : 300px;
+}

@@ -24,7 +24,7 @@ import FarmDetail from './pages/FarmDetail';
 import Maptest from './Components/Maptest';
 import MyList from './Components/MyList';
 import Myinfo from './Components/MyInfo';
-
+import Footer from './Components/Footer';
 
 
 
@@ -88,6 +88,7 @@ function Main() {
         <Route path="/cardpage/:cardId" element={<CardDetailsPage value={savedCards}/>} />
         <Route path='/notice' elemenft={<Notice />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

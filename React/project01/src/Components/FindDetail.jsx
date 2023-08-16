@@ -29,7 +29,7 @@ const FindDetail = () => {
 
   // 캘린더 적용 코드 (DB랑 연동 필요)
   const startDate = farms ? new Date(farms.startDate) : null;
-const endDate = farms ? new Date(farms.endDate) : null;
+  const endDate = farms ? new Date(farms.endDate) : null;
 
   console.log(startDate, endDate)
 
@@ -44,8 +44,47 @@ const endDate = farms ? new Date(farms.endDate) : null;
 
   console.log('받은데이터',farms)
 
+  // 분양신청기간 확인 -> 버튼 비활성화 
+  const currentDate = new Date();
+  const isWithinDateRange = startDate && endDate && startDate <= currentDate && currentDate <= endDate;
+
+
 
   
+
+
+
+  const showConfirmationDialog = () => {
+    const userCheckUrl = 'http://192.168.70.237:5022/farm_check'
+    axios
+        .get(userCheckUrl, { responseType: 'json', params: { user_id : userId, farm_num : farms.farm_num } })
+        .then(response => {
+          console.log('Response from server:', response.data);
+        
+          if (!response.data){
+            farm_apply();
+          }else{
+            Swal.fire({
+              title: "텃밭 신청 확인",
+              text: "이미 신청한 텃밭입니다. 한 번 더 신청하시겠습니까?",
+              icon: "question",
+              showCancelButton: true,
+              confirmButtonText: "신청",
+              cancelButtonText: "취소",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                // User clicked "신청"
+                farm_apply();
+              }
+            });
+          }
+
+          });
+  };
+
+
+
+
 
 
 
@@ -142,9 +181,12 @@ const endDate = farms ? new Date(farms.endDate) : null;
           <span className='farm_address'>{farms.farm_address}</span>
         </div>
        
-        <div className='farmapply_border'>
-          <span className='farmapply_btn' onClick={farm_apply}>분양 신청하기</span>
-        </div>
+        <button className={`farmapply_border ${isWithinDateRange ? '' : 'disabled'}`}
+        onClick={isWithinDateRange ? showConfirmationDialog : null}>
+          <span className={`farmapply_btn ${isWithinDateRange ? '' : 'disabled'}`}
+          > {isWithinDateRange ? `분양 신청하기` : `지금은 신청기간이 아니에요!` }
+          </span>
+        </button>
 
       </div>
       <div className='part2_sub'>
@@ -177,12 +219,22 @@ const endDate = farms ? new Date(farms.endDate) : null;
             <span className='lental_area'>{farms.lental_area}</span>
           </div>
         </div>
+        
      
         <div className='priceAll'>
           <img src='/img/moneyicon.png' className='moneyicon'/>
           <span className='price_title'>희망분양가</span>
           <div className='price_border1'>
             <span className='price'>{farms.farm_price}</span>
+          </div>
+        </div>
+
+
+        <div className='sectorAll'>
+          <img src='/img/moneyicon.png' className='moneyicon'/>
+          <span className='sector_title'>텃밭 개수</span>
+          <div className='sector_border1'>
+            <span className='sector'>{farms.farm_sector}</span>
           </div>
         </div>
 

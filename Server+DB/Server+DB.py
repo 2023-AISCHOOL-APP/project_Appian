@@ -248,6 +248,7 @@ def add_farm():
     lental_endDate = request.form.get('lental_endDate')
     description = request.form.get('description')
     image = request.files.get('farm_img')
+    print('날짜',startDate)
 
     lantitude, longitude = get_lat_lng(farm_address)
 

@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import '../Components/CalendarDatePick'
 import CalendarDatePick from '../Components/CalendarDatePick';
 import { format } from 'date-fns'; // format 함수 가져오기
+import ScrollToTop from '../ScrollToTop'
 //  모달창으로 할지 sweetalert2에서 꺼내서 사용할지 결정해야함!!!!!!
 
 
@@ -100,11 +101,15 @@ function OutGarden() {
 
       if(response.data === true){
         Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: '소중한 텃밭 정보가 등록되었습니다!',
-          showConfirmButton: false,
-          timer: 1500
+          title: 'FarmFarm!',
+          timer: 0,
+          text: '소중한 게시물이 심어졌습니다!',
+          confirmButtonColor: '#05AC7B',
+          imageUrl: 'https://i.gifer.com/ZdPH.gif',
+    
+          imageWidth:130,
+          imageHeight: 200,
+          imageAlt: 'Custom image',
         })
         sessionStorage.setItem ('user_type' , 1 )
         nav('/find');
@@ -112,7 +117,7 @@ function OutGarden() {
         Swal.fire({
           position: 'center',
           icon: 'error',
-          title: '정보 등록에 실패하였습니다! 다시 시도해주세요',
+          title: '정보 등록에 실패하였습니다!<br/> 다시 시도해주세요',
           showConfirmButton: false,
           timer: 1500
         })
@@ -148,7 +153,7 @@ function OutGarden() {
   return (
 
     <>
-
+    <ScrollToTop />
     <PageTitle data={'텃밭 등록'} num={1}/>
 
     

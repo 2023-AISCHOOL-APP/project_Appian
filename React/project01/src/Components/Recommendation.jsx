@@ -115,15 +115,17 @@ const Recommendation = () => {
         <button onClick={filterCrops} className='rec_btn'>찾기</button>
       </div>
       {noMatchingCrops ? (
-        <p className='rec_vege'>조건에 맞는 작물이 없습니다.</p>
+        <div className='rec-vege-border'>
+            <p className='rec_vege'>조건에 맞는 작물이 없습니다.</p>
+        </div>
       ) : (
         <div>
           <h2 className='rec_subtitle'>이 작물은 어때요?</h2>
-          <ul className='rec_vege'>
+          <div className='rec-vege-border' >
             {filteredCrops.map((crop, index) => (
-              <li key={index}>{crop.name}</li>
+              <p className='rec_vege'>{crop.name}</p>
             ))}
-          </ul>
+          </div>
         </div>
       )}
     </div>

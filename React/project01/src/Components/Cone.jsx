@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import CardDetailsPage from './CardDetailsPage';
+import Swal from 'sweetalert2';
 import axios from 'axios';
 import { useLocation, useNavigate, useParams} from 'react-router-dom'
 import { Dialog } from '@mui/material';
 import { AllContent } from '../Contexts/ContentContext';
+import ScrollToTop from '../ScrollToTop'
 
 const WritingPage = ({ onAddCard, onCancel }) => {
   // const [user_id, setUser_id] = useState('');
@@ -37,9 +39,26 @@ const WritingPage = ({ onAddCard, onCancel }) => {
           setShowSuccessMessage(true);
           setTimeout(() => {
             setShowSuccessMessage(false);
-            alert("소중한 게시물이 심어졌습니다")           
+            Swal.fire({
+              title: 'FarmFarm!',
+              timer: 0,
+              text: '소중한 게시물이 심어졌습니다!',
+              confirmButtonColor: '#05AC7B',
+              imageUrl: 'https://i.gifer.com/ZdPH.gif',
+        
+              imageWidth:130,
+              imageHeight: 200,
+              imageAlt: 'Custom image',
+            })
+            
+            
+            .then((value) =>{
+              if(value){
+                window.location.reload();
+              }
+            })
             // 작성 완료 메시지가 표시된 후 화면을 새로고침
-             window.location.reload();
+             
           }, 10);
         }
       })
@@ -50,6 +69,7 @@ const WritingPage = ({ onAddCard, onCancel }) => {
 
   return (
     <div className='writing-page'>
+      <ScrollToTop />
       <h1  className='writing_title'>♬ 내 텃밭 자랑하기</h1>
       <input
         className='writetitle'
@@ -181,7 +201,7 @@ const Cone = ({value}) => {
       <span className='conetitle'>텃밭 자랑하기</span>
     
       <img src='/img/titlebg2.png' className='c1titlebg'/>
-      {!isWriting && <button className='write-button' onClick={writingbtn}>작성하기</button>}
+     
       {isWriting && (
         <WritingPage
           onAddCard={handleAddCard}
@@ -202,6 +222,7 @@ const Cone = ({value}) => {
 
             {newlist}
             {paginationButtons}
+            {!isWriting && <button className='write-button' onClick={writingbtn}>작성하기</button>}
           </tbody>
         </table>
       </div>

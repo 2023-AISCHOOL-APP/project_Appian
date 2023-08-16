@@ -15,6 +15,7 @@ import Grid from '@mui/material/Grid';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
+import { ViewKanban } from '@mui/icons-material';
 
 
 function Copyright(props) {
@@ -56,25 +57,30 @@ const Login = () => {
         Swal.fire('회원정보가 없습니다. 회원가입을 진행해주세요')
        
       }else{
+        Swal.fire({
+          title: `${responseData[0].user_nick}님, 반갑습니다!🥕`,
+          timer: 0,
+          imageUrl: 'https://media.tenor.com/uTq6EOBVvYoAAAAC/%EC%9D%B8%EC%82%AC-%EB%86%80%EC%9E%90%EA%B3%B0.gif',
+          imageWidth: 400,
+          imageHeight: 400,
+          confirmButtonColor: '#05AC7B',
+          imageAlt: 'Custom image',
+          buttons: '확인',
+          closeOnClickOutside : false
+        }).then((value) =>{
+          if(value){
+            window.location.replace('/')
+          }
+        })
+
         sessionStorage.setItem('user_id', responseData[0].user_id)
         sessionStorage.setItem('user_nick', responseData[0].user_nick)
         sessionStorage.setItem('user_type', responseData[0].user_type)
-        Swal.fire({
-          title: `${responseData[0].user_nick}님, 반갑습니다!🙇‍♀️`,
-          width: 600,
-          padding: '3em',
-          color: '#05AC7B',
-          background: '#fff url(/images/trees.png)',
-          backdrop: `
-            url("https://media.tenor.com/uTq6EOBVvYoAAAAC/%EC%9D%B8%EC%82%AC-%EB%86%80%EC%9E%90%EA%B3%B0.gif")
-            top
-            no-repeat
-          `
-        })
-        window.location.replace('/')
+        
+        
       }
       
-
+// window.location.replace('/')
       
       setMessage(responseData);
     } catch (error) {

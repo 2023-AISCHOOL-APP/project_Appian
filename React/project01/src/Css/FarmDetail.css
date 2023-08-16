@@ -6,6 +6,22 @@
   margin-top: -200px;
   text-align: center;
 }
+.backlist{
+    position: relative;
+    border: 2px solid #c5c5c5;
+    font-family: 'SUIT-Regular';
+    font-size: 16px;
+    padding: 10px 30px;
+    border-radius: 10px;
+    color: #c5c5c5;
+    top: -640px;
+    left: 920px;
+    z-index: 999999;
+}
+.backlist:hover{
+    color: white;
+    background-color: #b6b6b6;
+}
 
 .farmDetailAll{
   width: 1920px;

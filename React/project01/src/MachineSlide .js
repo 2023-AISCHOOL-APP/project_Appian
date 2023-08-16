@@ -37,7 +37,7 @@ class MachineSlide extends Component {
       slidesToShow: 3, // 슬라이드에 보여지는 아이템 개수
       slidesToScroll: 1, // 슬라이드 넘기는 아이템 개수
       autoplay: true, // 자동 재생 여부
-      autoplaySpeed: 4000, // 자동 재생 속도
+      autoplaySpeed: 3000, // 자동 재생 속도
       customPaging: (i) => <CustomDot index={i} />, // customPaging을 사용하여 도트 컴포넌트를 반환
     };
         

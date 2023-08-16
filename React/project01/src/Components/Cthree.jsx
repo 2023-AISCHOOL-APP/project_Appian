@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PageTitle from '../Components/PageTitle'
 import Swal from 'sweetalert2'
+import ScrollToTop from '../ScrollToTop'
 
 const Cthree = () => {
   const initialAuctions = [
@@ -114,7 +115,7 @@ const Cthree = () => {
 
   return (
     <div>
-      
+      <ScrollToTop />
       <PageTitle data={'팜팜장터'} num ={'3'}/>
       {renderAuctionsInRows()}
       

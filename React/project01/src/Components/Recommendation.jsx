@@ -16,13 +16,13 @@ const Recommendation = () => {
 
   // Simulated crop data
   const allCrops = [
-    { name: '딸기(모종)', month: ['3월'], managementPeriod: '거의 매일', lifespan: '모종' },
-    { name: '참외(파종)', month: ['3월', '4월'], managementPeriod: '거의 매일', lifespan: '파종' },
-    { name: '참외(모종)', month: ['5월'], managementPeriod: '거의 매일', lifespan: '모종' },
-    { name: '토마토(파종)', month: ['3월'], managementPeriod: '거의 매일', lifespan: '파종' },
-    { name: '토마토(모종)', month: ['5월'], managementPeriod: '거의 매일', lifespan: '모종' },
-    { name: '고추(파종)', month: ['3월'], managementPeriod: '거의 매일', lifespan: '파종' },
-    { name: '고추(모종)', month: ['5월'], managementPeriod: '거의 매일', lifespan: '모종' },
+    { name: '딸기(모종)', month: ['3월'], managementPeriod: '거의 매일', lifespan: '모종' , url :'https://ko.wikihow.com/%EB%94%B8%EA%B8%B0-%ED%82%A4%EC%9A%B0%EB%8A%94-%EB%B2%95'},
+    { name: '참외(파종)', month: ['3월', '4월'], managementPeriod: '거의 매일', lifespan: '파종',url :'https://blog.naver.com/aldus_06/222712384171' },
+    { name: '참외(모종)', month: ['5월'], managementPeriod: '거의 매일', lifespan: '모종',url :'' },
+    { name: '토마토(파종)', month: ['3월'], managementPeriod: '거의 매일', lifespan: '파종' ,url :''},
+    { name: '토마토(모종)', month: ['5월'], managementPeriod: '거의 매일', lifespan: '모종',url :'' },
+    { name: '고추(파종)', month: ['3월'], managementPeriod: '거의 매일', lifespan: '파종',url :'' },
+    { name: '고추(모종)', month: ['5월'], managementPeriod: '거의 매일', lifespan: '모종',url :'' },
 // 
     { name: '가지(파종)', month: ['4월'], managementPeriod: '주 1~2회', lifespan: '파종' },
     { name: '가지(모종)', month: ['5월','6월'], managementPeriod: '주 1~2회', lifespan: '모종' },

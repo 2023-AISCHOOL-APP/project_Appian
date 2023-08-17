@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom';
 import PageTitle from '../Components/PageTitle';
 import Communitybtn from './Communitybtn';
 import { AllContent } from '../Contexts/ContentContext';
-import axios
+import axios from 'axios';
 
-from 'axios';
 function Community() {
 
 
@@ -119,6 +118,7 @@ function Community() {
        
       </div>
       </div>
+
       </div>
         
   );

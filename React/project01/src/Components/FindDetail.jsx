@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import ScrollToTop from '../ScrollToTop'
 
 
+
 const FindDetail = () => {
   
    const dispatch = useDispatch(); // useDispatch 훅을 통해 디스패치 함수 가져오기
@@ -148,7 +149,7 @@ const FindDetail = () => {
  
   return (
 
-  
+  <>
     <div className='farmDetailAll'>
       <ScrollToTop />
       <button onClick={handleHeaderButtonClick}>헤더 버튼</button>
@@ -256,10 +257,11 @@ const FindDetail = () => {
       <div className='calender'>
           <CalendarRange startDate={startDate} endDate={endDate}/>
         </div>  
-
+       
         
       </div>
-    
+      
+      </>
   )
 }
 

@@ -4,6 +4,7 @@ import GetAddress from '../Components/GetAddress';
 import '../Css/GetAddress.css';
 import PageTitle from '../Components/PageTitle';
 
+
 function FindGarden() {
   const style={
     backgroundColor : 'white'
@@ -16,6 +17,7 @@ function FindGarden() {
       <GetAddress/>
       </div>
     </div>
+    
     </>
   );
 }

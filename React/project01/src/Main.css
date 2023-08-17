@@ -2212,5 +2212,13 @@ button {
 /* footer */
 
 .footer{
-  margin : 300px;
+  position: relative;
+  left: -320px;
+  top: -20px;
+}
+
+.footerimg{
+  width: 1930px;
+  height: auto;
+ text-align: center;
 }

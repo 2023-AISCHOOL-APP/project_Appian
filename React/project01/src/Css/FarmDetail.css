@@ -25,8 +25,9 @@
 
 .farmDetailAll{
   width: 1920px;
+  height: auto;
   position: relative;
-  top: 100px;
+  top: 20px;
 }
 .border_title{
     position: relative;

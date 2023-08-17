@@ -3,7 +3,7 @@ import '../Main.css'
 const Footer = () => {
   return (
     <div className='footer'>
-      <img src='' alt=''></img>
+      <img src='/img/footer.png' alt='' className='footerimg'></img>
     </div>
   )
 }

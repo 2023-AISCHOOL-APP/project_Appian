@@ -1726,7 +1726,7 @@ font-size: 15px;
   font-size: 17px;
   position: relative;
   left: 100px;
-
+  white-space: pre-line;
   
   color: #666;
   

@@ -7,8 +7,10 @@ import axios from 'axios';
 import DaumPost from '../Components/Daumpost2';
 import Swal from "sweetalert2";
 import '../Components/CalendarDatePick'
+
 import CalendarDatePick from '../Components/CalendarDatePick';
 import { format } from 'date-fns'; // format 함수 가져오기
+import { zonedTimeToUtc, utcToZonedTime } from 'date-fns-tz'; // date-fns-tz 라이브러리 추가
 import ScrollToTop from '../ScrollToTop'
 
 //  모달창으로 할지 sweetalert2에서 꺼내서 사용할지 결정해야함!!!!!!
@@ -134,21 +136,26 @@ function OutGarden() {
   };
 
 
+
   const handleLentalStartDateChange = (date) => {
-    setForm({ ...form, lental_startDate: date.toISOString().split('T')[0] });
+    const selectedDate = utcToZonedTime(date, 'Asia/Seoul');
+    setForm({ ...form, lental_startDate: selectedDate.toISOString().split('T')[0] });
   };
-  
+
   const handleLentalEndDateChange = (date) => {
-    setForm({ ...form, lental_endDate: date.toISOString().split('T')[0] });
+    const selectedDate = utcToZonedTime(date, 'Asia/Seoul');
+    setForm({ ...form, lental_endDate: selectedDate.toISOString().split('T')[0] });
   };
-  
+
   const handleStartDateChange = (date) => {
-    setForm({ ...form, startDate: date.toISOString().split('T')[0] });
+    const selectedDate = utcToZonedTime(date, 'Asia/Seoul');
+    setForm({ ...form, startDate: selectedDate.toISOString().split('T')[0] });
   };
-  
+
   const handleEndDateChange = (date) => {
-    setForm({ ...form, endDate: date.toISOString().split('T')[0] });
-  };
+    const selectedDate = utcToZonedTime(date, 'Asia/Seoul');
+    setForm({ ...form, endDate: selectedDate.toISOString().split('T')[0] });
+  }
 
 
   return (
@@ -397,5 +404,4 @@ function OutGarden() {
 }
 
 export default OutGarden;
-
 

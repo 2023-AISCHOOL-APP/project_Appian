@@ -42,7 +42,7 @@ const Mypage = () => {
   const userInfo = useLocation().state.info
   console.log('유저정보', userInfo)
 
-  const [form, setForm] = useState({ user_id: userInfo.USER_ID, user_password: userInfo.USER_PASSWORD, user_name : userInfo.USER_NAME, user_nick : userInfo.USER_NICK , user_email: userInfo.USER_EMAIL, user_phone: userInfo.USER_PHONE, user_address : userInfo.USER_ADDRESS });
+  const [form, setForm] = useState({ user_id: userInfo.USER_ID, user_password: userInfo.USER_PASSWORD, user_name : userInfo.USER_NAME, user_nick : userInfo.USER_NICK , user_email: userInfo.USER_EMAIL, user_phone: userInfo.USER_PHONE, user_address : '' });
 
   //중복체크 DB 응답 결과
   const [message, setMessage] = useState(''); 
@@ -140,7 +140,7 @@ const Mypage = () => {
 
   return (
     <>
-    <PageTitle data={'회원가입'} num={1}/>
+    <PageTitle data={'내 정보 수정'} num={1}/>
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         {/* <CssBaseline /> */}

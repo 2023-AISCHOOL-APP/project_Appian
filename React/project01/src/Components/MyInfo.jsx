@@ -39,7 +39,10 @@ const defaultTheme = createTheme({
 export default function Myinfo() {
 
   const [form, setForm] = useState({ user_id: "", user_password: "" });
-  
+  useEffect(()=>{
+    setForm({...form, user_id : sessionStorage.getItem('user_id')})
+  },[])
+ 
   const [message, setMessage] = useState(''); //DB 응답 결과
 
   const nav = useNavigate();
@@ -49,6 +52,7 @@ export default function Myinfo() {
 
   const infoSending = async () => {
     try {
+     
       console.log('유저정보',form)
       const response = await axios.post(loginUrl, { form });
       const responseData = response.data;

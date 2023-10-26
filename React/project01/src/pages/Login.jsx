@@ -45,7 +45,7 @@ const Login = () => {
   
   const [message, setMessage] = useState(''); //DB 응답 결과
 
-  const loginUrl = 'http://192.168.70.237:5022/login';
+  const loginUrl = 'http://localhost:3333/user/login';
 
   const infoSending = async () => {
     try {

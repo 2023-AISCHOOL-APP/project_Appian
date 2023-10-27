@@ -53,7 +53,7 @@ const Login = () => {
       const responseData = response.data;
       console.log('응답 데이터:', responseData); 
       
-      if (!responseData){
+      if (responseData == '로그인 실패'){
         Swal.fire('회원정보가 없습니다. 회원가입을 진행해주세요')
        
       }else{

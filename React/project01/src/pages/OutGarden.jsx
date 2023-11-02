@@ -74,7 +74,7 @@ function OutGarden() {
   };
 
   
-  const apiUrl = 'http://192.168.70.237:5022/add_farm';//여기 주소 추가 필요
+  const apiUrl = 'http://localhost:3333/farm/add_farm';//여기 주소 추가 필요
   const [resData, setResData] = useState();
   
   const infoSending = ()=>{
@@ -102,7 +102,7 @@ function OutGarden() {
       setResData(response.data)
       console.log('등록하기 받아온값', response.data);
 
-      if(response.data === true){
+      if(response.data === '텃밭 등록 성공'){
         Swal.fire({
           title: 'FarmFarm!',
           timer: 0,

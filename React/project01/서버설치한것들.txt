@@ -1,0 +1,15 @@
+npm i init -y
+npm i express
+npm i nodemon -g
+npm i cors
+npm i mysql2
+npm i multer
+npm i axios
+
+init - 설정 저장
+express - 미들웨어
+nodemon - 서버 자동 재활성화
+cors - 방화벽 문제
+mysql2 - mysql 연동
+multer - dataForm (이미지 포함 데이터) 파싱 
+axios - 위경도 카카오에 요청하기 위해

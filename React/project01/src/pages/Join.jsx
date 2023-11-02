@@ -57,9 +57,10 @@ export default function SignUp() {
     
     await axios.post(checkUrl, {user_id : form.user_id})
     .then((Response)=>{
-      setMessage(Response.data);
-      console.log('DB에 있는 데이터인가?:(T/F)','id?', message)
-      if (message == '아이디 없음'){
+      const responseData = Response.data ; // 응답 데이터를 변수로 저장 하고 바로 사용
+      // setMessage(Response.data);
+      console.log('DB에 있는 데이터인가?:(T/F)','id?', responseData)
+      if (responseData == '아이디 없음'){
         alert('사용할 수 있는 아이디입니다');
         
       }else {
@@ -75,9 +76,10 @@ export default function SignUp() {
   const nickCheck = async () => {
     await axios.post(checkUrl, {user_nick : form.user_nick})
     .then((Response)=>{
-      console.log('DB에 있는 데이터인가?:(T/F)', 'nick',Response.data)
-      setMessage(Response.data);
-      if (message == '닉네임 없음'){
+      const responseData = Response.data ; // 응답 데이터를 변수로 저장 하고 바로 사용
+      console.log('DB에 있는 데이터인가?:(T/F)', 'nick', responseData)
+      // setMessage(Response.data);
+      if (responseData == '닉네임 없음'){
         alert('사용할 수 있는 닉네임입니다');
         
       }else {
@@ -94,9 +96,10 @@ export default function SignUp() {
   const emailCheck = async () => {
     await axios.post(checkUrl, {user_email : form.user_email})
     .then((Response)=>{
-      console.log('DB에 있는 데이터인가?:(T/F)','email',Response.data)
-      setMessage(Response.data);
-      if (message == '이메일 없음'){
+      const responseData = Response.data ; // 응답 데이터를 변수로 저장 하고 바로 사용
+      console.log('DB에 있는 데이터인가?:(T/F)','email', responseData)
+      // setMessage(Response.data);
+      if (responseData == '이메일 없음'){
         alert('사용할 수 있는 이메일입니다');
       }else {
         alert('사용할 수 없는 이메일입니다');

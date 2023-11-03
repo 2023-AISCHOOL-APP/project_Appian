@@ -21,11 +21,12 @@ router.post('/login', (req, res) => {
             }
             else {
                 console.log('일치하는 데이터가 없습니다. 로그인 실패', user_id);
-                res.status(200).send('로그인 실패')
+                res.status(200).send('로그인 실패');
             }
         }
     })
-})
+});
+
 
 // 회원가입 중복 체크
 // 받은 요청에 해당 값이 있는지로 아이디, 닉, 이메일 구분
@@ -93,7 +94,8 @@ router.post('/check', (req, res) => {
             }
         })
     }
-})
+});
+
 
 // 회원가입
 router.post('/join', (req, res) => {
@@ -119,5 +121,27 @@ router.post('/join', (req, res) => {
     })
 });
 
+
+// 마이페이지 - 신청 내역
+router.get('/my_list', (req, res) => {
+    console.log('마이페이지 - 신청 내역', req.query);
+    let {user_id} = req.query;
+    let sql = "select farm_application.application_num, farm.farm_title, farm.farm_price, farm.lental_area, DATE_FORMAT(farm.lental_startDate, '%Y-%m-%d') as lental_startDate, DATE_FORMAT(farm.lental_endDate, '%Y-%m-%d') as lental_endDate, DATE_FORMAT(farm_application.apply_day, '%Y-%m-%d') as apply_day from farm_application join farm on farm_application.farm_num = farm.farm_num where farm_application.user_id = ? order by farm_application.application_num desc"
+    conn.query(sql, [user_id], (err, rows)=>{
+        if (err) {
+            console.error('마이페이지 신청 내역 조회 에러', err);
+        }
+        else {
+            if (rows.length > 0) {
+                console.log('마이페이지 - 신청내역', rows);
+                res.status(200).send(rows)
+            } 
+            // else { // front 구현 안되어 있음
+            //     console.log('마이페이지 - 신청내역 없음', user_id);
+            //     res.status(200).send('신청 내역이 없음')
+            // }
+        }
+    })
+});
 
 module.exports = router

@@ -45,7 +45,7 @@ const CardDetailsPage = ({ value }) => {
           // setNewComment(''); // 새 댓글 내용 초기화
 
           // 서버에 데이터 보내기 : 
-          const apiUrl = 'http://192.168.70.237:5022/content_comment';
+          const apiUrl = 'http://localhost:3333/community/content_comment';
           axios.get(apiUrl, { responseType: 'json', params: { user_nick : userNick , content_num : newContent[0].content_num, content_comment : newComment } })
           .then(response => {
             console.log('댓글쓰고 받아온거', response.data);
@@ -64,7 +64,7 @@ const CardDetailsPage = ({ value }) => {
   
   useEffect(()=>{
   
-    const apiUrl = 'http://192.168.70.237:5022/content_comment';
+    const apiUrl = 'http://localhost:3333/community/content_comment';
     axios.get(apiUrl, { responseType: 'json', params: { user_nick : userNick , content_num : newContent[0].content_num, content_comment : newComment } })
     .then(response => {
 
@@ -81,7 +81,7 @@ const CardDetailsPage = ({ value }) => {
   
   const del = () => {
     if (userNick === newContent[0].user_nick) {
-      const delUrl = 'http://192.168.70.237:5022/delete';
+      const delUrl = 'http://localhost:3333/community/delete';
       axios
         .get(delUrl, { responseType: 'json', params: { content_num: newContent[0].content_num } })
         .then(response => {

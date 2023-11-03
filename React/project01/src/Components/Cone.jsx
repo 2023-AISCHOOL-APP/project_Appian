@@ -27,7 +27,7 @@ const WritingPage = ({ onAddCard, onCancel }) => {
     formData.append('contents', content);
     formData.append('content_img', imageFile);
 
-    const apiUrl = 'http://192.168.70.237:5022/add_content';
+    const apiUrl = 'http://localhost:3333/community/add_content';
     axios.post(apiUrl, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'

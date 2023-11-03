@@ -25,7 +25,7 @@ function App() {
 
   const [content, setContent] = useState([]);
   useEffect(()=>{
-    const apiUrl = 'http://192.168.70.237:5022/content';
+    const apiUrl = 'http://localhost:3333/community/content';
     axios.get(apiUrl, { responseType: 'json'})
       .then(response => {
         setContent(response.data)

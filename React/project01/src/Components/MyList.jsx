@@ -26,7 +26,7 @@ const MyList = () => {
 
   useEffect(()=>{
     // 신청내역
-    const myListyUrl = 'http://192.168.70.237:5022/myList';
+    const myListyUrl = 'http://localhost:3333/user/my_list';
     axios.get(myListyUrl, { responseType: 'json', params:{ user_id : userId } })
     .then(response => {
       console.log('신청내역 받아온거', response.data);

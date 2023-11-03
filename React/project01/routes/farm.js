@@ -5,10 +5,8 @@ const conn = require('../database');
 const { getLatLng } = require('../utils/getLatLng'); // 위경도 얻어오기
 const multer = require('multer');
 const path = require('path');
-const { log } = require('console');
-const e = require('express');
 
-// 저장 경로 및 파일 이름 설정
+// 파일 저장 경로 및 파일 이름 설정
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     // 저장할 경로 지정
@@ -164,7 +162,7 @@ router.get('/farm', (req, res) => {
       }
     })
   }
-})
+});
 
 
 // 텃밭 이미지
@@ -204,11 +202,11 @@ router.get('/farm_check', (req, res) => {
       }
     }
   })
-})
+});
 
 
 // 텃밭 신청
-// 여기서 메시지 보내고 받아서 신청 가능 수 체크하는 것보다는 처음 농장 정보 받아올 때 체크하는게 더 좋아보이긴함
+  // 여기서 메시지 주고 받아서 신청 가능 수 체크하는 것보다는 처음 농장 정보 받아올 때 체크해서 버튼 비활성화 하던지 하는 쪽이 더 좋아보임
 router.get('/farm_apply', (req, res) => {
   console.log('텃밭 신청', req.query);
   let { user_id, farm_num } = req.query
@@ -268,12 +266,12 @@ router.get('/farm_apply', (req, res) => {
             }
           }
         })
-
-
       }
     }
   })
 
-})
+});
+
+
 
 module.exports = router;

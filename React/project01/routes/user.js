@@ -6,7 +6,7 @@ const conn = require('../database') // BD연결
 
 // 로그인
 router.post('/login', (req, res) => {
-    console.log('로그인 시도', req.body.form);
+    console.log('로그인 시도', req.body.form, req.ip, req.ips);
     let { user_id, user_password } = req.body.form;
     let sql = "select user_id, user_nick from user where USER_ID = ? and USER_PASSWORD = ?";
     conn.query(sql, [user_id, user_password], (err, rows) => {
@@ -111,7 +111,7 @@ router.post('/join', (req, res) => {
         else {
             if (rows.affectedRows > 0) {
                 console.log('회원가입 성공', user_id);
-                res.status(200).send('회원가입 성공')
+                res.status(201).send('회원가입 성공')
             }
             else {
                 console.log('회원 가입 데이터 삽입 실패', rows);
@@ -125,17 +125,18 @@ router.post('/join', (req, res) => {
 // 마이페이지 - 신청 내역
 router.get('/my_list', (req, res) => {
     console.log('마이페이지 - 신청 내역', req.query);
-    let {user_id} = req.query;
+    let { user_id } = req.query;
     let sql = "select farm_application.application_num, farm.farm_title, farm.farm_price, farm.lental_area, DATE_FORMAT(farm.lental_startDate, '%Y-%m-%d') as lental_startDate, DATE_FORMAT(farm.lental_endDate, '%Y-%m-%d') as lental_endDate, DATE_FORMAT(farm_application.apply_day, '%Y-%m-%d') as apply_day from farm_application join farm on farm_application.farm_num = farm.farm_num where farm_application.user_id = ? order by farm_application.application_num desc"
-    conn.query(sql, [user_id], (err, rows)=>{
+    conn.query(sql, [user_id], (err, rows) => {
         if (err) {
             console.error('마이페이지 신청 내역 조회 에러', err);
+            res.status(500).send('마이페이지 신청 내역 조회 실패')
         }
         else {
             if (rows.length > 0) {
                 console.log('마이페이지 - 신청내역', rows);
-                res.status(200).send(rows)
-            } 
+                res.status(200).send(rows);
+            }
             // else { // front 구현 안되어 있음
             //     console.log('마이페이지 - 신청내역 없음', user_id);
             //     res.status(200).send('신청 내역이 없음')
@@ -143,5 +144,30 @@ router.get('/my_list', (req, res) => {
         }
     })
 });
+
+
+// 마이페이지 - 신청자 내역
+router.get('/my_list2', (req, res) => {
+    console.log('마이페이지 - 신청자 내역', req.query);
+    let { user_id } = req.query;
+    let sql = "select b.application_num, b.user_id, a.farm_title, DATE_FORMAT(a.lental_startDate, '%Y-%m-%d') as lental_startDate, DATE_FORMAT(a.lental_endDate, '%Y-%m-%d') as lental_endDate, DATE_FORMAT(b.apply_day, '%Y-%m-%d') as apply_day from farm a join farm_application b on a.farm_num = b.farm_num where a.user_id = ? order by b.application_num desc";
+    conn.query(sql, [user_id], (err, rows) => {
+        if (err) {
+            console.error('마이페이지 신청자 내역 조회 에러', err);
+            res.status(500).send('마이페이지 - 신청자 내역 조회 실패');
+        }
+        else {
+            if (rows.length > 0) {
+                console.log('마이페이지 - 신청자 내역', rows);
+                res.status(200).send(rows);
+            }
+            else {
+                // console.log('마이페이지 - 신청내역 없음', user_id);
+                // res.status(204).send('신청자가 없음')
+            }
+        }
+    })
+
+})
 
 module.exports = router

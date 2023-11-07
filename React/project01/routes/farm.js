@@ -10,7 +10,7 @@ const path = require('path');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     // 저장할 경로 지정
-    cb(null, 'public/img/farmimg');
+    cb(null, path.join('public','img','farmimg'));
   },
   filename: function (req, file, cb) {
     // farm_title을 파일 이름으로 사용
@@ -28,10 +28,11 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // 텃밭 등록
+  // 텃밭 이미지 이름을 텃밭 타이틀+등록시간으로 함.
 router.post('/add_farm', upload.single('farm_img'), async (req, res) => {
   console.log('텃밭 등록 시도');
   const imgFile = req.file;
-  const farm_img = imgFile.filename
+  const farm_img = imgFile.filename;
   const {
     farm_title,
     farm_type,
@@ -75,7 +76,8 @@ router.post('/add_farm', upload.single('farm_img'), async (req, res) => {
     );
 
 
-    let sql = "INSERT INTO farm (USER_ID, FARM_TITLE, FARM_TYPE, FARM_ADDRESS, FARM_PRICE, LANTITUDE, LONGITUDE, LENTAL_AREA, FARM_SECTOR, LENTAL_TYPE, STARTDATE, ENDDATE, LENTAL_STARTDATE, LENTAL_ENDDATE, DESCRIPTION, FARM_IMG) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    let sql = `INSERT INTO farm (USER_ID, FARM_TITLE, FARM_TYPE, FARM_ADDRESS, FARM_PRICE, LANTITUDE, LONGITUDE, LENTAL_AREA, FARM_SECTOR, LENTAL_TYPE, STARTDATE, ENDDATE, LENTAL_STARTDATE, LENTAL_ENDDATE, DESCRIPTION, FARM_IMG) 
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
     conn.query(sql, [
       user_id, // USER_ID
       farm_title, // FARM_TITLE

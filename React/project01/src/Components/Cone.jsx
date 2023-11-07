@@ -35,7 +35,7 @@ const WritingPage = ({ onAddCard, onCancel }) => {
     })
       .then(response => {
         console.log('Response from server:', response.data);
-        if (response.data.message === 'Content added successfully'){
+        if (response.data.message === '커뮤니티 자랑하기 글 추가 성공'){
           setShowSuccessMessage(true);
           setTimeout(() => {
             setShowSuccessMessage(false);
@@ -105,8 +105,6 @@ const Cone = ({value}) => {
 
   const handleCardClick = (cardId) =>{
     nav(`/cardpage/${cardId}`, {state: value})
-    console.log('sdkfs;', value)
-
   }
 
   const handleAddCard = (newCard) => {
@@ -163,14 +161,12 @@ const Cone = ({value}) => {
   const newlist = currentPosts.map((d)=>{
     return (<tr key={d.content_num} className='card' onClick={() => handleCardClick(d.content_num)}>
     <td className='content_num' style={{textAlign:'center'}}>{d.content_num}</td>
-    <td style={{ textAlign: 'left', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',color:'pink' }}>
+    <td style={{ textAlign: 'center', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',color:'pink' }}>
     <Link  to={`/cardpage/${d.content_num}`}>{d.content_title}</Link></td>
     <td>{d.user_nick}</td>
     <td>{d.content_day}</td>
   </tr>)}   
   )
- 
-  
   
 
   const paginationButtons = (

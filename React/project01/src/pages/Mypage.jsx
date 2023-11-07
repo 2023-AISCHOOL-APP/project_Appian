@@ -47,9 +47,9 @@ const Mypage = () => {
   //중복체크 DB 응답 결과
   const [message, setMessage] = useState(''); 
 
-  const idCheckUrl = 'http://192.168.70.176:5022/id_check';
-  const nickCheckUrl = 'http://192.168.70.237:5022/nick_check';
-  const emailCheckUrl = 'http://192.168.70.237:5022/email_check';
+  const idCheckUrl = 'http://localhost:3333/user/check';
+  const nickCheckUrl = 'http://localhost:3333/user/check';
+  const emailCheckUrl = 'http://localhost:3333/user/check';
 
 
   

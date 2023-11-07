@@ -5,23 +5,33 @@ const conn = require('../database') // BD연결
 
 
 // 로그인
+    // 로그인 실패 카운팅 해서 제한하는 기능 구현해야겠지만 그에 맞는 front도 해야하므로 일단 생각만 하기로..
+    // db에 count와 time 테이블 추가해서 카운트다운하고, 로그인 시도할때 마다 time 갱신하고, 카운트 5번 차면 time으로부터 일정시간 제한하기
 router.post('/login', (req, res) => {
     console.log('로그인 시도', req.body.form, req.ip, req.ips);
     let { user_id, user_password } = req.body.form;
-    let sql = "select user_id, user_nick from user where USER_ID = ? and USER_PASSWORD = ?";
-    conn.query(sql, [user_id, user_password], (err, rows) => {
+    let sql = "select user_id, user_pw, user_nick from user where USER_ID = ?";
+    conn.query(sql, [user_id], (err, rows) => {
         if (err) { // 에러가 발생한 경우
-            console.error('로그인 실패', err);
+            console.error('로그인 오류', err);
             res.status(500).send('로그인 실패');
         }
         else {
             if (rows.length > 0) { // 정상적인 출력이 나온경우
-                console.log('로그인 성공', user_id);
-                res.status(200).send(rows); // 출력을 보냄
+                console.log('아이디 있음', user_id);
+                console.log(rows[0].user_pw, user_password);
+                if(rows[0].user_pw == user_password){ // DB 비번과 받은 비번 비교
+                    console.log('로그인 성공', user_id);
+                    res.status(200).send([{user_id : rows[0].user_id, user_nick : rows[0].user_nick, user_type : rows[0].user_type}]); // 유저닉을 []에 넣어서 보냄
+                }
+                else{
+                    console.log('로그인 실패', user_id);
+                    res.status(400).send('로그인 실패');
+                }
             }
             else {
                 console.log('일치하는 데이터가 없습니다. 로그인 실패', user_id);
-                res.status(200).send('로그인 실패');
+                res.status(204).send('로그인 실패');
             }
         }
     })
@@ -102,7 +112,7 @@ router.post('/join', (req, res) => {
     console.log('회원 가입 시도', req.body.form);
     const { user_id, user_password, user_nick, user_name, user_email, user_phone, user_address } = req.body.form;
 
-    let sql = "INSERT INTO user (user_id, user_password, user_nick, user_name, user_email, user_phone, user_address) VALUES (?,?,?,?,?,?,?)";
+    let sql = "INSERT INTO user (user_id, user_pw, user_nick, user_name, user_email, user_phone, user_address) VALUES (?,?,?,?,?,?,?)";
     conn.query(sql, [user_id, user_password, user_nick, user_name, user_email, user_phone, user_address], (err, rows) => {
         if (err) {
             console.error('회원가입 실패', err);
@@ -168,6 +178,31 @@ router.get('/my_list2', (req, res) => {
         }
     })
 
+})
+
+
+// 마이페이지 - 내 정보 수정
+router.post('/change', (req,res)=>{
+    console.log(req.body);
+    let {user_id} = req.body;
+    let sql = `select * from user 
+               where user_id = ?`;
+    conn.query(sql, [user_id], (err,rows)=>{
+        if (err) {
+            console.error('내 정보 불러오기 에러', err);
+            res.status(500).send('내 정보 불러오기 실패')
+        }
+        else {
+            if(rows.length > 0) {
+                console.log('내 정보 불러오기 성공', user_id);
+                res.status(200).send(rows)
+            }
+            // else { // front 구현 안됨
+            //     console.log('내 정보 불러오기 데이터 없음', user_id);
+            //     res.status(204).send('내 정보 데이터 없음')
+            // }
+        }
+    })
 })
 
 module.exports = router

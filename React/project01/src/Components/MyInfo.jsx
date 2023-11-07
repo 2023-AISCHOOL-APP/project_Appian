@@ -47,8 +47,8 @@ export default function Myinfo() {
 
   const nav = useNavigate();
 
-  const loginUrl = 'http://192.168.70.237:5022/login';
-  const changeUrl = 'http://192.168.70.237:5022/change';
+  const loginUrl = 'http://localhost:3333/user/login';
+  const changeUrl = 'http://localhost:3333/user/change';
 
   const infoSending = async () => {
     try {

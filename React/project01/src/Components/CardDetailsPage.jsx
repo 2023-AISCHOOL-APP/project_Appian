@@ -86,7 +86,7 @@ const CardDetailsPage = ({ value }) => {
         .get(delUrl, { responseType: 'json', params: { content_num: newContent[0].content_num } })
         .then(response => {
           console.log('Response from server:', response.data);
-          if (response.data.message === 'success') {
+          if (response.data.message === '커뮤니티 글 삭제 성공') {
             setShowSuccessMessage(true);
             // 여기서 바로 리디렉션을 수행
             setTimeout(() => {
@@ -123,7 +123,7 @@ const CardDetailsPage = ({ value }) => {
         <span className='card-nickname'>작성자 : {newContent[0].user_nick} </span>
         <div className='asdf'></div>
         <p className='card-details-content'>{newContent[0].contents}</p>
-        <img className='card-details-image' src={`http://192.168.70.237:5022/content_img/${newContent[0].content_img}`} alt={newContent[0].content_title} />
+        <img className='card-details-image' src={`http://localhost:3333/community/content_img/${newContent[0].content_img}`} alt={newContent[0].content_title} />
         
          <div className='card-details-buttons'>
           <button className='card-details-button-delete' onClick={del}>삭제</button>

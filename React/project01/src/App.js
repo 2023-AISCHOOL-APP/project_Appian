@@ -29,7 +29,7 @@ function App() {
     axios.get(apiUrl, { responseType: 'json'})
       .then(response => {
         setContent(response.data)
-        console.log('db로부터받음', response.data);
+        console.log('db로부터받음2', response.data);
       })
       .catch(error => {
         console.error('Error fetching data:', error);

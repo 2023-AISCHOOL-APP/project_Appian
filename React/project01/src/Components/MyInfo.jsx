@@ -57,7 +57,7 @@ export default function Myinfo() {
       const response = await axios.post(loginUrl, { form });
       const responseData = response.data;
       console.log('응답 데이터:', responseData); 
-      if (!responseData ){
+      if (responseData == "로그인 실패"){
         alert('회원정보가 일치하지 않습니다. 회원 정보를 다시 확인해주세요')
       }else{
         try{

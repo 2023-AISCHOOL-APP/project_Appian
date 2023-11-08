@@ -19,20 +19,22 @@ router.post('/login', (req, res) => {
         else {
             if (rows.length > 0) { // 정상적인 출력이 나온경우
                 console.log('아이디 있음', user_id);
-                console.log(rows[0].user_pw, user_password);
+                console.log('db비번:', rows[0].user_pw, '받은비번:',user_password);
                 if(rows[0].user_pw == user_password){ // DB 비번과 받은 비번 비교
                     console.log('로그인 성공', user_id);
                     res.status(200).send([{user_id : rows[0].user_id, user_nick : rows[0].user_nick, user_type : rows[0].user_type}]); // 유저닉을 []에 넣어서 보냄
                 }
                 else{
                     console.log('로그인 실패', user_id);
-                    res.status(400).send('로그인 실패');
+                    // res.status(400).send('로그인 실패'); // front에서 error를 다 서버문제로 잡고있음
+                    res.send('로그인 실패')
+                    
                 }
             }
-            else {
-                console.log('일치하는 데이터가 없습니다. 로그인 실패', user_id);
-                res.status(204).send('로그인 실패');
-            }
+            // else { // front 구현 안됨
+            //     console.log('일치하는 데이터가 없습니다. 로그인 실패', user_id);
+            //     res.status(204).send('로그인 실패');
+            // }
         }
     })
 });
@@ -181,7 +183,7 @@ router.get('/my_list2', (req, res) => {
 })
 
 
-// 마이페이지 - 내 정보 수정
+// 마이페이지 - 내 정보 수정 페이지 불러오기
 router.post('/change', (req,res)=>{
     console.log(req.body);
     let {user_id} = req.body;
@@ -204,5 +206,38 @@ router.post('/change', (req,res)=>{
         }
     })
 })
+
+
+// 마이페이지 - 내 정보 수정 update
+router.post('/update_change', (req,res)=>{
+    console.log('내 정보 update', req.body.form);
+    let {user_id, user_password, user_nick, user_name, user_email, user_phone, user_address} = req.body.form;
+    let sql = `update user set
+               user_pw = ?,
+               user_nick = ?,
+               user_name = ?,
+               user_email = ?,
+               user_phone = ?,
+               user_address = ?
+               where user_id = ?`
+    conn.query(sql,[user_password, user_nick, user_name, user_email, user_phone, user_address, user_id], (err,rows)=>{
+        if(err) {
+            console.error('내 정보 update 에러', err);
+            res.status(500).send('내 정보 update 에러')
+        }
+        else {
+            if (rows.affectedRows > 0) {
+                console.log('내 정보 update 성공', user_id);
+                res.status(200).send('내 정보 update 성공')
+            }
+            else {
+                console.log('내 정보 update 데이터 없음'), user_id, rows;
+                res.status(204).send('내 정보 update 데이터 없음')
+            }
+        }
+    })
+
+})
+
 
 module.exports = router

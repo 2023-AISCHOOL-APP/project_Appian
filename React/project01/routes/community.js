@@ -171,12 +171,12 @@ router.get('/delete', (req, res) => {
             res.status(500).send('커뮤니티 글 삭제 실패')
         }
         else {
-            if (rows) {
+            if (rows.affectedRows > 0) {
                 console.log('커뮤니티 글 삭제 성공', content_num);
                 res.status(200).send({ message: '커뮤니티 글 삭제 성공' })
             }
             // else { // font 구현 안되어 있음
-            //     console.log('커뮤니티 글 삭제 실패', content_num);
+            //     console.log('커뮤니티 글 삭제 실패', rows);
             //     res.status(500).send('커뮤니티 글 삭제 실패')
             // }
         }
@@ -197,5 +197,6 @@ router.get('/content_img/:name', (req, res) => {
         }
     });
 })
+
 
 module.exports = router;

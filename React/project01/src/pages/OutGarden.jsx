@@ -7,8 +7,10 @@ import axios from 'axios';
 import DaumPost from '../Components/Daumpost2';
 import Swal from "sweetalert2";
 import '../Components/CalendarDatePick'
+
 import CalendarDatePick from '../Components/CalendarDatePick';
 import { format } from 'date-fns'; // format 함수 가져오기
+import { zonedTimeToUtc, utcToZonedTime } from 'date-fns-tz'; // date-fns-tz 라이브러리 추가
 import ScrollToTop from '../ScrollToTop'
 
 
@@ -73,7 +75,7 @@ function OutGarden() {
   };
 
   
-  const apiUrl = 'http://192.168.70.237:5022/add_farm';//여기 주소 추가 필요
+  const apiUrl = 'http://localhost:3333/farm/add_farm';//여기 주소 추가 필요
   const [resData, setResData] = useState();
   
   const infoSending = ()=>{
@@ -101,7 +103,7 @@ function OutGarden() {
       setResData(response.data)
       console.log('등록하기 받아온값', response.data);
 
-      if(response.data === true){
+      if(response.data === '텃밭 등록 성공'){
         Swal.fire({
           title: 'FarmFarm!',
           timer: 0,
@@ -135,21 +137,26 @@ function OutGarden() {
   };
 
 
+
   const handleLentalStartDateChange = (date) => {
-    setForm({ ...form, lental_startDate: date.toISOString().split('T')[0] });
+    const selectedDate = utcToZonedTime(date, 'Asia/Seoul');
+    setForm({ ...form, lental_startDate: selectedDate.toISOString().split('T')[0] });
   };
-  
+
   const handleLentalEndDateChange = (date) => {
-    setForm({ ...form, lental_endDate: date.toISOString().split('T')[0] });
+    const selectedDate = utcToZonedTime(date, 'Asia/Seoul');
+    setForm({ ...form, lental_endDate: selectedDate.toISOString().split('T')[0] });
   };
-  
+
   const handleStartDateChange = (date) => {
-    setForm({ ...form, startDate: date.toISOString().split('T')[0] });
+    const selectedDate = utcToZonedTime(date, 'Asia/Seoul');
+    setForm({ ...form, startDate: selectedDate.toISOString().split('T')[0] });
   };
-  
+
   const handleEndDateChange = (date) => {
-    setForm({ ...form, endDate: date.toISOString().split('T')[0] });
-  };
+    const selectedDate = utcToZonedTime(date, 'Asia/Seoul');
+    setForm({ ...form, endDate: selectedDate.toISOString().split('T')[0] });
+  }
 
 
   return (
@@ -398,5 +405,4 @@ function OutGarden() {
 }
 
 export default OutGarden;
-
 

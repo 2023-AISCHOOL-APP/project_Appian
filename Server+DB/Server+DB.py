@@ -347,6 +347,36 @@ def farm():
     return resList
 
 
+# ==================== 텃밭 신청 체크 ==================== #
+@app.route('/farm_check', methods=['GET'])
+@as_json
+def farm_check():
+    print('# ==================== 텃밭 신청 체크 ==================== #')
+    user_id = request.args.get('user_id', 'Unknown')
+    farm_num = request.args.get('farm_num', 'Unknown')
+    print('받은데이터', user_id, farm_num)
+
+    conn = cx_Oracle.connect('Insa4_APP_hacksim_3', 'aishcool3', 'project-db-stu3.smhrd.com:1524/xe')
+    curs = conn.cursor()
+    
+    sql = f"SELECT * FROM FARMAPPLICATION WHERE user_id = '{user_id}' and farm_num = '{farm_num}'"
+    
+    curs.execute(sql)
+    res = curs.fetchall()
+    print('sql응답', res)
+
+    if not res:
+        result = False
+    else:
+        result = True
+
+    curs.close()
+    conn.close()
+    print('응답메시지: ', result)
+
+    return result
+
+
 # ==================== 텃밭 신청하기 ==================== #
 @app.route('/farm_apply', methods=['GET'])
 def farm_apply():

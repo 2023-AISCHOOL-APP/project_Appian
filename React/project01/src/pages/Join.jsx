@@ -48,20 +48,19 @@ export default function SignUp() {
   //중복체크 DB 응답 결과
   const [message, setMessage] = useState(''); 
 
-  const idCheckUrl = 'http://192.168.70.176:5022/id_check';
-  const nickCheckUrl = 'http://192.168.70.237:5022/nick_check';
-  const emailCheckUrl = 'http://192.168.70.237:5022/email_check';
+  const checkUrl = 'http://localhost:3333/user/check';
 
 
   
   const idCheck = async () => {
     console.log('id체크',form.user_id)
     
-    await axios.post(idCheckUrl, {user_id : form.user_id})
+    await axios.post(checkUrl, {user_id : form.user_id})
     .then((Response)=>{
-      setMessage(Response.data);
-      console.log('DB에 있는 데이터인가?:(T/F)','id?', message)
-      if (!message){
+      const responseData = Response.data ; // 응답 데이터를 변수로 저장 하고 바로 사용
+      // setMessage(Response.data);
+      console.log('DB에 있는 데이터인가?:(T/F)','id?', responseData)
+      if (responseData == '아이디 없음'){
         alert('사용할 수 있는 아이디입니다');
         
       }else {
@@ -75,11 +74,12 @@ export default function SignUp() {
   };
 
   const nickCheck = async () => {
-    await axios.post(nickCheckUrl, {user_nick : form.user_nick})
+    await axios.post(checkUrl, {user_nick : form.user_nick})
     .then((Response)=>{
-      console.log('DB에 있는 데이터인가?:(T/F)', 'nick',Response.data)
-      setMessage(Response.data);
-      if (!message){
+      const responseData = Response.data ; // 응답 데이터를 변수로 저장 하고 바로 사용
+      console.log('DB에 있는 데이터인가?:(T/F)', 'nick', responseData)
+      // setMessage(Response.data);
+      if (responseData == '닉네임 없음'){
         alert('사용할 수 있는 닉네임입니다');
         
       }else {
@@ -94,11 +94,12 @@ export default function SignUp() {
   
 
   const emailCheck = async () => {
-    await axios.post(emailCheckUrl, {user_email : form.user_email})
+    await axios.post(checkUrl, {user_email : form.user_email})
     .then((Response)=>{
-      console.log('DB에 있는 데이터인가?:(T/F)','email',Response.data)
-      setMessage(Response.data);
-      if (!message){
+      const responseData = Response.data ; // 응답 데이터를 변수로 저장 하고 바로 사용
+      console.log('DB에 있는 데이터인가?:(T/F)','email', responseData)
+      // setMessage(Response.data);
+      if (responseData == '이메일 없음'){
         alert('사용할 수 있는 이메일입니다');
       }else {
         alert('사용할 수 없는 이메일입니다');
@@ -114,7 +115,7 @@ export default function SignUp() {
   
   
   // DB로 전송하는 데이터
-  const sendUrl = 'http://192.168.70.237:5022/add_id';
+  const sendUrl = 'http://localhost:3333/user/join';
   const infoSending = async () => {
 
     console.log('데이터 확인',form)

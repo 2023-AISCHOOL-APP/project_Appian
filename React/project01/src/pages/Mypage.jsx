@@ -42,14 +42,14 @@ const Mypage = () => {
   const userInfo = useLocation().state.info
   console.log('유저정보', userInfo)
 
-  const [form, setForm] = useState({ user_id: userInfo.USER_ID, user_password: userInfo.USER_PASSWORD, user_name : userInfo.USER_NAME, user_nick : userInfo.USER_NICK , user_email: userInfo.USER_EMAIL, user_phone: userInfo.USER_PHONE, user_address : userInfo.USER_ADDRESS });
+  const [form, setForm] = useState({ user_id: userInfo.USER_ID, user_password: userInfo.USER_PASSWORD, user_name : userInfo.USER_NAME, user_nick : userInfo.USER_NICK , user_email: userInfo.USER_EMAIL, user_phone: userInfo.USER_PHONE, user_address : '' });
 
   //중복체크 DB 응답 결과
   const [message, setMessage] = useState(''); 
 
-  const idCheckUrl = 'http://192.168.70.176:5022/id_check';
-  const nickCheckUrl = 'http://192.168.70.237:5022/nick_check';
-  const emailCheckUrl = 'http://192.168.70.237:5022/email_check';
+  const idCheckUrl = 'http://localhost:3333/user/check';
+  const nickCheckUrl = 'http://localhost:3333/user/check';
+  const emailCheckUrl = 'http://localhost:3333/user/check';
 
 
   
@@ -58,9 +58,10 @@ const Mypage = () => {
     
     await axios.post(idCheckUrl, {user_id : form.user_id})
     .then((Response)=>{
-      setMessage(Response.data);
+      const responseData = Response.data ;
+      // setMessage(Response.data);
       console.log('DB에 있는 데이터인가?:(T/F)','id?', message)
-      if (!message){
+      if (responseData == '아이디 없음'){
         alert('사용할 수 있는 아이디입니다');
         
       }else {
@@ -77,8 +78,9 @@ const Mypage = () => {
     await axios.post(nickCheckUrl, {user_nick : form.user_nick})
     .then((Response)=>{
       console.log('DB에 있는 데이터인가?:(T/F)', 'nick',Response.data)
-      setMessage(Response.data);
-      if (!message){
+      const responseData = Response.data ;
+      // setMessage(Response.data);
+      if (responseData == '닉네임 없음'){
         alert('사용할 수 있는 닉네임입니다');
         
       }else {
@@ -96,8 +98,9 @@ const Mypage = () => {
     await axios.post(emailCheckUrl, {user_email : form.user_email})
     .then((Response)=>{
       console.log('DB에 있는 데이터인가?:(T/F)','email',Response.data)
-      setMessage(Response.data);
-      if (!message){
+      const responseData = Response.data ;
+      // setMessage(Response.data);
+      if (responseData == '이메일 없음'){
         alert('사용할 수 있는 이메일입니다');
       }else {
         alert('사용할 수 없는 이메일입니다');
@@ -113,7 +116,7 @@ const Mypage = () => {
   
   
   // DB로 전송하는 데이터
-  const sendUrl = 'http://192.168.70.237:5022/update_change';
+  const sendUrl = 'http://localhost:3333/user/update_change';
   const infoSending = async () => {
 
     console.log('데이터 확인',form)
@@ -131,6 +134,9 @@ const Mypage = () => {
     })
     .catch((Error)=>{
       console.log("통신 실패 + \n" + Error)
+      if (Error.response.status == 500){
+        alert('빈칸이 존재합니다.')
+      }
     })
   };
 
@@ -140,7 +146,7 @@ const Mypage = () => {
 
   return (
     <>
-    <PageTitle data={'회원가입'} num={1}/>
+    <PageTitle data={'내 정보 수정'} num={1}/>
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         {/* <CssBaseline /> */}

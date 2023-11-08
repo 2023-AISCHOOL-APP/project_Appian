@@ -9,12 +9,12 @@ import { bottom } from '@popperjs/core';
 const MyList = () => {
   
   const initialApplicationList = [
-    { num: 1, list: '첫 번째 신청텃밭',area : '15' , price : '200,000', rental : '~24.12.31', date : "2023-08-11"},
-    { num: 2, list: '두 번째 신청텃밭',area : '12' , price : '180,000', rental : '~25.12.31', date : "2023-08-10"},
-     { num: 3, list: '세 번째 신청텃밭',area : '24', price : '240,000', rental : '~23.12.31', date : "2023-08-09"},
-     { num: 4, list: '네 번째 신청텃밭',area : '10', price : '200,000', rental : '~24.06.30', date : "2023-08-07"},
-     { num: 5, list: '다섯 번째 신청텃밭',area : '12', price : '150,000', rental : '~24.12.31', date : "2023-08-05"},
-     { num: 6, list: '여섯 번째 신청텃밭',area : '18', price : '135,000', rental : '~24.12.31', date : "2023-08-02"}
+    // { num: 1, list: '첫 번째 신청텃밭',area : '15' , price : '200,000', rental : '~24.12.31', date : "2023-08-11"},
+    // { num: 2, list: '두 번째 신청텃밭',area : '12' , price : '180,000', rental : '~25.12.31', date : "2023-08-10"},
+    //  { num: 3, list: '세 번째 신청텃밭',area : '24', price : '240,000', rental : '~23.12.31', date : "2023-08-09"},
+    //  { num: 4, list: '네 번째 신청텃밭',area : '10', price : '200,000', rental : '~24.06.30', date : "2023-08-07"},
+    //  { num: 5, list: '다섯 번째 신청텃밭',area : '12', price : '150,000', rental : '~24.12.31', date : "2023-08-05"},
+    //  { num: 6, list: '여섯 번째 신청텃밭',area : '18', price : '135,000', rental : '~24.12.31', date : "2023-08-02"}
   ];
 
   const [applicationList, setApplicationList] = useState(initialApplicationList);
@@ -26,7 +26,7 @@ const MyList = () => {
 
   useEffect(()=>{
     // 신청내역
-    const myListyUrl = 'http://192.168.70.237:5022/myList';
+    const myListyUrl = 'http://localhost:3333/user/my_list';
     axios.get(myListyUrl, { responseType: 'json', params:{ user_id : userId } })
     .then(response => {
       console.log('신청내역 받아온거', response.data);
@@ -41,7 +41,7 @@ const MyList = () => {
 
   useEffect(()=>{
     // 신청자
-    const myListyUrl = 'http://192.168.70.237:5022/myList2';
+    const myListyUrl = 'http://localhost:3333/user/my_list2';
     axios.get(myListyUrl, { responseType: 'json', params:{ user_id : userId } })
     .then(response => {
       console.log('신청자 받아온거', response.data);

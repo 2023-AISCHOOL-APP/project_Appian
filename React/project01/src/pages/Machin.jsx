@@ -14,7 +14,7 @@ const Machin = () => {
   const [priceList, setPriceList] = useState([])
 
   useEffect(()=>{
-    const priceUrl = 'http://192.168.70.237:5022/price';
+    const priceUrl = 'http://localhost:3333/price/crop_price';
     axios.get(priceUrl, { responseType: 'json' })
     .then(response => {
       setPriceList(response.data);

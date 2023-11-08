@@ -25,11 +25,11 @@ function App() {
 
   const [content, setContent] = useState([]);
   useEffect(()=>{
-    const apiUrl = 'http://192.168.70.237:5022/content';
+    const apiUrl = 'http://localhost:3333/community/content';
     axios.get(apiUrl, { responseType: 'json'})
       .then(response => {
         setContent(response.data)
-        console.log('db로부터받음', response.data);
+        console.log('db로부터받음2', response.data);
       })
       .catch(error => {
         console.error('Error fetching data:', error);

@@ -56,13 +56,13 @@ const FindDetail = () => {
 
 
   const showConfirmationDialog = () => {
-    const userCheckUrl = 'http://192.168.70.237:5022/farm_check'
+    const userCheckUrl = 'http://localhost:3333/farm/farm_check'
     axios
         .get(userCheckUrl, { responseType: 'json', params: { user_id : userId, farm_num : farms.farm_num } })
         .then(response => {
           console.log('Response from server:', response.data);
         
-          if (!response.data){
+          if (response.data == '텃밭 신청 내역 없음'){
             farm_apply();
           }else{
             Swal.fire({
@@ -91,7 +91,7 @@ const FindDetail = () => {
 
 
   const farm_apply = ()=>{
-    const applyUrl = 'http://192.168.70.237:5022/farm_apply';
+    const applyUrl = 'http://localhost:3333/farm/farm_apply';
     if (userId === farms.user_id){
       Swal.fire({titleText:'본인의 텃밭엔 신청할 수 없어요 ㅠ_ㅠ!',
       confirmButtonColor :'#05AC7B'})
@@ -103,7 +103,7 @@ const FindDetail = () => {
         .get(applyUrl, { responseType: 'json', params: { user_id : userId, farm_num : farms.farm_num } })
         .then(response => {
           console.log('Response from server:', response.data);
-          if (response.data.message === 'success') {
+          if (response.data === '분양 신청 성공') {
             setShowSuccessMessage(true);
             // 여기서 바로 리디렉션을 수행
             setTimeout(() => {
@@ -125,7 +125,7 @@ const FindDetail = () => {
               
             }, 10);
           } else {
-            alert(response.data.message);
+            alert(response.data);
           }
         })
         .catch(error => {
@@ -175,7 +175,7 @@ const FindDetail = () => {
       <p className='farmdetailmaintitle'>텃밭 신청하기</p>
       <div className='part2'>
         
-        <img src={`http://192.168.70.237:5022/farm_img/${farms.farm_img}`} className='farm_imgsmall'/>
+        <img src={`http://localhost:3333/farm/farm_img/${farms.farm_img}`} className='farm_imgsmall'/>
         <div className='address_border'>
           <img src='/img/mapPin.png' className='address_mappin'/>
           <span className='address'>텃밭 주소</span>

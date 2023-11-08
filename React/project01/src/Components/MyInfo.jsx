@@ -39,21 +39,25 @@ const defaultTheme = createTheme({
 export default function Myinfo() {
 
   const [form, setForm] = useState({ user_id: "", user_password: "" });
-  
+  useEffect(()=>{
+    setForm({...form, user_id : sessionStorage.getItem('user_id')})
+  },[])
+ 
   const [message, setMessage] = useState(''); //DB 응답 결과
 
   const nav = useNavigate();
 
-  const loginUrl = 'http://192.168.70.237:5022/login';
-  const changeUrl = 'http://192.168.70.237:5022/change';
+  const loginUrl = 'http://localhost:3333/user/login';
+  const changeUrl = 'http://localhost:3333/user/change';
 
   const infoSending = async () => {
     try {
+     
       console.log('유저정보',form)
       const response = await axios.post(loginUrl, { form });
       const responseData = response.data;
       console.log('응답 데이터:', responseData); 
-      if (!responseData ){
+      if (responseData == "로그인 실패"){
         alert('회원정보가 일치하지 않습니다. 회원 정보를 다시 확인해주세요')
       }else{
         try{

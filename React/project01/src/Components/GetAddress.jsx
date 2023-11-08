@@ -54,7 +54,7 @@ const GetAddress = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     // Flask 서버의 주소
-    const apiUrl = 'http://192.168.70.237:5022/farm';
+    const apiUrl = 'http://localhost:3333/farm/farm';
 
     // 텃밭데이터 받아오기
     axios.get(apiUrl, { responseType: 'json', params: { sido : sido, sigungu : sigungu }, })

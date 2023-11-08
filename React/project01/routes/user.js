@@ -31,10 +31,11 @@ router.post('/login', (req, res) => {
                     
                 }
             }
-            // else { // front 구현 안됨
-            //     console.log('일치하는 데이터가 없습니다. 로그인 실패', user_id);
-            //     res.status(204).send('로그인 실패');
-            // }
+            else { // front 구현 안됨
+                console.log('일치하는 데이터가 없습니다. 로그인 실패', user_id);
+                // res.status(204).send('로그인 실패');
+                res.send('로그인 실패');
+            }
         }
     })
 });

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import '../Css/Card.css'
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
+import API_URL from '../api_url'
 
 const CardItem = ({name, addr, num, value}) => {
 
@@ -10,7 +11,7 @@ const CardItem = ({name, addr, num, value}) => {
   const data = value ;
 
   console.log('저장', data)
-  const imgUrl = `http://localhost:3333/farm/farm_img/${data.farm_img}`
+  const imgUrl = `${API_URL}/farm/farm_img/${data.farm_img}`
 
   const nav = useNavigate();
   const send = () =>{

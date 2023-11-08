@@ -24,6 +24,7 @@ import FarmDetail from './pages/FarmDetail';
 import Maptest from './Components/Maptest';
 import MyList from './Components/MyList';
 import Myinfo from './Components/MyInfo';
+import API_URL from './api_url';
 
 
 
@@ -34,8 +35,8 @@ function Main() {
 
 
   useEffect(() => {
-   // Flask 서버의 주소
-   const apiUrl = 'http://localhost:3333/community/content';
+   // Node 서버의 주소
+   const apiUrl = `${API_URL}/community/content`;
    console.log("test")
    // Axios를 사용하여 GET 요청 보내기
    axios.get(apiUrl, { responseType: 'json'})

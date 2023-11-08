@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import API_URL from '../api_url';
 
 
 const CardDetailsPage = ({ value }) => {
@@ -45,7 +46,7 @@ const CardDetailsPage = ({ value }) => {
           // setNewComment(''); // 새 댓글 내용 초기화
 
           // 서버에 데이터 보내기 : 
-          const apiUrl = 'http://localhost:3333/community/content_comment';
+          const apiUrl = `${API_URL}/community/content_comment`;
           axios.get(apiUrl, { responseType: 'json', params: { user_nick : userNick , content_num : newContent[0].content_num, content_comment : newComment } })
           .then(response => {
             console.log('댓글쓰고 받아온거', response.data);
@@ -64,7 +65,7 @@ const CardDetailsPage = ({ value }) => {
   
   useEffect(()=>{
   
-    const apiUrl = 'http://localhost:3333/community/content_comment';
+    const apiUrl = `${API_URL}/community/content_comment`;
     axios.get(apiUrl, { responseType: 'json', params: { user_nick : userNick , content_num : newContent[0].content_num, content_comment : newComment } })
     .then(response => {
 
@@ -81,7 +82,7 @@ const CardDetailsPage = ({ value }) => {
   
   const del = () => {
     if (userNick === newContent[0].user_nick) {
-      const delUrl = 'http://localhost:3333/community/delete';
+      const delUrl = `${API_URL}/community/delete`;
       axios
         .get(delUrl, { responseType: 'json', params: { content_num: newContent[0].content_num } })
         .then(response => {
@@ -123,7 +124,7 @@ const CardDetailsPage = ({ value }) => {
         <span className='card-nickname'>작성자 : {newContent[0].user_nick} </span>
         <div className='asdf'></div>
         <p className='card-details-content'>{newContent[0].contents}</p>
-        <img className='card-details-image' src={`http://localhost:3333/community/content_img/${newContent[0].content_img}`} alt={newContent[0].content_title} />
+        <img className='card-details-image' src={`${API_URL}/community/content_img/${newContent[0].content_img}`} alt={newContent[0].content_title} />
         
          <div className='card-details-buttons'>
           <button className='card-details-button-delete' onClick={del}>삭제</button>

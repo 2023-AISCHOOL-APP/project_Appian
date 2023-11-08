@@ -7,6 +7,7 @@ import { useLocation, useNavigate, useParams} from 'react-router-dom'
 import { Dialog } from '@mui/material';
 import { AllContent } from '../Contexts/ContentContext';
 import ScrollToTop from '../ScrollToTop'
+import API_URL from '../api_url';
 
 const WritingPage = ({ onAddCard, onCancel }) => {
   // const [user_id, setUser_id] = useState('');
@@ -27,7 +28,7 @@ const WritingPage = ({ onAddCard, onCancel }) => {
     formData.append('contents', content);
     formData.append('content_img', imageFile);
 
-    const apiUrl = 'http://localhost:3333/community/add_content';
+    const apiUrl = `${API_URL}/community/add_content`;
     axios.post(apiUrl, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'

@@ -12,6 +12,7 @@ import CalendarDatePick from '../Components/CalendarDatePick';
 import { format } from 'date-fns'; // format 함수 가져오기
 import { zonedTimeToUtc, utcToZonedTime } from 'date-fns-tz'; // date-fns-tz 라이브러리 추가
 import ScrollToTop from '../ScrollToTop'
+import API_URL from '../api_url';
 
 
 //  모달창으로 할지 sweetalert2에서 꺼내서 사용할지 결정해야함!!!!!!
@@ -75,7 +76,7 @@ function OutGarden() {
   };
 
   
-  const apiUrl = 'http://localhost:3333/farm/add_farm';//여기 주소 추가 필요
+  const apiUrl = `${API_URL}/farm/add_farm`;//여기 주소 추가 필요
   const [resData, setResData] = useState();
   
   const infoSending = ()=>{

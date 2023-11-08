@@ -5,6 +5,7 @@ import Main from './Main';
 import { AllFarm } from './Contexts/FarmContext'
 import { AllContent } from './Contexts/ContentContext';
 import axios from 'axios';
+import API_URL from './api_url';
 
 function App() {
 
@@ -25,7 +26,7 @@ function App() {
 
   const [content, setContent] = useState([]);
   useEffect(()=>{
-    const apiUrl = 'http://localhost:3333/community/content';
+    const apiUrl = `${API_URL}/community/content`;
     axios.get(apiUrl, { responseType: 'json'})
       .then(response => {
         setContent(response.data)

@@ -7,6 +7,7 @@ import axios from 'axios';
 import CalendarRange from './CalendarRange'
 import Swal from "sweetalert2";
 import ScrollToTop from '../ScrollToTop'
+import API_URL from '../api_url';
 
 
 
@@ -56,7 +57,7 @@ const FindDetail = () => {
 
 
   const showConfirmationDialog = () => {
-    const userCheckUrl = 'http://localhost:3333/farm/farm_check'
+    const userCheckUrl = `${API_URL}/farm/farm_check`;
     axios
         .get(userCheckUrl, { responseType: 'json', params: { user_id : userId, farm_num : farms.farm_num } })
         .then(response => {
@@ -91,7 +92,7 @@ const FindDetail = () => {
 
 
   const farm_apply = ()=>{
-    const applyUrl = 'http://localhost:3333/farm/farm_apply';
+    const applyUrl = `${API_URL}/farm/farm_apply`;
     if (userId === farms.user_id){
       Swal.fire({titleText:'본인의 텃밭엔 신청할 수 없어요 ㅠ_ㅠ!',
       confirmButtonColor :'#05AC7B'})
@@ -175,7 +176,7 @@ const FindDetail = () => {
       <p className='farmdetailmaintitle'>텃밭 신청하기</p>
       <div className='part2'>
         
-        <img src={`http://localhost:3333/farm/farm_img/${farms.farm_img}`} className='farm_imgsmall'/>
+        <img src={`${API_URL}/farm/farm_img/${farms.farm_img}`} className='farm_imgsmall'/>
         <div className='address_border'>
           <img src='/img/mapPin.png' className='address_mappin'/>
           <span className='address'>텃밭 주소</span>

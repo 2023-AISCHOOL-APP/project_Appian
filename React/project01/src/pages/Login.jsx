@@ -16,6 +16,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import { ViewKanban } from '@mui/icons-material';
+import API_URL from '../api_url';
 
 
 function Copyright(props) {
@@ -45,7 +46,7 @@ const Login = () => {
   
   const [message, setMessage] = useState(''); //DB 응답 결과
 
-  const loginUrl = 'http://localhost:3333/user/login';
+  const loginUrl = `${API_URL}/user/login`;
 
   const infoSending = async () => {
     try {

@@ -7,14 +7,14 @@ import axios from 'axios';
 import MachineSlide from '../MachineSlide ';
 import { Recommend } from '@mui/icons-material';
 import Recommendation from '../Components/Recommendation';
-
+import API_URL from '../api_url';
 
 const Machin = () => {
 
   const [priceList, setPriceList] = useState([])
 
   useEffect(()=>{
-    const priceUrl = 'http://localhost:3333/price/crop_price';
+    const priceUrl = `${API_URL}/price/crop_price`;
     axios.get(priceUrl, { responseType: 'json' })
     .then(response => {
       setPriceList(response.data);

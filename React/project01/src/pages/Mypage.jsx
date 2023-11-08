@@ -12,6 +12,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PageTitle from '../Components/PageTitle';
 import DaumPost from '../Components/DaumPost';
+import API_URL from '../api_url';
 
 
 function Copyright(props) {
@@ -47,16 +48,13 @@ const Mypage = () => {
   //중복체크 DB 응답 결과
   const [message, setMessage] = useState(''); 
 
-  const idCheckUrl = 'http://localhost:3333/user/check';
-  const nickCheckUrl = 'http://localhost:3333/user/check';
-  const emailCheckUrl = 'http://localhost:3333/user/check';
-
+  const checkUrl = `${API_URL}/user/check`;
 
   
   const idCheck = async () => {
     console.log('id체크',form.user_id)
     
-    await axios.post(idCheckUrl, {user_id : form.user_id})
+    await axios.post(checkUrl, {user_id : form.user_id})
     .then((Response)=>{
       const responseData = Response.data ;
       // setMessage(Response.data);
@@ -75,7 +73,7 @@ const Mypage = () => {
   };
 
   const nickCheck = async () => {
-    await axios.post(nickCheckUrl, {user_nick : form.user_nick})
+    await axios.post(checkUrl, {user_nick : form.user_nick})
     .then((Response)=>{
       console.log('DB에 있는 데이터인가?:(T/F)', 'nick',Response.data)
       const responseData = Response.data ;
@@ -95,7 +93,7 @@ const Mypage = () => {
   
 
   const emailCheck = async () => {
-    await axios.post(emailCheckUrl, {user_email : form.user_email})
+    await axios.post(checkUrl, {user_email : form.user_email})
     .then((Response)=>{
       console.log('DB에 있는 데이터인가?:(T/F)','email',Response.data)
       const responseData = Response.data ;
@@ -116,7 +114,7 @@ const Mypage = () => {
   
   
   // DB로 전송하는 데이터
-  const sendUrl = 'http://localhost:3333/user/update_change';
+  const sendUrl = `${API_URL}/user/update_change`;
   const infoSending = async () => {
 
     console.log('데이터 확인',form)

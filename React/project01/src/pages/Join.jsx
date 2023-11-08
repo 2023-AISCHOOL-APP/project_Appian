@@ -12,6 +12,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PageTitle from '../Components/PageTitle';
 import axios from 'axios';
 import DaumPost from '../Components/DaumPost';
+import API_URL from '../api_url';
 
 
 function Copyright(props) {
@@ -48,7 +49,7 @@ export default function SignUp() {
   //중복체크 DB 응답 결과
   const [message, setMessage] = useState(''); 
 
-  const checkUrl = 'http://localhost:3333/user/check';
+  const checkUrl = `${API_URL}/user/check`;
 
 
   
@@ -115,7 +116,7 @@ export default function SignUp() {
   
   
   // DB로 전송하는 데이터
-  const sendUrl = 'http://localhost:3333/user/join';
+  const sendUrl = `${API_URL}/user/join`;
   const infoSending = async () => {
 
     console.log('데이터 확인',form)

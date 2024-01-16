@@ -1,6 +1,6 @@
-![팜팜(resize)](https://github.com/2023-AISCHOOL-APP/project_Appian/assets/150095756/40f71570-8f9b-40e3-99e9-de4b66cfa65b)
-
 # 팜팜
+
+![팜팜(resize)](https://github.com/2023-AISCHOOL-APP/project_Appian/assets/150095756/40f71570-8f9b-40e3-99e9-de4b66cfa65b)
 
 ## 🖥️ 프로젝트 소개
 도심농부를 위한 텃밭 분양 플랫폼 (광인사 1차 프로젝트)

@@ -22,12 +22,11 @@
 - 버전관리 : Github
 <br>
 
-## [팜팜 프로젝트 상세 설명 노션 링크](https://hellosori.notion.site/4dd1ce5f2f684bf9adf2cb49d631c81b)
+## [🗒️ 팜팜 프로젝트 상세 설명 노션 링크](https://hellosori.notion.site/4dd1ce5f2f684bf9adf2cb49d631c81b)
 
-<a className='pjContent' href='https://hellosori.notion.site/4dd1ce5f2f684bf9adf2cb49d631c81b' target='_blank' rel='noopener noreferrer'>팜팜 프로젝트 상세 설명 노션 링크</a>
 
-**팜팜 소개 영상**  
+## 🎥 팜팜 소개 영상
 [![Video Label](https://img.youtube.com/vi/2ZGiNXSUUps/0.jpg)](https://www.youtube.com/embed/2ZGiNXSUUps)
 
-**팜팜 시연 영상**  
+## 🎥 팜팜 시연 영상
 [![Video Label](https://img.youtube.com/vi/HNtmMcy6rKk/0.jpg)](https://www.youtube.com/embed/HNtmMcy6rKk)

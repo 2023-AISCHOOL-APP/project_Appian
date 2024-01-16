@@ -23,7 +23,8 @@
 - 데이터베이스 : Oracle
 - 버전관리 : Github
 
-## [🗒️ 팜팜 프로젝트 상세 설명 노션 링크](https://hellosori.notion.site/4dd1ce5f2f684bf9adf2cb49d631c81b)
+## 🗒️ 프로젝트 상세 설명
+- [노션 링크](https://hellosori.notion.site/4dd1ce5f2f684bf9adf2cb49d631c81b)
 
 ## 🎥 팜팜 소개 영상
 [![Video Label](https://img.youtube.com/vi/2ZGiNXSUUps/0.jpg)](https://www.youtube.com/embed/2ZGiNXSUUps)

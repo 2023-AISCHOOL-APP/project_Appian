@@ -22,7 +22,6 @@
 - 버전관리 : Github
 <br>
 
-## 
 <a className='pjContent' href='https://hellosori.notion.site/4dd1ce5f2f684bf9adf2cb49d631c81b' target='_blank' rel='noopener noreferrer'>팜팜 프로젝트 상세 설명</a>
 
 **팜팜 소개 영상**  

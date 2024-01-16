@@ -9,11 +9,11 @@
 <br>
 
 ## 👩‍👩‍👧‍👦 멤버 구성
-- 임지호 : 팀장 / 프로젝트 총괄
-- 정건식 : 기획 및 프론트엔드
+- [임지호](https://github.com/jihoyim) : 팀장 / 프로젝트 총괄
+- [정건식](https://github.com/kun-sik) : 기획 및 프론트엔드
 - [송민아](https://github.com/minaminaminaaaa) : 디자인 및 프론트엔드
-- 양춘모 : 백엔드
-- 이지혜 : 프론트엔드 PM / 기획
+- [양춘모](https://github.com/SpringDream0406) : 백엔드
+- [이지혜](https://github.com/julie-jihyelee) : 프론트엔드 PM / 기획
 
 ## ⚙️ 개발 환경
 - 프론트엔드 : React

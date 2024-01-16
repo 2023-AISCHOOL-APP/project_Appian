@@ -1,3 +1,6 @@
+**프로젝트 슬라이드쇼:**
+[![프로젝트 슬라이드쇼](https://image.slidesharecdn.com/slidesharepresentation-210826070100/95/content-as-code-from-zero-to-hero-4-638.jpg)](https://www.slideshare.net/secret/399wOwxeAugFEv)
+
 # 팜팜
 
 ## 🖥️ 프로젝트 소개

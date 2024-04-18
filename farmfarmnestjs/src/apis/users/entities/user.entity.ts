@@ -1,27 +1,25 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class User {
-  @PrimaryColumn()
-  user_id: string;
+  @PrimaryGeneratedColumn('uuid')
+  uid: string;
 
-  @Column()
-  user_pw: string;
+  @Column({ length: 10 })
+  user_name: string;
 
-  @Column()
+  @Column({ unique: true, length: 10 })
   user_nick: string;
 
-  @Column()
-  user_name: string;
-  @Column()
+  @Column({ unique: true, length: 50 })
   user_email: string;
 
-  @Column()
+  @Column({ length: 14 }) // 나중에 입력 어떻게 되어있나 보자
   user_phone: string;
 
   @Column()
   user_address: string;
 
-  @Column()
+  @Column({ type: 'tinyint', default: 0 })
   user_type: number;
 }

@@ -6,10 +6,10 @@ export class Auth {
   @PrimaryColumn({ length: 20 })
   user_id: string;
 
-  @Column({ length: 20 })
+  @Column({ length: 60 })
   user_pw: string;
 
   @JoinColumn()
   @OneToOne(() => User)
-  user: User;
+  uid: User;
 }

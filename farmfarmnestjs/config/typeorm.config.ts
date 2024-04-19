@@ -1,5 +1,5 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { Auth } from 'src/apis/auth/entities/auth.entity';
+import { Auth } from 'src/apis/users/entities/auth.entity';
 import { Farm } from 'src/apis/farm/entities/farm.entity';
 import { User } from 'src/apis/users/entities/user.entity';
 

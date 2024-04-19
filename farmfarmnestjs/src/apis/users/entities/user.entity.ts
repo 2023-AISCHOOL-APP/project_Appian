@@ -22,4 +22,7 @@ export class User {
 
   @Column({ type: 'tinyint', default: 0 })
   user_type: number;
+
+  @Column({ default: 'CURRENT_TIMESTAMP' })
+  createdAt: Date;
 }

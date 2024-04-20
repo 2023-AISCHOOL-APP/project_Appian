@@ -42,7 +42,7 @@ const Login = () => {
 
   const [message, setMessage] = useState(""); //DB 응답 결과
 
-  const loginUrl = `${API_URL}/auth/login`;
+  const loginUrl = `${API_URL}/user/login`;
 
   const infoSending = async () => {
     console.log(form);
@@ -51,11 +51,9 @@ const Login = () => {
       const responseData = response.data;
       console.log("응답 데이터:", responseData);
 
-      if (responseData == "로그인 실패") {
-        Swal.fire("회원정보가 없습니다. 회원가입을 진행해주세요");
-      } else {
+      if (responseData.message === "로그인 성공") {
         Swal.fire({
-          title: `${responseData[0].user_nick}님, 반갑습니다!🥕`,
+          title: `${responseData.user_nick}님, 반갑습니다!🥕`,
           timer: 0,
           imageUrl:
             "https://media.tenor.com/uTq6EOBVvYoAAAAC/%EC%9D%B8%EC%82%AC-%EB%86%80%EC%9E%90%EA%B3%B0.gif",
@@ -71,15 +69,17 @@ const Login = () => {
           }
         });
 
-        sessionStorage.setItem("user_id", responseData[0].user_id);
-        sessionStorage.setItem("user_nick", responseData[0].user_nick);
-        sessionStorage.setItem("user_type", responseData[0].user_type);
+        sessionStorage.setItem("user_id", responseData.user_id);
+        sessionStorage.setItem("user_nick", responseData.user_nick);
+        sessionStorage.setItem("user_type", responseData.user_type);
       }
 
       // window.location.replace('/')
 
       setMessage(responseData);
     } catch (error) {
+      if (error.response && error.response.data.message)
+        return Swal.fire(error.response.data.message);
       console.error("통신 실패:", error);
       alert("서버에 문제가 발생하였습니다. 다시 한 번 시도해주세요!");
     }

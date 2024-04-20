@@ -43,7 +43,7 @@ const defaultTheme = createTheme({
 export default function SignUp() {
   const [form, setForm] = useState({
     user_id: "",
-    user_password: "",
+    user_pw: "",
     user_name: "",
     user_nick: "",
     user_email: "",
@@ -67,14 +67,12 @@ export default function SignUp() {
         const responseData = Response.data; // 응답 데이터를 변수로 저장 하고 바로 사용
         // setMessage(Response.data);
         console.log("DB에 있는 데이터인가?:(T/F)", "id?", responseData);
-        if (responseData == "아이디 없음") {
+        if (responseData === "사용 가능") {
           alert("사용할 수 있는 아이디입니다");
-        } else {
-          alert("사용할 수 없는 아이디입니다");
-          setForm({ ...form, user_id: "" });
         }
       })
       .catch((Error) => {
+        alert(Error.response.data.message);
         console.log("통신 실패 + \n" + Error);
       });
   };
@@ -86,14 +84,12 @@ export default function SignUp() {
         const responseData = Response.data; // 응답 데이터를 변수로 저장 하고 바로 사용
         console.log("DB에 있는 데이터인가?:(T/F)", "nick", responseData);
         // setMessage(Response.data);
-        if (responseData == "닉네임 없음") {
+        if (responseData === "사용 가능") {
           alert("사용할 수 있는 닉네임입니다");
-        } else {
-          alert("사용할 수 없는 닉네임입니다");
-          setForm({ ...form, user_nick: "" });
         }
       })
       .catch((Error) => {
+        alert(Error.response.data.message);
         console.log("통신 실패 + \n" + Error);
       });
   };
@@ -105,14 +101,12 @@ export default function SignUp() {
         const responseData = Response.data; // 응답 데이터를 변수로 저장 하고 바로 사용
         console.log("DB에 있는 데이터인가?:(T/F)", "email", responseData);
         // setMessage(Response.data);
-        if (responseData == "이메일 없음") {
+        if (responseData === "사용 가능") {
           alert("사용할 수 있는 이메일입니다");
-        } else {
-          alert("사용할 수 없는 이메일입니다");
-          setForm({ ...form, user_email: "" });
         }
       })
       .catch((Error) => {
+        alert(Error.response.data.message);
         console.log("통신 실패 + \n" + Error);
       });
   };
@@ -124,12 +118,17 @@ export default function SignUp() {
 
     await axios
       .post(sendUrl, { form })
-      .then((Response) => {
-        alert("🧑‍🌾팜팜의 회원이 되신걸 축하드립니다! ");
-        sessionStorage.setItem("user_id", form.user_id);
-        sessionStorage.setItem("user_nick", form.user_nick);
-        sessionStorage.setItem("user_type", form.user_type);
-        window.location.replace("/");
+      .then((response) => {
+        console.log("받은 데이터", response);
+        if (response.data.message === "회원가입 성공") {
+          alert(
+            `${response.data.user_nick}님 🧑‍🌾팜팜의 회원이 되신걸 축하드립니다! `
+          );
+          sessionStorage.setItem("user_id", response.data.user_id);
+          sessionStorage.setItem("user_nick", response.data.user_nick);
+          sessionStorage.setItem("user_type", response.data.user_type);
+          window.location.replace("/");
+        }
       })
       .catch((Error) => {
         alert(Error.response.data.message);
@@ -204,9 +203,9 @@ export default function SignUp() {
                     label="비밀번호"
                     type="password"
                     id="password"
-                    value={form.user_password}
+                    value={form.user_pw}
                     onChange={(e) =>
-                      setForm({ ...form, user_password: e.target.value })
+                      setForm({ ...form, user_pw: e.target.value })
                     }
                   />
                 </Grid>

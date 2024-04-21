@@ -9,3 +9,8 @@ export interface GetFarmInput {
   sido: string;
   sigungu: string;
 }
+
+export class CheckFarmInput {
+  farm_num: number;
+  user_id: string;
+}

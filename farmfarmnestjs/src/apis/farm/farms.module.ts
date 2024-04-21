@@ -1,10 +1,13 @@
 import { Module } from '@nestjs/common';
 import { FarmsController } from './farms.controller';
 import { FarmsService } from './farms.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Farm } from './entities/farm.entity';
+import { KakaoApiService } from 'src/services/kakaoApi.service';
 
 @Module({
-  imports: [],
+  imports: [TypeOrmModule.forFeature([Farm])],
   controllers: [FarmsController],
-  providers: [FarmsService],
+  providers: [FarmsService, KakaoApiService],
 })
 export class FarmsModule {}

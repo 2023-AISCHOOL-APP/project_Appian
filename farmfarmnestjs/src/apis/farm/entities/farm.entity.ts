@@ -3,6 +3,7 @@ import {
   Column,
   Entity,
   JoinColumn,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -15,11 +16,11 @@ export class Farm {
   @Column({ length: 50 })
   farm_title: string;
 
+  @Column()
+  farm_address: string;
+
   @Column({ length: 20 })
   farm_type: string;
-
-  @Column({ length: 255 })
-  farm_address: string;
 
   @Column()
   farm_price: number;
@@ -39,16 +40,16 @@ export class Farm {
   @Column({ length: 20 })
   lental_type: string;
 
-  @Column()
+  @Column({ type: 'date' })
   startDate: Date;
 
-  @Column()
+  @Column({ type: 'date' })
   endDate: Date;
 
-  @Column()
+  @Column({ type: 'date' })
   lental_startDate: Date;
 
-  @Column()
+  @Column({ type: 'date' })
   lental_endDate: Date;
 
   @Column({ type: 'text' })
@@ -57,10 +58,9 @@ export class Farm {
   @Column()
   farm_img: string;
 
-  @Column()
-  createdat: Date;
+  @Column({ default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: Date;
 
-  @JoinColumn()
-  @OneToOne(() => User)
-  user: User;
+  @ManyToOne(() => User)
+  user_id: User;
 }

@@ -1,9 +1,11 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserInput } from './dto/createUser.input';
-import { CheckUserInput } from './dto/checkUser.input';
-import { LoginInput } from './dto/login.input';
 import { IUserServiceRetrun } from './interface/user-service.interface';
+import {
+  CheckUserInput,
+  CreateUserInput,
+  LoginInput,
+} from './dto/user-container.dto';
 
 @Controller('user')
 export class UsersController {
@@ -13,7 +15,7 @@ export class UsersController {
 
   @Post('check') // 회원가입 중복 체크
   async checkUser(@Body() checkUserInput: CheckUserInput): Promise<string> {
-    const result = await this.userSrvice.checkBeforeCreate(checkUserInput);
+    const result = await this.userSrvice.checkUser(checkUserInput);
     return result;
   }
 

@@ -9,12 +9,7 @@ import {
 } from '@nestjs/common';
 import { FarmsService } from './farms.service';
 // import { FileInterceptor } from '@nestjs/platform-express';
-import {
-  ApplyFarmInput,
-  CheckFarmInput,
-  CreateFarmInput,
-  GetFarmsInput,
-} from './dto/farm-container.dto';
+import { CreateFarmInput, GetFarmsInput } from './dto/farm-container.dto';
 
 @Controller('farm')
 export class FarmsController {
@@ -32,17 +27,6 @@ export class FarmsController {
   @Get('farm')
   getFarms(@Query() getFarmsInput: GetFarmsInput): Promise<any[]> {
     return this.farmService.getFarms({ getFarmsInput });
-  }
-
-  // 텃밭 신청 체크 (해당 텃밭에 신청 내역 있는지)
-  @Get('farm_check')
-  checkFarm(@Query() checkFarmInput: CheckFarmInput): Promise<string> {
-    return this.farmService.checkFarm({ checkFarmInput });
-  }
-
-  @Get('farm_apply')
-  applyFarm(@Query() applyFarmInput: ApplyFarmInput): Promise<string> {
-    return this.farmService.applyFarm({ applyFarmInput });
   }
 
   // @Post('add_farm') // 이미지 파일 받을 때 농장 등록

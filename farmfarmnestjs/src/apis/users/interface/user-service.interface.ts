@@ -1,4 +1,4 @@
-import { ChangeMyInfoInput } from '../dto/user-container.dto';
+import { ReadMyInfoInput, UpdateMyInfoInput } from '../dto/user-container.dto';
 
 export interface IUserServiceRetrun {
   user_id: string;
@@ -7,6 +7,10 @@ export interface IUserServiceRetrun {
   message: string;
 }
 
-export interface IUserServiceChangeMyInfo {
-  changeMyInfoInput: ChangeMyInfoInput;
+export interface IUserServiceReadMyInfo {
+  readMyInfoInput: ReadMyInfoInput;
+}
+
+export interface IUserServiceUpdateMyInfo {
+  updateMyInfoInput: UpdateMyInfoInput;
 }

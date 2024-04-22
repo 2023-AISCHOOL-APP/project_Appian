@@ -1,17 +1,20 @@
 import { Module } from '@nestjs/common';
 import { UsersModule } from './apis/users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { typeOrmConfig } from 'config/typeorm.config';
 import { FarmsModule } from './apis/farms/farms.module';
 import { ConfigModule } from '@nestjs/config';
+import { Farm_ApplicationsModule } from './apis/farm_application/farm_application.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     UsersModule,
     FarmsModule,
+    Farm_ApplicationsModule,
     TypeOrmModule.forRoot({
-      type: 'mysql',
+      type: process.env.DB_TYPE as 'mysql',
       host: process.env.DB_HOST,
       port: Number(process.env.DB_PORT),
       username: process.env.DB_USERNAME,

@@ -7,17 +7,20 @@ import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
-  IUserServiceChangeMyInfo,
+  IUserServiceReadMyInfo,
   IUserServiceRetrun,
+  IUserServiceUpdateMyInfo,
 } from './interface/user-service.interface';
 import * as bcrypt from 'bcrypt';
 import { CheckUserInput } from './dto/user-container.dto';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly usersRepository: Repository<User>,
+    private readonly configService: ConfigService,
   ) {}
 
   // 여러 input에 대비하고, 한번만 검색하려고 범용적인 input방식 적용
@@ -44,12 +47,17 @@ export class UsersService {
       throw new ConflictException('이미 등록된 닉네임 입니다.');
   }
 
+  async hashPw({ user_pw }) {
+    const salt = Number(this.configService.get<string>('SALT'));
+    return await bcrypt.hash(user_pw, salt);
+  }
+
   async create({ createUserInput }): Promise<IUserServiceRetrun> {
     const { user_id, user_pw, user_email, user_nick } = createUserInput;
 
     await this.checkUser({ user_id, user_email, user_nick });
 
-    const hashedPw = await bcrypt.hash(user_pw, 10); // 솔트 가리자
+    const hashedPw = await this.hashPw({ user_pw });
     const userData = { ...createUserInput, user_pw: hashedPw };
     const user = await this.usersRepository.save(userData);
 
@@ -77,8 +85,28 @@ export class UsersService {
     return returnData;
   }
 
-  changeMyInfo({ changeMyInfoInput }: IUserServiceChangeMyInfo) {
-    const { user_id } = changeMyInfoInput;
-    return this.findOneByInputInUser({ user_id });
+  async readMyInfo({ readMyInfoInput }: IUserServiceReadMyInfo): Promise<User> {
+    const { user_id } = readMyInfoInput;
+    const user = await this.findOneByInputInUser({ user_id });
+    const returnData = { ...user, user_pw: '' };
+    return returnData;
+  }
+
+  async updateMyInfo({ updateMyInfoInput }: IUserServiceUpdateMyInfo) {
+    const { user_id, user_pw } = updateMyInfoInput;
+    const user = await this.findOneByInputInUser({ user_id });
+    const hashedPw = await this.hashPw({ user_pw });
+    const updatedUser = await this.usersRepository.save({
+      ...user,
+      ...updateMyInfoInput,
+      user_pw: hashedPw,
+    });
+    const returnData = {
+      message: '수정 성공',
+      user_id: updatedUser.user_id,
+      user_nick: updatedUser.user_nick,
+      user_type: updatedUser.user_type,
+    };
+    return returnData;
   }
 }

@@ -4,10 +4,9 @@ import { FarmsService } from './farms.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Farm } from './entities/farm.entity';
 import { KakaoApiService } from 'src/services/kakaoApi.service';
-import { Farm_Application } from './entities/farm_application.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Farm, Farm_Application])],
+  imports: [TypeOrmModule.forFeature([Farm])],
   controllers: [FarmsController],
   providers: [FarmsService, KakaoApiService],
 })

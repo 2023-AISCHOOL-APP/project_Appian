@@ -1,9 +1,14 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Farm } from './farm.entity';
+import {
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Farm } from '../../farms/entities/farm.entity';
 import { User } from 'src/apis/users/entities/user.entity';
 
 @Entity()
-export class Farm_Application {
+export class Farm_Applications {
   @PrimaryGeneratedColumn('increment')
   application_num: number;
 
@@ -13,6 +18,6 @@ export class Farm_Application {
   @ManyToOne(() => User)
   user_id: User;
 
-  @Column({ default: () => 'CURRENT_TIMESTAMP' })
-  appliedAt: Date;
+  @CreateDateColumn()
+  createdAt: Date;
 }

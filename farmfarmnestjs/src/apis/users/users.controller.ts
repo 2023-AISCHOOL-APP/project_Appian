@@ -2,10 +2,11 @@ import { Body, Controller, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { IUserServiceRetrun } from './interface/user-service.interface';
 import {
-  ChangeMyInfoInput,
   CheckUserInput,
   CreateUserInput,
   LoginInput,
+  ReadMyInfoInput,
+  UpdateMyInfoInput,
 } from './dto/user-container.dto';
 
 @Controller('user')
@@ -32,8 +33,13 @@ export class UsersController {
     return this.userSrvice.login({ loginInput });
   }
 
-  @Post('change') // 마이페이지
-  changeMyInfo(@Body() changeMyInfoInput: ChangeMyInfoInput) {
-    return this.userSrvice.changeMyInfo({ changeMyInfoInput });
+  @Post('read') // 마이페이지 자신 정보 읽어오기
+  readMyInfo(@Body() readMyInfoInput: ReadMyInfoInput) {
+    return this.userSrvice.readMyInfo({ readMyInfoInput });
+  }
+
+  @Post('update') // 마이페이지 정보 수정 업데이트
+  updateMyInfo(@Body('form') updateMyInfoInput: UpdateMyInfoInput) {
+    return this.userSrvice.updateMyInfo({ updateMyInfoInput });
   }
 }

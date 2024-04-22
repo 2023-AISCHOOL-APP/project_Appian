@@ -1,5 +1,12 @@
+import { Min } from 'class-validator';
 import { User } from 'src/apis/users/entities/user.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Farm {
@@ -15,6 +22,7 @@ export class Farm {
   @Column({ length: 20 })
   farm_type: string;
 
+  @Min(0)
   @Column()
   farm_price: number;
 
@@ -51,7 +59,7 @@ export class Farm {
   @Column()
   farm_img: string;
 
-  @Column({ default: () => 'CURRENT_TIMESTAMP' })
+  @CreateDateColumn()
   createdAt: Date;
 
   @ManyToOne(() => User)

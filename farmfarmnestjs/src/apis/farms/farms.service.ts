@@ -1,13 +1,10 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { KakaoApiService } from 'src/services/kakaoApi.service';
 import { Farm } from './entities/farm.entity';
 import { Repository } from 'typeorm';
 import { GetFarmsInput } from './dto/farm-container.dto';
-import { Farm_Application } from './entities/farm_application.entity';
 import {
-  IFarmServiceCheckFarm,
-  IFarmServiceApplyFarm,
   IFarmServiceCreateFarm,
   IFarmServiceGetFarms,
 } from './interface/farm-service.interface';
@@ -17,8 +14,6 @@ export class FarmsService {
   constructor(
     @InjectRepository(Farm)
     private readonly farmRepository: Repository<Farm>,
-    @InjectRepository(Farm_Application)
-    private readonly farm_ApplicationRepository: Repository<Farm_Application>,
     private readonly kakaoApiService: KakaoApiService,
   ) {}
 
@@ -56,18 +51,6 @@ export class FarmsService {
     return farms;
   }
 
-  checkFarmApply({ user_id, farm_num }) {
-    return this.farm_ApplicationRepository.findOne({
-      where: { user_id, farm_num },
-    });
-  }
-
-  countFarmApply({ farm_num }) {
-    return this.farm_ApplicationRepository.count({
-      where: { farm_num },
-    });
-  }
-
   async createFarm({
     createFarmInput,
   }: IFarmServiceCreateFarm): Promise<string> {
@@ -82,26 +65,9 @@ export class FarmsService {
     if (farm) return '텃밭 등록 성공';
   }
 
-  getFarms({ getFarmsInput }: IFarmServiceGetFarms): Promise<any[]> {
-    const farmData = { ...getFarmsInput };
-    const farms = this.findFarmsWithLike(farmData);
+  async getFarms({ getFarmsInput }: IFarmServiceGetFarms): Promise<any[]> {
+    const farms = await this.findFarmsWithLike({ ...getFarmsInput });
     return farms;
-  }
-
-  async checkFarm({ checkFarmInput }: IFarmServiceCheckFarm): Promise<string> {
-    const { user_id, farm_num } = checkFarmInput;
-    const apply = await this.checkFarmApply({ user_id, farm_num });
-    if (apply) return '텃밭 신청 내역 있음';
-    return '텃밭 신청 내역 없음';
-  }
-
-  async applyFarm({ applyFarmInput }: IFarmServiceApplyFarm): Promise<string> {
-    const { farm_num, farm_sector } = applyFarmInput;
-    const appliedNumber = await this.countFarmApply({ farm_num });
-    if (farm_sector <= appliedNumber) return '분양 신청 자리가 다 찼습니다.';
-    const apply = this.farm_ApplicationRepository.save({ ...applyFarmInput });
-    if (!apply) throw new InternalServerErrorException('서버 오류');
-    return '분양 신청 성공';
   }
 
   // 이미지 파일 받을 때

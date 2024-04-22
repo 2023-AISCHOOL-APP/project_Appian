@@ -2,6 +2,7 @@ import { Body, Controller, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { IUserServiceRetrun } from './interface/user-service.interface';
 import {
+  ChangeMyInfoInput,
   CheckUserInput,
   CreateUserInput,
   LoginInput,
@@ -14,22 +15,25 @@ export class UsersController {
   ) {}
 
   @Post('check') // 회원가입 중복 체크
-  async checkUser(@Body() checkUserInput: CheckUserInput): Promise<string> {
-    const result = await this.userSrvice.checkUser(checkUserInput);
+  checkUser(@Body() checkUserInput: CheckUserInput): Promise<string> {
+    const result = this.userSrvice.checkUser(checkUserInput);
     return result;
   }
 
   @Post('join') // 회원가입
-  async createUser(
+  createUser(
     @Body('form') createUserInput: CreateUserInput,
   ): Promise<IUserServiceRetrun> {
     return this.userSrvice.create({ createUserInput });
   }
 
   @Post('login') // 로그인
-  async login(
-    @Body('form') loginInput: LoginInput,
-  ): Promise<IUserServiceRetrun> {
+  login(@Body('form') loginInput: LoginInput): Promise<IUserServiceRetrun> {
     return this.userSrvice.login({ loginInput });
+  }
+
+  @Post('change') // 마이페이지
+  changeMyInfo(@Body() changeMyInfoInput: ChangeMyInfoInput) {
+    return this.userSrvice.changeMyInfo({ changeMyInfoInput });
   }
 }

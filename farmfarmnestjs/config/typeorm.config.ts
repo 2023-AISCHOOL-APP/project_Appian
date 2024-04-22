@@ -1,16 +1,13 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { Farm } from 'src/apis/farm/entities/farm.entity';
-import { Farm_Application } from 'src/apis/farm/entities/farm_application.entity';
-import { User } from 'src/apis/users/entities/user.entity';
 
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'mysql',
-  host: 'localhost',
-  port: 3306,
-  username: 'root',
-  password: '8846',
-  database: 'farmfarm',
-  entities: [User, Farm, Farm_Application], // 각각의 entity 연결
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT),
+  username: process.env.DB_USER_NAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+  entities: [__dirname + '/apis/**/*.entity.*'], // 각각의 entity 일일이 입력 or 자동순회
   synchronize: true, // 스키마 동기화
-  logging: true, // 쿼리 실행 내역 로깅
+  logging: false, // 쿼리 실행 내역 터미널에 띄움
 };

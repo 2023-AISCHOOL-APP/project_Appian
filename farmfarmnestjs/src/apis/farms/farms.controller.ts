@@ -10,9 +10,10 @@ import {
 import { FarmsService } from './farms.service';
 // import { FileInterceptor } from '@nestjs/platform-express';
 import {
+  ApplyFarmInput,
   CheckFarmInput,
   CreateFarmInput,
-  GetFarmInput,
+  GetFarmsInput,
 } from './dto/farm-container.dto';
 
 @Controller('farm')
@@ -23,14 +24,14 @@ export class FarmsController {
 
   // 텃밭 등록 (이미지 안받음)
   @Post('add_farm')
-  createFarm(@Body() createFarmInput: CreateFarmInput) {
+  createFarm(@Body() createFarmInput: CreateFarmInput): Promise<string> {
     return this.farmService.createFarm({ createFarmInput });
   }
 
   // 텃밭 검색
   @Get('farm')
-  getFarm(@Query() getFarmInput: GetFarmInput) {
-    return this.farmService.getFarm({ getFarmInput });
+  getFarms(@Query() getFarmsInput: GetFarmsInput): Promise<any[]> {
+    return this.farmService.getFarms({ getFarmsInput });
   }
 
   // 텃밭 신청 체크 (해당 텃밭에 신청 내역 있는지)
@@ -40,7 +41,7 @@ export class FarmsController {
   }
 
   @Get('farm_apply')
-  applyFarm(@Query() applyFarmInput: CheckFarmInput) {
+  applyFarm(@Query() applyFarmInput: ApplyFarmInput): Promise<string> {
     return this.farmService.applyFarm({ applyFarmInput });
   }
 

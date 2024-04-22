@@ -6,7 +6,10 @@ import {
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { IUserServiceRetrun } from './interface/user-service.interface';
+import {
+  IUserServiceChangeMyInfo,
+  IUserServiceRetrun,
+} from './interface/user-service.interface';
 import * as bcrypt from 'bcrypt';
 import { CheckUserInput } from './dto/user-container.dto';
 
@@ -18,8 +21,8 @@ export class UsersService {
   ) {}
 
   // 여러 input에 대비하고, 한번만 검색하려고 범용적인 input방식 적용
-  async findOneByInputInUser(input: CheckUserInput): Promise<User> {
-    return await this.usersRepository.findOne({
+  findOneByInputInUser(input: CheckUserInput): Promise<User> {
+    return this.usersRepository.findOne({
       // or 조건문으로 3개 한번에 비교들어오는거 대처
       where: [
         { user_id: input.user_id },
@@ -72,5 +75,10 @@ export class UsersService {
       user_type: user.user_type,
     };
     return returnData;
+  }
+
+  changeMyInfo({ changeMyInfoInput }: IUserServiceChangeMyInfo) {
+    const { user_id } = changeMyInfoInput;
+    return this.findOneByInputInUser({ user_id });
   }
 }

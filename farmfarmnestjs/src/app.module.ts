@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { FarmsModule } from './apis/farms/farms.module';
+import { FarmsModule } from './apis/03.Farms/farms.module';
 import { ConfigModule } from '@nestjs/config';
-import { AuthModule } from './apis/auth/auth.module';
-import { ContentsModule } from './apis/contents/contents.module';
+import { AuthModule } from './apis/01.Auth/auth.module';
+import { ContentsModule } from './apis/05.Contents/contents.module';
 
 @Module({
   imports: [

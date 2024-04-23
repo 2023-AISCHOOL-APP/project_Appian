@@ -2,10 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { User } from './entities/users.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import {
-  IUsersServiceCreateUser,
-  IUsersServiceFindOneByInputInUser,
-} from './interfaces/users-service.interface';
+import { IUsersServiceFindOneByInputInUser } from './interfaces/users-service.interface';
 
 @Injectable()
 export class UsersService {
@@ -14,6 +11,7 @@ export class UsersService {
     private readonly usersRepository: Repository<User>,
   ) {}
 
+  // 회원가입 중복 체크용으로 사용 중
   findOneByInputInUser({
     inputs,
   }: IUsersServiceFindOneByInputInUser): Promise<User> {
@@ -23,16 +21,6 @@ export class UsersService {
         { user_email: inputs.user_email },
         { user_nick: inputs.user_nick },
       ],
-    });
-  }
-
-  createUser({ userData }: IUsersServiceCreateUser): Promise<User> {
-    return this.usersRepository.save(userData);
-  }
-
-  findOneByUid({ id }: { id: string }): Promise<User> {
-    return this.usersRepository.findOne({
-      where: { id },
     });
   }
 }

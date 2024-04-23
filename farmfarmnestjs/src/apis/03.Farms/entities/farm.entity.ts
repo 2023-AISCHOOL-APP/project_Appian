@@ -13,17 +13,17 @@ export class Farm {
   @PrimaryGeneratedColumn('increment')
   farm_num: number;
 
-  @Column({ length: 50 })
+  @Column({ nullable: false, length: 50 })
   farm_title: string;
 
-  @Column()
+  @Column({ nullable: false })
   farm_address: string;
 
-  @Column({ length: 20 })
+  @Column({ nullable: false, length: 20 })
   farm_type: string;
 
   // @Min(0)
-  @Column()
+  @Column({ nullable: false })
   farm_price: number;
 
   @Column({ type: 'decimal', precision: 9, scale: 6 })
@@ -32,25 +32,25 @@ export class Farm {
   @Column({ type: 'decimal', precision: 9, scale: 6 })
   lng: number;
 
-  @Column()
+  @Column({ nullable: false })
   lental_area: number;
 
-  @Column()
+  @Column({ nullable: false })
   farm_sector: number;
 
-  @Column({ length: 20 })
+  @Column({ nullable: false, length: 20 })
   lental_type: string;
 
-  @Column({ type: 'date' })
+  @Column({ nullable: false, type: 'date' })
   startDate: Date;
 
-  @Column({ type: 'date' })
+  @Column({ nullable: false, type: 'date' })
   endDate: Date;
 
-  @Column({ type: 'date' })
+  @Column({ nullable: false, type: 'date' })
   lental_startDate: Date;
 
-  @Column({ type: 'date' })
+  @Column({ nullable: false, type: 'date' })
   lental_endDate: Date;
 
   @Column({ type: 'text' })

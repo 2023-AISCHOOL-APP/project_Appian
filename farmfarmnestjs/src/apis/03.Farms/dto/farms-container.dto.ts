@@ -9,7 +9,7 @@ export class CreateFarmInput extends OmitType(Farm, [
   'createdAt',
   'user',
 ]) {
-  user_id: string;
+  user_id: string; // uid
 }
 
 export class GetFarmsInput {
@@ -19,23 +19,23 @@ export class GetFarmsInput {
 
 export class CheckFarmInput {
   farm_num: number;
-  id: string;
+  user_id: string; // uid
 }
 
 export class ApplyFarmInput {
   farm_num: number;
-  id: string;
+  user_id: string; // uid
   farm_sector: number;
 }
 
 export class GetMyFarmApply {
-  user_id: string;
+  user_id: string; // uid
 }
 
 export class GetApplicantInput {
-  user_id: string;
+  user_id: string; // uid
 }
 
 export class CancelApply {
-  application_num: string;
+  application_num: number;
 }

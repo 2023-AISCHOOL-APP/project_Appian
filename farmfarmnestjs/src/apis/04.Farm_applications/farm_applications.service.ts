@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, Repository } from 'typeorm';
+import { DeleteResult, In, Repository } from 'typeorm';
 import { Farm_Application } from './entities/farm_application.entity';
 import {
   IFarmServiceApplyFarm,
+  IFarmServiceCancelApply,
   IFarmServiceCheckFarm,
   IFarmServiceGetMyFarmApplyInput,
 } from '../03.Farms/interfaces/farms-service.interface';
@@ -21,7 +22,7 @@ export class Farm_ApplicationsService {
     return this.farm_ApplicationRepository.findOne({
       where: {
         farm: { farm_num: checkFarmInput.farm_num },
-        user: { id: checkFarmInput.id },
+        user: { id: checkFarmInput.user_id },
       }, // and 연산
     });
   }
@@ -37,13 +38,13 @@ export class Farm_ApplicationsService {
   }: IFarmServiceApplyFarm): Promise<Farm_Application> {
     return this.farm_ApplicationRepository.save({
       farm: { farm_num: applyFarmInput.farm_num },
-      user: { id: applyFarmInput.id },
+      user: { id: applyFarmInput.user_id },
     });
   }
 
   findApplyFarmByUserId({
     getMyFarmApplyInput,
-  }: IFarmServiceGetMyFarmApplyInput) {
+  }: IFarmServiceGetMyFarmApplyInput): Promise<Farm_Application[]> {
     return this.farm_ApplicationRepository.find({
       where: { user: { id: getMyFarmApplyInput.user_id } },
       relations: ['farm'],
@@ -53,7 +54,11 @@ export class Farm_ApplicationsService {
     });
   }
 
-  findApplicantByFarmNum({ farmNums }) {
+  findApplicantByFarmNum({
+    farmNums,
+  }: {
+    farmNums: number[];
+  }): Promise<Farm_Application[]> {
     return this.farm_ApplicationRepository.find({
       where: { farm: { farm_num: In(farmNums) } },
       relations: ['farm', 'user'],
@@ -63,7 +68,7 @@ export class Farm_ApplicationsService {
     });
   }
 
-  cancelApply({ cancelApply }) {
+  cancelApply({ cancelApply }: IFarmServiceCancelApply): Promise<DeleteResult> {
     return this.farm_ApplicationRepository.softDelete({ ...cancelApply });
   }
 }

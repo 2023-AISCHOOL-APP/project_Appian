@@ -16,7 +16,7 @@ export class User {
   @Column({ unique: true, length: 20 })
   user_nick: string;
 
-  @Column({ length: 10 })
+  @Column({ nullable: false, length: 10 })
   user_name: string;
 
   @Column({ length: 14 })

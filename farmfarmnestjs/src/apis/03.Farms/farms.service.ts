@@ -14,6 +14,7 @@ import {
 } from './interfaces/farms-service.interface';
 import { Farm_ApplicationsService } from '../04.Farm_applications/farm_applications.service';
 import { User } from '../02.Users/entities/users.entity';
+import { Farm_Application } from '../04.Farm_applications/entities/farm_application.entity';
 
 @Injectable()
 export class FarmsService {
@@ -92,13 +93,17 @@ export class FarmsService {
     return '분양 신청 성공';
   }
 
-  getMyFarmApply({ getMyFarmApplyInput }: IFarmServiceGetMyFarmApplyInput) {
+  getMyFarmApply({
+    getMyFarmApplyInput,
+  }: IFarmServiceGetMyFarmApplyInput): Promise<Farm_Application[]> {
     return this.farm_ApplicationsService.findApplyFarmByUserId({
       getMyFarmApplyInput,
     });
   }
 
-  async getApplicant({ getApplicantInput }: IFarmServiceGetApplicantInput) {
+  async getApplicant({
+    getApplicantInput,
+  }: IFarmServiceGetApplicantInput): Promise<Farm_Application[]> {
     const farm_num = await this.farmRepository.find({
       where: { user: { id: getApplicantInput.user_id } },
       select: ['farm_num'],
@@ -109,11 +114,12 @@ export class FarmsService {
     });
   }
 
-  async cancelApply({ cancelApply }: IFarmServiceCancelApply) {
+  async cancelApply({
+    cancelApply,
+  }: IFarmServiceCancelApply): Promise<boolean> {
     const result = await this.farm_ApplicationsService.cancelApply({
       cancelApply,
     });
-    console.log(result);
     return result.affected ? true : false;
   }
 }

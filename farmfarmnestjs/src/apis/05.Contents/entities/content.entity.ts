@@ -18,7 +18,7 @@ export class Content {
   @JoinColumn({ referencedColumnName: 'user_nick' })
   user: User;
 
-  @Column({ length: 30 })
+  @Column({ nullable: false, length: 30 })
   content_title: string;
 
   @Column({ type: 'text' })

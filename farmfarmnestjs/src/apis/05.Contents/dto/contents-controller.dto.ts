@@ -1,7 +1,11 @@
-export class WriteContent {
+import { PickType } from '@nestjs/swagger';
+import { Content } from '../entities/content.entity';
+
+export class WriteContent extends PickType(Content, [
+  'content_title',
+  'contents',
+]) {
   user_nick: string;
-  content_title: string;
-  contents: string;
 }
 
 export class DeletedContentInput {
@@ -11,5 +15,5 @@ export class DeletedContentInput {
 export class WriteOrReadComment {
   user_nick: string;
   content_num: number;
-  content_comment?: string;
+  content_comment?: string; // 댓글 쓰는건지 읽는건지 구분
 }

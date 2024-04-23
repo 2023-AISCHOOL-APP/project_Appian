@@ -19,6 +19,7 @@ import {
   GetMyFarmApply,
 } from './dto/farms-container.dto';
 import { Farm } from './entities/farm.entity';
+import { Farm_Application } from '../04.Farm_applications/entities/farm_application.entity';
 
 @Controller('farm')
 export class FarmsController {
@@ -47,17 +48,21 @@ export class FarmsController {
   }
 
   @Get('my_apply') // 텃밭 분양 신청 내역
-  getMyFarmApply(@Query() getMyFarmApplyInput: GetMyFarmApply) {
+  getMyFarmApply(
+    @Query() getMyFarmApplyInput: GetMyFarmApply,
+  ): Promise<Farm_Application[]> {
     return this.farmService.getMyFarmApply({ getMyFarmApplyInput });
   }
 
   @Get('applicant') // 텃밭 분양 신청자 내역
-  getApplicant(@Query() getApplicantInput: GetApplicantInput) {
+  getApplicant(
+    @Query() getApplicantInput: GetApplicantInput,
+  ): Promise<Farm_Application[]> {
     return this.farmService.getApplicant({ getApplicantInput });
   }
 
   @Get('cancel') // 텃밭 분양 신청 취소
-  cancelApply(@Query() cancelApply: CancelApply) {
+  cancelApply(@Query() cancelApply: CancelApply): Promise<boolean> {
     return this.farmService.cancelApply({ cancelApply });
   }
 }

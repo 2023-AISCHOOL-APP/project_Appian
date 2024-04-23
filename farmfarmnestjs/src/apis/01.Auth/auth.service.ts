@@ -97,13 +97,13 @@ export class AuthService {
   async login({ loginInput }: IAuthServiceLogin): Promise<User> {
     const { user_id, user_pw } = loginInput;
     const auth = await this.findOneByUserId({ user_id });
-    if (!auth) throw new BadRequestException('로그인 실패');
+    if (!auth) throw new BadRequestException('로그인 실패'); // 여기서 안하면 밑에 compare에서 비번없는 경우 오류남
     const isPwMath = await bcrypt.compare(user_pw, auth.user_pw);
     if (!isPwMath) throw new BadRequestException('로그인 실패');
     return auth.user;
   }
 
-  myInfoLogin({ myInfoLogin }: IAuthServiceMyInfoLogin) {
+  myInfoLogin({ myInfoLogin }: IAuthServiceMyInfoLogin): Promise<Auth> {
     const { user_id } = myInfoLogin;
     return this.findOneByUid({ user_id });
   }

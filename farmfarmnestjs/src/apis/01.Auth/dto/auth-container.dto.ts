@@ -15,13 +15,13 @@ export class CreateUserInput extends OmitType(User, [
 ]) {
   user_id: string;
   user_pw: string;
-  id?: string;
-  user_type?: number;
+  id?: string; // 정보 수정할 때
+  user_type?: number; // 정보 수정할 때
 }
 
 export class LoginInput extends OmitType(Auth, ['user']) {}
 
 export class MyInfoLoginInput {
-  user_id: string;
+  user_id: string; // uid
   user_pw: string;
 }

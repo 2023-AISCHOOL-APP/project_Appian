@@ -1,9 +1,12 @@
 import {
   ApplyFarmInput,
+  CancelApply,
   CheckFarmInput,
   CreateFarmInput,
+  GetApplicantInput,
   GetFarmsInput,
-} from '../dto/farm-container.dto';
+  GetMyFarmApply,
+} from '../dto/farms-container.dto';
 
 export interface IFarmServiceCreateFarm {
   createFarmInput: CreateFarmInput;
@@ -19,4 +22,16 @@ export interface IFarmServiceCheckFarm {
 
 export interface IFarmServiceApplyFarm {
   applyFarmInput: ApplyFarmInput;
+}
+
+export interface IFarmServiceGetMyFarmApplyInput {
+  getMyFarmApplyInput: GetMyFarmApply;
+}
+
+export interface IFarmServiceGetApplicantInput {
+  getApplicantInput: GetApplicantInput;
+}
+
+export interface IFarmServiceCancelApply {
+  cancelApply: CancelApply;
 }

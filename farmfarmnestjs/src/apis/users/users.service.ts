@@ -1,112 +1,38 @@
-import {
-  BadRequestException,
-  ConflictException,
-  Injectable,
-} from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { User } from './entities/user.entity';
+import { User } from './entities/users.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
-  IUserServiceReadMyInfo,
-  IUserServiceRetrun,
-  IUserServiceUpdateMyInfo,
-} from './interface/user-service.interface';
-import * as bcrypt from 'bcrypt';
-import { CheckUserInput } from './dto/user-container.dto';
-import { ConfigService } from '@nestjs/config';
+  IUsersServiceCreateUser,
+  IUsersServiceFindOneByInputInUser,
+} from './interfaces/users-service.interface';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly usersRepository: Repository<User>,
-    private readonly configService: ConfigService,
   ) {}
 
-  // 여러 input에 대비하고, 한번만 검색하려고 범용적인 input방식 적용
-  findOneByInputInUser(input: CheckUserInput): Promise<User> {
+  findOneByInputInUser({
+    inputs,
+  }: IUsersServiceFindOneByInputInUser): Promise<User> {
     return this.usersRepository.findOne({
-      // or 조건문으로 3개 한번에 비교들어오는거 대처
       where: [
-        { user_id: input.user_id },
-        { user_email: input.user_email },
-        { user_nick: input.user_nick },
+        // or 연산
+        { user_email: inputs.user_email },
+        { user_nick: inputs.user_nick },
       ],
     });
   }
 
-  async checkUser(input: CheckUserInput): Promise<string> {
-    const user = await this.findOneByInputInUser(input);
-    if (!user) return '사용 가능';
-    // 가입하기 누를 때 3개 한번에 비교들어오기 때문에 결과랑 인풋이랑 비교해야됨
-    if (user.user_id === input.user_id)
-      throw new ConflictException('이미 등록된 아이디 입니다.');
-    if (user.user_email === input.user_email)
-      throw new ConflictException('이미 등록된 이메일 입니다.');
-    if (user.user_nick === input.user_nick)
-      throw new ConflictException('이미 등록된 닉네임 입니다.');
+  createUser({ userData }: IUsersServiceCreateUser): Promise<User> {
+    return this.usersRepository.save(userData);
   }
 
-  async hashPw({ user_pw }) {
-    const salt = Number(this.configService.get<string>('SALT'));
-    return await bcrypt.hash(user_pw, salt);
-  }
-
-  async create({ createUserInput }): Promise<IUserServiceRetrun> {
-    const { user_id, user_pw, user_email, user_nick } = createUserInput;
-
-    await this.checkUser({ user_id, user_email, user_nick });
-
-    const hashedPw = await this.hashPw({ user_pw });
-    const userData = { ...createUserInput, user_pw: hashedPw };
-    const user = await this.usersRepository.save(userData);
-
-    const returnData = {
-      message: '회원가입 성공',
-      user_id: user.user_id,
-      user_nick: user.user_nick,
-      user_type: user.user_type,
-    };
-    return returnData;
-  }
-
-  async login({ loginInput }): Promise<IUserServiceRetrun> {
-    const { user_id, user_pw } = loginInput;
-    const user = await this.findOneByInputInUser({ user_id });
-    if (!user) throw new BadRequestException('로그인 실패');
-    const isPwMatch = await bcrypt.compare(user_pw, user.user_pw);
-    if (!isPwMatch) throw new BadRequestException('로그인 실패');
-    const returnData = {
-      message: '로그인 성공',
-      user_id: user.user_id,
-      user_nick: user.user_nick,
-      user_type: user.user_type,
-    };
-    return returnData;
-  }
-
-  async readMyInfo({ readMyInfoInput }: IUserServiceReadMyInfo): Promise<User> {
-    const { user_id } = readMyInfoInput;
-    const user = await this.findOneByInputInUser({ user_id });
-    const returnData = { ...user, user_pw: '' };
-    return returnData;
-  }
-
-  async updateMyInfo({ updateMyInfoInput }: IUserServiceUpdateMyInfo) {
-    const { user_id, user_pw } = updateMyInfoInput;
-    const user = await this.findOneByInputInUser({ user_id });
-    const hashedPw = await this.hashPw({ user_pw });
-    const updatedUser = await this.usersRepository.save({
-      ...user,
-      ...updateMyInfoInput,
-      user_pw: hashedPw,
+  findOneByUid({ id }) {
+    return this.usersRepository.findOne({
+      where: { id },
     });
-    const returnData = {
-      message: '수정 성공',
-      user_id: updatedUser.user_id,
-      user_nick: updatedUser.user_nick,
-      user_type: updatedUser.user_type,
-    };
-    return returnData;
   }
 }

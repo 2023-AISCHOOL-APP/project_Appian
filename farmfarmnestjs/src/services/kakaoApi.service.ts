@@ -19,7 +19,8 @@ export class KakaoApiService {
     );
 
     const documents = response.data.documents;
-    if (documents.length <= 0) throw new BadRequestException('결과 없음');
+    if (documents.length <= 0)
+      throw new BadRequestException('주소가 잘못되었습니다.');
     const { y: lat, x: lng } = documents[0];
     return { lat, lng };
   }

@@ -1,5 +1,5 @@
-import { Min } from 'class-validator';
-import { User } from 'src/apis/users/entities/user.entity';
+// import { Min } from 'class-validator';
+import { User } from 'src/apis/users/entities/users.entity';
 import {
   Column,
   CreateDateColumn,
@@ -22,7 +22,7 @@ export class Farm {
   @Column({ length: 20 })
   farm_type: string;
 
-  @Min(0)
+  // @Min(0)
   @Column()
   farm_price: number;
 
@@ -63,5 +63,5 @@ export class Farm {
   createdAt: Date;
 
   @ManyToOne(() => User)
-  user_id: User;
+  user: User;
 }

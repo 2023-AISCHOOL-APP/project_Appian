@@ -42,7 +42,7 @@ const Login = () => {
 
   const [message, setMessage] = useState(""); //DB 응답 결과
 
-  const loginUrl = `${API_URL}/user/login`;
+  const loginUrl = `${API_URL}/auth/login`;
 
   const infoSending = async () => {
     console.log(form);
@@ -51,7 +51,7 @@ const Login = () => {
       const responseData = response.data;
       console.log("응답 데이터:", responseData);
 
-      if (responseData.message === "로그인 성공") {
+      if (responseData.id) {
         Swal.fire({
           title: `${responseData.user_nick}님, 반갑습니다!🥕`,
           timer: 0,
@@ -69,7 +69,7 @@ const Login = () => {
           }
         });
 
-        sessionStorage.setItem("user_id", responseData.user_id);
+        sessionStorage.setItem("user_id", responseData.id);
         sessionStorage.setItem("user_nick", responseData.user_nick);
         sessionStorage.setItem("user_type", responseData.user_type);
       }

@@ -56,7 +56,7 @@ export default function SignUp() {
   //중복체크 DB 응답 결과
   const [message, setMessage] = useState("");
 
-  const checkUrl = `${API_URL}/user/check`;
+  const checkUrl = `${API_URL}/auth/check`;
 
   const idCheck = async () => {
     console.log("id체크", form.user_id);
@@ -112,7 +112,7 @@ export default function SignUp() {
   };
 
   // DB로 전송하는 데이터
-  const sendUrl = `${API_URL}/user/join`;
+  const sendUrl = `${API_URL}/auth/join`;
   const infoSending = async () => {
     console.log("데이터 확인", form);
 
@@ -120,11 +120,11 @@ export default function SignUp() {
       .post(sendUrl, { form })
       .then((response) => {
         console.log("받은 데이터", response);
-        if (response.data.message === "회원가입 성공") {
+        if (response.data.createdAt) {
           alert(
             `${response.data.user_nick}님 🧑‍🌾팜팜의 회원이 되신걸 축하드립니다! `
           );
-          sessionStorage.setItem("user_id", response.data.user_id);
+          sessionStorage.setItem("user_id", response.data.id);
           sessionStorage.setItem("user_nick", response.data.user_nick);
           sessionStorage.setItem("user_type", response.data.user_type);
           window.location.replace("/");

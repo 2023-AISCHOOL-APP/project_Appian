@@ -5,6 +5,7 @@ import MapArea from "./MapArea";
 import Card from "./Card";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router";
+import API_URL from "../api_url";
 
 const GetAddress = () => {
   const sidos = [
@@ -51,7 +52,7 @@ const GetAddress = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     // Flask 서버의 주소
-    const apiUrl = "http://localhost:3333/farm/farm";
+    const apiUrl = `${API_URL}/farm/farm`;
 
     // 텃밭데이터 받아오기
     axios
@@ -60,7 +61,7 @@ const GetAddress = () => {
         params: { sido: sido, sigungu: sigungu },
       })
       .then((response) => {
-        setData(response.data);
+        if (response.status) setData(response.data);
         console.log("db로부터받음", response.data);
       })
       .catch((error) => {

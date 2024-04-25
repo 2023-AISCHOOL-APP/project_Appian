@@ -47,11 +47,11 @@ const Login = () => {
   const infoSending = async () => {
     console.log(form);
     try {
-      const response = await axios.post(loginUrl, { form });
+      const response = await axios.post(loginUrl, form);
       const responseData = response.data;
       console.log("응답 데이터:", responseData);
 
-      if (responseData.id) {
+      if (response.status) {
         Swal.fire({
           title: `${responseData.user_nick}님, 반갑습니다!🥕`,
           timer: 0,
@@ -78,8 +78,9 @@ const Login = () => {
 
       setMessage(responseData);
     } catch (error) {
-      if (error.response && error.response.data.message)
-        return Swal.fire(error.response.data.message);
+      console.log(error);
+      if (error.response.status === 400)
+        return alert(error.response.data.message);
       console.error("통신 실패:", error);
       alert("서버에 문제가 발생하였습니다. 다시 한 번 시도해주세요!");
     }

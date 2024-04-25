@@ -43,8 +43,8 @@ const WritingPage = ({ onAddCard, onCancel }) => {
         // },
       })
       .then((response) => {
-        console.log("Response from server:", response.data);
-        if (response.data.createdAt) {
+        console.log("Response from server:", response);
+        if (response.status) {
           setShowSuccessMessage(true);
           setTimeout(() => {
             setShowSuccessMessage(false);
@@ -68,6 +68,7 @@ const WritingPage = ({ onAddCard, onCancel }) => {
         }
       })
       .catch((error) => {
+        if (error.response.status === 400) alert(error.response.data.message);
         console.error("Error sending data:", error);
       });
   };

@@ -67,12 +67,12 @@ export default function SignUp() {
         const responseData = Response.data; // 응답 데이터를 변수로 저장 하고 바로 사용
         // setMessage(Response.data);
         console.log("DB에 있는 데이터인가?:(T/F)", "id?", responseData);
-        if (responseData === "사용 가능") {
+        if (Response.status) {
           alert("사용할 수 있는 아이디입니다");
         }
       })
       .catch((Error) => {
-        alert(Error.response.data.message);
+        if (Error.response.status === 409) alert(Error.response.data.message);
         console.log("통신 실패 + \n" + Error);
       });
   };
@@ -84,12 +84,12 @@ export default function SignUp() {
         const responseData = Response.data; // 응답 데이터를 변수로 저장 하고 바로 사용
         console.log("DB에 있는 데이터인가?:(T/F)", "nick", responseData);
         // setMessage(Response.data);
-        if (responseData === "사용 가능") {
+        if (Response.status) {
           alert("사용할 수 있는 닉네임입니다");
         }
       })
       .catch((Error) => {
-        alert(Error.response.data.message);
+        if (Error.response.status === 409) alert(Error.response.data.message);
         console.log("통신 실패 + \n" + Error);
       });
   };
@@ -101,12 +101,12 @@ export default function SignUp() {
         const responseData = Response.data; // 응답 데이터를 변수로 저장 하고 바로 사용
         console.log("DB에 있는 데이터인가?:(T/F)", "email", responseData);
         // setMessage(Response.data);
-        if (responseData === "사용 가능") {
+        if (Response.status) {
           alert("사용할 수 있는 이메일입니다");
         }
       })
       .catch((Error) => {
-        alert(Error.response.data.message);
+        if (Error.response.status === 409) alert(Error.response.data.message);
         console.log("통신 실패 + \n" + Error);
       });
   };
@@ -117,10 +117,10 @@ export default function SignUp() {
     console.log("데이터 확인", form);
 
     await axios
-      .post(sendUrl, { form })
+      .post(sendUrl, form)
       .then((response) => {
         console.log("받은 데이터", response);
-        if (response.data.createdAt) {
+        if (response.status) {
           alert(
             `${response.data.user_nick}님 🧑‍🌾팜팜의 회원이 되신걸 축하드립니다! `
           );
@@ -131,7 +131,8 @@ export default function SignUp() {
         }
       })
       .catch((Error) => {
-        alert(Error.response.data.message);
+        if (Error.response.status === 400 || 409)
+          alert(Error.response.data.message);
         console.log("통신 실패 + \n" + Error);
       });
   };

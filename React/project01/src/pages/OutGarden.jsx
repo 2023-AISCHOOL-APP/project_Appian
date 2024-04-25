@@ -26,15 +26,15 @@ function OutGarden() {
     farm_address: "",
     lental_area: "",
     farm_sector: "",
-    lental_type: "소형",
-    farm_type: "개인",
+    lental_type: "",
+    farm_type: "",
     farm_price: "",
     lental_startDate: "",
     lental_endDate: "",
     startDate: "",
     endDate: "",
     description: "",
-    user: user, // 변경함
+    user_id: user, // 변경함
   });
   const nav = useNavigate();
 
@@ -96,14 +96,21 @@ function OutGarden() {
     console.log("등록내용확인", form);
     console.log("등록내용확인-s", formData);
 
+    const newFormData = {
+      ...form,
+      farm_price: Number(form.farm_price),
+      lental_area: Number(form.lental_area),
+      farm_sector: Number(form.farm_sector),
+    };
+
     axios
       // .post(apiUrl, formData) // img 안보내기 위해 바꿈
-      .post(apiUrl, form)
+      .post(apiUrl, newFormData)
       .then((response) => {
         setResData(response.data);
         console.log("등록하기 받아온값", response.data);
 
-        if (response.data === "텃밭 등록 성공") {
+        if (response.status) {
           Swal.fire({
             title: "FarmFarm!",
             timer: 0,
@@ -133,7 +140,7 @@ function OutGarden() {
           Swal.fire({
             position: "center",
             icon: "error",
-            title: "정보 등록에 실패하였습니다!<br/> 데이터를 확인해주세요.",
+            title: `${error.response.data.message}`,
             showConfirmButton: false,
             timer: 1500,
           });
@@ -142,8 +149,7 @@ function OutGarden() {
         Swal.fire({
           position: "center",
           icon: "error",
-          title:
-            "정보 등록에 실패하였습니다!<br/> 데이터를 확인해보시고, 잠시 후 다시 시도해주세요",
+          title: "정보 등록에 실패하였습니다!",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -238,7 +244,7 @@ function OutGarden() {
             <div className="form4">
               <label htmlFor="area">면적(평):</label>
               <input
-                type="text"
+                type="number"
                 placeholder="면적을 입력해주세요"
                 id="out_area"
                 value={form.lental_area}
@@ -251,7 +257,7 @@ function OutGarden() {
             <div className="form4_1">
               <label htmlFor="area_num">분양 개수:</label>
               <input
-                type="text"
+                type="number"
                 placeholder="분양할 텃밭의 개수를 입력하세요."
                 id="out_areanum"
                 value={form.farm_sector}
@@ -330,7 +336,7 @@ function OutGarden() {
             <div className="form7">
               <label htmlFor="price">분양희망가:</label>
               <input
-                type="text"
+                type="number"
                 id="out_price"
                 placeholder="분양 희망 가격을 입력해주세요"
                 value={form.farm_price}

@@ -44,18 +44,17 @@ const CardDetailsPage = ({ value }) => {
         // 서버에 데이터 보내기 :
         const apiUrl = `${API_URL}/community/content_comment`;
         axios
-          .get(apiUrl, {
-            responseType: "json",
-            params: {
-              user_nick: userNick,
-              content_num: newContent[0]?.content_num,
-              content_comment: newComment,
-            },
+          .post(apiUrl, {
+            user_nick: userNick,
+            content_num: newContent[0]?.content_num,
+            content_comment: newComment,
           })
           .then((response) => {
             console.log("댓글쓰고 받아온거", response);
-            if (response.status === 200) setComments(response.data);
-            setNewComment("");
+            if (response.status) {
+              setComments(response.data);
+              setNewComment("");
+            }
           })
           .catch((error) => {
             console.error("보내기 에러");
@@ -69,16 +68,13 @@ const CardDetailsPage = ({ value }) => {
   useEffect(() => {
     const apiUrl = `${API_URL}/community/content_comment`;
     axios
-      .get(apiUrl, {
-        responseType: "json",
-        params: {
-          user_nick: userNick,
-          content_num: newContent[0]?.content_num,
-          content_comment: newComment,
-        },
+      .post(apiUrl, {
+        user_nick: userNick,
+        content_num: newContent[0]?.content_num,
+        content_comment: newComment,
       })
       .then((response) => {
-        if (response.data) setComments(response.data);
+        if (response.status) setComments(response.data);
 
         console.log("댓글 처음에 받아온 데이터", response.data);
       })
@@ -91,9 +87,8 @@ const CardDetailsPage = ({ value }) => {
     if (userNick === newContent[0]?.user.user_nick) {
       const delUrl = `${API_URL}/community/delete`;
       axios
-        .get(delUrl, {
-          responseType: "json",
-          params: { content_num: newContent[0]?.content_num },
+        .post(delUrl, {
+          content_num: newContent[0]?.content_num,
         })
         .then((response) => {
           console.log("Response from server:", response.data);

@@ -25,13 +25,13 @@ const MyList = () => {
     // 신청내역
     const myListyUrl = `${API_URL}/farm/my_apply`;
     axios
-      .get(myListyUrl, { responseType: "json", params: { user_id: userId } })
+      .post(myListyUrl, { user_id: userId })
       .then((response) => {
-        console.log("신청내역 받아온거", response.data);
-        setApplicationList(response.data);
+        console.log("신청내역 받아온거", response);
+        if (response.status) setApplicationList(response.data);
       })
       .catch((error) => {
-        console.error("보내기 에러");
+        console.error("보내기 에러", error);
       });
   }, []);
 
@@ -39,25 +39,24 @@ const MyList = () => {
     // 신청자
     const myListyUrl = `${API_URL}/farm/applicant`;
     axios
-      .get(myListyUrl, { responseType: "json", params: { user_id: userId } })
+      .post(myListyUrl, { user_id: userId })
       .then((response) => {
-        console.log("신청자 받아온거", response.data);
-        setVolunteerList(response.data);
+        console.log("신청자 받아온거", response);
+        if (response.status) setVolunteerList(response.data);
       })
       .catch((error) => {
-        console.error("보내기 에러");
+        console.error("보내기 에러", error);
       });
   }, []);
 
   const del = (applicationNum) => {
     const delUrl = `${API_URL}/farm/cancel`;
     axios
-      .get(delUrl, {
-        responseType: "json",
-        params: { application_num: applicationNum },
+      .post(delUrl, {
+        application_num: applicationNum,
       })
       .then((response) => {
-        console.log("Response from server:", response.data);
+        console.log("Response from server:", response);
         if (response.data === true) {
           // 여기서 바로 리디렉션을 수행
           alert("분양 신청이 취소되었습니다.");
@@ -129,6 +128,74 @@ const MyList = () => {
         </div>
       ) : (
         <div className="mypage-container">
+          <h1 className="mypage-title">텃밭신청내역</h1>
+          <table className="application-table">
+            <thead>
+              <tr>
+                <th className="aaa">신청번호</th>
+                <th className="bbb">신청내역</th>
+                <th className="ccc">신청일</th>
+                <th>취소</th>
+              </tr>
+            </thead>
+            <tbody>
+              {applicationList.map((application) => (
+                <tr>
+                  <td key={application.farm.application_num} className="mycard">
+                    <p>{application.application_num}</p>
+                  </td>
+                  <td>
+                    <h2 className="ap1">
+                      신청한 텃밭 :{" "}
+                      <span className="apply_gardenname">
+                        {" "}
+                        {application.farm.farm_title}
+                      </span>
+                    </h2>
+
+                    <p className="ap1">
+                      텃밭 면적 :{" "}
+                      <span className="apply_gardenname">
+                        {application.farm.lental_area} m²
+                      </span>
+                    </p>
+                    <p className="ap1">
+                      분양가 :{" "}
+                      <span className="apply_gardenname">
+                        {application.farm_price} 원
+                      </span>
+                    </p>
+                    <h3 className="ap1">
+                      임대시작 :{" "}
+                      <span className="apply_gardenname">
+                        {" "}
+                        {application.lental_startDate}
+                      </span>
+                    </h3>
+                    <h3 className="ap1">
+                      임대끝 :{" "}
+                      <span className="apply_gardenname">
+                        {application.lental_endDate}
+                      </span>
+                    </h3>
+                  </td>
+                  <td>
+                    <p> {application.apply_day}</p>
+                  </td>
+                  <td>
+                    <button
+                      className="ddd"
+                      onClick={() => del(application.application_num)}
+                    >
+                      {" "}
+                      취소하기{" "}
+                    </button>
+                    {/* <button className='ddd' onClick={del}> 취소하기 </button> */}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
           <h1 className="mypage-title1">텃밭신청자 내역</h1>
           <table className="application-table1">
             <thead>

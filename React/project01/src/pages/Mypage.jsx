@@ -70,7 +70,7 @@ const Mypage = () => {
         const responseData = Response.data;
         // setMessage(Response.data);
         console.log("DB에 있는 데이터인가?:(T/F)", "id?", message);
-        if (responseData === "사용 가능") {
+        if (Response.status) {
           alert("사용할 수 있는 아이디입니다");
         } else {
           alert("사용할 수 없는 아이디입니다");
@@ -78,6 +78,7 @@ const Mypage = () => {
         }
       })
       .catch((Error) => {
+        if (Error.response.status === 409) alert(Error.response.data.message);
         console.log("통신 실패 + \n" + Error);
       });
   };
@@ -89,7 +90,7 @@ const Mypage = () => {
         console.log("DB에 있는 데이터인가?:(T/F)", "nick", Response.data);
         const responseData = Response.data;
         // setMessage(Response.data);
-        if (responseData === "사용 가능") {
+        if (Response.status) {
           alert("사용할 수 있는 닉네임입니다");
         } else {
           alert("사용할 수 없는 닉네임입니다");
@@ -97,7 +98,7 @@ const Mypage = () => {
         }
       })
       .catch((Error) => {
-        alert(Error.response.data.message);
+        if (Error.response.status === 409) alert(Error.response.data.message);
         console.log("통신 실패 + \n" + Error);
       });
   };
@@ -109,7 +110,7 @@ const Mypage = () => {
         console.log("DB에 있는 데이터인가?:(T/F)", "email", Response.data);
         const responseData = Response.data;
         // setMessage(Response.data);
-        if (responseData === "사용 가능") {
+        if (Response.status) {
           alert("사용할 수 있는 이메일입니다");
         } else {
           alert("사용할 수 없는 이메일입니다");
@@ -117,7 +118,7 @@ const Mypage = () => {
         }
       })
       .catch((Error) => {
-        alert(Error.response.data.message);
+        if (Error.response.status === 409) alert(Error.response.data.message);
         console.log("통신 실패 + \n" + Error);
       });
   };
@@ -128,10 +129,10 @@ const Mypage = () => {
     console.log("데이터 확인", form);
 
     await axios
-      .post(sendUrl, { form })
+      .post(sendUrl, form)
       .then((response) => {
         console.log(response);
-        if (response.status === 201) {
+        if (response.status) {
           alert("🧑‍🌾회원 정보가 수정되었습니다! ");
           sessionStorage.setItem("user_id", response.data.id);
           sessionStorage.setItem("user_nick", response.data.user_nick);
@@ -140,10 +141,9 @@ const Mypage = () => {
         }
       })
       .catch((Error) => {
+        if (Error.response.status === 400) alert(Error.response.data.message);
         console.log("통신 실패 + \n" + Error);
-        if (Error.response.status == 500) {
-          alert("빈칸이 존재합니다.");
-        }
+        console.log(Error);
       });
   };
 

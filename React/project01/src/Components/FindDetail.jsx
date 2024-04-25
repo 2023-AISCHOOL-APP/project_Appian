@@ -46,16 +46,19 @@ const FindDetail = () => {
   const showConfirmationDialog = () => {
     const userCheckUrl = `${API_URL}/farm/farm_check`;
     axios
-      .get(userCheckUrl, {
-        responseType: "json",
-        params: { id: userId, farm_num: farms.farm_num },
+      .post(userCheckUrl, {
+        user_id: userId,
+        farm_num: farms.farm_num,
       })
       .then((response) => {
         console.log("Response from server:", response.data);
 
         if (response.data === "텃밭 신청 내역 없음") {
           farm_apply();
-        } else {
+        }
+      })
+      .catch((error) => {
+        if (error.response.status === 400) {
           Swal.fire({
             title: "텃밭 신청 확인",
             text: "이미 신청한 텃밭입니다. 한 번 더 신청하시겠습니까?",
@@ -69,7 +72,9 @@ const FindDetail = () => {
               farm_apply();
             }
           });
+          return;
         }
+        console.error(error);
       });
   };
 
@@ -85,17 +90,14 @@ const FindDetail = () => {
       nav("/login");
     } else {
       axios
-        .get(applyUrl, {
-          responseType: "json",
-          params: {
-            id: userId,
-            farm_num: farms.farm_num,
-            farm_sector: farms.farm_sector, // 프론트에서 제한 수 보내도록 변경함
-          },
+        .post(applyUrl, {
+          user_id: userId,
+          farm_num: farms.farm_num,
+          farm_sector: farms.farm_sector, // 프론트에서 제한 수 보내도록 변경함
         })
         .then((response) => {
           console.log("Response from server:", response.data);
-          if (response.data === "분양 신청 성공") {
+          if (response.status) {
             setShowSuccessMessage(true);
             // 여기서 바로 리디렉션을 수행
             setTimeout(() => {
@@ -121,6 +123,8 @@ const FindDetail = () => {
         })
         .catch((error) => {
           console.error("Error sending data:", error);
+          if (error.response.status === 409)
+            return alert(error.response.data.message);
           alert("분양 신청 중 오류가 발생했습니다.");
         });
     }

@@ -14,6 +14,7 @@ import axios from "axios";
 import DaumPost from "./DaumPost";
 import { Login } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../api_url";
 
 function Copyright(props) {
   return (
@@ -44,25 +45,23 @@ export default function Myinfo() {
 
   const nav = useNavigate();
 
-  const loginUrl = "http://localhost:3333/auth/myInfoLogin";
+  const loginUrl = `${API_URL}/auth/login`;
 
   const infoSending = async () => {
     try {
       console.log("유저정보", form);
-      const response = await axios.post(loginUrl, { form });
+      const response = await axios.post(loginUrl, form);
       const responseData = response.data;
       console.log("응답 데이터:", responseData);
-      if (responseData.user_id) {
+      if (response.status) {
         const info = responseData;
         console.log("보낼유저정보", info);
         nav("/mypage", { state: { info } });
       }
       // nav('/mypage', {state:{responseData}})
     } catch (error) {
-      if (error.response && error.response.data.message === "로그인 실패")
-        return alert(
-          "회원정보가 일치하지 않습니다. 회원 정보를 다시 확인해주세요"
-        );
+      if (error.response.status === 400)
+        return alert(`${error.response.data.message}`);
       console.error("통신 실패:", error);
       alert("서버에 문제가 발생하였습니다. 다시 한 번 시도해주세요!");
     }

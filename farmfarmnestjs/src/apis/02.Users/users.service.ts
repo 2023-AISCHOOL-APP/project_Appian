@@ -11,16 +11,14 @@ export class UsersService {
     private readonly usersRepository: Repository<User>,
   ) {}
 
-  // 회원가입 중복 체크용으로 사용 중
-  findOneByInputInUser({
-    inputs,
-  }: IUsersServiceFindOneByInputInUser): Promise<User> {
+  /**
+   * 회원가입 중복 체크용
+   * @example 'user_email: test01'
+   */
+  findOneByInputInUser({ inputs }: IUsersServiceFindOneByInputInUser): Promise<User> {
     return this.usersRepository.findOne({
-      where: [
-        // or 연산
-        { user_email: inputs.user_email },
-        { user_nick: inputs.user_nick },
-      ],
+      // or 연산
+      where: [{ user_email: inputs.user_email }, { user_nick: inputs.user_nick }],
     });
   }
 }

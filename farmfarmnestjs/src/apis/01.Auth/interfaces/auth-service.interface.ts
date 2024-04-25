@@ -2,7 +2,6 @@ import {
   CheckUserInput,
   CreateUserInput,
   LoginInput,
-  MyInfoLoginInput,
 } from '../dto/auth-container.dto';
 
 export interface IAuthServiceCheckInput {
@@ -15,8 +14,4 @@ export interface IAuthServiceLogin {
 
 export interface IAuthServiceCreate {
   createUserInput: CreateUserInput;
-}
-
-export interface IAuthServiceMyInfoLogin {
-  myInfoLogin: MyInfoLoginInput;
 }

@@ -1,3 +1,5 @@
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty } from 'class-validator';
 import { User } from 'src/apis/02.Users/entities/users.entity';
 import {
   Column,
@@ -11,25 +13,35 @@ import {
 
 @Entity()
 export class Content {
+  @ApiProperty({ description: 'increment', example: 1 })
   @PrimaryGeneratedColumn('increment')
+  @IsNotEmpty()
   content_num: number;
 
+  @ApiProperty({ description: 'User 테이블의 user_nick과 결합' })
   @ManyToOne(() => User)
   @JoinColumn({ referencedColumnName: 'user_nick' })
   user: User;
 
-  @Column({ nullable: false, length: 30 })
+  @ApiProperty({ maxLength: 30, example: '저희 텃밭에 상추..' })
+  @Column({ length: 30 })
+  @IsNotEmpty()
   content_title: string;
 
+  @ApiProperty({ example: '...' })
   @Column({ type: 'text' })
+  @IsNotEmpty()
   contents: string;
 
+  @ApiProperty({ description: '1~40 랜덤 값', example: '1' })
   @Column()
   content_img: string;
 
+  @ApiProperty()
   @CreateDateColumn()
   createdAt: Date;
 
+  @ApiProperty()
   @DeleteDateColumn()
   deletedAt: Date;
 }

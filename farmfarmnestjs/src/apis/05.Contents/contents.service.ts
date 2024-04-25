@@ -18,9 +18,7 @@ export class ContentsService {
     private readonly content_CommentSerivce: Content_CommentSerivce,
   ) {}
 
-  writeContent({
-    writeContentInput,
-  }: IContentServiceWriteContent): Promise<Content> {
+  writeContent({ writeContentInput }: IContentServiceWriteContent): Promise<Content> {
     const img = String(Math.floor(Math.random() * 40) + 1);
     return this.contentRepository.save({
       content_img: img,

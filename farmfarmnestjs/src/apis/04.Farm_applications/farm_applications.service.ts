@@ -16,14 +16,13 @@ export class Farm_ApplicationsService {
     private readonly farm_ApplicationRepository: Repository<Farm_Application>,
   ) {}
 
-  checkFarmApply({
-    checkFarmInput,
-  }: IFarmServiceCheckFarm): Promise<Farm_Application> {
+  checkFarmApply({ checkFarmInput }: IFarmServiceCheckFarm): Promise<Farm_Application> {
     return this.farm_ApplicationRepository.findOne({
+      // and 연산 {}
       where: {
         farm: { farm_num: checkFarmInput.farm_num },
         user: { id: checkFarmInput.user_id },
-      }, // and 연산
+      },
     });
   }
 
@@ -33,9 +32,7 @@ export class Farm_ApplicationsService {
     });
   }
 
-  applyFarm({
-    applyFarmInput,
-  }: IFarmServiceApplyFarm): Promise<Farm_Application> {
+  applyFarm({ applyFarmInput }: IFarmServiceApplyFarm): Promise<Farm_Application> {
     return this.farm_ApplicationRepository.save({
       farm: { farm_num: applyFarmInput.farm_num },
       user: { id: applyFarmInput.user_id },

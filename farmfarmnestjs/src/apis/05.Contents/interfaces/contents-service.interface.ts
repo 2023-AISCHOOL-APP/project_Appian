@@ -1,11 +1,11 @@
 import {
   DeletedContentInput,
-  WriteContent,
+  WriteContentInput,
   WriteOrReadComment,
 } from '../dto/contents-controller.dto';
 
 export interface IContentServiceWriteContent {
-  writeContentInput: WriteContent;
+  writeContentInput: WriteContentInput;
 }
 
 export interface IContentServiceDeletedContent {

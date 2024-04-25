@@ -1,35 +1,37 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import {
-  CheckUserInput,
-  CreateUserInput,
-  LoginInput,
-  MyInfoLoginInput,
-} from './dto/auth-container.dto';
+import { CheckUserInput, CreateUserInput, LoginInput } from './dto/auth-container.dto';
 import { User } from '../02.Users/entities/users.entity';
 import { Auth } from './entities/auth.entity';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('auth')
+@ApiTags('유저 API')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('check') // 중복체크
+  @Post('check')
+  @ApiOperation({ summary: '회원 데이터 중복 체크' })
+  @ApiResponse({ status: 201, description: '사용가능', type: String })
+  @ApiResponse({ status: 409, description: '중복 메시지', type: Error })
   checkUser(@Body() checkUserInput: CheckUserInput): Promise<string> {
     return this.authService.checkUser({ checkUserInput });
   }
 
-  @Post('join') // 회원가입 & 정보수정
-  createUser(@Body('form') createUserInput: CreateUserInput): Promise<User> {
+  @Post('join')
+  @ApiOperation({ summary: '회원가입 & 정보수정' })
+  @ApiResponse({ status: 201, description: 'User 테이블 반환', type: User })
+  @ApiResponse({ status: 400, description: '빈칸 존재', type: Error })
+  @ApiResponse({ status: 500, description: '회원 가입 실패(DB)', type: Error })
+  createUser(@Body() createUserInput: CreateUserInput): Promise<User> {
     return this.authService.create({ createUserInput });
   }
 
-  @Post('login') // 로그인
-  login(@Body('form') loginInput: LoginInput): Promise<User> {
+  @Post('login')
+  @ApiOperation({ summary: '로그인 (회원 & 마이페이지)' })
+  @ApiResponse({ status: 201, description: '일반 로그인은 User 테이블 없음', type: Auth })
+  @ApiResponse({ status: 400, description: '로그인 실패 or 빈칸', type: Error })
+  login(@Body() loginInput: LoginInput): Promise<Auth | User> {
     return this.authService.login({ loginInput });
-  }
-
-  @Post('myInfoLogin') // 내정보 수정 로그인 => 프론트에서 uid만 가지고 있어서 일반 로그인이랑 방법이달라짐
-  myInfoLogin(@Body('form') myInfoLogin: MyInfoLoginInput): Promise<Auth> {
-    return this.authService.myInfoLogin({ myInfoLogin });
   }
 }

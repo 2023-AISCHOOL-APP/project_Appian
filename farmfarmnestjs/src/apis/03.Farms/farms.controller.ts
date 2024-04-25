@@ -20,49 +20,71 @@ import {
 } from './dto/farms-container.dto';
 import { Farm } from './entities/farm.entity';
 import { Farm_Application } from '../04.Farm_applications/entities/farm_application.entity';
+import { ApiOkResponse, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('farm')
+@ApiTags('텃밭 API')
 export class FarmsController {
   constructor(
     private readonly farmService: FarmsService, //
   ) {}
 
-  @Post('add_farm') // 텃밭 등록 (이미지 안받음) // 입력들 없는거 처리필요한들.
+  @Post('add_farm')
+  @ApiOperation({ summary: '텃밭 내놓기 (이미지 안받는 api)' })
+  @ApiResponse({ status: 201, description: '텃밭 등록 성공', type: String })
+  @ApiResponse({ status: 400, description: '빈칸 존재', type: Error })
+  @ApiResponse({ status: 500, description: '텃밭 등록 실패(DB)', type: Error })
   createFarm(@Body() createFarmInput: CreateFarmInput): Promise<string> {
     return this.farmService.createFarm({ createFarmInput });
   }
 
-  @Get('farm') // 텃밭 검색
+  // 개인정보도 같이 보내는거라 Post로 바꿔야하지만 프론트 로직도 바꿔야하고, Get스타일에 가장 잘 맞는 API라 그대로 놔둠.
+  @Get('farm')
+  @ApiOperation({ summary: '텃밭들 검색' })
+  @ApiResponse({ status: 200, description: '텃밭들 검색 결과', type: [Farm] })
   getFarms(@Query() getFarmsInput: GetFarmsInput): Promise<Farm[]> {
     return this.farmService.getFarms({ getFarmsInput });
   }
 
-  @Get('farm_check') // 텃밭 신청 체크 (해당 텃밭에 신청 내역 있는지)
-  checkFarm(@Query() checkFarmInput: CheckFarmInput): Promise<string> {
+  @Post('farm_check')
+  @ApiOperation({ summary: '텃밭 신청 내역 체크' })
+  @ApiResponse({ status: 201, description: '텃밭 신청 내역 없음', type: String })
+  @ApiResponse({ status: 400, description: '텃밭 신청 내역 있음', type: Error })
+  checkFarm(@Body() checkFarmInput: CheckFarmInput): Promise<string> {
     return this.farmService.checkFarm({ checkFarmInput });
   }
 
-  @Get('farm_apply') // 텃밭 분양 신청
-  applyFarm(@Query() applyFarmInput: ApplyFarmInput): Promise<string> {
+  @Post('farm_apply')
+  @ApiOperation({ summary: '텃밭 분양 신청' })
+  @ApiResponse({ status: 201, description: '분양 신청 성공', type: String })
+  @ApiResponse({ status: 409, description: '분양 신청 자리가 다 찼습니다.', type: Error })
+  @ApiResponse({ status: 500, description: '분양 신청 실패(DB)', type: Error })
+  applyFarm(@Body() applyFarmInput: ApplyFarmInput): Promise<string> {
     return this.farmService.applyFarm({ applyFarmInput });
   }
 
-  @Get('my_apply') // 텃밭 분양 신청 내역
+  @Post('my_apply')
+  @ApiOperation({ summary: '텃밭 분양 신청 내역들' })
+  @ApiResponse({ status: 201, description: '분양 신청 내역들', type: [Farm_Application] })
   getMyFarmApply(
-    @Query() getMyFarmApplyInput: GetMyFarmApply,
+    @Body() getMyFarmApplyInput: GetMyFarmApply,
   ): Promise<Farm_Application[]> {
     return this.farmService.getMyFarmApply({ getMyFarmApplyInput });
   }
 
-  @Get('applicant') // 텃밭 분양 신청자 내역
+  @Post('applicant') // 텃밭 분양 신청자 내역
+  @ApiOperation({ summary: '내놓은 텃밭의 분양 신청자들' })
+  @ApiOkResponse({ status: 201, description: '분양 신청자들', type: [Farm_Application] })
   getApplicant(
-    @Query() getApplicantInput: GetApplicantInput,
+    @Body() getApplicantInput: GetApplicantInput,
   ): Promise<Farm_Application[]> {
     return this.farmService.getApplicant({ getApplicantInput });
   }
 
-  @Get('cancel') // 텃밭 분양 신청 취소
-  cancelApply(@Query() cancelApply: CancelApply): Promise<boolean> {
+  @Post('cancel') // 텃밭 분양 신청 취소
+  @ApiOperation({ summary: '텃밭 분양 신청 취소' })
+  @ApiResponse({ status: 201, description: '취소 성공/실패', type: Boolean })
+  cancelApply(@Body() cancelApply: CancelApply): Promise<boolean> {
     return this.farmService.cancelApply({ cancelApply });
   }
 }

@@ -1,4 +1,9 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { KakaoApiService } from 'src/services/kakaoApi.service';
 import { Farm } from './entities/farm.entity';
@@ -35,9 +40,7 @@ export class FarmsService {
     });
   }
 
-  async createFarm({
-    createFarmInput,
-  }: IFarmServiceCreateFarm): Promise<string> {
+  async createFarm({ createFarmInput }: IFarmServiceCreateFarm): Promise<string> {
     const { farm_address, user_id } = createFarmInput;
     const coordinates = await this.kakaoApiService.getLatLng(farm_address);
     const farm_img = String(Math.floor(Math.random() * 40) + 1);
@@ -63,6 +66,7 @@ export class FarmsService {
       if (farm && updateResult.affected) return '텃밭 등록 성공';
     } catch (error) {
       await queryRunner.rollbackTransaction();
+      throw new InternalServerErrorException('텃밭 등록 실패(DB)');
     } finally {
       queryRunner.release();
     }
@@ -73,10 +77,8 @@ export class FarmsService {
   }
 
   async checkFarm({ checkFarmInput }: IFarmServiceCheckFarm): Promise<string> {
-    const apply = await this.farm_ApplicationsService.checkFarmApply({
-      checkFarmInput,
-    });
-    if (apply) return '텃밭 신청 내역 있음';
+    const apply = await this.farm_ApplicationsService.checkFarmApply({ checkFarmInput });
+    if (apply) throw new BadRequestException('텃밭 신청 내역 있음');
     return '텃밭 신청 내역 없음';
   }
 
@@ -85,20 +87,17 @@ export class FarmsService {
     const appliedNumber = await this.farm_ApplicationsService.countFarmApply({
       farm_num,
     });
-    if (farm_sector <= appliedNumber) return '분양 신청 자리가 다 찼습니다.';
-    const apply = this.farm_ApplicationsService.applyFarm({
-      applyFarmInput,
-    });
-    if (!apply) throw new InternalServerErrorException('서버 오류');
+    if (farm_sector <= appliedNumber)
+      throw new ConflictException('분양 신청 자리가 다 찼습니다.');
+    const apply = this.farm_ApplicationsService.applyFarm({ applyFarmInput });
+    if (!apply) throw new InternalServerErrorException('분양 신청 실패');
     return '분양 신청 성공';
   }
 
   getMyFarmApply({
     getMyFarmApplyInput,
   }: IFarmServiceGetMyFarmApplyInput): Promise<Farm_Application[]> {
-    return this.farm_ApplicationsService.findApplyFarmByUserId({
-      getMyFarmApplyInput,
-    });
+    return this.farm_ApplicationsService.findApplyFarmByUserId({ getMyFarmApplyInput });
   }
 
   async getApplicant({
@@ -109,17 +108,11 @@ export class FarmsService {
       select: ['farm_num'],
     });
     const farmNums = farm_num.map((farm) => farm.farm_num);
-    return this.farm_ApplicationsService.findApplicantByFarmNum({
-      farmNums,
-    });
+    return this.farm_ApplicationsService.findApplicantByFarmNum({ farmNums });
   }
 
-  async cancelApply({
-    cancelApply,
-  }: IFarmServiceCancelApply): Promise<boolean> {
-    const result = await this.farm_ApplicationsService.cancelApply({
-      cancelApply,
-    });
+  async cancelApply({ cancelApply }: IFarmServiceCancelApply): Promise<boolean> {
+    const result = await this.farm_ApplicationsService.cancelApply({ cancelApply });
     return result.affected ? true : false;
   }
 }

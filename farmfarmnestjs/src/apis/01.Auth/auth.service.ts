@@ -14,7 +14,6 @@ import {
   IAuthServiceCheckInput,
   IAuthServiceCreate,
   IAuthServiceLogin,
-  IAuthServiceMyInfoLogin,
 } from './interfaces/auth-service.interface';
 import { User } from '../02.Users/entities/users.entity';
 
@@ -52,8 +51,7 @@ export class AuthService {
   async checkUser({ checkUserInput }: IAuthServiceCheckInput): Promise<string> {
     const { user_id, ...inputs } = checkUserInput;
     const authResult = await this.findOneByUserId({ user_id });
-    if (user_id && authResult)
-      throw new ConflictException('이미 등록된 아이디 입니다.');
+    if (user_id && authResult) throw new ConflictException('이미 등록된 아이디 입니다.');
     const userResult = await this.usersService.findOneByInputInUser({
       inputs,
     });
@@ -67,8 +65,8 @@ export class AuthService {
   }
 
   async create({ createUserInput }: IAuthServiceCreate): Promise<User> {
-    const { user_id, user_pw, ...userData } = createUserInput;
-    const { user_email, user_nick, id } = userData;
+    const { user_id, user_pw, id, ...userData } = createUserInput;
+    const { user_email, user_nick } = userData;
     if (!id) {
       const checkUserInput = { user_id, user_email, user_nick };
       await this.checkUser({ checkUserInput });
@@ -77,7 +75,10 @@ export class AuthService {
     await queryRunner.connect();
     await queryRunner.startTransaction();
     try {
-      const user = await queryRunner.manager.save(User, userData);
+      const user = await queryRunner.manager.save(
+        User,
+        id ? { id: id, ...userData } : userData,
+      );
       const hashedPw = await this.hashPw({ user_pw });
       await queryRunner.manager.save(Auth, {
         user_id,
@@ -88,23 +89,23 @@ export class AuthService {
       return user;
     } catch (error) {
       await queryRunner.rollbackTransaction();
-      throw new InternalServerErrorException('회원 가입 실패');
+      throw new InternalServerErrorException('회원 가입 실패(DB)');
     } finally {
       queryRunner.release();
     }
   }
 
-  async login({ loginInput }: IAuthServiceLogin): Promise<User> {
+  async login({ loginInput }: IAuthServiceLogin): Promise<User | Auth> {
     const { user_id, user_pw } = loginInput;
-    const auth = await this.findOneByUserId({ user_id });
-    if (!auth) throw new BadRequestException('로그인 실패'); // 여기서 안하면 밑에 compare에서 비번없는 경우 오류남
+    let auth: Auth;
+    if (user_id.length === 36) {
+      auth = await this.findOneByUid({ user_id });
+    } else {
+      auth = await this.findOneByUserId({ user_id });
+      if (!auth) throw new BadRequestException('로그인 실패');
+    }
     const isPwMath = await bcrypt.compare(user_pw, auth.user_pw);
-    if (!isPwMath) throw new BadRequestException('로그인 실패');
-    return auth.user;
-  }
-
-  myInfoLogin({ myInfoLogin }: IAuthServiceMyInfoLogin): Promise<Auth> {
-    const { user_id } = myInfoLogin;
-    return this.findOneByUid({ user_id });
+    if (!auth || !isPwMath) throw new BadRequestException('로그인 실패');
+    return user_id.length === 36 ? { ...auth, user_pw: '' } : auth.user;
   }
 }

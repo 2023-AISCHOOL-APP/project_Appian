@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty } from 'class-validator';
+import { IsEmail, IsNotEmpty } from 'class-validator';
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -15,7 +15,7 @@ export class User {
 
   @ApiProperty({ uniqueItems: true, maxLength: 50, example: 'Mintchoco@gmail.com' })
   @Column({ unique: true, length: 50 })
-  @IsNotEmpty()
+  @IsEmail({}, { message: '이메일 형식이어야 합니다.' })
   user_email: string;
 
   @ApiProperty({ uniqueItems: true, maxLength: 20, example: '민트초코' })

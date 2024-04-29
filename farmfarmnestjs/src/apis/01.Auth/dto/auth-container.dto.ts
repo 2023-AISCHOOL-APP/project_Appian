@@ -1,21 +1,39 @@
 import { ApiProperty, OmitType, PartialType, PickType } from '@nestjs/swagger';
-import { IsNotEmpty } from 'class-validator';
+import {
+  IsInt,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 import { User } from 'src/apis/02.Users/entities/users.entity';
-// import { IsNotEmpty } from 'class-validator';
+import { Auth } from '../entities/auth.entity';
 
-class PickFromUser extends PickType(User, ['user_email', 'user_nick']) {
-  @ApiProperty({ uniqueItems: true, maxLength: 20, example: 'TomatoKing' })
-  user_id: string;
+class CheckUserInputFromUser extends PickType(User, ['user_email', 'user_nick']) {
+  // @ApiProperty({ uniqueItems: true, maxLength: 20, example: 'TomatoKing' })
+  // @IsNotEmpty({ message: '아이디를 입력하세요' })
+  // @IsString({ message: '아이디는 string 타입이어야 합니다' })
+  // @MaxLength(20, { message: '아이디는 최대 20까지 입력할 수 있습니다' })
+  // user_id: string;
 }
-export class CheckUserInput extends PartialType(PickFromUser) {}
+
+class CheckUserInput_1 extends PickType(Auth, ['user_id']) {
+  user: CheckUserInputFromUser;
+}
+
+export class CheckUserInput extends PartialType(CheckUserInput_1) {}
 
 export class CreateUserInput extends OmitType(User, ['id', 'createdAt', 'user_type']) {
   @ApiProperty({ uniqueItems: true, maxLength: 20, example: 'TomatoKing' })
-  @IsNotEmpty()
+  @IsNotEmpty({ message: '아이디를 입력해주세요' })
+  @IsString({ message: '아이디는 string 타입이어야 합니다' })
+  @MaxLength(20, { message: '아이디는 최대 20까지 입력할 수 있습니다' })
   user_id: string;
 
   @ApiProperty({ example: 'farmfarm1234' })
-  @IsNotEmpty()
+  @IsNotEmpty({ message: '비밀번호를 입력해주세요' })
+  @IsString({ message: '비밀번호는 string 타입이어야 합니다' })
   user_pw: string;
 
   @ApiProperty({
@@ -24,9 +42,17 @@ export class CreateUserInput extends OmitType(User, ['id', 'createdAt', 'user_ty
     description: '정보 수정할 때, uid',
     example: '49b3bd13-0a49-4f97-9b79-733bb0a709da',
   })
+  @IsOptional()
+  @IsString({ message: 'uid는 string 타입이어야 합니다' })
+  @MinLength(60, { message: 'uid는 36자 입니다' })
+  @MaxLength(60, { message: 'uid는 36자 입니다' })
   id?: string;
 
   @ApiProperty({ required: false, description: '정보 수정할 때' })
+  @IsOptional()
+  @MinLength(1, { message: '유저타입은 1자 입니다' })
+  @MaxLength(1, { message: '유저타입은 1자 입니다' })
+  @IsInt({ message: '유저타입은 int여야 합니다.' })
   user_type?: number; // 정보 수정할 때
 }
 
@@ -35,10 +61,12 @@ export class LoginInput {
     description: 'user_id || uid',
     example: 'TomatoKing || 49b3bd13-0a49-4f97-9b79-733bb0a709da',
   })
-  @IsNotEmpty()
+  @IsNotEmpty({ message: '아이디를 입력하세요' })
+  // 들어올 타입이 2개라 길이 제약을 못거네..
   user_id: string;
 
   @ApiProperty({ example: 'farmfarm1234' })
-  @IsNotEmpty()
+  @IsNotEmpty({ message: '비밀번호를 입력하세요' })
+  @IsString({ message: '비밀번호는 string 타입이어야 합니다' })
   user_pw: string;
 }

@@ -56,9 +56,9 @@ export class AuthService {
       inputs,
     });
     if (userResult) {
-      if (userResult.user_email === inputs.user_email)
+      if (userResult.user_email === inputs.user?.user_email)
         throw new ConflictException('이미 등록된 이메일 입니다.');
-      if (userResult.user_nick === inputs.user_nick)
+      if (userResult.user_nick === inputs.user?.user_nick)
         throw new ConflictException('이미 등록된 닉네임 입니다.');
     }
     return '사용 가능';

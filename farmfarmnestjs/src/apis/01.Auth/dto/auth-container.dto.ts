@@ -11,18 +11,18 @@ import { User } from 'src/apis/02.Users/entities/users.entity';
 import { Auth } from '../entities/auth.entity';
 
 class CheckUserInputFromUser extends PickType(User, ['user_email', 'user_nick']) {
-  // @ApiProperty({ uniqueItems: true, maxLength: 20, example: 'TomatoKing' })
-  // @IsNotEmpty({ message: '아이디를 입력하세요' })
-  // @IsString({ message: '아이디는 string 타입이어야 합니다' })
-  // @MaxLength(20, { message: '아이디는 최대 20까지 입력할 수 있습니다' })
-  // user_id: string;
+  @ApiProperty({ uniqueItems: true, maxLength: 20, example: 'TomatoKing' })
+  @IsNotEmpty({ message: '아이디를 입력하세요' })
+  @IsString({ message: '아이디는 string 타입이어야 합니다' })
+  @MaxLength(20, { message: '아이디는 최대 20까지 입력할 수 있습니다' })
+  user_id: string;
 }
 
-class CheckUserInput_1 extends PickType(Auth, ['user_id']) {
-  user: CheckUserInputFromUser;
-}
+// class CheckUserInput_1 extends PickType(Auth, ['user_id']) {
+//   user: CheckUserInputFromUser;
+// }
 
-export class CheckUserInput extends PartialType(CheckUserInput_1) {}
+export class CheckUserInput extends PartialType(CheckUserInputFromUser) {}
 
 export class CreateUserInput extends OmitType(User, ['id', 'createdAt', 'user_type']) {
   @ApiProperty({ uniqueItems: true, maxLength: 20, example: 'TomatoKing' })

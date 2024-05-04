@@ -18,10 +18,7 @@ export class UsersService {
   findOneByInputInUser({ inputs }: IUsersServiceFindOneByInputInUser): Promise<User> {
     return this.usersRepository.findOne({
       // or 연산
-      where: [
-        { user_email: inputs.user?.user_email },
-        { user_nick: inputs.user?.user_nick },
-      ],
+      where: [{ user_email: inputs.user_email }, { user_nick: inputs.user_nick }],
     });
   }
 }

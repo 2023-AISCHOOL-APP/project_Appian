@@ -24,8 +24,6 @@ export class AuthController {
   @ApiResponse({ status: 400, description: '빈칸 존재', type: Error })
   @ApiResponse({ status: 500, description: '회원 가입 실패(DB)', type: Error })
   createUser(@Body() createUserInput: CreateUserInput): Promise<User> {
-    console.log(createUserInput);
-
     return this.authService.create({ createUserInput });
   }
 

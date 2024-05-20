@@ -20,17 +20,17 @@ export class User {
 
   @ApiProperty({ uniqueItems: true, maxLength: 20, example: '민트초코' })
   @Column({ unique: true, length: 20 })
-  @IsNotEmpty()
+  @IsNotEmpty({ message: '닉네임을 입력해주세요' })
   user_nick: string;
 
   @ApiProperty({ maxLength: 10, example: '정건식' })
   @Column({ length: 10 })
-  @IsNotEmpty()
+  @IsNotEmpty({ message: '이름을 입력해주세요' })
   user_name: string;
 
   @ApiProperty({ maxLength: 14, example: '010-1234-5678' })
   @Column({ length: 14 })
-  @IsNotEmpty()
+  @IsNotEmpty({ message: '전화번호를 입력해주세요' })
   user_phone: string;
 
   @ApiProperty({

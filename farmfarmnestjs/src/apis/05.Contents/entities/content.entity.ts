@@ -25,12 +25,12 @@ export class Content {
 
   @ApiProperty({ maxLength: 30, example: '저희 텃밭에 상추..' })
   @Column({ length: 30 })
-  @IsNotEmpty()
+  @IsNotEmpty({ message: '제목을 작성해주세요' })
   content_title: string;
 
   @ApiProperty({ example: '...' })
   @Column({ type: 'text' })
-  @IsNotEmpty()
+  @IsNotEmpty({ message: '내용을 작성해주세요' })
   contents: string;
 
   @ApiProperty({ description: '1~40 랜덤 값', example: '1' })

@@ -1,14 +1,6 @@
 import { ApiProperty, OmitType, PartialType, PickType } from '@nestjs/swagger';
-import {
-  IsInt,
-  IsNotEmpty,
-  IsOptional,
-  IsString,
-  MaxLength,
-  MinLength,
-} from 'class-validator';
+import { IsInt, IsNotEmpty, IsOptional, IsString, MaxLength } from 'class-validator';
 import { User } from 'src/apis/02.Users/entities/users.entity';
-import { Auth } from '../entities/auth.entity';
 
 class CheckUserInputFromUser extends PickType(User, ['user_email', 'user_nick']) {
   @ApiProperty({ uniqueItems: true, maxLength: 20, example: 'TomatoKing' })
@@ -43,16 +35,10 @@ export class CreateUserInput extends OmitType(User, ['id', 'createdAt', 'user_ty
     example: '49b3bd13-0a49-4f97-9b79-733bb0a709da',
   })
   @IsOptional()
-  @IsString({ message: 'uid는 string 타입이어야 합니다' })
-  @MinLength(60, { message: 'uid는 36자 입니다' })
-  @MaxLength(60, { message: 'uid는 36자 입니다' })
   id?: string;
 
   @ApiProperty({ required: false, description: '정보 수정할 때' })
   @IsOptional()
-  @MinLength(1, { message: '유저타입은 1자 입니다' })
-  @MaxLength(1, { message: '유저타입은 1자 입니다' })
-  @IsInt({ message: '유저타입은 int여야 합니다.' })
   user_type?: number; // 정보 수정할 때
 }
 

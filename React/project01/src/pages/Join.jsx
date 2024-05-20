@@ -72,8 +72,10 @@ export default function SignUp() {
         }
       })
       .catch((Error) => {
-        if (Error.response.status === 409) alert(Error.response.data.message);
-        console.log("통신 실패 + \n" + Error);
+        if (Error.response.status === 400 || 409)
+          alert(Error.response.data.message);
+        console.log(Error);
+        // console.log("통신 실패 + \n" + Error);
       });
   };
 
@@ -89,8 +91,10 @@ export default function SignUp() {
         }
       })
       .catch((Error) => {
-        if (Error.response.status === 409) alert(Error.response.data.message);
-        console.log("통신 실패 + \n" + Error);
+        if (Error.response.status === 400 || 409)
+          alert(Error.response.data.message);
+        console.log(Error);
+        // console.log("통신 실패 + \n" + Error);
       });
   };
 
@@ -106,8 +110,10 @@ export default function SignUp() {
         }
       })
       .catch((Error) => {
-        if (Error.response.status === 409) alert(Error.response.data.message);
-        console.log("통신 실패 + \n" + Error);
+        if (Error.response.status === 400 || 409)
+          alert(Error.response.data.message);
+        console.log(Error);
+        // console.log("통신 실패 + \n" + Error);
       });
   };
 

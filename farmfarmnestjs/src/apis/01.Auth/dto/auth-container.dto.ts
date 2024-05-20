@@ -1,5 +1,5 @@
 import { ApiProperty, OmitType, PartialType, PickType } from '@nestjs/swagger';
-import { IsInt, IsNotEmpty, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString, MaxLength } from 'class-validator';
 import { User } from 'src/apis/02.Users/entities/users.entity';
 
 class CheckUserInputFromUser extends PickType(User, ['user_email', 'user_nick']) {

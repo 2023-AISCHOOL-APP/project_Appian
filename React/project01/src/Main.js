@@ -72,7 +72,7 @@ function Main() {
         <Route path="/out" element={<OutGarden />} />
         <Route path="/community" element={<Community />} />
         <Route path="/mypage" element={<Mypage />} />
-        <Route path="/mypageInfo" element={<Myinfo />} />
+        <Route path="/mypage/info" element={<Myinfo />} />
         <Route path="/mypage/mylist" element={<MyList />} />
         <Route path="/cone" element={<Cone value={savedCards} />} />
         <Route path="/ctwo" element={<Ctwo />} />

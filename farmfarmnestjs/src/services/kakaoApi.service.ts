@@ -1,10 +1,10 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import axios from 'axios';
-
-const key = 'c5c2303d554f2b751de1c8d03bab50bd';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class KakaoApiService {
+  constructor(private readonly configService: ConfigService) {}
   async getLatLng(address: string) {
     const response = await axios.get(
       `https://dapi.kakao.com/v2/local/search/address.json`,
@@ -13,7 +13,7 @@ export class KakaoApiService {
           query: address,
         },
         headers: {
-          Authorization: `KakaoAK ${key}`,
+          Authorization: `KakaoAK ${this.configService.get<string>('KAKAOKEY')}`,
         },
       },
     );
